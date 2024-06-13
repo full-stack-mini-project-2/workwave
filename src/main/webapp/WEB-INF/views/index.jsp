@@ -7,68 +7,61 @@
 <head>
     <title>Index Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+       body {
+           font-family: Arial, sans-serif;
+           margin: 0;
+           padding: 0;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           height: 100vh;
+       }
 
-        /* 중앙 시계 */
-        .clock {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-            font-weight: bold;
-            color: #333;
-        }
+       .clock {
+           font-size: 3rem;
+           font-weight: bold;
+           color: #333;
+           margin-left: 50px;
+       }
 
-        /* 오른쪽 div 박스 */
-        .right-boxes {
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 10px;
-        }
+       .right-boxes {
+           display: grid;
+           grid-template-columns: repeat(3, 1fr);
+           grid-gap: 10px;
+           margin-right: 50px;
+       }
 
-        .right-box {
-            width: 100px;
-            height: 100px;
-            background-color: #f1f1f1;
-            border: 1px solid #ddd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #333;
-        }
+       .right-box {
+           width: 100px;
+           height: 100px;
+           background-color: #f1f1f1;
+           border: 1px solid #ddd;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           font-size: 1.2rem;
+           font-weight: bold;
+           color: #333;
+       }
 
-        /* 상단 로그인 박스 */
-        .login-box {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #f1f1f1;
-            border: 1px solid #ddd;
-            padding: 20px;
-            text-align: center;
-        }
+       .login-box {
+           background-color: #f1f1f1;
+           border: 1px solid #ddd;
+           padding: 20px;
+           text-align: center;
+           margin-left: 50px;
+       }
 
-        .login-box h2 {
-            margin-top: 0;
-        }
+       .login-box h2 {
+           margin-top: 0;
+       }
 
-        .login-box input,
-        .login-box button {
-            display: block;
-            margin-bottom: 10px;
-            padding: 5px 10px;
-        }
+       .login-box input,
+       .login-box button {
+           display: block;
+           margin-bottom: 10px;
+           padding: 5px 10px;
+       }
     </style>
 </head>
 
