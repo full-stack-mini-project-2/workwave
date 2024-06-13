@@ -8,60 +8,90 @@
     <title>Index Page</title>
     <style>
        body {
-           font-family: Arial, sans-serif;
+           font-family: 'Noto Sans KR', sans-serif;
            margin: 0;
            padding: 0;
            display: flex;
            justify-content: space-between;
            align-items: center;
            height: 100vh;
+           background-color: #f5f5f5;
        }
 
        .clock {
-           font-size: 3rem;
+           font-size: 4rem;
            font-weight: bold;
            color: #333;
-           margin-left: 50px;
+           margin-left: 80px;
+           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
        }
 
        .right-boxes {
            display: grid;
            grid-template-columns: repeat(3, 1fr);
-           grid-gap: 10px;
-           margin-right: 50px;
+           grid-gap: 20px;
+           margin-right: 80px;
        }
 
        .right-box {
-           width: 100px;
-           height: 100px;
-           background-color: #f1f1f1;
-           border: 1px solid #ddd;
+           width: 120px;
+           height: 120px;
+           background-color: #fff;
+           border-radius: 10px;
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
            display: flex;
            justify-content: center;
            align-items: center;
-           font-size: 1.2rem;
+           font-size: 1.4rem;
            font-weight: bold;
            color: #333;
+           transition: transform 0.3s ease;
+       }
+
+       .right-box:hover {
+           transform: translateY(-5px);
        }
 
        .login-box {
-           background-color: #f1f1f1;
-           border: 1px solid #ddd;
-           padding: 20px;
+           background-color: #fff;
+           border-radius: 10px;
+           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+           padding: 30px;
            text-align: center;
-           margin-left: 50px;
+           margin-left: 80px;
+           width: 300px;
        }
 
        .login-box h2 {
            margin-top: 0;
+           font-size: 1.8rem;
+           color: #333;
        }
 
        .login-box input,
        .login-box button {
            display: block;
-           margin-bottom: 10px;
-           padding: 5px 10px;
+           width: 100%;
+           margin-bottom: 15px;
+           padding: 10px 15px;
+           font-size: 1rem;
+           border: 1px solid #ddd;
+           border-radius: 5px;
+           outline: none;
        }
+
+       .login-box button {
+           background-color: #4CAF50;
+           color: #fff;
+           border: none;
+           cursor: pointer;
+           transition: background-color 0.3s ease;
+       }
+
+       .login-box button:hover {
+           background-color: #45a049;
+       }
+
     </style>
 </head>
 
