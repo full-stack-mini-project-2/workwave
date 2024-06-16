@@ -9,7 +9,7 @@ import java.util.List;
 public interface BoardMapper {
 
     // 게시물 목록 조회
-//    List<BoardFindAllDto> findAll(Search page);
+    List<Board> findAll();
 
     // 게시물 상세 조회
     Board findOne(int boardId);

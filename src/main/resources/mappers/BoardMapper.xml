@@ -5,6 +5,15 @@
 
 <mapper namespace="com.workwave.mapper.boardmapper.BoardMapper">
 
+    <select id="findAll" resultType="board">
+        select
+            board_id,
+            board_title,
+            user_id,
+            board_created_at
+        from board
+    </select>
+
     <insert id="save">
         INSERT INTO board (
         user_id,

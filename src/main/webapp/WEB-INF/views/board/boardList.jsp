@@ -7,20 +7,23 @@
 <body>
 <h1>게시물 목록</h1>
 <table>
+
     <tr>
         <th>번호</th>
         <th>제목</th>
         <th>작성자</th>
         <th>작성일</th>
     </tr>
-    <c:forEach var="post" items="${posts}">
+
+    <c:forEach var="board" items="${boards}">
         <tr>
-            <td>${post.id}</td>
-            <td><a href="view.jsp?id=${post.id}">${post.title}</a></td>
-            <td>${post.author}</td>
-            <td>${post.createdDate}</td>
+            <td>${board.boardId}</td>
+            <td><a href="#">${board.boardTitle}</a></td>
+            <td>${board.userId}</td>
+            <td>${board.formattedBoardCreatedAt}</td>
         </tr>
     </c:forEach>
+
 </table>
 <a href="/board/write">새 글 쓰기</a>
 </body>
