@@ -6,18 +6,18 @@
 <mapper namespace="com.workwave.mapper.boardmapper.BoardMapper">
 
     <insert id="save">
-        INSERT INTO
-        board (
+        INSERT INTO board (
         user_id,
         board_title,
         board_content,
         board_password
         )
         VALUES (
-        #{userId},
+        (SELECT user_id FROM users WHERE user_name = '김하이'),
         #{boardTitle},
         #{boardContent},
         #{boardPassword}
         )
     </insert>
+
 </mapper>

@@ -4,6 +4,7 @@ import com.workwave.entity.board.Board;
 import lombok.*;
 
 @Getter
+@Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
@@ -11,17 +12,16 @@ import lombok.*;
 @Builder
 public class BoardWriteDto {
 
-    private String userId;
+    //    private String userId;
     private String boardTitle;
     private String boardContent;
     private String boardPassword;
 
     public Board toEntity() {
-        Board b = new Board();
-        b.setUserId(this.userId);
-        b.setBoardContent(this.boardContent);
-        b.setBoardTitle(this.boardTitle);
-        b.setBoardPassword(this.boardPassword);
-        return b;
+        return Board.builder()
+                .boardTitle(this.boardTitle)
+                .boardContent(this.boardContent)
+                .boardPassword(this.boardPassword)
+                .build();
     }
 }

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-//@Builder
+@Builder
 public class Board {
 
     private String userId;
@@ -21,7 +21,4 @@ public class Board {
     private LocalDateTime boardUpdateAt;
 
 
-//    public Board(String userId) {
-//        this.userId = "admin";
-//    }
 }

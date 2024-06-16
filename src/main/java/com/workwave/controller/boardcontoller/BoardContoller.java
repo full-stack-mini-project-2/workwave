@@ -36,9 +36,11 @@ public class BoardContoller {
 
     @PostMapping("/write")
     public String register(BoardWriteDto dto) {
-
-        boardService.save(dto);
-
-        return "redirect:/board/list";
+        log.info("Received DTO: {}", dto);
+        if (boardService.save(dto)) {
+            return "redirect:/board/list";
+        } else {
+            return "error";
+        }
     }
 }
