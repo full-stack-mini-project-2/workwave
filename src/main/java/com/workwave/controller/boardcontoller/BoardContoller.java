@@ -1,16 +1,20 @@
 package com.workwave.controller.boardcontoller;
 
+import com.workwave.dto.boarddto.BoardDetailDto;
 import com.workwave.dto.boarddto.BoardListDto;
 import com.workwave.dto.boarddto.BoardWriteDto;
+import com.workwave.entity.board.Board;
 import com.workwave.service.boardservice.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -51,8 +55,12 @@ public class BoardContoller {
     }
 
     @GetMapping("/detail")
-    public String findOne() {
-//        boardService.findOne(boardId);
+    public String findOne(@RequestParam("bno") long boardId, Model model) {
+
+        BoardDetailDto board = boardService.findOne(boardId);
+
+        model.addAttribute("board", board);
+
         return "board/boardDetail";
     }
 }

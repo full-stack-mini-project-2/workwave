@@ -47,12 +47,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>${board.title}</h1>
+        <h1>${board.boardTitle}</h1>
         <div class="meta">
-            작성자: ${board.userId} | 작성일: ${board.boardCreatedAt}
+            작성자: ${board.userId} | 작성일: ${board.formattedBoardCreatedAt}
         </div>
         <div class="content">
-            <p>${board.content}</p>
+            <p>${board.boardContent}</p>
         </div>
         <div class="actions">
             <a href="#">수정</a>

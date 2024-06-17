@@ -12,7 +12,7 @@ public interface BoardMapper {
     List<Board> findAll();
 
     // 게시물 상세 조회
-//    Board findOne(long boardId);
+    Board findOne(long boardId);
 
     // 게시물 등록
     boolean save(Board board);
