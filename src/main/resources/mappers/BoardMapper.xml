@@ -29,4 +29,14 @@
         )
     </insert>
 
+    <select id="findOne" resultType="board">
+        select
+        board_id,
+        board_title,
+        user_id,
+        board_created_at
+        from board
+        where board_id = #{boardId}
+    </select>
+
 </mapper>

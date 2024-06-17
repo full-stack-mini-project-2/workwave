@@ -49,7 +49,7 @@
     <div class="container">
         <h1>${board.title}</h1>
         <div class="meta">
-            작성자: ${board.userId} | 작성일: ${board.createAt}
+            작성자: ${board.userId} | 작성일: ${board.boardCreatedAt}
         </div>
         <div class="content">
             <p>${board.content}</p>
