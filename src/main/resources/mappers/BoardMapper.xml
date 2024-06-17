@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.workwave.mapper.boardmapper.BoardMapper">
+
+    <select id="findAll" resultType="board">
+        select
+            board_id,
+            board_title,
+            user_id,
+            board_created_at
+        from board
+    </select>
+
+    <insert id="save">
+        INSERT INTO board (
+        user_id,
+        board_title,
+        board_content,
+        board_password
+        )
+        VALUES (
+        (SELECT user_id FROM users WHERE user_name = '김하이'),
+        #{boardTitle},
+        #{boardContent},
+        #{boardPassword}
+        )
+    </insert>
+
+</mapper>
