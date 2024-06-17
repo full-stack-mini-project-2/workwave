@@ -49,4 +49,10 @@ public class BoardContoller {
             return "error";
         }
     }
+
+    @GetMapping("/detail")
+    public String findOne() {
+//        boardService.findOne(boardId);
+        return "board/boardDetail";
+    }
 }

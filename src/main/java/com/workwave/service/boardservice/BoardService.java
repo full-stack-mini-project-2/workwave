@@ -41,4 +41,11 @@ public class BoardService {
                         .build())
                 .collect(Collectors.toList());
     }
+
+//    public boolean findOne(long boardId) {
+//
+//        boardMapper.findOne(boardId);
+//
+//        return false;
+//    }
 }
