@@ -12,6 +12,10 @@
             user_id,
             board_created_at
         from board
+        <if test="type == 'tc'">
+            WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
+            OR board_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
         order by board_id desc
         LIMIT #{pageStart}, #{amount}
     </select>
@@ -45,6 +49,10 @@
     <select id="count" resultType="int">
         SELECT COUNT(*)
         FROM board
+        <if test="type == 'tc'">
+            WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
+            OR board_content LIKE CONCAT('%', #{keyword}, '%')
+        </if>
     </select>
 
 </mapper>

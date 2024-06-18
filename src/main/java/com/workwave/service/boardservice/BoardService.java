@@ -1,6 +1,7 @@
 package com.workwave.service.boardservice;
 
 import com.workwave.common.boardpage.Page;
+import com.workwave.common.boardpage.Search;
 import com.workwave.dto.boarddto.BoardDetailDto;
 import com.workwave.dto.boarddto.BoardListDto;
 import com.workwave.dto.boarddto.BoardWriteDto;
@@ -31,7 +32,7 @@ public class BoardService {
         return boardMapper.save(b);
     }
 
-    public List<BoardListDto> findAll(Page page) {
+    public List<BoardListDto> findAll(Search page) {
         // boardMapper.findAll()이 List<Board>를 반환한다고 가정
         List<Board> boards = boardMapper.findAll(page);
 
@@ -65,8 +66,8 @@ public class BoardService {
         return null; // 조회된 데이터가 없으면 null 반환
     }
 
-    public int boardListCount() {
+    public int boardListCount(Search page) {
 
-        return boardMapper.count();
+        return boardMapper.count(page);
     }
 }

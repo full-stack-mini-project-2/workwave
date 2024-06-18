@@ -2,21 +2,22 @@
 uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
   <head>
+    <title>게시판</title>
     <style>
-      /* Pagination container */
+      /* 페이지네이션 컨테이너 */
       .pagination {
         display: flex;
         justify-content: center;
         padding: 0;
         list-style: none;
       }
-      
-      /* Pagination items */
+
+      /* 페이지네이션 아이템 */
       .pagination li {
         margin: 0 5px;
       }
       
-      /* Pagination links */
+      /* 페이지네이션 링크 */
       .pagination li a {
         color: #007bff;
         text-decoration: none;
@@ -25,46 +26,44 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         border-radius: 4px;
         transition: background-color 0.3s, color 0.3s;
       }
-      
-      /* Hover state */
+
+      /* 호버 상태 */
       .pagination li a:hover {
         background-color: #e9ecef;
         color: #0056b3;
       }
-      
-      /* Active state */
+
+      /* 활성 상태 */
       .pagination li a.active {
         background-color: #007bff;
         color: white;
         border-color: #007bff;
       }
-      
-      /* Disabled state (if needed) */
+
+      /* 비활성 상태 (필요 시) */
       .pagination li a.disabled {
         color: #6c757d;
         pointer-events: none;
         cursor: default;
       }
-      
-      /* Custom large pagination */
+
+      /* 큰 페이지네이션 */
       .pagination-lg li a {
         padding: 12px 18px;
         font-size: 1.25rem;
       }
-      
-      /* Custom pagination style */
+
+      /* 커스텀 페이지네이션 스타일 */
       .pagination-custom li a {
         background-color: #f8f9fa;
         color: #007bff;
       }
-      
+
       .pagination-custom li a:hover {
         background-color: #007bff;
         color: #fff;
       }
-      </style>
-      
-    <title>게시판</title>
+    </style>
   </head>
   <body>
     <h1>게시물 목록</h1>
@@ -76,6 +75,17 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <th>작성일</th>
       </tr>
 
+      <!-- 검색 폼 시작 -->
+      <form method="get" action="/board/list">
+        <label for="searchType">검색 : </label>
+        <select id="searchType" name="type">
+          <option value="tc">제목+내용</option>
+        </select>
+        <input type="text" name="keyword" placeholder="검색어 입력" />
+        <button type="submit">검색</button>
+      </form>
+      <!-- 검색 폼 끝 -->
+
       <c:forEach var="board" items="${boards}">
         <tr>
           <td>${board.boardId}</td>
@@ -86,24 +96,9 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <td>${board.formattedBoardCreatedAt}</td>
         </tr>
       </c:forEach>
-
-      <c:if test="${totalPages > 1}">
-        <nav>
-          <ul>
-            <c:forEach begin="1" end="${totalPages}" var="i">
-              <li>
-                <a href="?page=${i}" class="${i == currentPage ? 'active' : ''}"
-                  >${i}</a
-                >
-              </li>
-            </c:forEach>
-          </ul>
-        </nav>
-      </c:if>
     </table>
-     <!-- 게시글 목록 하단 영역 -->
-     <div class="bottom-section">
-      <!-- 페이지 버튼 영역 -->
+
+    <div class="bottom-section">
       <nav aria-label="Page navigation example">
         <ul class="pagination pagination-lg pagination-custom">
           <c:if test="${maker.pageInfo.pageNo != 1}">
@@ -129,7 +124,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
             <li data-page-num="${i}" class="page-item">
               <a
-                class="page-link"
+                class="page-link ${i == currentPage ? 'active' : ''}"
                 href="/board/list?pageNo=${i}&type=${s.type}&keyword=${s.keyword}"
                 >${i}</a
               >
@@ -158,8 +153,20 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         </ul>
       </nav>
     </div>
-    <!-- end div.bottom-section -->
-  </div>
+
     <a href="/board/write">새 글 쓰기</a>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let params = new URLSearchParams(window.location.search);
+        let currentPage = params.get("pageNo") || 1;
+        let pageLinks = document.querySelectorAll(".pagination a");
+        pageLinks.forEach(function (link) {
+          if (parseInt(link.textContent) == currentPage) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

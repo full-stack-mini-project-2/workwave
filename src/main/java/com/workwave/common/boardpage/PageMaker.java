@@ -31,7 +31,6 @@ public class PageMaker {
         makePageInfo();
     }
 
-
     // 페이지 생성에 필요한 데이터를 만드는 알고리즘
     private void makePageInfo() {
 
