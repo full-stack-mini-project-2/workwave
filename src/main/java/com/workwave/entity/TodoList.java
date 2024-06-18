@@ -14,9 +14,11 @@ public class TodoList {
 
     private int todoId;
     private String todoContent;
-    private LocalDateTime todoDate;
-    private int colorIndexId;
-    private int noticeId;
+    private LocalDateTime todoEventDate;
+    private String todoStatus;
+    private LocalDateTime todoCreateAt;
+    private LocalDateTime todoUpdateAt;
+    private Integer colorIndexId;
     private String departmentId;
     private String userId;
 }

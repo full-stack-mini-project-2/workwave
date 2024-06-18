@@ -1,6 +1,7 @@
 package com.workwave.entity;
 
 import lombok.*;
+import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDateTime;
 
@@ -14,9 +15,11 @@ public class TeamTodoList {
 
     private int teamTodoId;
     private String teamTodoContent;
-    private LocalDateTime teamTodoDate;
-    private int colorIndexId;
-    private int noticeId;
+    private LocalDateTime teamEventDate;
+    private String teamTodoStatus;
+    private LocalDateTime teamTodoCreateAt;
+    private LocalDateTime teamTodoUpdateAt;
+    private Integer colorIndexId;
     private String departmentId;
     private String userId;
 

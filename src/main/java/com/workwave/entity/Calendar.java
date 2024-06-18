@@ -13,21 +13,16 @@ import java.time.LocalDateTime;
 @Builder
 public class Calendar {
     private int calendarId;
-    private LocalDateTime teamDate;
-    private String eventType;
-    private int eventId;
-    private LocalDateTime todoDate;
-    private LocalDate eventDate;
-    private int colorIndexId;
+    private Integer eventId;
+    private LocalDateTime eventDate;
+    private String eventTitle;
+    private String eventDescription;
+    private LocalDateTime cCreateAt;
+    private LocalDateTime cUpdateAt;
+    private Integer colorIndexId;
     private Integer teamTodoId;
     private Integer noticeId;
     private String departmentId;
     private String userId;
-    private Integer noticeColorIndexId;
-    private Notice noticeColorIndex;
-    private ColorIndex colorIndex;
-    private TeamTodoList teamTodoList;
-    private Notice notice;
-    private Department department;
-    private User user;
+    private Integer todoId;
 }
