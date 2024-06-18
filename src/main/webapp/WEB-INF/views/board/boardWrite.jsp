@@ -2,10 +2,13 @@
 <html>
   <head>
     <title>게시물 작성</title>
+
+    <!-- ck editor -->
+    <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
   </head>
   <body>
     <h1>게시물 작성</h1>
-    <form action="write" method="post">
+    <form action="write" method="post" enctype="multipart/form-data">
       <table>
         <tr>
           <td>제목:</td>
@@ -28,6 +31,12 @@
               cols="30"
               required
             ></textarea>
+            <script>
+              CKEDITOR.replace("boardContent", {
+                filebrowserUploadUrl: "upload",
+                filebrowserUploadMethod: "form",
+              });
+            </script>
           </td>
         </tr>
         <tr>

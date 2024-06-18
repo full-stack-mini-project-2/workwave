@@ -74,7 +74,7 @@ public class BoardController {
         int targetId = board.getBoardId();
 
         boardService.delete(targetId);
-        
+
         return "redirect:/board/list";
     }
 }
