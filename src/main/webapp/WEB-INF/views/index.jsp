@@ -93,6 +93,16 @@
        }
 
     </style>
+
+
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelector('.right-box:nth-child(9)').addEventListener('click', function() {
+                    window.location.href = '/lunchMateBoard'; // 점심 메이트 게시판으로 이동하는 URL 설정
+                });
+            });
+        </script>
+
 </head>
 
 <body>
@@ -107,7 +117,7 @@
         <div class="right-box">윤종4</div>
         <div class="right-box">경곤1</div>
         <div class="right-box">준원1</div>
-        <div class="right-box">승연1</div>
+        <div class="right-box" onclick="location.href='/lunchMateBoard';">승연1</div>
         <div class="right-box">승연2</div>
         <div class="right-box">Box 11</div>
         <div class="right-box">Box 12</div>
