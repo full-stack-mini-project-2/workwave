@@ -102,7 +102,7 @@
         <div class="right-box">우빈1</div>
         <div class="right-box">우빈2</div>
         <div class="right-box"><a href="./calendar/calendar.jsp">윤종_달력</a></div>
-        <div class="right-box"><a href="./todoList/todolist.jsp">윤종_투두리스트</a></div>
+        <div class="right-box"><a href="todolist/todoList.jsp">윤종_투두리스트</a></div>
         <div class="right-box">윤종3</div>
         <div class="right-box">윤종4</div>
         <div class="right-box">경곤1</div>

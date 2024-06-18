@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
     <title>To-Do List Page</title>
     <style>
         body {
@@ -83,11 +82,9 @@
 <body>
 <div class="todo-list-container">
     <h1>To-Do List</h1>
-    <!-- To-Do List rendering logic can go here -->
-    <div class="todo-item">Example To-Do Item 1</div>
-    <div class="todo-item completed">Example To-Do Item 2</div>
-    <div class="todo-item">Example To-Do Item 3</div>
-    <div class="todo-item">Example To-Do Item 4</div>
+    <c:forEach var="todo" items="${todoListData}">
+        <div class="todo-item ${todo.completed ? 'completed' : ''}">${todo.task}</div>
+    </c:forEach>
 
     <div class="add-todo">
         <input type="text" placeholder="Add new item...">
