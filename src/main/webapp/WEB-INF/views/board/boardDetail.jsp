@@ -56,7 +56,7 @@
         </div>
         <div class="actions">
             <a href="#">수정</a>
-            <a href="#">삭제</a>
+            <a href="/board/delete?bno=${board.boardId}">삭제</a>
             <a href="/board/list">목록으로 돌아가기</a>
         </div>
     </div>

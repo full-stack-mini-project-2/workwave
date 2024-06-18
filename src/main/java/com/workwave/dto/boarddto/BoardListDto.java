@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 @Builder
 public class BoardListDto {
 
-    private long boardId;
+    private int boardId;
     private String boardTitle;
     private String userId;
     private LocalDateTime boardCreatedAt;

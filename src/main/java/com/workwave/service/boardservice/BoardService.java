@@ -47,7 +47,7 @@ public class BoardService {
                 .collect(Collectors.toList());
     }
 
-    public BoardDetailDto findOne(long boardId) {
+    public BoardDetailDto findOne(int boardId) {
 
         Board b = boardMapper.findOne(boardId);// Board 객체를 가져옴
 
@@ -66,8 +66,15 @@ public class BoardService {
         return null; // 조회된 데이터가 없으면 null 반환
     }
 
+    // 게시물의 갯수를 확인
     public int boardListCount(Search page) {
 
         return boardMapper.count(page);
+    }
+
+    // 게시물 삭제
+    public boolean delete(int boardId) {
+
+        return boardMapper.delete(boardId);
     }
 }

@@ -57,12 +57,24 @@ public class BoardController {
     }
 
     @GetMapping("/detail")
-    public String findOne(@RequestParam("bno") long boardId, Model model) {
+    public String findOne(@RequestParam("bno") int boardId, Model model) {
 
         BoardDetailDto board = boardService.findOne(boardId);
 
         model.addAttribute("board", board);
 
         return "board/boardDetail";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("bno") int boardId) {
+
+        BoardDetailDto board = boardService.findOne(boardId);
+
+        int targetId = board.getBoardId();
+
+        boardService.delete(targetId);
+        
+        return "redirect:/board/list";
     }
 }

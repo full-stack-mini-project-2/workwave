@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 @Builder
 public class BoardDetailDto {
 
-    private Long boardId;
+    private int boardId;
     private String userId;
     private String boardTitle;
     private String boardContent;
