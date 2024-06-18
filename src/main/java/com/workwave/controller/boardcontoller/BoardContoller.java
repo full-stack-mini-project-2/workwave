@@ -1,5 +1,7 @@
 package com.workwave.controller.boardcontoller;
 
+import com.workwave.common.boardpage.Page;
+import com.workwave.common.boardpage.PageMaker;
 import com.workwave.dto.boarddto.BoardDetailDto;
 import com.workwave.dto.boarddto.BoardListDto;
 import com.workwave.dto.boarddto.BoardWriteDto;
@@ -29,11 +31,14 @@ public class BoardContoller {
     private final BoardService boardService;
 
     @GetMapping("/list")
-    public String list(Model model) {
+    public String list(Page page, Model model) {
 
-        List<BoardListDto> boardList = boardService.findAll();
+        List<BoardListDto> boardList = boardService.findAll(page);
+
+        PageMaker maker = new PageMaker(page, boardService.boardListCount());
 
         model.addAttribute("boards", boardList);
+        model.addAttribute("maker", maker);
 
         return "board/boardList";
     }

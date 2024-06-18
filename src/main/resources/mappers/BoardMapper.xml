@@ -12,6 +12,8 @@
             user_id,
             board_created_at
         from board
+        order by board_id desc
+        LIMIT #{pageStart}, #{amount}
     </select>
 
     <insert id="save">
@@ -38,6 +40,11 @@
         board_created_at
         from board
         where board_id = #{boardId}
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*)
+        FROM board
     </select>
 
 </mapper>
