@@ -51,6 +51,10 @@ prefix="c" %>
       <h1>${board.boardTitle}</h1>
       <div class="meta">
         작성자: ${board.userId} | 작성일: ${board.formattedBoardCreatedAt}
+        <c:if
+          test="${board.formattedBoardCreatedAt != board.formattedBoardUpdateAt}"
+          >| 수정일: ${board.formattedBoardUpdateAt}
+        </c:if>
       </div>
       <div class="content">
         <p>${board.boardContent}</p>
@@ -58,12 +62,12 @@ prefix="c" %>
       <div class="actions">
         <a href="/board/update?bno=${board.boardId}">수정</a>
         <a href="/board/delete?bno=${board.boardId}">삭제</a>
-        <a id="backLink" href="#">목록으로 돌아가기</a>
+        <a id="backLink" href="${sessionScope.referer}">목록으로 돌아가기</a>
       </div>
     </div>
   </body>
   
-  <script>
+  <!-- <script>
     document.addEventListener("DOMContentLoaded", function () {
       let referer = document.referrer;
       if (!referer) {
@@ -71,5 +75,5 @@ prefix="c" %>
       }
       document.getElementById("backLink").href = referer;
     });
-  </script>
+  </script> -->
 </html>

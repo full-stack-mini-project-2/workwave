@@ -43,7 +43,7 @@ public class BoardService {
                         .boardId(board.getBoardId())
                         .boardTitle(board.getBoardTitle())
                         .userId(board.getUserId())
-                        .boardCreatedAt(board.getBoardCreateAt())
+                        .boardCreatedAt(board.getBoardCreatedAt())
                         .build())
                 .collect(Collectors.toList());
     }
@@ -60,7 +60,8 @@ public class BoardService {
                     .userId(b.getUserId())
                     .boardContent(b.getBoardContent())
                     .boardTitle(b.getBoardTitle())
-                    .boardCreatedAt(b.getBoardCreateAt())
+                    .boardCreatedAt(b.getBoardCreatedAt())
+                    .boardUpdatedAt(b.getBoardUpdatedAt())
                     .build();
         }
 
@@ -80,12 +81,15 @@ public class BoardService {
     }
 
     // 게시물 수정
-    public boolean update(int boardId, BoardUpdateDto dto) {
+    public Boolean update(BoardUpdateDto dto) {
 
-            Board b = dto.toEntity();
+        Board one = boardMapper.findOne(dto.getBoardId());
 
-        log.info("modify Board Entity: {}", b);
+        one.setBoardContent(dto.getNewContent());
+        one.setBoardUpdatedAt(dto.getBoardUpdatedAt());
 
-        return boardMapper.update(boardId, b);
+        log.info("upadte DTO: {}", one);
+
+        return boardMapper.update(one);
     }
 }

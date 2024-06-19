@@ -3,6 +3,7 @@ package com.workwave.mapper.boardmapper;
 import com.workwave.common.boardpage.Search;
 import com.workwave.entity.board.Board;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public interface BoardMapper {
 //    void upViewCount(int boardId);
 
     // 게시물 수정
-    boolean update(int boardId, Board board);
+    boolean update(Board board);
 
     // 총 게시물 수 조회
     int count(Search page);

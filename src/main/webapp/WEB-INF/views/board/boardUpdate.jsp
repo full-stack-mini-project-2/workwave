@@ -68,19 +68,20 @@
         <input type="hidden" name="boardId" value="${board.boardId}" />
         <label for="boardTitle">제목</label>
         <h1>${board.boardTitle}</h1>
-        <label for="modifyContent">내용</label>
+        <label for="newContent">내용</label>
         <textarea
+                id="newContent"
                 name="newContent"
                 rows="10"
                 cols="30"
                 required
               >${board.boardContent}</textarea>
-              <script>
-                CKEDITOR.replace("newContent", {
-                  filebrowserUploadUrl: "upload",
-                  filebrowserUploadMethod: "form",
-                });
-              </script>
+        <script>
+          CKEDITOR.replace("newContent", {
+            filebrowserUploadUrl: "upload",
+            filebrowserUploadMethod: "form",
+          });
+        </script>
         <button type="submit">수정</button>
       </form>
     </div>

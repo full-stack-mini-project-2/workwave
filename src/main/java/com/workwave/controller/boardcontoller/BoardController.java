@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -60,11 +62,20 @@ public class BoardController {
     }
 
     @GetMapping("/detail")
-    public String findOne(@RequestParam("bno") int boardId, Model model) {
+    public String findOne(@RequestParam("bno") int boardId, Model model, HttpServletRequest request) {
 
         BoardDetailDto board = boardService.findOne(boardId);
 
         model.addAttribute("board", board);
+
+        // 게시물 조회를 누를때 주소값을 저장해서 목록으로 돌아갈때 다시 리다이렉트
+        String referer = request.getHeader("Referer");
+
+        if (referer != null && !referer.contains("/board/update")) {
+            request.getSession().setAttribute("referer", referer);
+        }
+
+        log.info("referer: {}", referer);
 
         return "board/boardDetail";
     }
@@ -81,10 +92,10 @@ public class BoardController {
         return "redirect:/board/list";
     }
 
-
     @GetMapping("/update")
     public String modify(@RequestParam("bno") int boardId,
-                         Model model) {
+                         Model model,
+                         HttpSession session) {
 
         BoardDetailDto board = boardService.findOne(boardId);
 
@@ -94,9 +105,16 @@ public class BoardController {
     }
 
     @PostMapping("/update")
-    private String update(@RequestParam("bno") int boardId, BoardUpdateDto dto) {
+    private String update(@RequestParam("bno") int boardId,
+                          BoardUpdateDto dto)
+    {
+
         log.info("Received DTO: {}", dto);
-        boardService.update(boardId,dto);
-        return "redirect:/board/list";
+
+        boardService.update(dto);
+
+        return "redirect:/board/detail?bno=" + boardId;
+
     }
+
 }

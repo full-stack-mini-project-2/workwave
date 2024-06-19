@@ -1,8 +1,6 @@
 package com.workwave.dto.boarddto;
 
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.units.qual.A;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,14 +18,24 @@ public class BoardDetailDto {
     private String boardTitle;
     private String boardContent;
     private LocalDateTime boardCreatedAt;
+    private LocalDateTime boardUpdatedAt;
 
-    // 날짜 변환 메서드 추가
-    public String getFormattedBoardCreatedAt() {
-        if (boardCreatedAt != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            return boardCreatedAt.format(formatter);
+    private String formatDate(LocalDateTime dateTime) {
+        if (dateTime != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+            return dateTime.format(formatter);
         } else {
             return "";
         }
+    }
+
+    // 작성일 포맷 메서드
+    public String getFormattedBoardCreatedAt() {
+        return formatDate(boardCreatedAt);
+    }
+
+    // 수정일 포맷 메서드
+    public String getFormattedBoardUpdateAt() {
+        return formatDate(boardUpdatedAt);
     }
 }

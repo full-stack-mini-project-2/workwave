@@ -16,23 +16,6 @@ public class BoardUpdateDto {
 
     private int boardId;
     private String newContent;
-    private LocalDateTime boardUpdateAt = LocalDateTime.now();
+    private LocalDateTime boardUpdatedAt = LocalDateTime.now();
 
-    // 날짜 변환 메서드 추가
-    public String getFormattedBoardUpdateAt() {
-        if (boardUpdateAt != null) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            return boardUpdateAt.format(formatter);
-        } else {
-            return "";
-        }
-    }
-
-    public Board toEntity() {
-        return Board.builder()
-                .boardId(this.boardId)
-                .boardContent(this.newContent)
-                .boardUpdateAt(this.boardUpdateAt)
-                .build();
-    }
 }

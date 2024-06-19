@@ -41,7 +41,8 @@
         board_title,
         board_content,
         user_id,
-        board_created_at
+        board_created_at,
+        board_updated_at
         from board
         where board_id = #{boardId}
     </select>
@@ -63,8 +64,8 @@
 
     <update id="update">
         UPDATE board
-        SET board_content = #{newContent},
-        board_update_at = #{boardUpdateAt}
+        SET board_content = #{boardContent},
+        board_updated_at = #{boardUpdatedAt}
         WHERE board_id = #{boardId}
     </update>
 

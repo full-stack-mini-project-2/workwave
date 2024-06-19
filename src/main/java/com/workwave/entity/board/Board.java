@@ -18,7 +18,7 @@ public class Board {
     private String boardTitle;
     private String boardContent;
     private String boardPassword;
-    private LocalDateTime boardCreateAt = LocalDateTime.now();
-    private LocalDateTime boardUpdateAt;
+    private LocalDateTime boardCreatedAt = LocalDateTime.now();
+    private LocalDateTime boardUpdatedAt;
 
 }
