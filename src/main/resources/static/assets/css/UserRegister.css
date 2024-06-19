@@ -1,0 +1,99 @@
+body{
+    font-family: 'Roboto', sans-serif;
+        background-color: #f2f2f2;
+}
+
+#custom-login-btn img {
+    width: 300px;
+}
+
+.profile {
+    /* margin-bottom: 15px; */
+    text-align: center;
+}
+
+.profile label {
+    font-weight: 700;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: rgb(216, 48, 149);
+}
+
+.profile .thumbnail-box {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 30px auto 10px;
+    cursor: pointer;
+}
+
+.profile .thumbnail-box img {
+    width: 200px;
+    height: 200px;
+}
+
+table {
+    margin: 0 auto;
+    line-height:1.3em;
+}
+
+.signUpInputStyle{
+    width: 200px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.signUpInputStyle2{
+    width: 209px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.btn-join-bk{
+    width: 207px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgba(216, 95, 178, 0.6);
+    font-weight: 500;
+}
+
+.btn-join {
+    width: 207px;
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #FF69B4;
+    /* 분홍색 */
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 4px 0 #C71585;
+    /* 진한 분홍색 그림자 */
+    transition: all 0.3s ease;
+}
+
+.btn-join:hover {
+    background-color: #C71585;
+    /* 진한 분홍색 */
+    box-shadow: 0 2px 0 #C71585;
+    /* 아래쪽 그림자 줄이기 */
+    transform: translateY(2px);
+    /* 버튼 위치 2px 올리기 */
+}
+
+.btn-join:active {
+    background-color: #C71585;
+    /* 진한 분홍색 */
+    box-shadow: 0 0 0 #C71585;
+    /* 그림자 제거 */
+    transform: translateY(4px);
+    /* 버튼 위치 4px 내리기 */
+}
+
+
+
