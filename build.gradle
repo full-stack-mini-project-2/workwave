@@ -18,6 +18,8 @@ repositories {
     mavenCentral()
 }
 
+
+
 dependencies {
 
     //스프링 종합 선물 세트
@@ -35,7 +37,7 @@ dependencies {
     implementation 'org.mariadb.jdbc:mariadb-java-client:3.3.3'
     //Spring JDBC 모듈
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    //ㄴ Mybatis  쓰기위해 jdbc 필요
+
     // 마이바티스 모듈
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
 
@@ -48,4 +50,8 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.28' // 최신 버전 확인
+    annotationProcessor 'org.projectlombok:lombok:1.18.28' // 최신 버전 확인
 }
