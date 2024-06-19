@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.workwave.mapper.TeamTodoListMapper">
+    <insert id="save" parameterType="com.study.workwave.entity.TeamTodoList">
+        INSERT INTO teamtodolist (
+                                  team_todo_content,
+                                  team_event_date,
+                                  team_todo_status,
+#                                   team_todo_createAt,
+                                  team_todo_updateAt,
+                                  color_index_id,
+                                  department_id,
+                                  user_id
+        )
+        VALUES (
+                #{teamTodoContent},
+                #{teamEventDate},
+                #{teamTodoStatus},
+#                 NOW(),
+                NOW(),
+                #{colorIndexId},
+                #{departmentId},
+                #{userId}
+               )
+    </insert>
+</mapper>
+
