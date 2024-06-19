@@ -25,6 +25,7 @@ public class MainController {
     private final UserService userService;
 
     @GetMapping("/")
+
     public String list() {
         return "index";
     }
@@ -51,3 +52,4 @@ public class MainController {
         return "/";
     }
 } //end MainControllerß
+

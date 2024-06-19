@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.workwave.mapper.TeamCalendarMapper">
+    <insert id="save" parameterType="com.workwave.entity.TeamCalendar">
+        INSERT INTO teamcalendar (
+                                  team_event_title,
+                                  team_event_description,
+                                  team_event_date,
+                                  color_index_id,
+                                  team_todo_id,
+                                  notice_id,
+                                  department_id,
+                                  user_id
+        )
+        VALUES (
+                #{teamEventTitle},
+                #{teamEventDescription},
+                #{teamEventDate},
+                #{colorIndexId},
+                #{teamTodoId},
+                #{noticeId},
+                #{departmentId},
+                #{userId}
+               )
+    </insert>
+</mapper>

@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
 public class User {
     private String employeeId;
     private String userId;
@@ -19,3 +20,4 @@ public class User {
     private String accessLevel;
     private String departmentId;
 }
+
