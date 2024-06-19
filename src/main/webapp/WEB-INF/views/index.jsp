@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" %> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 
         <!DOCTYPE html>
@@ -105,7 +107,7 @@
             <div class="clock">00:00:00</div>
 
             <div class="right-boxes">
-                <a href="#">
+                <a href="/board/list">
                     <div class="right-box">우빈1</div>
                 </a>
                 <a href="#">
@@ -161,4 +163,5 @@
         </body>
 
         </html>
+
 
