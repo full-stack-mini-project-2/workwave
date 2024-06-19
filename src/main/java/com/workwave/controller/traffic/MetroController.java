@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class MetroController {
 
-
+    // 지하철 정보 컨트롤러
     @GetMapping("/traffic-map")
     public String metroInfo(Model model) throws IOException {
 
@@ -70,6 +70,8 @@ public class MetroController {
                 }
 
 
+
+
                 // System.out.println("stationArrayList: " + stationArrayList);
                 model.addAttribute("stationInfo",stationArrayList);
 
@@ -82,4 +84,7 @@ public class MetroController {
         }
         return "traffic/Traffic";
     }
+
+
+
 }
