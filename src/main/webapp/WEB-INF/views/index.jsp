@@ -129,7 +129,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <a href="/login">
                     <div class="right-box">경곤1</div>
                 </a>
-                <a href="#">
+                <a href="/traffic-map">
                     <div class="right-box">준원1</div>
                 </a>
                 <a href="/lunchMateBoard">
