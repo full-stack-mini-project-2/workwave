@@ -18,6 +18,8 @@ repositories {
     mavenCentral()
 }
 
+
+
 dependencies {
 
     //스프링 종합 선물 세트
@@ -48,4 +50,8 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.28' // 최신 버전 확인
+    annotationProcessor 'org.projectlombok:lombok:1.18.28' // 최신 버전 확인
 }

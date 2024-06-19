@@ -103,6 +103,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
         </head>
 
+
         <body>
             <div class="clock">00:00:00</div>
 
@@ -131,7 +132,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <a href="#">
                     <div class="right-box">준원1</div>
                 </a>
-                <a href="#">
+                <a href="/lunchMateBoard">
                     <div class="right-box">승연1</div>
                 </a>
                 <a href="#">
@@ -163,5 +164,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </body>
 
         </html>
+
 
 
