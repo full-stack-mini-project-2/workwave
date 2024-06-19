@@ -56,7 +56,7 @@ prefix="c" %>
         <p>${board.boardContent}</p>
       </div>
       <div class="actions">
-        <a href="#">수정</a>
+        <a href="/board/update?bno=${board.boardId}">수정</a>
         <a href="/board/delete?bno=${board.boardId}">삭제</a>
         <a id="backLink" href="#">목록으로 돌아가기</a>
       </div>

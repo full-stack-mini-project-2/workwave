@@ -4,10 +4,13 @@ import com.workwave.common.boardpage.PageMaker;
 import com.workwave.common.boardpage.Search;
 import com.workwave.dto.boarddto.BoardDetailDto;
 import com.workwave.dto.boarddto.BoardListDto;
+import com.workwave.dto.boarddto.BoardUpdateDto;
 import com.workwave.dto.boarddto.BoardWriteDto;
+import com.workwave.entity.board.Board;
 import com.workwave.service.boardservice.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,6 +78,25 @@ public class BoardController {
 
         boardService.delete(targetId);
 
+        return "redirect:/board/list";
+    }
+
+
+    @GetMapping("/update")
+    public String modify(@RequestParam("bno") int boardId,
+                         Model model) {
+
+        BoardDetailDto board = boardService.findOne(boardId);
+
+        model.addAttribute("board", board);
+
+        return "board/boardUpdate";
+    }
+
+    @PostMapping("/update")
+    private String update(@RequestParam("bno") int boardId, BoardUpdateDto dto) {
+        log.info("Received DTO: {}", dto);
+        boardService.update(boardId,dto);
         return "redirect:/board/list";
     }
 }

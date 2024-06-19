@@ -21,5 +21,4 @@ public class Board {
     private LocalDateTime boardCreateAt = LocalDateTime.now();
     private LocalDateTime boardUpdateAt;
 
-
 }

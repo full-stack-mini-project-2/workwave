@@ -17,12 +17,15 @@ public interface BoardMapper {
 
     // 게시물 등록
     boolean save(Board board);
-    
+
     // 게시물 삭제
     boolean delete(int boardId);
 
     // 조회수 상승
 //    void upViewCount(int boardId);
+
+    // 게시물 수정
+    boolean update(int boardId, Board board);
 
     // 총 게시물 수 조회
     int count(Search page);

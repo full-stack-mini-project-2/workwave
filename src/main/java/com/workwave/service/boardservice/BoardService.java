@@ -4,6 +4,7 @@ import com.workwave.common.boardpage.Page;
 import com.workwave.common.boardpage.Search;
 import com.workwave.dto.boarddto.BoardDetailDto;
 import com.workwave.dto.boarddto.BoardListDto;
+import com.workwave.dto.boarddto.BoardUpdateDto;
 import com.workwave.dto.boarddto.BoardWriteDto;
 import com.workwave.entity.board.Board;
 import com.workwave.mapper.boardmapper.BoardMapper;
@@ -76,5 +77,15 @@ public class BoardService {
     public boolean delete(int boardId) {
 
         return boardMapper.delete(boardId);
+    }
+
+    // 게시물 수정
+    public boolean update(int boardId, BoardUpdateDto dto) {
+
+            Board b = dto.toEntity();
+
+        log.info("modify Board Entity: {}", b);
+
+        return boardMapper.update(boardId, b);
     }
 }

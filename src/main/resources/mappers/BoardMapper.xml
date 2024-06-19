@@ -7,10 +7,10 @@
 
     <select id="findAll" resultType="board">
         select
-            board_id,
-            board_title,
-            user_id,
-            board_created_at
+        board_id,
+        board_title,
+        user_id,
+        board_created_at
         from board
         <if test="type == 'tc'">
             WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
@@ -55,8 +55,17 @@
         </if>
     </select>
 
+    <!--게시물 수정, 삭제 시 비밀번호, 관리자 확인 후 처리해야함-->
     <delete id="delete">
         DELETE FROM board
         WHERE board_id = #{boardId}
     </delete>
+
+    <update id="update">
+        UPDATE board
+        SET board_content = #{newContent},
+        board_update_at = #{boardUpdateAt}
+        WHERE board_id = #{boardId}
+    </update>
+
 </mapper>
