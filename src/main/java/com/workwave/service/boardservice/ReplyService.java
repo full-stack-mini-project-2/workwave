@@ -38,8 +38,9 @@ public class ReplyService {
 
     public boolean save(ReplyWriteDto dto) {
 
-//        replyMapper.save()
 
-        return false;
+        Reply reply = dto.toEntity();
+
+        return replyMapper.save(reply);
     }
 }

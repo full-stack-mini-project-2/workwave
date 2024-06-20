@@ -1,7 +1,5 @@
 package com.workwave.mapper.boardmapper;
 
-import com.workwave.common.boardpage.Search;
-import com.workwave.entity.board.Board;
 import com.workwave.entity.board.Reply;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,7 +15,7 @@ public interface ReplyMapper {
 //    Board findOne(long boardId);
 //
     // 댓글 등록
-    boolean save(Reply board);
+    boolean save(Reply reply);
 //
 //    // 게시물 삭제
 //    boolean delete(int boardId);

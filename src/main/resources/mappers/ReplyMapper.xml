@@ -7,16 +7,9 @@
 
     <insert id="save">
         INSERT INTO reply
-            (reply_content,
-            nickName,
-            board_id,
-            reply_password,
-            user_id)
+            (reply_content, nickName, board_id, reply_password, user_id)
         VALUES
-            (#{replyContent},
-            #{nickName},
-            #{boardId},
-            #{replyPassword},
+            (#{replyContent}, #{nickName}, #{boardId}, #{replyPassword},
             (SELECT user_id FROM users WHERE user_name = '김하이'))
     </insert>
 

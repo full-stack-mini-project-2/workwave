@@ -14,5 +14,4 @@ public class ReplyListDto {
 
     private List<ReplyDetailDto> replies;
 
-
 }

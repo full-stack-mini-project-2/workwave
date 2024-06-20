@@ -101,7 +101,7 @@ prefix="c" %>
     </style>
   </head>
   <body>
-    <div id="container" data-bno ="${board.boardId}">
+    <div id="reply-container" data-bno ="${board.boardId}">
       <h1>${board.boardTitle}</h1>
       <div class="meta">
         작성자: ${board.userId} | 작성일: ${board.formattedBoardCreatedAt}
@@ -128,22 +128,20 @@ prefix="c" %>
       <!-- 댓글 작성 영역 -->
       <div class="reply-form">
         <h2>댓글 작성</h2>
-        <form action="/reply/add" method="post">
-          <input type="hidden" name="boardId" value="${board.boardId}" />
-          <input type="text" name="nickName" placeholder="닉네임" required />
+          <input type="hidden" id="boardId" value="${board.boardId}" />
+          <input type="text" id="nickName" placeholder="닉네임" required />
           <input
             type="password"
-            name="replyPassword"
+            id="replyPassword"
             placeholder="댓글 비밀번호"
             required
           />
           <textarea
-            name="replyContent"
+            id="replyContent"
             placeholder="댓글 내용"
             required
           ></textarea>
-          <button type="submit">댓글 등록</button>
-        </form>
+          <button id="submitBtn" type="button">댓글 등록</button>
       </div>
 
       <!-- 댓글 영역 end -->

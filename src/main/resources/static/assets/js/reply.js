@@ -2,7 +2,7 @@
 //export const BASE_URL = 'http://localhost:8383/replies';
 
 // ====== 실행 코드 ========
-const bno = document.getElementById("container").dataset.bno;
+const bno = document.getElementById("reply-container").dataset.bno;
 
 // 댓글을 조회하는 함수
 async function fetchReplies(bno) {
@@ -29,20 +29,60 @@ async function fetchReplies(bno) {
 
     // 예: 댓글 목록을 HTML에 표시하기
     displayReplies(replies);
-    
   } catch (error) {
     console.error("Error:", error);
   }
 }
 
+document.getElementById("submitBtn").addEventListener("click", function () {
+  const nickName = document.getElementById("nickName");
+  const replyPassword = document.getElementById("replyPassword");
+  const replyContent = document.getElementById("replyContent");
+
+  console.log(nickName, replyContent, replyPassword);
+  // if (!nickName || !replyPassword || !replyContent) {
+  //   alert("모든 필드를 입력해 주세요.");
+  //   return;
+  // }
+
+  console.log(bno);
+
+  saveReply(bno, nickName, replyContent, replyPassword);
+});
+
+async function saveReply(bno, nickName, replyContent, replyPassword) {
+  const url = `http://localhost:8383/reply`;
+
+  const payload = {
+    nickName: nickName.value,
+    replyContent: replyContent.value,
+    boardId: bno,
+    replyPassword: replyPassword.value,
+  };
+
+  console.log(payload);
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ payload }),
+  });
+
+  const data = await response.json();
+
+  console.log(data);
+}
+
 // 댓글 목록을 HTML에 표시하는 함수 (예시)
 function displayReplies(replies) {
-  const replyContainer = document.getElementById("replyContainer");
-  replyContainer.innerHTML = ""; // 기존 댓글 목록 초기화
+  const $replyContainer = document.getElementById("replyContainer");
+  $replyContainer.innerHTML = ""; // 기존 댓글 목록 초기화
 
   // 댓글 목록 렌더링
   let tag = "";
-  if (Array.isArray(replies) && replies.length > 0) {
+  if (replies && replies.length > 0) {
     replies.forEach(({ nickName, replyCreatedAt, replyContent }) => {
       tag += `
        <div class="reply">
@@ -56,10 +96,10 @@ function displayReplies(replies) {
        `;
     });
   } else {
-    tag = `<div class="reply">댓글이 아직 없습니다! ㅠㅠ</div>`;
+    tag = `<div class="reply">댓글이 없습니다.</div>`;
   }
 
-  replyContainer.innerHTML = tag;
+  $replyContainer.innerHTML = tag;
 }
 
 // 페이지 로드 시 댓글을 조회

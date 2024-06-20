@@ -18,12 +18,14 @@ public class ReplyWriteDto {
 //    컨트롤러의  @Validated 과 함께 유효성 검사 추후 추가  ex)
 //    @NotNull(message = "이름은 필수 항목입니다.")
 //    @Size(min = 2, max = 30, message = "이름은 2자 이상 30자 이하로 입력해주세요.")
+    private int boardId;
     private String nickName;
     private String replyContent;
     private String replyPassword;
 
     public Reply toEntity() {
         return Reply.builder()
+                .boardId(this.boardId)
                 .replyContent(this.replyContent)
                 .replyPassword(this.replyPassword)
                 .nickName(this.nickName)

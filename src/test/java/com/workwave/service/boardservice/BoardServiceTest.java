@@ -45,7 +45,7 @@ class BoardServiceTest {
             dto.setBoardContent("Test Content " + i);
             dto.setBoardPassword("1234" + i);
             Board b = dto.toEntity();
-            b.setBoardCreateAt(LocalDateTime.now());
+            b.setBoardCreatedAt(LocalDateTime.now());
             boolean save = boardMapper.save(b);// 게시물 저장 메서드 호출
             assertTrue(save); // 각 저장 결과가 true인지 검증
         }
