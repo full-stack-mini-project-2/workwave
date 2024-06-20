@@ -1,13 +1,11 @@
 package com.workwave.dto.replydto;
 
-import com.workwave.entity.board.Board;
 import com.workwave.entity.board.Reply;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotNull;
 
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,12 +13,16 @@ import java.time.LocalDateTime;
 @Builder
 public class ReplyWriteDto {
 
-//    컨트롤러의  @Validated 과 함께 유효성 검사 추후 추가  ex)
-//    @NotNull(message = "이름은 필수 항목입니다.")
-//    @Size(min = 2, max = 30, message = "이름은 2자 이상 30자 이하로 입력해주세요.")
+    // 컨트롤러의 @Validated와 함께 유효성 검사 추후 추가
     private int boardId;
+
+    @NotNull(message = "닉네임은 필수 항목입니다.")
     private String nickName;
+
+    @NotNull(message = "댓글 내용은 필수 항목입니다.")
     private String replyContent;
+
+    @NotNull(message = "댓글 비밀번호는 필수 항목입니다.")
     private String replyPassword;
 
     public Reply toEntity() {
@@ -31,5 +33,4 @@ public class ReplyWriteDto {
                 .nickName(this.nickName)
                 .build();
     }
-
 }

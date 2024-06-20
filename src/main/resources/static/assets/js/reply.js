@@ -35,11 +35,11 @@ async function fetchReplies(bno) {
 }
 
 document.getElementById("submitBtn").addEventListener("click", function () {
+
   const nickName = document.getElementById("nickName");
   const replyPassword = document.getElementById("replyPassword");
   const replyContent = document.getElementById("replyContent");
 
-  console.log(nickName, replyContent, replyPassword);
   // if (!nickName || !replyPassword || !replyContent) {
   //   alert("모든 필드를 입력해 주세요.");
   //   return;

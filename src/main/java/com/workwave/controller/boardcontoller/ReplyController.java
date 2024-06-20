@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/reply")
@@ -37,13 +38,12 @@ public class ReplyController {
 
     // 댓글 생성 요청
     @PostMapping
-    public ResponseEntity<?> saveReply(@RequestBody ReplyWriteDto dto)
-    {
+    public ResponseEntity<?> saveReply(@RequestBody @Valid ReplyWriteDto dto) {
 
         log.info("ReplyWriteDto: {}", dto);
 
         boolean flag = replyService.save(dto);
-        
+
         return ResponseEntity
                 .ok()
                 .body(null);
