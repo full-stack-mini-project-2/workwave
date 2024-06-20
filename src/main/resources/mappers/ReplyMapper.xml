@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.workwave.mapper.boardmapper.ReplyMapper">
+
+    <insert id="save">
+        INSERT INTO reply
+            (reply_content,
+            nickName,
+            board_id,
+            reply_password,
+            user_id)
+        VALUES
+            (#{replyContent},
+            #{nickName},
+            #{boardId},
+            #{replyPassword},
+            (SELECT user_id FROM users WHERE user_name = '김하이'))
+    </insert>
+
+    <select id="replies" resultType="reply">
+        SELECT
+            reply_id,
+            user_id,
+            nickName,
+            reply_content,
+            reply_created_at,
+            reply_updated_at
+        FROM reply
+        WHERE board_id = #{boardId}
+    </select>
+</mapper>
