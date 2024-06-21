@@ -26,6 +26,18 @@ public class LunchPage {
         }
         this.pageNo = pageNo;
     }
+
+    public void setAmount(int amount) {
+        if (amount < 3 || amount > 30) {
+            this.amount = 3;
+            return;
+        }
+        this.amount = amount;
+    }
+
+    public int getPageStart() {
+        return (this.pageNo - 1) * this.amount;
+    }
 }
 
 

@@ -246,3 +246,206 @@ This generated password is for development use only. Your security configuration
 2024-06-21 14:13:51.406 DEBUG 6728 --- [http-nio-8383-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2024-06-21 14:13:51.406 DEBUG 6728 --- [http-nio-8383-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
 2024-06-21 14:13:51.406 DEBUG 6728 --- [http-nio-8383-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:34.268  INFO 15440 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on DESKTOP-0L11UB0 with PID 15440 (E:\workwave\out\production\classes started by user in E:\workwave)
+2024-06-21 14:15:34.272  INFO 15440 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-21 14:15:35.466  INFO 15440 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8383 (http)
+2024-06-21 14:15:35.481  INFO 15440 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-21 14:15:35.481  INFO 15440 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-21 14:15:35.723  INFO 15440 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-21 14:15:35.746  INFO 15440 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-21 14:15:35.746  INFO 15440 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1419 ms
+2024-06-21 14:15:36.062  WARN 15440 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 6c27747c-d11c-4c42-92ad-a192cbf68455
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-21 14:15:36.140 DEBUG 15440 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-21 14:15:36.156  INFO 15440 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@12d40609, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@76437e9b, org.springframework.security.web.context.SecurityContextPersistenceFilter@5bde57ab, org.springframework.security.web.header.HeaderWriterFilter@9b47400, org.springframework.security.web.authentication.logout.LogoutFilter@1283ca23, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@23ca36d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@52f6900a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@236ae13d, org.springframework.security.web.session.SessionManagementFilter@69364b2d, org.springframework.security.web.access.ExceptionTranslationFilter@2ce03e86, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@45a1d057]
+2024-06-21 14:15:36.293 DEBUG 15440 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-21 14:15:36.324  INFO 15440 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-21 14:15:36.374 DEBUG 15440 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 19 mappings in 'requestMappingHandlerMapping'
+2024-06-21 14:15:36.391 DEBUG 15440 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-06-21 14:15:36.391 DEBUG 15440 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-21 14:15:36.490  INFO 15440 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8383 (http) with context path ''
+2024-06-21 14:15:36.507  INFO 15440 --- [main] com.workwave.Main                        : Started Main in 2.688 seconds (JVM running for 3.095)
+2024-06-21 14:15:36.943  INFO 15440 --- [http-nio-8383-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 14:15:36.945  INFO 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-21 14:15:36.945 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-21 14:15:36.945 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-21 14:15:36.945 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-21 14:15:36.946 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@9d7435a
+2024-06-21 14:15:36.946 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@157f8c3e
+2024-06-21 14:15:36.946 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-21 14:15:36.946  INFO 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-21 14:15:36.956 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /lunchMateBoard
+2024-06-21 14:15:36.960 DEBUG 15440 --- [http-nio-8383-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:36.962 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:36.962 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 0F4560242450DD185B4F3882E2F524D6
+2024-06-21 14:15:36.971 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /lunchMateBoard] with attributes [permitAll]
+2024-06-21 14:15:36.972 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /lunchMateBoard
+2024-06-21 14:15:36.974 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/lunchMateBoard", parameters={}
+2024-06-21 14:15:36.982 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 14:15:36.984 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 14:15:36.984 DEBUG 15440 --- [http-nio-8383-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:36.984 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 14:15:36.986 DEBUG 15440 --- [http-nio-8383-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:36.986 DEBUG 15440 --- [http-nio-8383-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:36.987 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 14:15:36.987 DEBUG 15440 --- [http-nio-8383-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:36.987 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:36.988 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 14:15:36.988 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 14:15:36.990 DEBUG 15440 --- [http-nio-8383-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 14:15:37.007 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 14:15:37.010 DEBUG 15440 --- [http-nio-8383-exec-1] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 14:15:37.010 DEBUG 15440 --- [http-nio-8383-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:37.011 DEBUG 15440 --- [http-nio-8383-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:38.925 DEBUG 15440 --- [http-nio-8383-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-06-21 14:15:38.925 DEBUG 15440 --- [http-nio-8383-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:38.925 DEBUG 15440 --- [http-nio-8383-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:38.925 DEBUG 15440 --- [http-nio-8383-exec-2] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 0F4560242450DD185B4F3882E2F524D6
+2024-06-21 14:15:38.926 DEBUG 15440 --- [http-nio-8383-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /] with attributes [permitAll]
+2024-06-21 14:15:38.926 DEBUG 15440 --- [http-nio-8383-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-06-21 14:15:38.926 DEBUG 15440 --- [http-nio-8383-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2024-06-21 14:15:38.926 DEBUG 15440 --- [http-nio-8383-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.MainController#list()
+2024-06-21 14:15:38.930 DEBUG 15440 --- [http-nio-8383-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 14:15:38.930 DEBUG 15440 --- [http-nio-8383-exec-2] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+2024-06-21 14:15:38.930 DEBUG 15440 --- [http-nio-8383-exec-2] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+2024-06-21 14:15:39.632 DEBUG 15440 --- [http-nio-8383-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:39.632 DEBUG 15440 --- [http-nio-8383-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 14:15:39.632 DEBUG 15440 --- [http-nio-8383-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:39.633 DEBUG 15440 --- [http-nio-8383-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:40.132 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /lunchMateBoard
+2024-06-21 14:15:40.132 DEBUG 15440 --- [http-nio-8383-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:40.132 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:40.132 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /lunchMateBoard] with attributes [permitAll]
+2024-06-21 14:15:40.132 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /lunchMateBoard
+2024-06-21 14:15:40.132 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/lunchMateBoard", parameters={}
+2024-06-21 14:15:40.133 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 14:15:40.133 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 14:15:40.134 DEBUG 15440 --- [http-nio-8383-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:40.134 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 14:15:40.134 DEBUG 15440 --- [http-nio-8383-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:40.134 DEBUG 15440 --- [http-nio-8383-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:40.134 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 14:15:40.134 DEBUG 15440 --- [http-nio-8383-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:40.134 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:40.134 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 14:15:40.134 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 14:15:40.135 DEBUG 15440 --- [http-nio-8383-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 14:15:40.136 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 14:15:40.136 DEBUG 15440 --- [http-nio-8383-exec-3] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 14:15:40.136 DEBUG 15440 --- [http-nio-8383-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:40.136 DEBUG 15440 --- [http-nio-8383-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:40.435 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /lunchMateBoard
+2024-06-21 14:15:40.435 DEBUG 15440 --- [http-nio-8383-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:40.435 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:40.435 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /lunchMateBoard] with attributes [permitAll]
+2024-06-21 14:15:40.436 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /lunchMateBoard
+2024-06-21 14:15:40.436 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/lunchMateBoard", parameters={}
+2024-06-21 14:15:40.436 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 14:15:40.437 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 14:15:40.437 DEBUG 15440 --- [http-nio-8383-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:40.437 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 14:15:40.437 DEBUG 15440 --- [http-nio-8383-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:40.437 DEBUG 15440 --- [http-nio-8383-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:40.437 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 14:15:40.437 DEBUG 15440 --- [http-nio-8383-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:40.437 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:40.437 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 14:15:40.437 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 14:15:40.438 DEBUG 15440 --- [http-nio-8383-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 14:15:40.439 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 14:15:40.439 DEBUG 15440 --- [http-nio-8383-exec-4] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 14:15:40.439 DEBUG 15440 --- [http-nio-8383-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:40.439 DEBUG 15440 --- [http-nio-8383-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:41.044 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /lunchMateBoard
+2024-06-21 14:15:41.044 DEBUG 15440 --- [http-nio-8383-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:41.044 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:41.044 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /lunchMateBoard] with attributes [permitAll]
+2024-06-21 14:15:41.044 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /lunchMateBoard
+2024-06-21 14:15:41.044 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/lunchMateBoard", parameters={}
+2024-06-21 14:15:41.045 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 14:15:41.046 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 14:15:41.047 DEBUG 15440 --- [http-nio-8383-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:41.047 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 14:15:41.047 DEBUG 15440 --- [http-nio-8383-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:41.047 DEBUG 15440 --- [http-nio-8383-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:41.047 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 14:15:41.047 DEBUG 15440 --- [http-nio-8383-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:41.047 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:41.047 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 14:15:41.047 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 14:15:41.048 DEBUG 15440 --- [http-nio-8383-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 14:15:41.049 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 14:15:41.049 DEBUG 15440 --- [http-nio-8383-exec-5] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 14:15:41.049 DEBUG 15440 --- [http-nio-8383-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:41.049 DEBUG 15440 --- [http-nio-8383-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:41.236 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /lunchMateBoard
+2024-06-21 14:15:41.236 DEBUG 15440 --- [http-nio-8383-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:41.236 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:41.237 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /lunchMateBoard] with attributes [permitAll]
+2024-06-21 14:15:41.237 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /lunchMateBoard
+2024-06-21 14:15:41.238 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/lunchMateBoard", parameters={}
+2024-06-21 14:15:41.239 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 14:15:41.239 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 14:15:41.239 DEBUG 15440 --- [http-nio-8383-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:41.239 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 14:15:41.239 DEBUG 15440 --- [http-nio-8383-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:41.239 DEBUG 15440 --- [http-nio-8383-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:41.240 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 14:15:41.240 DEBUG 15440 --- [http-nio-8383-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:41.240 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:41.240 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 14:15:41.240 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 14:15:41.240 DEBUG 15440 --- [http-nio-8383-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 14:15:41.241 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 14:15:41.242 DEBUG 15440 --- [http-nio-8383-exec-7] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 14:15:41.242 DEBUG 15440 --- [http-nio-8383-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:41.242 DEBUG 15440 --- [http-nio-8383-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:41.395 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /lunchMateBoard
+2024-06-21 14:15:41.411 DEBUG 15440 --- [http-nio-8383-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:41.411 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:41.412 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /lunchMateBoard] with attributes [permitAll]
+2024-06-21 14:15:41.412 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /lunchMateBoard
+2024-06-21 14:15:41.413 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/lunchMateBoard", parameters={}
+2024-06-21 14:15:41.415 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 14:15:41.416 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 14:15:41.417 DEBUG 15440 --- [http-nio-8383-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:41.417 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 14:15:41.417 DEBUG 15440 --- [http-nio-8383-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:41.418 DEBUG 15440 --- [http-nio-8383-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 14:15:41.418 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 14:15:41.419 DEBUG 15440 --- [http-nio-8383-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 14:15:41.419 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 14:15:41.419 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 14:15:41.420 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 14:15:41.421 DEBUG 15440 --- [http-nio-8383-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 14:15:41.423 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 14:15:41.425 DEBUG 15440 --- [http-nio-8383-exec-6] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 14:15:41.425 DEBUG 15440 --- [http-nio-8383-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 14:15:41.425 DEBUG 15440 --- [http-nio-8383-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:06:43.474 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /lunchMateBoard
+2024-06-21 16:06:43.474 DEBUG 15440 --- [http-nio-8383-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:06:43.475 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:06:43.475 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id DC275E630EBBA23493D28CE868630867
+2024-06-21 16:06:43.476 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /lunchMateBoard] with attributes [permitAll]
+2024-06-21 16:06:43.476 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /lunchMateBoard
+2024-06-21 16:06:43.476 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/lunchMateBoard", parameters={}
+2024-06-21 16:06:43.476 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 16:06:43.479 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 16:06:43.479 DEBUG 15440 --- [http-nio-8383-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:06:43.479 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:06:43.479 DEBUG 15440 --- [http-nio-8383-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:06:43.479 DEBUG 15440 --- [http-nio-8383-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:06:43.479 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:06:43.479 DEBUG 15440 --- [http-nio-8383-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:06:43.479 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:06:43.479 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:06:43.479 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:06:43.480 DEBUG 15440 --- [http-nio-8383-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:06:43.481 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:06:43.481 DEBUG 15440 --- [http-nio-8383-exec-10] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:06:43.481 DEBUG 15440 --- [http-nio-8383-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:06:43.481 DEBUG 15440 --- [http-nio-8383-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
