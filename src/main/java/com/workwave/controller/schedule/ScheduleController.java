@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/sch")
+@RequestMapping("/")
 public class ScheduleController {
 
     @GetMapping("/calendar")
