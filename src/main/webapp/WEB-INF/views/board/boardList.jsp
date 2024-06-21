@@ -73,6 +73,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <th>제목</th>
         <th>작성자</th>
         <th>작성일</th>
+
       </tr>
 
       <!-- 검색 폼 시작 -->
@@ -90,14 +91,18 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <tr>
           <td>${board.boardId}</td>
           <td>
-            <a href="/board/detail?bno=${board.boardId}">${board.boardTitle}</a>
+            <a href="/board/detail?bno=${board.boardId}">${board.boardTitle}
+              <c:if test="${board.replyCount != null && board.replyCount ne 0}">
+                <span>(${board.replyCount})</span>
+              </c:if>
+            </a>
           </td>
           <td>${board.userId}</td>
           <td>${board.formattedBoardCreatedAt}</td>
         </tr>
       </c:forEach>
     </table>
-
+    
     <div class="bottom-section">
       <nav aria-label="Page navigation example">
         <ul class="pagination pagination-lg pagination-custom">

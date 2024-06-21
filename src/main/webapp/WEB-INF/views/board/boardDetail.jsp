@@ -120,7 +120,7 @@ prefix="c" %>
       </div>
 
       <!-- 댓글 영역 -->
-      <h2>댓글(${i})</h2>
+      
       <div id="replyContainer">
         <!-- 댓글 요청 -->
       </div>

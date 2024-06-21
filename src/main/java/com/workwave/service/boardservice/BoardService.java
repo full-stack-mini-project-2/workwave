@@ -44,6 +44,7 @@ public class BoardService {
                         .boardTitle(board.getBoardTitle())
                         .userId(board.getUserId())
                         .boardCreatedAt(board.getBoardCreatedAt())
+                        .replyCount(board.getReplyCount())
                         .build())
                 .collect(Collectors.toList());
     }

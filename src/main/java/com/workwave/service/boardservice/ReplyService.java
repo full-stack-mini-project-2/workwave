@@ -3,7 +3,9 @@ package com.workwave.service.boardservice;
 import com.workwave.dto.replydto.ReplyDetailDto;
 import com.workwave.dto.replydto.ReplyListDto;
 import com.workwave.dto.replydto.ReplyWriteDto;
+import com.workwave.entity.board.Board;
 import com.workwave.entity.board.Reply;
+import com.workwave.mapper.boardmapper.BoardMapper;
 import com.workwave.mapper.boardmapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,8 @@ public class ReplyService {
 
     @Autowired
     private ReplyMapper replyMapper;
+    @Autowired
+    private BoardMapper boardMapper;
 
     // 댓글 목록 전체조회
     public ReplyListDto getReplies(int boardId) {
@@ -38,9 +42,18 @@ public class ReplyService {
 
     public boolean save(ReplyWriteDto dto) {
 
-
         Reply reply = dto.toEntity();
 
-        return replyMapper.save(reply);
+        boolean save = replyMapper.save(reply);
+
+        int boardId = reply.getBoardId();
+
+        Board upatedBoard = boardMapper.findOne(boardId);
+
+        upatedBoard.setReplyCount(upatedBoard.getReplyCount() + 1);
+
+        boardMapper.updateCount(upatedBoard);
+
+        return save;
     }
 }

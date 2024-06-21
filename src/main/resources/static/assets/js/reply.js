@@ -1,8 +1,18 @@
 // ====== 전역 변수 ========
 //export const BASE_URL = 'http://localhost:8383/replies';
+const bno = document.getElementById("reply-container").dataset.bno;
+
+document.getElementById("submitBtn").addEventListener("click", function () {
+  const nickName = document.getElementById("nickName");
+  const replyPassword = document.getElementById("replyPassword");
+  const replyContent = document.getElementById("replyContent");
+
+  console.log(bno);
+
+  saveReply(bno, nickName, replyContent, replyPassword);
+});
 
 // ====== 실행 코드 ========
-const bno = document.getElementById("reply-container").dataset.bno;
 
 // 댓글을 조회하는 함수
 async function fetchReplies(bno) {
@@ -34,16 +44,6 @@ async function fetchReplies(bno) {
   }
 }
 
-document.getElementById("submitBtn").addEventListener("click", function () {
-  const nickName = document.getElementById("nickName");
-  const replyPassword = document.getElementById("replyPassword");
-  const replyContent = document.getElementById("replyContent");
-
-  console.log(bno);
-
-  saveReply(bno, nickName, replyContent, replyPassword);
-});
-
 async function saveReply(bno, nickName, replyContent, replyPassword) {
   const url = `http://localhost:8383/reply`;
 
@@ -67,6 +67,13 @@ async function saveReply(bno, nickName, replyContent, replyPassword) {
   const data = await response.json();
 
   console.log(data);
+
+  fetchReplies(bno);
+
+  // 입력창 초기화
+  nickName.value = "";
+  replyContent.value = "";
+  replyPassword.value = "";
 }
 
 // 댓글 목록을 HTML에 표시하는 함수
@@ -77,6 +84,7 @@ function displayReplies(replies) {
   // 댓글 목록 렌더링
   let tag = "";
   if (replies && replies.length > 0) {
+    tag = `<h2>댓글(${replies.length})</h2>`;
     replies.forEach(({ nickName, replyCreatedAt, replyContent }) => {
       tag += `
        <div class="reply">
@@ -90,7 +98,8 @@ function displayReplies(replies) {
        `;
     });
   } else {
-    tag = `<div class="reply">댓글이 없습니다.</div>`;
+    tag = `<h2>댓글(0)</h2>
+    <div class="reply">댓글이 없습니다.</div>`;
   }
 
   $replyContainer.innerHTML = tag;

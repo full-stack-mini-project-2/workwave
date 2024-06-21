@@ -20,5 +20,6 @@ public class Board {
     private String boardPassword;
     private LocalDateTime boardCreatedAt = LocalDateTime.now();
     private LocalDateTime boardUpdatedAt;
+    private int replyCount;
 
 }

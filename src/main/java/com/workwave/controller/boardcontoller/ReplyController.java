@@ -6,7 +6,6 @@ import com.workwave.service.boardservice.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +22,7 @@ public class ReplyController {
     private final ReplyService replyService;
 
     //    @GetMapping("/{bno}/page/{pageNo}")
-// 댓글 목록 조회
+    // 댓글 목록 조회
     @GetMapping("/{bno}")
     public ResponseEntity<?> replies(@PathVariable("bno") int boardId, HttpSession session) {
 
@@ -42,12 +41,12 @@ public class ReplyController {
 
         log.info("ReplyWriteDto: {}", dto);
 
+        // flag를 통하여 에러 검사
         boolean flag = replyService.save(dto);
 
         return ResponseEntity
                 .ok()
-                .body(flag);
-//                .body(replyService.getReplies(dto.getBno(), new Page(1, 10)));
+                .body(replyService.getReplies(dto.getBoardId()));
     }
 
 }
