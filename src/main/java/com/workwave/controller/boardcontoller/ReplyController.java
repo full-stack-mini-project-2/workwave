@@ -46,7 +46,7 @@ public class ReplyController {
 
         return ResponseEntity
                 .ok()
-                .body(null);
+                .body(flag);
 //                .body(replyService.getReplies(dto.getBno(), new Page(1, 10)));
     }
 

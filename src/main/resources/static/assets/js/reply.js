@@ -35,15 +35,9 @@ async function fetchReplies(bno) {
 }
 
 document.getElementById("submitBtn").addEventListener("click", function () {
-
   const nickName = document.getElementById("nickName");
   const replyPassword = document.getElementById("replyPassword");
   const replyContent = document.getElementById("replyContent");
-
-  // if (!nickName || !replyPassword || !replyContent) {
-  //   alert("모든 필드를 입력해 주세요.");
-  //   return;
-  // }
 
   console.log(bno);
 
@@ -67,7 +61,7 @@ async function saveReply(bno, nickName, replyContent, replyPassword) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ payload }),
+    body: JSON.stringify(payload),
   });
 
   const data = await response.json();
@@ -75,7 +69,7 @@ async function saveReply(bno, nickName, replyContent, replyPassword) {
   console.log(data);
 }
 
-// 댓글 목록을 HTML에 표시하는 함수 (예시)
+// 댓글 목록을 HTML에 표시하는 함수
 function displayReplies(replies) {
   const $replyContainer = document.getElementById("replyContainer");
   $replyContainer.innerHTML = ""; // 기존 댓글 목록 초기화
