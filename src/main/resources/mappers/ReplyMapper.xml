@@ -24,4 +24,12 @@
         FROM reply
         WHERE board_id = #{boardId}
     </select>
+
+    <update id="update">
+        UPDATE reply
+        SET reply_content = #{editReplyContent},
+        reply_updated_at = #{replyUpdatedAt}
+        WHERE reply_id = #{replyId}
+    </update>
+
 </mapper>

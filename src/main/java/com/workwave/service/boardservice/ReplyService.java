@@ -2,6 +2,7 @@ package com.workwave.service.boardservice;
 
 import com.workwave.dto.replydto.ReplyDetailDto;
 import com.workwave.dto.replydto.ReplyListDto;
+import com.workwave.dto.replydto.ReplyUpdateDto;
 import com.workwave.dto.replydto.ReplyWriteDto;
 import com.workwave.entity.board.Board;
 import com.workwave.entity.board.Reply;
@@ -55,5 +56,10 @@ public class ReplyService {
         boardMapper.updateCount(upatedBoard);
 
         return save;
+    }
+
+    public boolean update(ReplyUpdateDto dto) {
+
+        return false;
     }
 }

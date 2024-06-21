@@ -23,8 +23,8 @@ public interface ReplyMapper {
 //    // 조회수 상승
 ////    void upViewCount(int boardId);
 //
-//    // 게시물 수정
-//    boolean update(Board board);
+    // 게시물 수정
+    boolean update(Reply reply);
 //
 //    // 총 게시물 수 조회
 //    int count(Search page);

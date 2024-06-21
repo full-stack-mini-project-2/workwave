@@ -1,6 +1,7 @@
 package com.workwave.controller.boardcontoller;
 
 import com.workwave.dto.replydto.ReplyListDto;
+import com.workwave.dto.replydto.ReplyUpdateDto;
 import com.workwave.dto.replydto.ReplyWriteDto;
 import com.workwave.service.boardservice.ReplyService;
 import lombok.RequiredArgsConstructor;
@@ -48,5 +49,18 @@ public class ReplyController {
                 .ok()
                 .body(replyService.getReplies(dto.getBoardId()));
     }
+
+//    // 댓글 수정 요청
+//    @PostMapping
+//    public ResponseEntity<?> updateReply(@RequestBody @Valid ReplyUpdateDto dto) {
+//
+//        log.info("ReplyUpdateDto: {}", dto);
+//
+//        boolean flag = replyService.update(dto);
+//
+//        return ResponseEntity
+//                .ok()
+//                .body(replyService.getReplies(dto.getBoardId()));
+//    }
 
 }
