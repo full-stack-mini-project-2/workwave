@@ -85,7 +85,7 @@ function displayReplies(replies) {
   let tag = "";
   if (replies && replies.length > 0) {
     tag = `<h2>댓글(${replies.length})</h2>`;
-    replies.forEach(({ nickName, replyCreatedAt, replyContent }) => {
+    replies.forEach(({ replyId, nickName, replyCreatedAt, replyContent }) => {
       tag += `
        <div class="reply">
             <div class="meta">
@@ -94,7 +94,25 @@ function displayReplies(replies) {
             <div class="content">
               <p>${replyContent}</p>
             </div>
+            <button class="replyModify" type="button" data-rno=${replyId}>수정</button>
+            <button class="replyDelete" type="button" data-rno=${replyId}>삭제</button>
         </div>
+      <div id="editReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
+        <h2>댓글 수정</h2>
+        <input type="hidden" data-rno="editReplyId" />
+        <input
+          type="password"
+          name="editReplyPassword"
+          placeholder="댓글 비밀번호"
+          required
+        />
+        <textarea
+          name="editReplyContent"
+          placeholder="댓글 내용"
+          required
+        ></textarea>
+        <button id="editSubmitBtn" type="button">댓글 수정</button>
+      </div>
        `;
     });
   } else {
@@ -103,12 +121,40 @@ function displayReplies(replies) {
   }
 
   $replyContainer.innerHTML = tag;
+
+  // 수정 버튼에 이벤트 리스너 추가
+  document.querySelectorAll(".replyModify").forEach((button) => {
+    button.addEventListener("click", function () {
+      const replyId = this.dataset.rno;
+      showEditForm(replyId);
+    });
+  });
 }
 
 // 페이지 로드 시 댓글을 조회
 document.addEventListener("DOMContentLoaded", () => {
   fetchReplies(bno);
 });
+
+// 수정 버튼 클릭시 해당 댓글 수정 화면 출력
+function showEditForm(replyId) {
+
+  const editForm = document.getElementById(`editReplyForm-${replyId}`);
+
+  if ((editForm.style.display === "block")) {
+    editForm.style.display = "none";
+  } else {
+    editForm.style.display = "block";
+  }
+
+}
+
+// function showEditForm(replyId, content) {
+//   document.getElementById("editReplyId").value = replyId;
+//   document.getElementById("editReplyContent").value = content;
+//   document.getElementById("editReplyForm").style.display = "block";
+//   window.scrollTo(0, document.getElementById("editReplyForm").offsetTop);
+// }
 
 // 댓글 목록 서버에서 불러오기
 // fetchReplies();

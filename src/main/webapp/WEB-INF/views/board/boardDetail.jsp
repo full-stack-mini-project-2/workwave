@@ -98,10 +98,19 @@ prefix="c" %>
       .reply-form button:hover {
         background-color: #0056b3;
       }
+
+      .replyModify {
+        background: white;
+      }
+
+      .replyDelete {
+        background: white;
+      }
+
     </style>
   </head>
   <body>
-    <div id="reply-container" data-bno ="${board.boardId}">
+    <div id="reply-container" data-bno="${board.boardId}">
       <h1>${board.boardTitle}</h1>
       <div class="meta">
         작성자: ${board.userId} | 작성일: ${board.formattedBoardCreatedAt}
@@ -120,7 +129,7 @@ prefix="c" %>
       </div>
 
       <!-- 댓글 영역 -->
-      
+
       <div id="replyContainer">
         <!-- 댓글 요청 -->
       </div>
@@ -128,20 +137,16 @@ prefix="c" %>
       <!-- 댓글 작성 영역 -->
       <div class="reply-form">
         <h2>댓글 작성</h2>
-          <input type="hidden" id="boardId" value="${board.boardId}" />
-          <input type="text" id="nickName" placeholder="닉네임" required />
-          <input
-            type="password"
-            id="replyPassword"
-            placeholder="댓글 비밀번호"
-            required
-          />
-          <textarea
-            id="replyContent"
-            placeholder="댓글 내용"
-            required
-          ></textarea>
-          <button id="submitBtn" type="button">댓글 등록</button>
+        <input type="hidden" id="boardId" value="${board.boardId}" />
+        <input type="text" id="nickName" placeholder="닉네임" required />
+        <input
+          type="password"
+          id="replyPassword"
+          placeholder="댓글 비밀번호"
+          required
+        />
+        <textarea id="replyContent" placeholder="댓글 내용" required></textarea>
+        <button id="submitBtn" type="button">댓글 등록</button>
       </div>
 
       <!-- 댓글 영역 end -->
