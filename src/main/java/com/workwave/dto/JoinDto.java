@@ -1,6 +1,6 @@
 package com.workwave.dto;
 
-import com.workwave.entity.User;
+import com.workwave.entity.user.User;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 

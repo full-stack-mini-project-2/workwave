@@ -1,6 +1,7 @@
 package com.workwave.controller.schedule.colorIndex;
 
-import com.workwave.mapper.ColorIndexMapper;
+import com.workwave.entity.schedule.ColorIndex;
+import com.workwave.mapper.scheduleMapper.ColorIndexMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +16,8 @@ public class ColorIndexController {
     private ColorIndexMapper colorIndexMapper;
 
     @PostMapping("/color")
-    public void saveColor(@RequestBody String colorName) {
-        colorIndexMapper.saveColor(colorName);
+    public void saveColor(@RequestBody ColorIndex colorIndex) {
+        colorIndexMapper.saveColorIndex(colorIndex);
     }
 
 }

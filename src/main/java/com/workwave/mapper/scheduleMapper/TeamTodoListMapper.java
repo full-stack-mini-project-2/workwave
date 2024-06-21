@@ -1,6 +1,6 @@
-package com.workwave.mapper;
+package com.workwave.mapper.scheduleMapper;
 
-import com.workwave.entity.TeamTodoList;
+import com.workwave.entity.schedule.TeamTodoList;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

@@ -1,6 +1,6 @@
-package com.workwave.mapper;
+package com.workwave.mapper.boardMapper;
 
-import com.workwave.entity.Notice;
+import com.workwave.entity.board.Notice;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

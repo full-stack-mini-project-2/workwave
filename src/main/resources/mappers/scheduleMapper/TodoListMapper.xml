@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.workwave.mapper.TodoListMapper">
-    <insert id="save" parameterType="com.workwave.entity.TodoList">
+<mapper namespace="com.workwave.mapper.scheduleMapper.TodoListMapper">
+    <insert id="save" parameterType="com.workwave.entity.schedule.TodoList">
         INSERT INTO todolist (
                               todo_content,
                               todo_event_date,

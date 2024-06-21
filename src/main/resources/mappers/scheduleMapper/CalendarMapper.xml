@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.workwave.mapper.CalendarMapper">
-    <insert id="save" parameterType="com.workwave.entity.Calendar">
+<mapper namespace="com.workwave.mapper.scheduleMapper.CalendarMapper">
+    <insert id="save" parameterType="com.workwave.entity.schedule.Calendar">
         INSERT INTO calendar (
                               event_title,
                               event_description,

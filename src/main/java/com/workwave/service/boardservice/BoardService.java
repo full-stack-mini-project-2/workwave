@@ -1,12 +1,11 @@
 package com.workwave.service.boardservice;
 
-import com.workwave.common.boardpage.Page;
 import com.workwave.common.boardpage.Search;
 import com.workwave.dto.boarddto.BoardDetailDto;
 import com.workwave.dto.boarddto.BoardListDto;
 import com.workwave.dto.boarddto.BoardWriteDto;
 import com.workwave.entity.board.Board;
-import com.workwave.mapper.boardmapper.BoardMapper;
+import com.workwave.mapper.boardMapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

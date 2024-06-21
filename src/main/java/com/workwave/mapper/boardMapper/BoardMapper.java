@@ -1,4 +1,4 @@
-package com.workwave.mapper.boardmapper;
+package com.workwave.mapper.boardMapper;
 
 import com.workwave.common.boardpage.Search;
 import com.workwave.entity.board.Board;

@@ -1,7 +1,7 @@
 package com.workwave.service;
 
 import com.workwave.dto.DepartmentNameDto;
-import com.workwave.mapper.UserMapper;
+import com.workwave.mapper.userMapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

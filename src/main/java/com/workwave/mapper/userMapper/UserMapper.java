@@ -1,7 +1,7 @@
-package com.workwave.mapper;
+package com.workwave.mapper.userMapper;
 
 import com.workwave.dto.DepartmentNameDto;
-import com.workwave.entity.User;
+import com.workwave.entity.user.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

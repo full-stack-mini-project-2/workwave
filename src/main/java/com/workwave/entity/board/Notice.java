@@ -1,4 +1,4 @@
-package com.workwave.entity;
+package com.workwave.entity.board;
 
 import lombok.*;
 

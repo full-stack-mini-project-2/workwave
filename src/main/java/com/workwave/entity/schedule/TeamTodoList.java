@@ -1,4 +1,4 @@
-package com.workwave.entity;
+package com.workwave.entity.schedule;
 
 import lombok.*;
 import org.apache.tomcat.jni.Local;

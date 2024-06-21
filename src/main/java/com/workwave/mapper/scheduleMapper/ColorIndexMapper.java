@@ -1,5 +1,6 @@
-package com.workwave.mapper;
+package com.workwave.mapper.scheduleMapper;
 
+import com.workwave.entity.schedule.ColorIndex;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -8,5 +9,5 @@ public interface ColorIndexMapper {
     long getColorIdByName(String colorName);
 
     //색 저장하기
-   boolean saveColor(String colorName);
+   boolean saveColorIndex(ColorIndex colorINdex);
 }
