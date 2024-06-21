@@ -23,18 +23,18 @@ public class CalendarController {
     @Autowired
     private CalendarService calendarService;
 
-    @GetMapping
+    @GetMapping("/calList")
     public String getAllCalendars(Model model) {
         List<CalendarDTO> calendars = calendarService.getAllCalendars();
         model.addAttribute("calendars", calendars);
-        return "calendarList";
+        return "schedule/calendar/calendar";
     }
 
     @GetMapping("/{id}")
     public String getCalendarById(@PathVariable int id, Model model) {
         CalendarDTO calendar = calendarService.getCalendarById(id);
         model.addAttribute("calendar", calendar);
-        return "calendarDetail";
+        return "schedule/calendar/calendarDetail";
     }
 
     @PostMapping

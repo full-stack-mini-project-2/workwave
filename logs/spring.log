@@ -687,3 +687,1135 @@ org.apache.ibatis.binding.BindingException: Invalid bound statement (not found):
 2024-06-21 15:45:51.154 DEBUG 20511 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2024-06-21 15:45:51.154 DEBUG 20511 --- [http-nio-8181-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
 2024-06-21 15:45:51.154 DEBUG 20511 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:20.217 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /calendar
+2024-06-21 16:11:20.218 DEBUG 20511 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:20.219 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:20.219 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id DAFBDF06317BFF1B09BE70B408CA84F6
+2024-06-21 16:11:20.220 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar] with attributes [permitAll]
+2024-06-21 16:11:20.220 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /calendar
+2024-06-21 16:11:20.221 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/calendar", parameters={}
+2024-06-21 16:11:20.221 DEBUG 20511 --- [http-nio-8181-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ScheduleController#calendar(Model)
+2024-06-21 16:11:20.223  INFO 20511 --- [http-nio-8181-exec-10] c.w.c.schedule.ScheduleController        : TRY to access calendar
+2024-06-21 16:11:20.225 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.w.s.v.ContentNegotiatingViewResolver : Selected '*/*' given [*/*]
+2024-06-21 16:11:20.225 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.web.servlet.view.JstlView            : View name 'calendar/calendar', model {}
+2024-06-21 16:11:20.225 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/calendar/calendar.jsp]
+2024-06-21 16:11:20.226 DEBUG 20511 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:20.226 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:11:20.226 DEBUG 20511 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:20.226 DEBUG 20511 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:20.227 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:11:20.227 DEBUG 20511 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:20.227 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:20.227 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:11:20.227 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:11:20.229 DEBUG 20511 --- [http-nio-8181-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2024-06-21 16:11:20.246 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-21 16:11:20.247 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Fri Jun 21 16:11:20 KST 2024, status=404, error=Not Found, path=/calendar}]
+2024-06-21 16:11:20.275 DEBUG 20511 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:20.276 DEBUG 20511 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:11:20.276 DEBUG 20511 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:20.277 DEBUG 20511 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:27.041  INFO 25571 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 25571 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-21 16:11:27.042 DEBUG 25571 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-21 16:11:27.043  INFO 25571 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-21 16:11:27.582  INFO 25571 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-21 16:11:27.586  INFO 25571 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-21 16:11:27.586  INFO 25571 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-21 16:11:27.710  INFO 25571 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-21 16:11:27.713  INFO 25571 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-21 16:11:27.713  INFO 25571 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 638 ms
+2024-06-21 16:11:27.888  WARN 25571 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 14cbb07f-94f1-4a76-a9ff-3a5dcdef07de
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-21 16:11:27.929 DEBUG 25571 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-21 16:11:27.934  INFO 25571 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6097fca9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@35eee641, org.springframework.security.web.context.SecurityContextPersistenceFilter@226de93c, org.springframework.security.web.header.HeaderWriterFilter@1f71194d, org.springframework.security.web.authentication.logout.LogoutFilter@4b033eac, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@74667e6a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7b222230, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5729b410, org.springframework.security.web.session.SessionManagementFilter@1578b8ec, org.springframework.security.web.access.ExceptionTranslationFilter@195580ba, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@46c10083]
+2024-06-21 16:11:27.995 DEBUG 25571 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-21 16:11:28.005  INFO 25571 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-21 16:11:28.024 DEBUG 25571 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 29 mappings in 'requestMappingHandlerMapping'
+2024-06-21 16:11:28.034 DEBUG 25571 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-06-21 16:11:28.038 DEBUG 25571 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-21 16:11:28.092  INFO 25571 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-21 16:11:28.099  INFO 25571 --- [main] com.workwave.Main                        : Started Main in 1.232 seconds (JVM running for 1.526)
+2024-06-21 16:11:32.640  INFO 25571 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 16:11:32.640  INFO 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-21 16:11:32.640 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-21 16:11:32.640 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-21 16:11:32.640 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-21 16:11:32.641 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6b416e99
+2024-06-21 16:11:32.641 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@11614f8e
+2024-06-21 16:11:32.641 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-21 16:11:32.641  INFO 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-21 16:11:32.645 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /calendar
+2024-06-21 16:11:32.647 DEBUG 25571 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:32.648 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:32.648 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id DAFBDF06317BFF1B09BE70B408CA84F6
+2024-06-21 16:11:32.650 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar] with attributes [permitAll]
+2024-06-21 16:11:32.651 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /calendar
+2024-06-21 16:11:32.651 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/calendar", parameters={}
+2024-06-21 16:11:32.653 DEBUG 25571 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ScheduleController#calendar(Model)
+2024-06-21 16:11:32.658  INFO 25571 --- [http-nio-8181-exec-1] c.w.c.schedule.ScheduleController        : TRY to access calendar
+2024-06-21 16:11:32.662 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected '*/*' given [*/*]
+2024-06-21 16:11:32.663 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {}
+2024-06-21 16:11:32.664 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-21 16:11:32.988 DEBUG 25571 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:32.989 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:11:32.990 DEBUG 25571 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:32.990 DEBUG 25571 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:42.206 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-06-21 16:11:42.208 DEBUG 25571 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:42.208 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:42.209 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 6B19710FFAC0D44177B0F5D4AE0C25AA
+2024-06-21 16:11:42.210 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /] with attributes [permitAll]
+2024-06-21 16:11:42.210 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-06-21 16:11:42.210 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2024-06-21 16:11:42.211 DEBUG 25571 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.MainController#list()
+2024-06-21 16:11:42.215 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:11:42.216 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+2024-06-21 16:11:42.216 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+2024-06-21 16:11:42.277 DEBUG 25571 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:42.277 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:11:42.277 DEBUG 25571 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:42.278 DEBUG 25571 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:42.350 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /assets/img/workwave_logo.png
+2024-06-21 16:11:42.351 DEBUG 25571 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:42.352 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:42.354 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /assets/img/workwave_logo.png] with attributes [permitAll]
+2024-06-21 16:11:42.354 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /assets/img/workwave_logo.png
+2024-06-21 16:11:42.354 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/assets/img/workwave_logo.png", parameters={}
+2024-06-21 16:11:42.380 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 16:11:42.498 DEBUG 25571 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:42.501 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:11:42.501 DEBUG 25571 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:42.501 DEBUG 25571 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:43.229 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /schedule/calendar/calendars
+2024-06-21 16:11:43.230 DEBUG 25571 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:43.231 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:43.232 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /schedule/calendar/calendars] with attributes [permitAll]
+2024-06-21 16:11:43.232 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /schedule/calendar/calendars
+2024-06-21 16:11:43.233 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/schedule/calendar/calendars", parameters={}
+2024-06-21 16:11:43.235 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 16:11:43.237 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 16:11:43.237 DEBUG 25571 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:43.237 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:11:43.238 DEBUG 25571 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:43.238 DEBUG 25571 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:43.239 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:11:43.239 DEBUG 25571 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:43.239 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:43.239 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:11:43.240 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:11:43.247 DEBUG 25571 --- [http-nio-8181-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:11:43.258 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:11:43.262 DEBUG 25571 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:11:43.262 DEBUG 25571 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:43.262 DEBUG 25571 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:44.901 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-06-21 16:11:44.902 DEBUG 25571 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:44.902 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:44.903 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /] with attributes [permitAll]
+2024-06-21 16:11:44.903 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-06-21 16:11:44.903 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2024-06-21 16:11:44.903 DEBUG 25571 --- [http-nio-8181-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.MainController#list()
+2024-06-21 16:11:44.904 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:11:44.904 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+2024-06-21 16:11:44.904 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+2024-06-21 16:11:44.905 DEBUG 25571 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:44.905 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:11:44.905 DEBUG 25571 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:44.906 DEBUG 25571 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:45.776 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /schedule/todoList/
+2024-06-21 16:11:45.778 DEBUG 25571 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:45.778 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:45.779 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /schedule/todoList/] with attributes [permitAll]
+2024-06-21 16:11:45.779 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /schedule/todoList/
+2024-06-21 16:11:45.779 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/schedule/todoList/", parameters={}
+2024-06-21 16:11:45.781 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 16:11:45.787 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 16:11:45.787 DEBUG 25571 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:45.788 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:11:45.788 DEBUG 25571 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:45.788 DEBUG 25571 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:45.794 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:11:45.795 DEBUG 25571 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:45.795 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:45.796 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:11:45.796 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:11:45.797 DEBUG 25571 --- [http-nio-8181-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:11:45.800 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:11:45.800 DEBUG 25571 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:11:45.801 DEBUG 25571 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:45.801 DEBUG 25571 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:46.937 DEBUG 25571 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-06-21 16:11:46.938 DEBUG 25571 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:46.938 DEBUG 25571 --- [http-nio-8181-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:46.939 DEBUG 25571 --- [http-nio-8181-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /] with attributes [permitAll]
+2024-06-21 16:11:46.939 DEBUG 25571 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-06-21 16:11:46.939 DEBUG 25571 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2024-06-21 16:11:46.941 DEBUG 25571 --- [http-nio-8181-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.MainController#list()
+2024-06-21 16:11:46.944 DEBUG 25571 --- [http-nio-8181-exec-7] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:11:46.945 DEBUG 25571 --- [http-nio-8181-exec-7] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+2024-06-21 16:11:46.945 DEBUG 25571 --- [http-nio-8181-exec-7] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+2024-06-21 16:11:46.946 DEBUG 25571 --- [http-nio-8181-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:46.948 DEBUG 25571 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:11:46.950 DEBUG 25571 --- [http-nio-8181-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:46.950 DEBUG 25571 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:47.981 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /schedule/colorIndex/colorList
+2024-06-21 16:11:47.981 DEBUG 25571 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:47.981 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:47.981 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /schedule/colorIndex/colorList] with attributes [permitAll]
+2024-06-21 16:11:47.982 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /schedule/colorIndex/colorList
+2024-06-21 16:11:47.982 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/schedule/colorIndex/colorList", parameters={}
+2024-06-21 16:11:47.983 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 16:11:47.984 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 16:11:47.984 DEBUG 25571 --- [http-nio-8181-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:47.984 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:11:47.984 DEBUG 25571 --- [http-nio-8181-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:47.984 DEBUG 25571 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:47.984 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:11:47.984 DEBUG 25571 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:47.984 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:47.984 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:11:47.984 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:11:47.985 DEBUG 25571 --- [http-nio-8181-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:11:47.986 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:11:47.986 DEBUG 25571 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:11:47.987 DEBUG 25571 --- [http-nio-8181-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:47.987 DEBUG 25571 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:49.314 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-06-21 16:11:49.315 DEBUG 25571 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:49.317 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:49.319 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /] with attributes [permitAll]
+2024-06-21 16:11:49.324 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-06-21 16:11:49.325 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2024-06-21 16:11:49.325 DEBUG 25571 --- [http-nio-8181-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.MainController#list()
+2024-06-21 16:11:49.327 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:11:49.327 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+2024-06-21 16:11:49.329 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+2024-06-21 16:11:49.330 DEBUG 25571 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:49.331 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:11:49.331 DEBUG 25571 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:49.331 DEBUG 25571 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:11:59.046 DEBUG 25571 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /calendar
+2024-06-21 16:11:59.051 DEBUG 25571 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:11:59.051 DEBUG 25571 --- [http-nio-8181-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:11:59.052 DEBUG 25571 --- [http-nio-8181-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar] with attributes [permitAll]
+2024-06-21 16:11:59.052 DEBUG 25571 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /calendar
+2024-06-21 16:11:59.052 DEBUG 25571 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/calendar", parameters={}
+2024-06-21 16:11:59.052 DEBUG 25571 --- [http-nio-8181-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ScheduleController#calendar(Model)
+2024-06-21 16:11:59.052  INFO 25571 --- [http-nio-8181-exec-10] c.w.c.schedule.ScheduleController        : TRY to access calendar
+2024-06-21 16:11:59.053 DEBUG 25571 --- [http-nio-8181-exec-10] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:11:59.053 DEBUG 25571 --- [http-nio-8181-exec-10] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {}
+2024-06-21 16:11:59.054 DEBUG 25571 --- [http-nio-8181-exec-10] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-21 16:11:59.055 DEBUG 25571 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:59.058 DEBUG 25571 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:11:59.059 DEBUG 25571 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:11:59.059 DEBUG 25571 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:12:04.888 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /calendars/new
+2024-06-21 16:12:04.889 DEBUG 25571 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:12:04.890 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:12:04.893 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendars/new] with attributes [permitAll]
+2024-06-21 16:12:04.893 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /calendars/new
+2024-06-21 16:12:04.895 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/calendars/new", parameters={}
+2024-06-21 16:12:04.897 DEBUG 25571 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.CalendarController#getCalendarById(int, Model)
+2024-06-21 16:12:04.916 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.method.HandlerMethod             : Could not resolve parameter [0] in public java.lang.String com.workwave.controller.schedule.CalendarController.getCalendarById(int,org.springframework.ui.Model): Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "new"
+2024-06-21 16:12:04.921 DEBUG 25571 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:04.921  WARN 25571 --- [http-nio-8181-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "new"]
+2024-06-21 16:12:04.921 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2024-06-21 16:12:04.921 DEBUG 25571 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:04.921 DEBUG 25571 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:12:04.922 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:12:04.922 DEBUG 25571 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:12:04.922 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:12:04.922 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:12:04.922 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:12:04.922 DEBUG 25571 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:12:04.927 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:12:04.927 DEBUG 25571 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 400
+2024-06-21 16:12:04.927 DEBUG 25571 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:04.927 DEBUG 25571 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:12:06.972 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /calendar
+2024-06-21 16:12:06.975 DEBUG 25571 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:12:06.975 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:12:06.976 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar] with attributes [permitAll]
+2024-06-21 16:12:06.976 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /calendar
+2024-06-21 16:12:06.976 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/calendar", parameters={}
+2024-06-21 16:12:06.977 DEBUG 25571 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ScheduleController#calendar(Model)
+2024-06-21 16:12:06.977  INFO 25571 --- [http-nio-8181-exec-2] c.w.c.schedule.ScheduleController        : TRY to access calendar
+2024-06-21 16:12:06.978 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:12:06.979 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {}
+2024-06-21 16:12:06.980 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-21 16:12:06.981 DEBUG 25571 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:06.981 DEBUG 25571 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:12:06.981 DEBUG 25571 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:06.981 DEBUG 25571 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:12:49.450 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /todoList
+2024-06-21 16:12:49.451 DEBUG 25571 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:12:49.452 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:12:49.453 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /todoList] with attributes [permitAll]
+2024-06-21 16:12:49.453 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /todoList
+2024-06-21 16:12:49.453 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/todoList", parameters={}
+2024-06-21 16:12:49.453 DEBUG 25571 --- [http-nio-8181-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ScheduleController#todolist(Model)
+2024-06-21 16:12:49.454  INFO 25571 --- [http-nio-8181-exec-3] c.w.c.schedule.ScheduleController        : TRY to access todoList
+2024-06-21 16:12:49.455 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.w.s.v.ContentNegotiatingViewResolver : Selected '*/*' given [*/*]
+2024-06-21 16:12:49.455 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.web.servlet.view.JstlView            : View name 'schedule/todolist/todoList', model {}
+2024-06-21 16:12:49.456 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/todolist/todoList.jsp]
+2024-06-21 16:12:49.457 DEBUG 25571 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:49.457 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:12:49.457 DEBUG 25571 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:49.457 DEBUG 25571 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:12:49.457 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:12:49.457 DEBUG 25571 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:12:49.457 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:12:49.457 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:12:49.457 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:12:49.458 DEBUG 25571 --- [http-nio-8181-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2024-06-21 16:12:49.469 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-21 16:12:49.470 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Fri Jun 21 16:12:49 KST 2024, status=404, error=Not Found, path=/todoList}]
+2024-06-21 16:12:49.504 DEBUG 25571 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:49.505 DEBUG 25571 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:12:49.505 DEBUG 25571 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:49.505 DEBUG 25571 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:12:52.651 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /todoList
+2024-06-21 16:12:52.652 DEBUG 25571 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:12:52.652 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:12:52.653 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /todoList] with attributes [permitAll]
+2024-06-21 16:12:52.653 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /todoList
+2024-06-21 16:12:52.653 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/todoList", parameters={}
+2024-06-21 16:12:52.653 DEBUG 25571 --- [http-nio-8181-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ScheduleController#todolist(Model)
+2024-06-21 16:12:52.653  INFO 25571 --- [http-nio-8181-exec-5] c.w.c.schedule.ScheduleController        : TRY to access todoList
+2024-06-21 16:12:52.653 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected '*/*' given [*/*]
+2024-06-21 16:12:52.653 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.web.servlet.view.JstlView            : View name 'schedule/todolist/todoList', model {}
+2024-06-21 16:12:52.653 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/todolist/todoList.jsp]
+2024-06-21 16:12:52.654 DEBUG 25571 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:52.654 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:12:52.654 DEBUG 25571 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:52.654 DEBUG 25571 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:12:52.654 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:12:52.654 DEBUG 25571 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:12:52.654 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:12:52.654 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:12:52.654 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:12:52.654 DEBUG 25571 --- [http-nio-8181-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2024-06-21 16:12:52.655 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-21 16:12:52.655 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Fri Jun 21 16:12:52 KST 2024, status=404, error=Not Found, path=/todoList}]
+2024-06-21 16:12:52.655 DEBUG 25571 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:52.655 DEBUG 25571 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:12:52.656 DEBUG 25571 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:12:52.656 DEBUG 25571 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:13:18.479 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /calendar
+2024-06-21 16:13:18.479 DEBUG 25571 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:13:18.479 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:13:18.480 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar] with attributes [permitAll]
+2024-06-21 16:13:18.480 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /calendar
+2024-06-21 16:13:18.480 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/calendar", parameters={}
+2024-06-21 16:13:18.480 DEBUG 25571 --- [http-nio-8181-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ScheduleController#calendar(Model)
+2024-06-21 16:13:18.480  INFO 25571 --- [http-nio-8181-exec-9] c.w.c.schedule.ScheduleController        : TRY to access calendar
+2024-06-21 16:13:18.480 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.w.s.v.ContentNegotiatingViewResolver : Selected '*/*' given [*/*]
+2024-06-21 16:13:18.480 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {}
+2024-06-21 16:13:18.480 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-21 16:13:18.481 DEBUG 25571 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:13:18.481 DEBUG 25571 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:13:18.481 DEBUG 25571 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:13:18.481 DEBUG 25571 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:14:04.816  INFO 26060 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 26060 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-21 16:14:04.817 DEBUG 26060 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-21 16:14:04.818  INFO 26060 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-21 16:14:05.369  INFO 26060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-21 16:14:05.374  INFO 26060 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-21 16:14:05.374  INFO 26060 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-21 16:14:05.504  INFO 26060 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-21 16:14:05.509  INFO 26060 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-21 16:14:05.509  INFO 26060 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 665 ms
+2024-06-21 16:14:05.709  WARN 26060 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: a75da1b1-4bda-49b8-ae7a-74033eb99d71
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-21 16:14:05.744 DEBUG 26060 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-21 16:14:05.750  INFO 26060 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@46c10083, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28e8888d, org.springframework.security.web.context.SecurityContextPersistenceFilter@260e3837, org.springframework.security.web.header.HeaderWriterFilter@653fb8d1, org.springframework.security.web.authentication.logout.LogoutFilter@6a950a3b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1b4872bc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@498a612d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1e98b788, org.springframework.security.web.session.SessionManagementFilter@2c604965, org.springframework.security.web.access.ExceptionTranslationFilter@5ac53c06, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5927f904]
+2024-06-21 16:14:05.814 DEBUG 26060 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-21 16:14:05.825  INFO 26060 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-21 16:14:05.843 DEBUG 26060 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 29 mappings in 'requestMappingHandlerMapping'
+2024-06-21 16:14:05.853 DEBUG 26060 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-06-21 16:14:05.857 DEBUG 26060 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-21 16:14:05.913  INFO 26060 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-21 16:14:05.920  INFO 26060 --- [main] com.workwave.Main                        : Started Main in 1.284 seconds (JVM running for 1.564)
+2024-06-21 16:14:19.591  INFO 26060 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 16:14:19.592  INFO 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-21 16:14:19.592 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-21 16:14:19.592 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-21 16:14:19.592 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-21 16:14:19.594 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@41b0cbce
+2024-06-21 16:14:19.594 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@738994da
+2024-06-21 16:14:19.594 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-21 16:14:19.594  INFO 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-06-21 16:14:19.602 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /color/colorList
+2024-06-21 16:14:19.605 DEBUG 26060 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:14:19.607 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:14:19.607 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 8F19C1B5F0367F6A6DAAB962F28C50AB
+2024-06-21 16:14:19.611 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /color/colorList] with attributes [permitAll]
+2024-06-21 16:14:19.611 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /color/colorList
+2024-06-21 16:14:19.612 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/color/colorList", parameters={}
+2024-06-21 16:14:19.618 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 16:14:19.619 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 16:14:19.620 DEBUG 26060 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:14:19.620 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:14:19.621 DEBUG 26060 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:14:19.621 DEBUG 26060 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:14:19.622 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:14:19.622 DEBUG 26060 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:14:19.622 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:14:19.622 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:14:19.622 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:14:19.624 DEBUG 26060 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:14:19.634 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:14:19.636 DEBUG 26060 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:14:19.636 DEBUG 26060 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:14:19.636 DEBUG 26060 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:14:35.133 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /colors/colorList
+2024-06-21 16:14:35.135 DEBUG 26060 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:14:35.135 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:14:35.136 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 8F19C1B5F0367F6A6DAAB962F28C50AB
+2024-06-21 16:14:35.137 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /colors/colorList] with attributes [permitAll]
+2024-06-21 16:14:35.137 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /colors/colorList
+2024-06-21 16:14:35.138 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/colors/colorList", parameters={}
+2024-06-21 16:14:35.138 DEBUG 26060 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ColorIndexController#getAllColorIndices(Model)
+2024-06-21 16:14:35.158 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Failed to complete request: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.workwave.mapper.scheduleMapper.ColorIndexMapper.getAllColorIndices
+2024-06-21 16:14:35.159 DEBUG 26060 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:14:35.159 DEBUG 26060 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:14:35.166 ERROR 26060 --- [http-nio-8181-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.workwave.mapper.scheduleMapper.ColorIndexMapper.getAllColorIndices] with root cause
+
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.workwave.mapper.scheduleMapper.ColorIndexMapper.getAllColorIndices
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:235) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:108) ~[mybatis-3.5.9.jar:3.5.9]
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1705) ~[na:na]
+	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:35) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:95) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.9.jar:3.5.9]
+	at com.sun.proxy.$Proxy71.getAllColorIndices(Unknown Source) ~[na:na]
+	at com.workwave.service.schedule.ColorIndexService.getAllColorIndices(ColorIndexService.java:18) ~[classes/:na]
+	at com.workwave.controller.schedule.ColorIndexController.getAllColorIndices(ColorIndexController.java:23) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:337) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:221) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.base/java.lang.Thread.run(Thread.java:829) ~[na:na]
+
+2024-06-21 16:14:35.167 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:14:35.167 DEBUG 26060 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:14:35.167 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:14:35.167 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:14:35.168 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:14:35.168 DEBUG 26060 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:14:35.174 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:14:35.175 DEBUG 26060 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 500
+2024-06-21 16:14:35.175 DEBUG 26060 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:14:35.175 DEBUG 26060 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:15:48.859 DEBUG 26060 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /calendar
+2024-06-21 16:15:48.867 DEBUG 26060 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:15:48.869 DEBUG 26060 --- [http-nio-8181-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:15:48.870 DEBUG 26060 --- [http-nio-8181-exec-4] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 8F19C1B5F0367F6A6DAAB962F28C50AB
+2024-06-21 16:15:48.872 DEBUG 26060 --- [http-nio-8181-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar] with attributes [permitAll]
+2024-06-21 16:15:48.873 DEBUG 26060 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /calendar
+2024-06-21 16:15:48.873 DEBUG 26060 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/calendar", parameters={}
+2024-06-21 16:15:48.876 DEBUG 26060 --- [http-nio-8181-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ScheduleController#calendar(Model)
+2024-06-21 16:15:48.879  INFO 26060 --- [http-nio-8181-exec-4] c.w.c.schedule.ScheduleController        : TRY to access calendar
+2024-06-21 16:15:48.893 DEBUG 26060 --- [http-nio-8181-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:15:48.894 DEBUG 26060 --- [http-nio-8181-exec-4] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {}
+2024-06-21 16:15:48.900 DEBUG 26060 --- [http-nio-8181-exec-4] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-21 16:15:49.250 DEBUG 26060 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:15:49.251 DEBUG 26060 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:15:49.251 DEBUG 26060 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:15:49.251 DEBUG 26060 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:19:10.777  INFO 27022 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 27022 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-21 16:19:10.779 DEBUG 27022 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-21 16:19:10.779  INFO 27022 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-21 16:19:11.311  INFO 27022 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-21 16:19:11.314  INFO 27022 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-21 16:19:11.314  INFO 27022 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-21 16:19:11.430  INFO 27022 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-21 16:19:11.434  INFO 27022 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-21 16:19:11.434  INFO 27022 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 625 ms
+2024-06-21 16:19:11.598  WARN 27022 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 78a7c09c-28fb-4393-9ffd-e2c26f464aa2
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-21 16:19:11.632 DEBUG 27022 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-21 16:19:11.638  INFO 27022 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5c18d6d4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6cbb175, org.springframework.security.web.context.SecurityContextPersistenceFilter@51a16adf, org.springframework.security.web.header.HeaderWriterFilter@2eb60c71, org.springframework.security.web.authentication.logout.LogoutFilter@4f820f42, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4315c28c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@8fd91d1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38fb50f8, org.springframework.security.web.session.SessionManagementFilter@4b033eac, org.springframework.security.web.access.ExceptionTranslationFilter@741741d0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5aa62ee7]
+2024-06-21 16:19:11.700 DEBUG 27022 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-21 16:19:11.710  INFO 27022 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-21 16:19:11.729 DEBUG 27022 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 29 mappings in 'requestMappingHandlerMapping'
+2024-06-21 16:19:11.738 DEBUG 27022 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-06-21 16:19:11.742 DEBUG 27022 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-21 16:19:11.798  INFO 27022 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-21 16:19:11.804  INFO 27022 --- [main] com.workwave.Main                        : Started Main in 1.203 seconds (JVM running for 1.47)
+2024-06-21 16:19:18.384  INFO 27022 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 16:19:18.385  INFO 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-21 16:19:18.385 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-21 16:19:18.385 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-21 16:19:18.386 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-21 16:19:18.386 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@67055ae0
+2024-06-21 16:19:18.387 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@317fa81a
+2024-06-21 16:19:18.387 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-21 16:19:18.387  INFO 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-06-21 16:19:18.392 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-06-21 16:19:18.395 DEBUG 27022 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:19:18.396 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:19:18.396 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id E9A9DCC1461FB838047D846CF04FD5E2
+2024-06-21 16:19:18.400 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /] with attributes [permitAll]
+2024-06-21 16:19:18.400 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-06-21 16:19:18.401 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2024-06-21 16:19:18.404 DEBUG 27022 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.MainController#list()
+2024-06-21 16:19:18.413 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:19:18.413 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+2024-06-21 16:19:18.414 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+2024-06-21 16:19:18.697 DEBUG 27022 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:19:18.698 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:19:18.699 DEBUG 27022 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:19:18.699 DEBUG 27022 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:19:22.633 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /schedule/colorIndex/colorList
+2024-06-21 16:19:22.633 DEBUG 27022 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:19:22.633 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:19:22.634 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /schedule/colorIndex/colorList] with attributes [permitAll]
+2024-06-21 16:19:22.634 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /schedule/colorIndex/colorList
+2024-06-21 16:19:22.634 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/schedule/colorIndex/colorList", parameters={}
+2024-06-21 16:19:22.638 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 16:19:22.642 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 16:19:22.642 DEBUG 27022 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:19:22.643 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:19:22.643 DEBUG 27022 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:19:22.643 DEBUG 27022 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:19:22.644 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:19:22.645 DEBUG 27022 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:19:22.645 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:19:22.645 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:19:22.646 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:19:22.649 DEBUG 27022 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:19:22.690 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:19:22.693 DEBUG 27022 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:19:22.693 DEBUG 27022 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:19:22.693 DEBUG 27022 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:20:00.170 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /colors/colorList
+2024-06-21 16:20:00.171 DEBUG 27022 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:20:00.171 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:20:00.172 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /colors/colorList] with attributes [permitAll]
+2024-06-21 16:20:00.172 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /colors/colorList
+2024-06-21 16:20:00.172 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/colors/colorList", parameters={}
+2024-06-21 16:20:00.172 DEBUG 27022 --- [http-nio-8181-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ColorIndexController#getAllColorIndices(Model)
+2024-06-21 16:20:00.182 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Failed to complete request: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.workwave.mapper.scheduleMapper.ColorIndexMapper.getAllColorIndices
+2024-06-21 16:20:00.182 DEBUG 27022 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:20:00.182 DEBUG 27022 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:20:00.186 ERROR 27022 --- [http-nio-8181-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.workwave.mapper.scheduleMapper.ColorIndexMapper.getAllColorIndices] with root cause
+
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.workwave.mapper.scheduleMapper.ColorIndexMapper.getAllColorIndices
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:235) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:108) ~[mybatis-3.5.9.jar:3.5.9]
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1705) ~[na:na]
+	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:35) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:95) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.9.jar:3.5.9]
+	at com.sun.proxy.$Proxy71.getAllColorIndices(Unknown Source) ~[na:na]
+	at com.workwave.service.schedule.ColorIndexService.getAllColorIndices(ColorIndexService.java:18) ~[classes/:na]
+	at com.workwave.controller.schedule.ColorIndexController.getAllColorIndices(ColorIndexController.java:23) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:337) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:221) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.base/java.lang.Thread.run(Thread.java:829) ~[na:na]
+
+2024-06-21 16:20:00.186 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:20:00.187 DEBUG 27022 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:20:00.187 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:20:00.187 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:20:00.187 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:20:00.187 DEBUG 27022 --- [http-nio-8181-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:20:00.190 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:20:00.191 DEBUG 27022 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 500
+2024-06-21 16:20:00.191 DEBUG 27022 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:20:00.191 DEBUG 27022 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:20:57.348 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /schedule/colorIndex/colorList
+2024-06-21 16:20:57.350 DEBUG 27022 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:20:57.350 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:20:57.352 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /schedule/colorIndex/colorList] with attributes [permitAll]
+2024-06-21 16:20:57.352 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /schedule/colorIndex/colorList
+2024-06-21 16:20:57.352 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/schedule/colorIndex/colorList", parameters={}
+2024-06-21 16:20:57.354 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 16:20:57.360 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 16:20:57.364 DEBUG 27022 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:20:57.365 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:20:57.366 DEBUG 27022 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:20:57.367 DEBUG 27022 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:20:57.367 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:20:57.368 DEBUG 27022 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:20:57.368 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:20:57.368 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:20:57.368 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:20:57.370 DEBUG 27022 --- [http-nio-8181-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:20:57.378 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:20:57.379 DEBUG 27022 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:20:57.379 DEBUG 27022 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:20:57.379 DEBUG 27022 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:21:02.183 DEBUG 27022 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-06-21 16:21:02.184 DEBUG 27022 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:21:02.184 DEBUG 27022 --- [http-nio-8181-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:21:02.186 DEBUG 27022 --- [http-nio-8181-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /] with attributes [permitAll]
+2024-06-21 16:21:02.186 DEBUG 27022 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-06-21 16:21:02.186 DEBUG 27022 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2024-06-21 16:21:02.187 DEBUG 27022 --- [http-nio-8181-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.MainController#list()
+2024-06-21 16:21:02.189 DEBUG 27022 --- [http-nio-8181-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:21:02.189 DEBUG 27022 --- [http-nio-8181-exec-6] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+2024-06-21 16:21:02.190 DEBUG 27022 --- [http-nio-8181-exec-6] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+2024-06-21 16:21:02.192 DEBUG 27022 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:02.193 DEBUG 27022 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:21:02.193 DEBUG 27022 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:02.193 DEBUG 27022 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:21:03.515 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /schedule/calendar/calendar
+2024-06-21 16:21:03.517 DEBUG 27022 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:21:03.517 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:21:03.518 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /schedule/calendar/calendar] with attributes [permitAll]
+2024-06-21 16:21:03.518 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /schedule/calendar/calendar
+2024-06-21 16:21:03.518 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/schedule/calendar/calendar", parameters={}
+2024-06-21 16:21:03.520 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 16:21:03.523 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 16:21:03.524 DEBUG 27022 --- [http-nio-8181-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:03.524 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:21:03.524 DEBUG 27022 --- [http-nio-8181-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:03.524 DEBUG 27022 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:21:03.525 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:21:03.525 DEBUG 27022 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:21:03.525 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:21:03.525 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:21:03.526 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:21:03.526 DEBUG 27022 --- [http-nio-8181-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:21:03.530 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:21:03.531 DEBUG 27022 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:21:03.531 DEBUG 27022 --- [http-nio-8181-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:03.531 DEBUG 27022 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:21:08.262 DEBUG 27022 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-06-21 16:21:08.262 DEBUG 27022 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:21:08.263 DEBUG 27022 --- [http-nio-8181-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:21:08.264 DEBUG 27022 --- [http-nio-8181-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /] with attributes [permitAll]
+2024-06-21 16:21:08.273 DEBUG 27022 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-06-21 16:21:08.276 DEBUG 27022 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2024-06-21 16:21:08.276 DEBUG 27022 --- [http-nio-8181-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.MainController#list()
+2024-06-21 16:21:08.277 DEBUG 27022 --- [http-nio-8181-exec-8] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:21:08.278 DEBUG 27022 --- [http-nio-8181-exec-8] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+2024-06-21 16:21:08.278 DEBUG 27022 --- [http-nio-8181-exec-8] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+2024-06-21 16:21:08.278 DEBUG 27022 --- [http-nio-8181-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:08.279 DEBUG 27022 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:21:08.279 DEBUG 27022 --- [http-nio-8181-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:08.279 DEBUG 27022 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:21:09.130 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /schedule/todoList/todoList
+2024-06-21 16:21:09.131 DEBUG 27022 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:21:09.131 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:21:09.133 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /schedule/todoList/todoList] with attributes [permitAll]
+2024-06-21 16:21:09.134 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /schedule/todoList/todoList
+2024-06-21 16:21:09.135 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/schedule/todoList/todoList", parameters={}
+2024-06-21 16:21:09.137 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 16:21:09.140 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 16:21:09.141 DEBUG 27022 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:09.141 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:21:09.142 DEBUG 27022 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:09.142 DEBUG 27022 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:21:09.143 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:21:09.143 DEBUG 27022 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:21:09.144 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:21:09.144 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:21:09.144 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:21:09.145 DEBUG 27022 --- [http-nio-8181-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:21:09.148 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:21:09.149 DEBUG 27022 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:21:09.149 DEBUG 27022 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:09.149 DEBUG 27022 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:21:10.264 DEBUG 27022 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /
+2024-06-21 16:21:10.273 DEBUG 27022 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:21:10.274 DEBUG 27022 --- [http-nio-8181-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:21:10.274 DEBUG 27022 --- [http-nio-8181-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /] with attributes [permitAll]
+2024-06-21 16:21:10.275 DEBUG 27022 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /
+2024-06-21 16:21:10.275 DEBUG 27022 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2024-06-21 16:21:10.275 DEBUG 27022 --- [http-nio-8181-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.MainController#list()
+2024-06-21 16:21:10.276 DEBUG 27022 --- [http-nio-8181-exec-10] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:21:10.276 DEBUG 27022 --- [http-nio-8181-exec-10] o.s.web.servlet.view.JstlView            : View name 'index', model {}
+2024-06-21 16:21:10.276 DEBUG 27022 --- [http-nio-8181-exec-10] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/index.jsp]
+2024-06-21 16:21:10.276 DEBUG 27022 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:10.277 DEBUG 27022 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:21:10.277 DEBUG 27022 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:10.277 DEBUG 27022 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:21:16.680 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /calendar
+2024-06-21 16:21:16.683 DEBUG 27022 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:21:16.684 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:21:16.685 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar] with attributes [permitAll]
+2024-06-21 16:21:16.685 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /calendar
+2024-06-21 16:21:16.686 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/calendar", parameters={}
+2024-06-21 16:21:16.686 DEBUG 27022 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ScheduleController#calendar(Model)
+2024-06-21 16:21:16.687  INFO 27022 --- [http-nio-8181-exec-1] c.w.c.schedule.ScheduleController        : TRY to access calendar
+2024-06-21 16:21:16.689 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:21:16.690 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {}
+2024-06-21 16:21:16.690 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-21 16:21:16.789 DEBUG 27022 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:16.789 DEBUG 27022 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:21:16.789 DEBUG 27022 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:21:16.789 DEBUG 27022 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:25:34.690  INFO 28224 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 28224 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-21 16:25:34.692 DEBUG 28224 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-21 16:25:34.693  INFO 28224 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-21 16:25:35.185  INFO 28224 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-21 16:25:35.189  INFO 28224 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-21 16:25:35.189  INFO 28224 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-21 16:25:35.309  INFO 28224 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-21 16:25:35.311  INFO 28224 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-21 16:25:35.311  INFO 28224 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 595 ms
+2024-06-21 16:25:35.472  WARN 28224 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 9e0187ac-7492-41b6-995d-1c03fd389423
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-21 16:25:35.504 DEBUG 28224 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-21 16:25:35.510  INFO 28224 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@62ade015, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@70ede57d, org.springframework.security.web.context.SecurityContextPersistenceFilter@193eb1ba, org.springframework.security.web.header.HeaderWriterFilter@49edcb30, org.springframework.security.web.authentication.logout.LogoutFilter@443a53df, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@46320c9a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@32256e68, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70997a94, org.springframework.security.web.session.SessionManagementFilter@12d40609, org.springframework.security.web.access.ExceptionTranslationFilter@6a950a3b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5c18d6d4]
+2024-06-21 16:25:35.573 DEBUG 28224 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-21 16:25:35.583  INFO 28224 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-21 16:25:35.604 DEBUG 28224 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 29 mappings in 'requestMappingHandlerMapping'
+2024-06-21 16:25:35.614 DEBUG 28224 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-06-21 16:25:35.618 DEBUG 28224 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-21 16:25:35.671  INFO 28224 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-21 16:25:35.678  INFO 28224 --- [main] com.workwave.Main                        : Started Main in 1.157 seconds (JVM running for 1.416)
+2024-06-21 16:25:38.203  INFO 28224 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 16:25:38.204  INFO 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-21 16:25:38.205 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-21 16:25:38.205 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-21 16:25:38.205 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-21 16:25:38.206 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1000cc3f
+2024-06-21 16:25:38.207 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@1e71f029
+2024-06-21 16:25:38.207 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-21 16:25:38.207  INFO 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-06-21 16:25:38.212 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /calendar
+2024-06-21 16:25:38.214 DEBUG 28224 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:25:38.216 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:25:38.216 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 861A6BA28C131EB1C0FBEB97601E4CF1
+2024-06-21 16:25:38.219 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar] with attributes [permitAll]
+2024-06-21 16:25:38.219 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /calendar
+2024-06-21 16:25:38.220 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/calendar", parameters={}
+2024-06-21 16:25:38.222 DEBUG 28224 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.ScheduleController#calendar(Model)
+2024-06-21 16:25:38.227  INFO 28224 --- [http-nio-8181-exec-1] c.w.c.schedule.ScheduleController        : TRY to access calendar
+2024-06-21 16:25:38.232 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:25:38.232 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {}
+2024-06-21 16:25:38.233 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-21 16:25:38.544 DEBUG 28224 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:25:38.545 DEBUG 28224 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:25:38.546 DEBUG 28224 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:25:38.546 DEBUG 28224 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:25:52.791 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /calendars/calList
+2024-06-21 16:25:52.792 DEBUG 28224 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:25:52.792 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:25:52.793 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendars/calList] with attributes [permitAll]
+2024-06-21 16:25:52.793 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /calendars/calList
+2024-06-21 16:25:52.793 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/calendars/calList", parameters={}
+2024-06-21 16:25:52.794 DEBUG 28224 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.CalendarController#getAllCalendars(Model)
+2024-06-21 16:25:52.807 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Failed to complete request: org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.workwave.mapper.scheduleMapper.CalendarMapper.getAllCalendars
+2024-06-21 16:25:52.810 DEBUG 28224 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:25:52.810 DEBUG 28224 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:25:52.819 ERROR 28224 --- [http-nio-8181-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.workwave.mapper.scheduleMapper.CalendarMapper.getAllCalendars] with root cause
+
+org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.workwave.mapper.scheduleMapper.CalendarMapper.getAllCalendars
+	at org.apache.ibatis.binding.MapperMethod$SqlCommand.<init>(MapperMethod.java:235) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperMethod.<init>(MapperMethod.java:53) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperProxy.lambda$cachedInvoker$0(MapperProxy.java:108) ~[mybatis-3.5.9.jar:3.5.9]
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1705) ~[na:na]
+	at org.apache.ibatis.util.MapUtil.computeIfAbsent(MapUtil.java:35) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperProxy.cachedInvoker(MapperProxy.java:95) ~[mybatis-3.5.9.jar:3.5.9]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.9.jar:3.5.9]
+	at com.sun.proxy.$Proxy70.getAllCalendars(Unknown Source) ~[na:na]
+	at com.workwave.service.schedule.CalendarService.getAllCalendars(CalendarService.java:21) ~[classes/:na]
+	at com.workwave.controller.schedule.CalendarController.getAllCalendars(CalendarController.java:28) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:502) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.26.jar:5.3.26]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:596) ~[tomcat-embed-core-9.0.73.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:337) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:221) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186) ~[spring-security-web-5.7.7.jar:5.7.7]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.26.jar:5.3.26]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.73.jar:9.0.73]
+	at java.base/java.lang.Thread.run(Thread.java:829) ~[na:na]
+
+2024-06-21 16:25:52.820 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:25:52.821 DEBUG 28224 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:25:52.821 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:25:52.821 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:25:52.821 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:25:52.823 DEBUG 28224 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:25:52.833 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:25:52.837 DEBUG 28224 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 500
+2024-06-21 16:25:52.837 DEBUG 28224 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:25:52.837 DEBUG 28224 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:26:35.079  INFO 28421 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 28421 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-21 16:26:35.082 DEBUG 28421 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-21 16:26:35.083  INFO 28421 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-21 16:26:35.562  INFO 28421 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-21 16:26:35.566  INFO 28421 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-21 16:26:35.566  INFO 28421 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-21 16:26:35.687  INFO 28421 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-21 16:26:35.690  INFO 28421 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-21 16:26:35.690  INFO 28421 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 582 ms
+2024-06-21 16:26:35.850  WARN 28421 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 14079eb9-b51d-4ccc-bf6f-f57094d14bcb
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-21 16:26:35.882 DEBUG 28421 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-21 16:26:35.887  INFO 28421 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6cbb175, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@38fb50f8, org.springframework.security.web.context.SecurityContextPersistenceFilter@385d819, org.springframework.security.web.header.HeaderWriterFilter@87d9a01, org.springframework.security.web.authentication.logout.LogoutFilter@4b325930, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@8fd91d1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@52d0f583, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ab802f4, org.springframework.security.web.session.SessionManagementFilter@69c532af, org.springframework.security.web.access.ExceptionTranslationFilter@5f9f3e58, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1f7cec93]
+2024-06-21 16:26:35.948 DEBUG 28421 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-21 16:26:35.958  INFO 28421 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-21 16:26:35.979 DEBUG 28421 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 29 mappings in 'requestMappingHandlerMapping'
+2024-06-21 16:26:35.989 DEBUG 28421 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-06-21 16:26:35.993 DEBUG 28421 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-21 16:26:36.044  INFO 28421 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-21 16:26:36.050  INFO 28421 --- [main] com.workwave.Main                        : Started Main in 1.135 seconds (JVM running for 1.392)
+2024-06-21 16:26:52.130  INFO 28481 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 28481 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-21 16:26:52.131 DEBUG 28481 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-21 16:26:52.132  INFO 28481 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-21 16:26:52.642  INFO 28481 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-21 16:26:52.645  INFO 28481 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-21 16:26:52.645  INFO 28481 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-21 16:26:52.756  INFO 28481 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-21 16:26:52.759  INFO 28481 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-21 16:26:52.759  INFO 28481 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 583 ms
+2024-06-21 16:26:52.909  WARN 28481 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 4caa8402-cb4f-4165-a893-093dcaca09c1
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-21 16:26:52.955 DEBUG 28481 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-21 16:26:52.962  INFO 28481 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5729b410, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@64518270, org.springframework.security.web.context.SecurityContextPersistenceFilter@74667e6a, org.springframework.security.web.header.HeaderWriterFilter@70716259, org.springframework.security.web.authentication.logout.LogoutFilter@45a1d057, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@364b1061, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@50fdf44f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3b7c58e7, org.springframework.security.web.session.SessionManagementFilter@c1e14f, org.springframework.security.web.access.ExceptionTranslationFilter@1d3c112a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1e98b788]
+2024-06-21 16:26:53.033 DEBUG 28481 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-21 16:26:53.044  INFO 28481 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-21 16:26:53.064 DEBUG 28481 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 29 mappings in 'requestMappingHandlerMapping'
+2024-06-21 16:26:53.075 DEBUG 28481 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-06-21 16:26:53.079 DEBUG 28481 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-21 16:26:53.133  INFO 28481 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-21 16:26:53.140  INFO 28481 --- [main] com.workwave.Main                        : Started Main in 1.23 seconds (JVM running for 1.523)
+2024-06-21 16:26:56.503  INFO 28481 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-21 16:26:56.504  INFO 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-21 16:26:56.504 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-21 16:26:56.504 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-21 16:26:56.504 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-21 16:26:56.505 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@127c66aa
+2024-06-21 16:26:56.505 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@26702ac7
+2024-06-21 16:26:56.505 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-21 16:26:56.505  INFO 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-21 16:26:56.511 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /calendars/calList
+2024-06-21 16:26:56.513 DEBUG 28481 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:26:56.514 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:26:56.514 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id F32B10039D1C6D5C6874678D453D5CA2
+2024-06-21 16:26:56.518 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendars/calList] with attributes [permitAll]
+2024-06-21 16:26:56.518 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /calendars/calList
+2024-06-21 16:26:56.519 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/calendars/calList", parameters={}
+2024-06-21 16:26:56.522 DEBUG 28481 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.controller.schedule.CalendarController#getAllCalendars(Model)
+2024-06-21 16:26:56.532 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-21 16:26:56.533 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {}
+2024-06-21 16:26:56.534 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-21 16:26:56.842 DEBUG 28481 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:26:56.843 DEBUG 28481 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-21 16:26:56.844 DEBUG 28481 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:26:56.844 DEBUG 28481 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:31:03.169 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /sch/todoList
+2024-06-21 16:31:03.171 DEBUG 28481 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:31:03.171 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:31:03.172 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id FFA55FCF17EBEA1D2FAFDFA11839AFA7
+2024-06-21 16:31:03.174 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /sch/todoList] with attributes [permitAll]
+2024-06-21 16:31:03.175 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /sch/todoList
+2024-06-21 16:31:03.176 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/sch/todoList", parameters={}
+2024-06-21 16:31:03.204 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 16:31:03.205 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 16:31:03.206 DEBUG 28481 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:31:03.206 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 16:31:03.206 DEBUG 28481 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:31:03.206 DEBUG 28481 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 16:31:03.207 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 16:31:03.207 DEBUG 28481 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 16:31:03.207 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 16:31:03.207 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 16:31:03.207 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 16:31:03.209 DEBUG 28481 --- [http-nio-8181-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 16:31:03.235 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 16:31:03.241 DEBUG 28481 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 16:31:03.241 DEBUG 28481 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 16:31:03.241 DEBUG 28481 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 17:39:54.328 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /index
+2024-06-21 17:39:54.334 DEBUG 28481 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 17:39:54.338 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 17:39:54.339 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id AA5A0F4E4FF87D78A23E7DE56C7432B7
+2024-06-21 17:39:54.341 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /index] with attributes [permitAll]
+2024-06-21 17:39:54.341 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /index
+2024-06-21 17:39:54.342 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/index", parameters={}
+2024-06-21 17:39:54.351 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2024-06-21 17:39:54.360 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2024-06-21 17:39:54.361 DEBUG 28481 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 17:39:54.361 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2024-06-21 17:39:54.361 DEBUG 28481 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 17:39:54.361 DEBUG 28481 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-21 17:39:54.361 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2024-06-21 17:39:54.361 DEBUG 28481 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-21 17:39:54.362 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-21 17:39:54.362 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /error
+2024-06-21 17:39:54.362 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2024-06-21 17:39:54.362 DEBUG 28481 --- [http-nio-8181-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2024-06-21 17:39:54.364 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2024-06-21 17:39:54.364 DEBUG 28481 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2024-06-21 17:39:54.364 DEBUG 28481 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-21 17:39:54.364 DEBUG 28481 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request

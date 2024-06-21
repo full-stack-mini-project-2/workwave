@@ -15,12 +15,12 @@ public class ScheduleController {
     public String calendar(Model model) {
 
         log.info("TRY to access calendar");
-        return "calendar/calendar"; // 이 부분이 실제 JSP 파일의 경로를 나타냅니다.
+        return "schedule/calendar/calendar"; // 이 부분이 실제 JSP 파일의 경로를 나타냅니다.
     }
     @GetMapping("/todoList")
     public String todolist(Model model) {
 
         log.info("TRY to access todoList");
-        return "todolist/todoList";
+        return "schedule/todolist/todoList";
     }
 }

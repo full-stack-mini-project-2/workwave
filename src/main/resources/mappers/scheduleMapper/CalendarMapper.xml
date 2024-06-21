@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.workwave.mapper.scheduleMapper.CalendarMapper">
-    <insert id="save" parameterType="com.workwave.entity.schedule.Calendar">
+    <insert id="insertCalendar">
         INSERT INTO calendar (
                               event_title,
                               event_description,
@@ -28,4 +28,9 @@
                 #{todoId}
                )
     </insert>
+
+<!--    캘린더의 일정 조회-->
+    <select id="getAllCalendars" resultType="calendar">
+        SELECT * FROM calendar;
+    </select>
 </mapper>

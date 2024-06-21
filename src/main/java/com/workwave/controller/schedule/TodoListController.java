@@ -18,18 +18,18 @@ public class TodoListController {
     private TodoListService todoListService;
 
     // todolist 에 새로운 값 추가하기
-    @GetMapping()
+    @GetMapping
     public String getAllTodoLists(Model model) {
         List<TodoListDTO> todoLists = todoListService.getAllTodoLists();
         model.addAttribute("todoLists", todoLists);
-        return "todoList";
+        return "schedule/todoList/todoList";
     }
 
     @GetMapping("/{id}") //pathvariable 뜻이 뭐지??
     public String getTodoListById(@PathVariable int id, Model model) {
         TodoListDTO todoList = todoListService.getTodoListById(id);
         model.addAttribute("todoList", todoList);
-        return "todoDetail";
+        return "todoList/todoDetail";
     }
 
     @PostMapping

@@ -114,14 +114,14 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                 <a href="#">
                     <div class="right-box">우빈2</div>
                 </a>
-                <a href="/calendars">
+                <a href="schedule/calendar/calendar">
                     <div class="right-box">달력</div>
                 </a>
-                <a href="/todos">
+                <a href="schedule/todoList/todoList">
                     <div class="right-box">투두리스트</div>
                 </a>
-                <a href="#">
-                    <div class="right-box">윤종3</div>
+                <a href="schedule/colorIndex/colorList">
+                    <div class="right-box">컬러리스트</div>
                 </a>
                 <a href="#">
                     <div class="right-box">윤종4</div>

@@ -18,18 +18,18 @@ public class ColorIndexController {
     @Autowired
     private ColorIndexService colorIndexService;
 
-    @GetMapping
+    @GetMapping("/colorList")
     public String getAllColorIndices(Model model) {
         List<ColorIndexDTO> colorIndices = colorIndexService.getAllColorIndices();
         model.addAttribute("colorIndices", colorIndices);
-        return "colorList";
+        return "schedule/colorIndex/colorList";
     }
 
     @GetMapping("/{id}")
     public String getColorIndexById(@PathVariable int id, Model model) {
         ColorIndexDTO colorIndex = colorIndexService.getColorIndexById(id);
         model.addAttribute("colorIndex", colorIndex);
-        return "colorDetail";
+        return "schedule/colorIndex/colorDetail";
     }
 
     @PostMapping
