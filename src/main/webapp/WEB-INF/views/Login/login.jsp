@@ -26,6 +26,10 @@
                         <label for="password">비밀번호:</label>
                         <input type="password" id="password" name="password" required>
                     </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="autoLogin" name="autoLogin"><label for="autoLogin"
+                            class="auto-login-label">자동 로그인</label>
+                    </div>
 
                     <button type="submit" class="login-button">로그인</button>
                     <br /><br />

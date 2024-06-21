@@ -42,7 +42,7 @@
                     </tr>
                     <tr>
                       <td>
-                        <input type="text" name="userId" id="userId" class="signUpInputStyle" maxlength="14"
+                        <input type="text" name="account" id="account" class="signUpInputStyle" maxlength="14"
                           required="required" aria-required="true" placeholder="숫자와 영어로 4-14자" />
                       </td>
                     </tr>
@@ -96,8 +96,8 @@
                     </tr>
                     <tr>
                       <td>
-                        <input type="email" name="userEmail" id="userEmail" class="signUpInputStyle"
-                          required="required" aria-required="true" placeholder="ex) abc@mvc.com" />
+                        <input type="email" name="userEmail" id="userEmail" class="signUpInputStyle" required="required"
+                          aria-required="true" placeholder="ex) abc@mvc.com" />
                       </td>
                     </tr>
                     <tr>
