@@ -1,8 +1,8 @@
 package com.workwave.mapper.scheduleMapper;
 
-import com.workwave.dto.scheduleDto.request.CalendarDTO;
-import com.workwave.dto.scheduleDto.request.CalendarEventDTO;
-import com.workwave.dto.scheduleDto.request.TeamCalendarEventDTO;
+import com.workwave.dto.scheduleDTO.request.CalendarDTO;
+import com.workwave.dto.scheduleDTO.request.CalendarEventDTO;
+import com.workwave.dto.scheduleDTO.request.TeamCalendarEventDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

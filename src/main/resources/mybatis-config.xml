@@ -11,11 +11,20 @@
     <typeAliases>
         <typeAlias type="com.workwave.entity.board.Board" alias="board"/>
         <typeAlias type="com.workwave.entity.user.User" alias="user"/>
+
+<!--        calendar, todoList-->
+        <typeAlias alias="CalendarDTO" type="com.workwave.dto.scheduleDTO.request.CalendarDTO"/>
+        <typeAlias alias="CalendarEventDTO" type="com.workwave.dto.scheduleDTO.request.CalendarEventDTO"/>
+        <typeAlias alias="TeamCalendarEventDTO" type="com.workwave.dto.scheduleDTO.request.TeamCalendarEventDTO"/>
+
+
         <typeAlias type="com.workwave.entity.schedule.ColorIndex" alias="colorIndex"/>
         <typeAlias type="com.workwave.entity.schedule.Calendar" alias="calendar"/>
         <typeAlias type="com.workwave.entity.schedule.TeamCalendar" alias="teamCalendar"/>
+        <typeAlias type="com.workwave.entity.schedule.CalendarEvent" alias="calendarEvent"/>
         <typeAlias type="com.workwave.entity.schedule.TodoList" alias="todoList"/>
         <typeAlias type="com.workwave.entity.schedule.TeamTodoList" alias="teamTodoList"/>
+        <typeAlias type="com.workwave.entity.schedule.TodoListEvent" alias="todoListEvent"/>
     </typeAliases>
 
     <mappers>
@@ -24,8 +33,6 @@
 <!--        schedule mapper-->
         <mapper resource="mappers/scheduleMapper/CalendarMapper.xml"/>
         <mapper resource="mappers/scheduleMapper/ColorIndexMapper.xml"/>
-        <mapper resource="mappers/scheduleMapper/TeamCalendarMapper.xml"/>
-        <mapper resource="mappers/scheduleMapper/TeamTodoListMapper.xml"/>
         <mapper resource="mappers/scheduleMapper/TodoListMapper.xml"/>
 
     </mappers>

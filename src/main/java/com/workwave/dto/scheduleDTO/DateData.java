@@ -1,9 +1,8 @@
-package com.workwave.dto.scheduleDto;
+package com.workwave.dto.scheduleDTO;
 
 import lombok.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;

@@ -5,41 +5,39 @@
 
 <mapper namespace="com.workwave.mapper.scheduleMapper.CalendarMapper">
 
-<!--    본인의 모든 캘린더 (개인, 팀)조회-->
-    <select id="getCalendars" resultType="calendarDTO">
-        SELECT  C.calendar_name, T.t_calendar_name, U.user_name
+    <!-- 본인의 모든 캘린더 (개인, 팀)조회 -->
+    <select id="getCalendars" resultType="com.workwave.dto.scheduleDTO.request.CalendarDTO">
+        SELECT
+        C.calendar_id AS calendarId,
+        C.calendar_name AS calendarName,
+        T.t_calendar_id AS tCalendarId,
+        T.t_calendar_name AS tCalendarName,
+        U.user_id AS userId
         FROM TeamCalendar T
-        LEFT JOIN Users U ON T.department_id = U.department_id
-        LEFT JOIN Calendar C ON U.user_id = C.user_id
-        WHERE U.user_id = #{userId}
-        ;
+        JOIN Users U ON T.department_id = U.department_id
+        JOIN Calendar C ON U.user_id = C.user_id
+        WHERE U.user_id = #{userId};
     </select>
 
-
-<!--    본인의 캘린더 일정리스트 조회-->
-    <select id="getCalendarEventsById" resultType="calendarEventDTO">
+    <!-- 본인의 캘린더 일정리스트 조회 -->
+    <select id="getCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.CalendarEventDTO">
         SELECT CE.*, U.user_name
         FROM CalendarEvent CE
         JOIN Users U ON CE.user_id = U.user_id
         WHERE CE.user_id = #{userId}
-<!--    팀 달력 이벤트는 제외되어야 하므로, 팀 캘린더아이디는 null 임-->
-        AND CE.t_calendar_id IS NULL
-        ;
+        AND CE.t_calendar_id IS NULL;
     </select>
 
-<!--    본인의 팀 캘린더 일정리스트 조회-->
-    <select id="getTeamCalendarEventsById" resultType="TeamCalendarEventDTO">
+    <!-- 본인의 팀 캘린더 일정리스트 조회 -->
+    <select id="getTeamCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.TeamCalendarEventDTO">
         SELECT CE.*, D.department_name
         FROM CalendarEvent CE
         JOIN Department D ON CE.department_id = D.department_id
         WHERE CE.user_id = #{userId}
-<!--        개인 달력 이벤트는 제외되어야 하므로, 개인캘린더아이디 null 임-->
-        AND CE.calendar_id IS NULL
-        ;
+        AND CE.calendar_id IS NULL;
     </select>
 
-
-<!--    본인 캘린더 이벤트 추가-->
+    <!-- 본인 캘린더 이벤트 추가 -->
     <insert id="insertCalendarEvent" parameterType="map">
         INSERT INTO CalendarEvent (
         c_event_date,
@@ -47,12 +45,12 @@
         c_event_description,
         user_id,
         department_id,
-        calendar_id
-        <if test="color_index_id != null">
-            ,color_index_id
+        calendar_id,
+        <if test="colorIndexId != null">
+            color_index_id,
         </if>
-        <if test="notice_id != null">
-            ,notice_id
+        <if test="noticeId != null">
+            notice_id,
         </if>
         )
         VALUES (
@@ -61,18 +59,17 @@
         #{cEventDescription},
         #{userId},
         #{departmentId},
-        #{calendarId}
-        <if test="color_index_id != null">
-            ,#{colorIndexId}
+        #{calendarId},
+        <if test="colorIndexId != null">
+            #{colorIndexId},
         </if>
-        <if test="notice_id != null">
-            ,#{noticeId}
+        <if test="noticeId != null">
+            #{noticeId},
         </if>
         );
     </insert>
 
-
-<!--    본인의 팀 캘린더에 캘린더 공유 일정 추가-->
+    <!-- 본인의 팀 캘린더에 캘린더 공유 일정 추가 -->
     <insert id="insertTeamCalendarEvent" parameterType="map">
         INSERT INTO CalendarEvent (
         c_event_date,
@@ -80,12 +77,12 @@
         c_event_description,
         user_id,
         department_id,
-        t_calendar_id
+        t_calendar_id,
         <if test="colorIndexId != null">
-            ,color_index_id
+            color_index_id,
         </if>
         <if test="noticeId != null">
-            ,notice_id
+            notice_id,
         </if>
         )
         VALUES (
@@ -94,23 +91,20 @@
         #{cEventDescription},
         #{userId},
         #{departmentId},
-        #{tCalendarId}
+        #{tCalendarId},
         <if test="colorIndexId != null">
-            ,#{colorIndexId}
+            #{colorIndexId},
         </if>
         <if test="noticeId != null">
-            ,#{noticeId}
+            #{noticeId},
         </if>
         );
     </insert>
 
-
-<!--    개인 캘린더 및 팀 캘린더 일정을 이벤트 id로 삭제-->
+    <!-- 개인 캘린더 및 팀 캘린더 일정을 이벤트 id로 삭제 -->
     <delete id="deleteCalendarEvent">
-    DELETE FROM CalendarEvent
-    WHERE c_event_id = #{cEventId}
-        ;
+        DELETE FROM CalendarEvent
+        WHERE c_event_id = #{cEventId};
     </delete>
-
 
 </mapper>

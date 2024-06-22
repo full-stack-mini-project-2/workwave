@@ -1,6 +1,6 @@
 package com.workwave.controller.schedule;
 
-import com.workwave.dto.scheduleDto.request.ColorIndexDTO;
+import com.workwave.dto.scheduleDTO.request.ColorIndexDTO;
 import com.workwave.service.schedule.ColorIndexService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

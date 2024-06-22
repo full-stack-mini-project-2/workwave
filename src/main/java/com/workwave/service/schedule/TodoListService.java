@@ -1,6 +1,6 @@
 package com.workwave.service.schedule;
 
-import com.workwave.dto.scheduleDto.request.TodoListDTO;
+import com.workwave.dto.scheduleDTO.request.TodoListDTO;
 import com.workwave.mapper.scheduleMapper.TodoListMapper;
 import org.springframework.stereotype.Service;
 

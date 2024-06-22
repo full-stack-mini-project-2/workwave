@@ -1,4 +1,4 @@
-package com.workwave.dto.scheduleDto.request;
+package com.workwave.dto.scheduleDTO.request;
 
 import lombok.*;
 

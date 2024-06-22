@@ -1,6 +1,6 @@
 package com.workwave.service.schedule;
 
-import com.workwave.dto.scheduleDto.request.ColorIndexDTO;
+import com.workwave.dto.scheduleDTO.request.ColorIndexDTO;
 import com.workwave.mapper.scheduleMapper.ColorIndexMapper;
 import org.springframework.stereotype.Service;
 

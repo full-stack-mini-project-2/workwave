@@ -1,7 +1,6 @@
 package com.workwave.mapper.scheduleMapper;
 
-import com.workwave.dto.scheduleDto.request.ColorIndexDTO;
-import com.workwave.entity.schedule.ColorIndex;
+import com.workwave.dto.scheduleDTO.request.ColorIndexDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

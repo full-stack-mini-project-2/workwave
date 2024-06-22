@@ -1,10 +1,10 @@
-package com.workwave.dto.scheduleDto.request;
+package com.workwave.dto.scheduleDTO.request;
 
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 public class CalendarDTO {
     private int calendarId;
     private String calendarName;
-    private LocalDateTime createdAt;
+    private int tCalendarId;
+    private String tCalendarName;
     private String userId;
 
 }

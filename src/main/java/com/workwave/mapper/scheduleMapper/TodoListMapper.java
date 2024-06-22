@@ -1,7 +1,6 @@
 package com.workwave.mapper.scheduleMapper;
 
-import com.workwave.dto.scheduleDto.request.TodoListDTO;
-import com.workwave.entity.schedule.TodoList;
+import com.workwave.dto.scheduleDTO.request.TodoListDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

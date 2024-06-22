@@ -1,4 +1,4 @@
-package com.workwave.dto.scheduleDto.request;
+package com.workwave.dto.scheduleDTO.request;
 
 import lombok.*;
 
@@ -8,10 +8,8 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @Builder
-public class TeamCalendarEventDTO {
+public class CalendarEventDTO {
     private int cEventId;
     private LocalDateTime cEventDate;
     private String cEventTitle;

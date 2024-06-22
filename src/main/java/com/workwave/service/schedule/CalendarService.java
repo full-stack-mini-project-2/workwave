@@ -1,16 +1,12 @@
 package com.workwave.service.schedule;
 
-import com.workwave.dto.scheduleDto.request.CalendarEventDTO;
-import com.workwave.dto.scheduleDto.request.TeamCalendarEventDTO;
+import com.workwave.dto.scheduleDTO.request.CalendarEventDTO;
+import com.workwave.dto.scheduleDTO.request.TeamCalendarEventDTO;
 import com.workwave.mapper.scheduleMapper.CalendarMapper;
-import com.workwave.mapper.userMapper.UserMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.workwave.dto.scheduleDto.request.CalendarDTO;
-import com.workwave.mapper.scheduleMapper.ColorIndexMapper;
-import org.springframework.stereotype.Service;
+import com.workwave.dto.scheduleDTO.request.CalendarDTO;
 
 import java.util.List;
 
