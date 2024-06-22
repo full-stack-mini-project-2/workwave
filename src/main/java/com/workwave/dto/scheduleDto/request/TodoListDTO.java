@@ -11,14 +11,12 @@ import java.time.LocalDateTime;
 @Builder
 public class TodoListDTO {
 
-    private int todo_id;
-    private String todo_content;
-    private LocalDateTime todo_event_date;
-    private String todo_status;
-    private LocalDateTime todo_createAt;
-    private LocalDateTime todo_updateAt;
-    private int color_index_id;
-    private String department_id;
-    private String user_id;
+    private int todoId;
+    private String todoContent;
+    private String todoStatus;
+    private LocalDateTime todoCreateAt;
+    private LocalDateTime todoUpdateAt;
+    private Integer colorIndexId; // Integer로 선언하여 null 값을 허용
+    private String userId;
 
 }

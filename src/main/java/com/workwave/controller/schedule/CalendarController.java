@@ -2,6 +2,7 @@ package com.workwave.controller.schedule;
 
 import com.workwave.dto.scheduleDto.DateData;
 import com.workwave.dto.scheduleDto.request.CalendarDTO;
+import com.workwave.dto.scheduleDto.request.CalendarEventDTO;
 import com.workwave.service.schedule.CalendarService;
 import lombok.extern.slf4j.Slf4j;
 import java.util.ArrayList;
@@ -18,41 +19,25 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Slf4j
-@RequestMapping("/calendars")
+@RequestMapping("/calendar")
 public class CalendarController {
+
     @Autowired
     private CalendarService calendarService;
 
-    @GetMapping("/calList")
-    public String getAllCalendars(Model model) {
-        List<CalendarDTO> calendars = calendarService.getAllCalendars();
+    @GetMapping("/{userId}")
+    public String getCalendar(@PathVariable String userId, Model model) {
+        List<CalendarDTO> calendars = calendarService.getCalendars(userId);
+        List<CalendarEventDTO> calendarEvents = calendarService.getCalendarEvents(userId);
+        List<TeamCalendarEventDTO> teamCalendarEvents = calendarService.getTeamCalendarEvents(userId);
+
+        String userName = calendarService.getUserName(userId);
+
+        model.addAttribute("userName", userName);
         model.addAttribute("calendars", calendars);
-        return "schedule/calendar/calendar";
-    }
+        model.addAttribute("calendarEvents", calendarEvents);
+        model.addAttribute("teamCalendarEvents", teamCalendarEvents);
 
-    @GetMapping("/{id}")
-    public String getCalendarById(@PathVariable int id, Model model) {
-        CalendarDTO calendar = calendarService.getCalendarById(id);
-        model.addAttribute("calendar", calendar);
-        return "schedule/calendar/calendarDetail";
+        return "calendar";
     }
-
-    @PostMapping
-    public String insertCalendar(CalendarDTO calendar) {
-        calendarService.insertCalendar(calendar);
-        return "redirect:/calendars";
-    }
-
-    @PutMapping("/{id}")
-    public String updateCalendar(@PathVariable int id, CalendarDTO calendar) {
-        calendar.setCalendar_id(id);
-        calendarService.updateCalendar(calendar);
-        return "redirect:/calendars";
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteCalendar(@PathVariable int id) {
-        calendarService.deleteCalendar(id);
-        return "redirect:/calendars";
-    }
-    }
+}

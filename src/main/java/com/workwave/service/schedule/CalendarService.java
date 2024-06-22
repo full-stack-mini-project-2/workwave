@@ -1,6 +1,9 @@
 package com.workwave.service.schedule;
 
+import com.workwave.dto.scheduleDto.request.CalendarEventDTO;
+import com.workwave.dto.scheduleDto.request.TeamCalendarEventDTO;
 import com.workwave.mapper.scheduleMapper.CalendarMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.workwave.dto.scheduleDto.request.CalendarDTO;
@@ -11,29 +14,23 @@ import java.util.List;
 
 @Service
 public class CalendarService {
-    private final CalendarMapper calendarMapper;
+        @Autowired
+        private CalendarMapper calendarMapper;
 
-    public CalendarService(CalendarMapper calendarMapper) {
-        this.calendarMapper = calendarMapper;
-    }
+        public List<CalendarDTO> getCalendars(String userId) {
+            return calendarMapper.getCalendars(userId);
+        }
 
-    public List<CalendarDTO> getAllCalendars() {
-        return calendarMapper.getAllCalendars();
-    }
+        public List<CalendarEventDTO> getCalendarEvents(String userId) {
+            return calendarMapper.getCalendarById(userId);
+        }
 
-    public CalendarDTO getCalendarById(int calendar_id) {
-        return calendarMapper.getCalendarById(calendar_id);
-    }
+        public List<TeamCalendarEventDTO> getTeamCalendarEvents(String userId) {
+            return calendarMapper.getTeamCalendarEvent(userId);
+        }
 
-    public void insertCalendar(CalendarDTO calendar) {
-        calendarMapper.insertCalendar(calendar);
+        public String getUserName(String userId) {
+            // Assume this method exists to get the user name
+            return calendarMapper.getUserName(userId);
+        }
     }
-
-    public void updateCalendar(CalendarDTO calendar) {
-        calendarMapper.updateCalendar(calendar);
-    }
-
-    public void deleteCalendar(int calendar_id) {
-        calendarMapper.deleteCalendar(calendar_id);
-    }
-}
