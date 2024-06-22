@@ -18,4 +18,7 @@ public interface UserMapper {
     //부서 조회
     List<DepartmentNameDto> findDepartmentAll();
 
+    //유저이름 조회하기
+    String findUserName (String userId);
+
 }

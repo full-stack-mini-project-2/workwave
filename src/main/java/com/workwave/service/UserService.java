@@ -4,6 +4,7 @@ import com.workwave.dto.DepartmentNameDto;
 import com.workwave.mapper.userMapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +13,18 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class UserService {
+
     private final UserMapper userMapper;
+
     // 부서명 전체 리턴
     public List<DepartmentNameDto> findDepartmentName(){
         List<DepartmentNameDto> dList = userMapper.findDepartmentAll();
         return dList;
+    }
+
+    //userName 얻기
+    public String getUserName(String userId) {
+        return userMapper.findUserName(userId);
     }
 
 

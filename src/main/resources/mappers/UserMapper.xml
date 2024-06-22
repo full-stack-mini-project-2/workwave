@@ -8,4 +8,11 @@
 SELECT * FROM Department;
 </select>
 
+    <select id="findUserName" resultType="String">
+        SELECT user_name
+        FROM Users
+        WHERE user_id = #{userId}
+        ;
+    </select>
+
 </mapper>

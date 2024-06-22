@@ -17,7 +17,7 @@
 
 
 <!--    본인의 캘린더 일정리스트 조회-->
-    <select id="getCalendarEvent" resultType="calendarEventDTO">
+    <select id="getCalendarEventsById" resultType="calendarEventDTO">
         SELECT CE.*, U.user_name
         FROM CalendarEvent CE
         JOIN Users U ON CE.user_id = U.user_id
@@ -28,7 +28,7 @@
     </select>
 
 <!--    본인의 팀 캘린더 일정리스트 조회-->
-    <select id="getTeamCalendarEvent" resultType="TeamCalendarEventDTO">
+    <select id="getTeamCalendarEventsById" resultType="TeamCalendarEventDTO">
         SELECT CE.*, D.department_name
         FROM CalendarEvent CE
         JOIN Department D ON CE.department_id = D.department_id
