@@ -71,7 +71,12 @@
     </update>
 
     <update id="updateCount">
-        UPDATE board SET reply_count = #{replyCount} WHERE board_id = #{boardId}
+        UPDATE board b
+        SET b.reply_count = (
+        SELECT COUNT(*)
+        FROM reply r
+        WHERE b.board_id = r.board_id
+        );
     </update>
 
 </mapper>

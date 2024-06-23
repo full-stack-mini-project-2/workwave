@@ -1,5 +1,6 @@
 package com.workwave.controller.boardcontoller;
 
+import com.workwave.dto.replydto.ReplyDeleteDto;
 import com.workwave.dto.replydto.ReplyListDto;
 import com.workwave.dto.replydto.ReplyUpdateDto;
 import com.workwave.dto.replydto.ReplyWriteDto;
@@ -8,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -71,4 +70,23 @@ public class ReplyController {
 
     }
 
+    // 댓글 삭제 요청
+    @DeleteMapping
+    public ResponseEntity<?> deleteReply(@RequestBody ReplyDeleteDto dto) {
+
+        log.info("ReplyDeleteDto: {}", dto);
+
+        boolean flag = replyService.delete(dto);
+
+        if (flag) {
+            return ResponseEntity
+                    .ok()
+                    .body(replyService.getReplies(dto.getBoardId()));
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("댓글 삭제에 실패했습니다.");
+        }
+
+    }
 }

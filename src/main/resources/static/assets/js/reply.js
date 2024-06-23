@@ -118,6 +118,35 @@ async function fetchUpdateReply(
   editReplyContent.value = "";
 }
 
+async function fetchDeleteReply(bno, replyId, replyDeletePassword) {
+  const url = BASE_URL;
+
+  const payload = {
+    boardId: bno,
+    replyId: replyId,
+    replyDeletePassword: replyDeletePassword.value,
+  };
+
+  console.log(payload);
+
+  const response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  })
+
+  const data = await response.json();
+
+  console.log(data);
+
+  fetchReplies(bno);
+  
+  replyDeletePassword.value = "";
+
+}
+
 // 댓글 목록을 HTML에 표시하는 함수
 function displayReplies(replies) {
   const $replyContainer = document.getElementById("replyContainer");
@@ -147,6 +176,8 @@ function displayReplies(replies) {
       </div>
       <div id="editReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
       </div>
+      <div id="editDeleteForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
+      </div>
        `;
       }
     );
@@ -164,6 +195,14 @@ function displayReplies(replies) {
       showEditForm(replyId);
     });
   });
+
+  // 삭제 버튼에 이벤트 리스너 추가
+  document.querySelectorAll(".replyDelete").forEach((button) => {
+    button.addEventListener("click", function () {
+      const replyId = this.dataset.rno;
+      showDeleteForm(replyId);
+    });
+  });
 }
 
 // 수정 버튼 클릭시 해당 댓글 수정 화면 출력
@@ -172,7 +211,6 @@ function showEditForm(replyId) {
 
   if (editForm.style.display === "block") {
     editForm.style.display = "none";
-    editForm.innerHTML = "";
   } else {
     editForm.style.display = "block";
     editForm.innerHTML = `
@@ -196,8 +234,43 @@ function showEditForm(replyId) {
   const editReplyContent = document.getElementById("editReplyContent");
   const editReplyPassword = document.getElementById("editReplyPassword");
 
-  document.getElementById("editSubmitBtn").addEventListener("click", (e) => {
-    fetchUpdateReply(bno, replyId, editReplyContent, editReplyPassword);
+  const editSubmitBtn = document.getElementById("editSubmitBtn");
+
+  editSubmitBtn.addEventListener("click", (e) => {
+    if (e.target === editSubmitBtn) {
+      fetchUpdateReply(bno, replyId, editReplyContent, editReplyPassword);
+    }
+  });
+}
+
+// 삭제 버튼 클릭시 해당 댓글 삭제 화면 출력
+function showDeleteForm(replyId) {
+  const deleteForm = document.getElementById(`editDeleteForm-${replyId}`);
+
+  if (deleteForm.style.display === "block") {
+    deleteForm.style.display = "none";
+  } else {
+    deleteForm.style.display = "block";
+    deleteForm.innerHTML = `
+      <h2>댓글 삭제</h2>
+        <input
+          type="password"
+          id="replyDeletePassword"
+          placeholder="댓글 비밀번호"
+          required
+        />
+        <button id="deleteSubmitBtn" type="button">확인</button>
+      `;
+  }
+
+  const replyDeletePassword = document.getElementById("replyDeletePassword");
+
+  const deleteSubmitBtn = document.getElementById("deleteSubmitBtn");
+
+  deleteSubmitBtn.addEventListener("click", (e) => {
+    if (e.target === deleteSubmitBtn) {
+      fetchDeleteReply(bno, replyId, replyDeletePassword);
+    }
   });
 }
 

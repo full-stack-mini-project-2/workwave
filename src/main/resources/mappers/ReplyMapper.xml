@@ -34,9 +34,15 @@
 
     <select id="findOne" resultType="reply">
         select
+            board_id,
             reply_password
         FROM reply
         WHERE reply_id = #{replyId}
     </select>
+
+    <delete id="delete">
+        DELETE FROM reply
+        WHERE reply_id = #{replyId}
+    </delete>
 
 </mapper>

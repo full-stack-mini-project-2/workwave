@@ -1,9 +1,6 @@
 package com.workwave.service.boardservice;
 
-import com.workwave.dto.replydto.ReplyDetailDto;
-import com.workwave.dto.replydto.ReplyListDto;
-import com.workwave.dto.replydto.ReplyUpdateDto;
-import com.workwave.dto.replydto.ReplyWriteDto;
+import com.workwave.dto.replydto.*;
 import com.workwave.entity.board.Board;
 import com.workwave.entity.board.Reply;
 import com.workwave.mapper.boardmapper.BoardMapper;
@@ -12,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,13 +45,13 @@ public class ReplyService {
 
         boolean save = replyMapper.save(reply);
 
-        int boardId = reply.getBoardId();
+//        int boardId = reply.getBoardId();
+//
+//        Board upatedBoard = boardMapper.findOne(boardId);
+//
+//        upatedBoard.setReplyCount(upatedBoard.getReplyCount() + 1);
 
-        Board upatedBoard = boardMapper.findOne(boardId);
-
-        upatedBoard.setReplyCount(upatedBoard.getReplyCount() + 1);
-
-        boardMapper.updateCount(upatedBoard);
+        boardMapper.updateCount();
 
         return save;
     }
@@ -71,5 +69,28 @@ public class ReplyService {
             return false;
         }
 
+    }
+
+    @Transactional
+    public boolean delete(ReplyDeleteDto dto) {
+
+        Reply original = replyMapper.findOne(dto.getReplyId());
+
+        if (original.getReplyPassword().equals(dto.getReplyDeletePassword())) {
+
+            boolean delete = replyMapper.delete(dto.getReplyId());
+
+//            int boardId = dto.getBoardId();
+//
+//            Board upatedBoard = boardMapper.findOne(boardId);
+//
+//            upatedBoard.setReplyCount(upatedBoard.getReplyCount() - 1);
+
+            boardMapper.updateCount();
+
+            return delete;
+        } else {
+            return false;
+        }
     }
 }
