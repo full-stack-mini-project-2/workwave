@@ -6,6 +6,7 @@ import com.workwave.dto.replydto.ReplyWriteDto;
 import com.workwave.service.boardservice.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -50,17 +51,24 @@ public class ReplyController {
                 .body(replyService.getReplies(dto.getBoardId()));
     }
 
-//    // 댓글 수정 요청
-//    @PostMapping
-//    public ResponseEntity<?> updateReply(@RequestBody @Valid ReplyUpdateDto dto) {
-//
-//        log.info("ReplyUpdateDto: {}", dto);
-//
-//        boolean flag = replyService.update(dto);
-//
-//        return ResponseEntity
-//                .ok()
-//                .body(replyService.getReplies(dto.getBoardId()));
-//    }
+    // 댓글 수정 요청
+    @RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH})
+    public ResponseEntity<?> updateReply(@RequestBody @Valid ReplyUpdateDto dto) {
+
+        log.info("ReplyUpdateDto: {}", dto);
+
+        boolean flag = replyService.update(dto);
+
+        if (flag) {
+            return ResponseEntity
+                    .ok()
+                    .body(replyService.getReplies(dto.getBoardId()));
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("댓글 업데이트에 실패했습니다.");
+        }
+
+    }
 
 }

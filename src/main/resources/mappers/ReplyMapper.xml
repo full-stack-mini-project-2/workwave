@@ -27,9 +27,16 @@
 
     <update id="update">
         UPDATE reply
-        SET reply_content = #{editReplyContent},
+        SET reply_content = #{replyContent},
         reply_updated_at = #{replyUpdatedAt}
         WHERE reply_id = #{replyId}
     </update>
+
+    <select id="findOne" resultType="reply">
+        select
+            reply_password
+        FROM reply
+        WHERE reply_id = #{replyId}
+    </select>
 
 </mapper>

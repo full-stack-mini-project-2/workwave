@@ -1,5 +1,5 @@
 // ====== 전역 변수 ========
-//export const BASE_URL = 'http://localhost:8383/replies';
+const BASE_URL = "http://localhost:8383/reply";
 const bno = document.getElementById("reply-container").dataset.bno;
 
 document.getElementById("submitBtn").addEventListener("click", function () {
@@ -12,12 +12,18 @@ document.getElementById("submitBtn").addEventListener("click", function () {
   saveReply(bno, nickName, replyContent, replyPassword);
 });
 
+// 페이지 로드 시 댓글을 조회
+document.addEventListener("DOMContentLoaded", () => {
+  fetchReplies(bno);
+});
+
 // ====== 실행 코드 ========
 
 // 댓글을 조회하는 함수
 async function fetchReplies(bno) {
   // GET 요청을 보낼 URL
-  const url = `http://localhost:8383/reply/${bno}`;
+  // const url = `http://localhost:8383/reply/${bno}`;
+  const url = BASE_URL + `/${bno}`;
 
   try {
     // fetch API를 사용하여 GET 요청 보내기
@@ -45,7 +51,7 @@ async function fetchReplies(bno) {
 }
 
 async function saveReply(bno, nickName, replyContent, replyPassword) {
-  const url = `http://localhost:8383/reply`;
+  const url = BASE_URL;
 
   const payload = {
     nickName: nickName.value,
@@ -76,6 +82,42 @@ async function saveReply(bno, nickName, replyContent, replyPassword) {
   replyPassword.value = "";
 }
 
+async function fetchUpdateReply(
+  bno,
+  replyId,
+  editReplyContent,
+  editReplyPassword
+) {
+  const url = BASE_URL;
+
+  const payload = {
+    boardId: bno,
+    replyId: replyId,
+    editReplyContent: editReplyContent.value,
+    editReplyPassword: editReplyPassword.value,
+  };
+
+  console.log(payload);
+
+  const response = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await response.json();
+
+  console.log(data);
+
+  fetchReplies(bno);
+
+  // 입력창 초기화
+  editReplyPassword.value = "";
+  editReplyContent.value = "";
+}
+
 // 댓글 목록을 HTML에 표시하는 함수
 function displayReplies(replies) {
   const $replyContainer = document.getElementById("replyContainer");
@@ -85,36 +127,29 @@ function displayReplies(replies) {
   let tag = "";
   if (replies && replies.length > 0) {
     tag = `<h2>댓글(${replies.length})</h2>`;
-    replies.forEach(({ replyId, nickName, replyCreatedAt, replyContent }) => {
-      tag += `
-       <div class="reply">
-            <div class="meta">
-              작성자: ${nickName} | 작성일: ${replyCreatedAt}
-            </div>
-            <div class="content">
-              <p>${replyContent}</p>
-            </div>
-            <button class="replyModify" type="button" data-rno=${replyId}>수정</button>
-            <button class="replyDelete" type="button" data-rno=${replyId}>삭제</button>
-        </div>
+    replies.forEach(
+      ({ replyId, nickName, replyCreatedAt, replyContent, replyUpdatedAt }) => {
+        tag += `
+        <div class="reply">
+          <div class="meta">
+            작성자: ${nickName} | 작성일: ${replyCreatedAt}
+            ${
+              replyCreatedAt !== replyUpdatedAt
+                ? ` | 수정일: ${replyUpdatedAt}`
+                : ""
+            }
+          </div>
+          <div class="content">
+            <p>${replyContent}</p>
+          </div>
+          <button class="replyModify" type="button" data-rno=${replyId}>수정</button>
+          <button class="replyDelete" type="button" data-rno=${replyId}>삭제</button>
+      </div>
       <div id="editReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
-        <h2>댓글 수정</h2>
-        <input type="hidden" data-rno="editReplyId" />
-        <input
-          type="password"
-          name="editReplyPassword"
-          placeholder="댓글 비밀번호"
-          required
-        />
-        <textarea
-          name="editReplyContent"
-          placeholder="댓글 내용"
-          required
-        ></textarea>
-        <button id="editSubmitBtn" type="button">댓글 수정</button>
       </div>
        `;
-    });
+      }
+    );
   } else {
     tag = `<h2>댓글(0)</h2>
     <div class="reply">댓글이 없습니다.</div>`;
@@ -131,30 +166,40 @@ function displayReplies(replies) {
   });
 }
 
-// 페이지 로드 시 댓글을 조회
-document.addEventListener("DOMContentLoaded", () => {
-  fetchReplies(bno);
-});
-
 // 수정 버튼 클릭시 해당 댓글 수정 화면 출력
 function showEditForm(replyId) {
-
   const editForm = document.getElementById(`editReplyForm-${replyId}`);
 
-  if ((editForm.style.display === "block")) {
+  if (editForm.style.display === "block") {
     editForm.style.display = "none";
+    editForm.innerHTML = "";
   } else {
     editForm.style.display = "block";
+    editForm.innerHTML = `
+      <h2>댓글 수정</h2>
+        <input type="hidden" data-rno="editReplyId" />
+        <input
+          type="password"
+          id="editReplyPassword"
+          placeholder="댓글 비밀번호"
+          required
+        />
+        <textarea
+          id="editReplyContent"
+          placeholder="댓글 내용"
+          required
+        ></textarea>
+        <button id="editSubmitBtn" type="button">댓글 수정</button>
+      `;
   }
 
-}
+  const editReplyContent = document.getElementById("editReplyContent");
+  const editReplyPassword = document.getElementById("editReplyPassword");
 
-// function showEditForm(replyId, content) {
-//   document.getElementById("editReplyId").value = replyId;
-//   document.getElementById("editReplyContent").value = content;
-//   document.getElementById("editReplyForm").style.display = "block";
-//   window.scrollTo(0, document.getElementById("editReplyForm").offsetTop);
-// }
+  document.getElementById("editSubmitBtn").addEventListener("click", (e) => {
+    fetchUpdateReply(bno, replyId, editReplyContent, editReplyPassword);
+  });
+}
 
 // 댓글 목록 서버에서 불러오기
 // fetchReplies();

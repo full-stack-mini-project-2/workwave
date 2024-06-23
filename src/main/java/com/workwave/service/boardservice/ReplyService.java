@@ -60,6 +60,16 @@ public class ReplyService {
 
     public boolean update(ReplyUpdateDto dto) {
 
-        return false;
+        Reply original = replyMapper.findOne(dto.getReplyId());
+
+        if (original.getReplyPassword().equals(dto.getEditReplyPassword())) {
+            Reply modifyReply = dto.toEntity();
+            log.info(modifyReply.toString());
+            boolean update = replyMapper.update(modifyReply);
+            return update;
+        } else {
+            return false;
+        }
+
     }
 }
