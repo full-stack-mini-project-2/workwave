@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CalendarEventDTO {
+public class CalendarEventDto {
     private int cEventId;
     private LocalDateTime cEventDate;
     private String cEventTitle;

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @ToString
 @Builder
-public class TeamCalendarEventDTO {
+public class TeamCalendarEventDto {
     private int cEventId;
     private LocalDateTime cEventDate;
     private String cEventTitle;

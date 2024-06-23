@@ -6,21 +6,31 @@
 <mapper namespace="com.workwave.mapper.scheduleMapper.CalendarMapper">
 
     <!-- 본인의 모든 캘린더 (개인, 팀)조회 -->
-    <select id="getCalendars" resultType="com.workwave.dto.scheduleDTO.request.CalendarDTO">
+    <select id="getCalendars" resultType="com.workwave.dto.scheduleDTO.request.CalendarDto">
+
+<!--        test 1 : do you get parameter well?-->
         SELECT
-        C.calendar_id AS calendarId,
-        C.calendar_name AS calendarName,
-        T.t_calendar_id AS tCalendarId,
-        T.t_calendar_name AS tCalendarName,
-        U.user_id AS userId
+        T.t_calendar_id,
+        T.t_calendar_name,
+        U.user_id
         FROM TeamCalendar T
         JOIN Users U ON T.department_id = U.department_id
-        JOIN Calendar C ON U.user_id = C.user_id
-        WHERE U.user_id = #{userId};
+        WHERE U.user_id = ${userId};
+
+<!--        SELECT-->
+<!--        C.calendar_id AS calendarId,-->
+<!--        C.calendar_name AS calendarName,-->
+<!--        T.t_calendar_id AS tCalendarId,-->
+<!--        T.t_calendar_name AS tCalendarName,-->
+<!--        U.user_id AS userId-->
+<!--        FROM TeamCalendar T-->
+<!--        JOIN Users U ON T.department_id = U.department_id-->
+<!--        JOIN Calendar C ON U.user_id = C.user_id-->
+<!--        WHERE U.user_id = #{userId};-->
     </select>
 
-    <!-- 본인의 캘린더 일정리스트 조회 -->
-    <select id="getCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.CalendarEventDTO">
+    <!-- 개인 캘린더 일정리스트 조회 -->
+    <select id="getCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.CalendarEventDto">
         SELECT CE.*, U.user_name
         FROM CalendarEvent CE
         JOIN Users U ON CE.user_id = U.user_id
@@ -29,7 +39,7 @@
     </select>
 
     <!-- 본인의 팀 캘린더 일정리스트 조회 -->
-    <select id="getTeamCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.TeamCalendarEventDTO">
+    <select id="getTeamCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.TeamCalendarEventDto">
         SELECT CE.*, D.department_name
         FROM CalendarEvent CE
         JOIN Department D ON CE.department_id = D.department_id

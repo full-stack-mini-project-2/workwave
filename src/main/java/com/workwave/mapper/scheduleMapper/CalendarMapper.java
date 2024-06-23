@@ -1,8 +1,8 @@
 package com.workwave.mapper.scheduleMapper;
 
-import com.workwave.dto.scheduleDTO.request.CalendarDTO;
-import com.workwave.dto.scheduleDTO.request.CalendarEventDTO;
-import com.workwave.dto.scheduleDTO.request.TeamCalendarEventDTO;
+import com.workwave.dto.scheduleDTO.request.CalendarDto;
+import com.workwave.dto.scheduleDTO.request.CalendarEventDto;
+import com.workwave.dto.scheduleDTO.request.TeamCalendarEventDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -10,19 +10,19 @@ import java.util.List;
 @Mapper
 public interface CalendarMapper {
     //전체 캘린더 중 user의 모든 캘린더 가져오기
-    List<CalendarDTO> getCalendars(String userId);
+    List<CalendarDto> getCalendars(String userId);
 
     //개인 캘린더 일정 목록 유저 아이디로 구하기
-    List<CalendarEventDTO> getCalendarEventsById(String userId);
+    List<CalendarEventDto> getCalendarEventsById(String userId);
 
     //팀 캘린더 일정 목록 유저 아이디로 구하기
-    List<TeamCalendarEventDTO> getTeamCalendarEventsById(String userId);
+    List<TeamCalendarEventDto> getTeamCalendarEventsById(String userId);
 
     //개인 캘린더 일정 추가하기
-    boolean insertCalendarEvent(CalendarEventDTO calendarEvent);
+    boolean insertCalendarEvent(CalendarEventDto calendarEvent);
 
     //팀 캘린더 일정 추가하기
-    boolean insertTeamCalendarEvent(TeamCalendarEventDTO TeamCalendarEvent);
+    boolean insertTeamCalendarEvent(TeamCalendarEventDto TeamCalendarEvent);
 
     //개인, 팀 캘린더 일정 삭제하기
     void deleteCalendarEvent(int calendarEventId);

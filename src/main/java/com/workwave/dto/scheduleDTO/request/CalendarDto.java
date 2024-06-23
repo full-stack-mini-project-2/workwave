@@ -9,9 +9,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @EqualsAndHashCode
 @Builder
-public class CalendarDTO {
-    private int calendarId;
-    private String calendarName;
+public class CalendarDto {
     private int tCalendarId;
     private String tCalendarName;
     private String userId;

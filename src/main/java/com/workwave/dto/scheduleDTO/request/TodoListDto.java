@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TodoListDTO {
+public class TodoListDto {
 
     private int todoId;
     private String todoContent;

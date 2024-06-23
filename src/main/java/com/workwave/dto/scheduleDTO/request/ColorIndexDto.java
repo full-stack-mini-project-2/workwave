@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ColorIndexDTO {
+public class ColorIndexDto {
     private int color_index_id;
     private String color_code;
     private String color_name;

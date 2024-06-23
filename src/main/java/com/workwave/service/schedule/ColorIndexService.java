@@ -1,6 +1,6 @@
 package com.workwave.service.schedule;
 
-import com.workwave.dto.scheduleDTO.request.ColorIndexDTO;
+import com.workwave.dto.scheduleDTO.request.ColorIndexDto;
 import com.workwave.mapper.scheduleMapper.ColorIndexMapper;
 import org.springframework.stereotype.Service;
 
@@ -14,19 +14,19 @@ public class ColorIndexService {
         this.colorIndexMapper = colorIndexMapper;
     }
 
-    public List<ColorIndexDTO> getAllColorIndices() {
+    public List<ColorIndexDto> getAllColorIndices() {
         return colorIndexMapper.getAllColorIndices();
     }
 
-    public ColorIndexDTO getColorIndexById(int color_index_id) {
+    public ColorIndexDto getColorIndexById(int color_index_id) {
         return colorIndexMapper.getColorIndexById(color_index_id);
     }
 
-    public void insertColorIndex(ColorIndexDTO colorIndex) {
+    public void insertColorIndex(ColorIndexDto colorIndex) {
         colorIndexMapper.insertColorIndex(colorIndex);
     }
 
-    public void updateColorIndex(ColorIndexDTO colorIndex) {
+    public void updateColorIndex(ColorIndexDto colorIndex) {
         colorIndexMapper.updateColorIndex(colorIndex);
     }
 
