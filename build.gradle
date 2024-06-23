@@ -29,6 +29,10 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     //JUNIT
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //MOCKITO
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
+
 
     //jsp 라이브러리 추가
     implementation 'javax.servlet:jstl'

@@ -2,14 +2,13 @@ package com.workwave.dto.scheduleDTO.request;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
-
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
 @Builder
-public class CalendarDto {
+@ToString
+public class CalendarsDto {
     private int tCalendarId;
     private String tCalendarName;
     private String userId;

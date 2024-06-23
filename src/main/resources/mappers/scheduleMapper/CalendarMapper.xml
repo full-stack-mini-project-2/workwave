@@ -5,29 +5,37 @@
 
 <mapper namespace="com.workwave.mapper.scheduleMapper.CalendarMapper">
 
-    <!-- 본인의 모든 캘린더 (개인, 팀)조회 -->
-    <select id="getCalendars" resultType="com.workwave.dto.scheduleDTO.request.CalendarDto">
+<!--    회원가입 시 개인, 팀 캘린더 공용 사용 권한 부여-->
+    <insert id="saveUserCalendars">
+        INSERT INTO calendar
+        () VALUES
+    </insert>
 
+
+
+    <!-- 본인의 모든 캘린더 (개인, 팀)조회 -->
+    <select id="getCalendars" resultType="calendarsDto">
 <!--        test 1 : do you get parameter well?-->
         SELECT
-        T.t_calendar_id,
-        T.t_calendar_name,
-        U.user_id
+        T.t_calendar_id AS tCalendarId,
+        T.t_calendar_name AS tCalendarName,
+        U.user_id AS userId
         FROM TeamCalendar T
         JOIN Users U ON T.department_id = U.department_id
-        WHERE U.user_id = ${userId};
-
-<!--        SELECT-->
-<!--        C.calendar_id AS calendarId,-->
-<!--        C.calendar_name AS calendarName,-->
-<!--        T.t_calendar_id AS tCalendarId,-->
-<!--        T.t_calendar_name AS tCalendarName,-->
-<!--        U.user_id AS userId-->
-<!--        FROM TeamCalendar T-->
-<!--        JOIN Users U ON T.department_id = U.department_id-->
-<!--        JOIN Calendar C ON U.user_id = C.user_id-->
-<!--        WHERE U.user_id = #{userId};-->
+        WHERE U.user_id = #{userId};
     </select>
+    <!--        SELECT-->
+    <!--        C.calendar_id AS calendarId,-->
+    <!--        C.calendar_name AS calendarName,-->
+    <!--        T.t_calendar_id AS tCalendarId,-->
+    <!--        T.t_calendar_name AS tCalendarName,-->
+    <!--        U.user_id AS userId-->
+    <!--        FROM TeamCalendar T-->
+    <!--        JOIN Users U ON T.department_id = U.department_id-->
+    <!--        JOIN Calendar C ON U.user_id = C.user_id-->
+    <!--        WHERE U.user_id = #{userId};-->
+
+
 
     <!-- 개인 캘린더 일정리스트 조회 -->
     <select id="getCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.CalendarEventDto">

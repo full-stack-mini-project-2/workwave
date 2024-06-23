@@ -1,12 +1,11 @@
 package com.workwave.service.schedule;
 
 import com.workwave.dto.scheduleDTO.request.CalendarEventDto;
+import com.workwave.dto.scheduleDTO.request.CalendarsDto;
 import com.workwave.dto.scheduleDTO.request.TeamCalendarEventDto;
 import com.workwave.mapper.scheduleMapper.CalendarMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import com.workwave.dto.scheduleDTO.request.CalendarDto;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class CalendarService {
         private final CalendarMapper calendarMapper;
 
         //user의 모든 캘린더 목록 (총 2개)
-        public List<CalendarDto> getCalendars(String userId) {
+        public List<CalendarsDto> getMyCalendars(String userId) {
             return calendarMapper.getCalendars(userId);
         }
 
