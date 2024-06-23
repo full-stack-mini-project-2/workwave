@@ -1,4 +1,4 @@
-package com.workwave.dto;
+package com.workwave.dto.user;
 
 import com.workwave.entity.User;
 import lombok.*;

@@ -2,6 +2,8 @@ package com.workwave.entity;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @ToString
 @EqualsAndHashCode
@@ -17,10 +19,12 @@ public class User {
     private String userName;
     private String userPosition;
     private String userEmail;
+    private AccessLevel userAccessLevel;
 
-
-    private String accessLevel;
     private String departmentId;
+    private String sessionId;
+    private LocalDateTime limitTime;
+
     @Setter
     private String profileImage;
     @Setter

@@ -16,4 +16,36 @@
         SELECT * FROM Department;
     </select>
 
+<!--
+-->
+    <select id="findOne" resultType="user">
+        SELECT
+        account
+        , password
+        , user_name
+        , user_access_level
+        , profile_img
+        FROM Users
+        WHERE account = #{account}
+    </select>
+
+    <select id="existsById" resultType="boolean">
+        SELECT
+        COUNT(*)
+        FROM Users
+        <if test="type == 'account'"> WHERE account = #{keyword}</if>
+        <if test="type == 'email'"> WHERE user_email = #{keyword}</if>
+    </select>
+
+    <update id ="updateAutoLogin">
+        UPDATE Users
+        SET session_id = #{sessionId}, LIMIT_TIME = #{limitTime}
+        WHERE ACCOUNT = #{account}
+    </update>
+    <select id="findMemberBySessionId" resultType="user">
+        SELECT
+        ACCOUNT, user_NAME, user_EMAIL, User_Access_level, LIMIT_TIME, profile_img
+        FROM Users
+        WHERE SESSION_ID = #{sessionId}
+    </select>
 </mapper>
