@@ -103,4 +103,18 @@ public class BoardService {
        return boardMapper.updateViewCount(boardId);
 
     }
+
+    public Boolean upLikeCount(int boardId) {
+
+        boardMapper.upLikeCount(boardId);
+
+        return false;
+    }
+
+    public Boolean upDislikeCount(int boardId){
+
+        boardMapper.upLikeCount(boardId);
+
+        return false;
+    }
 }

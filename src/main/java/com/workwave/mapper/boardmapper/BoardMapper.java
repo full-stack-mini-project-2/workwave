@@ -34,5 +34,9 @@ public interface BoardMapper {
     // 댓글 수 업데이트
     boolean updateCount();
 
+    // 좋아요 수 업데이트
+    boolean upLikeCount(int boardId);
 
+    // 싫어요 수 업데이트
+    boolean upDislikeCount(int boardId);
 }

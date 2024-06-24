@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ====== 실행 코드 ========
 
-// 댓글을 조회하는 함수
+// 댓글을 조회하는 요청
 async function fetchReplies(bno) {
   // GET 요청을 보낼 URL
   // const url = `http://localhost:8383/reply/${bno}`;
@@ -50,6 +50,7 @@ async function fetchReplies(bno) {
   }
 }
 
+// 댓글 작성하는 비동기 요청
 async function saveReply(bno, nickName, replyContent, replyPassword) {
   const url = BASE_URL;
 
@@ -82,6 +83,7 @@ async function saveReply(bno, nickName, replyContent, replyPassword) {
   replyPassword.value = "";
 }
 
+// 댓글을 수정하는 비동기 요청
 async function fetchUpdateReply(
   bno,
   replyId,
@@ -118,6 +120,7 @@ async function fetchUpdateReply(
   editReplyContent.value = "";
 }
 
+// 댓글을 삭제하는 비동기 요청
 async function fetchDeleteReply(bno, replyId, replyDeletePassword) {
   const url = BASE_URL;
 
@@ -135,19 +138,18 @@ async function fetchDeleteReply(bno, replyId, replyDeletePassword) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
-  })
+  });
 
   const data = await response.json();
 
   console.log(data);
 
   fetchReplies(bno);
-  
-  replyDeletePassword.value = "";
 
+  replyDeletePassword.value = "";
 }
 
-// 댓글 목록을 HTML에 표시하는 함수
+// 댓글 목록을 HTML에 표시하는 요청
 function displayReplies(replies) {
   const $replyContainer = document.getElementById("replyContainer");
   $replyContainer.innerHTML = ""; // 기존 댓글 목록 초기화

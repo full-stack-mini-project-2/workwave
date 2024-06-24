@@ -22,5 +22,7 @@ public class Board {
     private LocalDateTime boardUpdatedAt;
     private int replyCount;
     private int viewCount;
+    private int likes;
+    private int dislikes;
 
 }

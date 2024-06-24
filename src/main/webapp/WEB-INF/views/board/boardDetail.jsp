@@ -106,7 +106,35 @@ prefix="c" %>
       .replyDelete {
         background: white;
       }
-
+      /* 좋아요/싫어요 버튼 스타일 */
+      .like-dislike-buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+      }
+      .like-button,
+      .dislike-button {
+        padding: 10px 20px;
+        font-size: 14px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .like-button {
+        background-color: #4caf50;
+        color: white;
+      }
+      .like-button:hover {
+        background-color: #45a049;
+      }
+      .dislike-button {
+        background-color: #f44336;
+        color: white;
+      }
+      .dislike-button:hover {
+        background-color: #da190b;
+      }
     </style>
   </head>
   <body>
@@ -118,7 +146,7 @@ prefix="c" %>
           test="${board.formattedBoardCreatedAt != board.formattedBoardUpdateAt}"
           >| 수정일: ${board.formattedBoardUpdateAt}
         </c:if>
-         | 조회수: ${board.viewCount}
+        | 조회수: ${board.viewCount}
       </div>
       <div class="content">
         <p>${board.boardContent}</p>
@@ -129,6 +157,16 @@ prefix="c" %>
         <a id="backLink" href="${sessionScope.referer}">목록으로 돌아가기</a>
       </div>
 
+      <!-- 추천/비추천 버튼 영역 -->
+      <div class="like-dislike-buttons">
+        <button id="likeButton" class="like-button">
+          좋아요 (<span id="likeCount">${board.likes}</span>)
+        </button>
+        <button id="dislikeButton" class="dislike-button">
+          싫어요 (<span id="dislikeCount">${board.dislikes}</span>)
+        </button>
+      </div>
+      
       <!-- 댓글 영역 -->
 
       <div id="replyContainer">
@@ -164,4 +202,5 @@ prefix="c" %>
     });
   </script> -->
   <script type="module" src="/assets/js/reply.js"></script>
+  <script type="module" src="/assets/js/board.js"></script>
 </html>

@@ -12,7 +12,9 @@
         user_id,
         board_created_at,
         reply_count,
-        view_count
+        view_count,
+        likes,
+        dislikes
         from board
         <if test="type == 'tc'">
             WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
@@ -44,6 +46,8 @@
         board_content,
         user_id,
         view_count,
+        likes,
+        dislikes,
         board_created_at,
         board_updated_at
         from board
@@ -84,6 +88,18 @@
     <update id="updateViewCount">
         UPDATE board
         SET view_count = view_count + 1
+        WHERE board_id = #{boardId}
+    </update>
+
+    <update id="upLikeCount">
+        UPDATE board
+        SET likes = likes + 1
+        WHERE board_id = #{boardId}
+    </update>
+
+    <update id="upDislikeCount">
+        UPDATE board
+        SET dislikes = dislikes + 1
         WHERE board_id = #{boardId}
     </update>
 

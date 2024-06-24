@@ -18,6 +18,8 @@ public class BoardDetailDto {
     private String boardTitle;
     private String boardContent;
     private int viewCount;
+    private int likes;
+    private int dislikes;
     private LocalDateTime boardCreatedAt;
     private LocalDateTime boardUpdatedAt;
 
