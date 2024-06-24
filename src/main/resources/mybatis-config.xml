@@ -14,6 +14,7 @@
         <!--        <typeAlias type="com.study.SpringStudy.springmvc.chap05.entity.Member" alias="member"/>-->
         <typeAlias type="com.workwave.entity.board.Board" alias="board"/>
         <typeAlias type="com.workwave.entity.board.Reply" alias="reply"/>
+        <typeAlias type="com.workwave.entity.board.SubReply" alias="subReply"/>
 
         <typeAlias type="com.workwave.entity.User" alias="user"/>
 

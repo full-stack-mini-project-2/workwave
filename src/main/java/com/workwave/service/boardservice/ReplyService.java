@@ -1,8 +1,8 @@
 package com.workwave.service.boardservice;
 
 import com.workwave.dto.replydto.*;
-import com.workwave.entity.board.Board;
 import com.workwave.entity.board.Reply;
+import com.workwave.entity.board.SubReply;
 import com.workwave.mapper.boardmapper.BoardMapper;
 import com.workwave.mapper.boardmapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
@@ -80,5 +80,21 @@ public class ReplyService {
         } else {
             return false;
         }
+    }
+
+    // 대댓글 목록 전체조회
+    public SubReplyListDto getSubReplies(int replyId) {
+
+        List<SubReply> subReplies = replyMapper.subReplies(replyId);
+
+        log.info(subReplies.toString());
+
+        List<SubReplyDetailDto> dtoList = subReplies.stream()
+                .map(subReply -> new SubReplyDetailDto(subReply))
+                .collect(Collectors.toList());
+
+        return SubReplyListDto.builder()
+                .subReplies(dtoList)
+                .build();
     }
 }

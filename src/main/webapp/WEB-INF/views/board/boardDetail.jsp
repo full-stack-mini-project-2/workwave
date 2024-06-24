@@ -13,6 +13,7 @@ prefix="c" %>
         padding: 20px;
         background-color: #f4f4f4;
       }
+
       .container {
         max-width: 800px;
         margin: 0 auto;
@@ -20,50 +21,62 @@ prefix="c" %>
         padding: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
+
       h1 {
         font-size: 24px;
         margin-bottom: 10px;
       }
+
       .meta {
         font-size: 14px;
         color: #777;
         margin-bottom: 20px;
       }
+
       .content {
         font-size: 16px;
         line-height: 1.6;
       }
+
       .actions {
         margin-top: 20px;
       }
+
       .actions a {
         margin-right: 10px;
         color: #007bff;
         text-decoration: none;
       }
+
       .actions a:hover {
         text-decoration: underline;
       }
+
       .replies {
         margin-top: 40px;
       }
+
       .replies h2 {
         font-size: 20px;
         margin-bottom: 20px;
       }
+
       .reply {
         border-top: 1px solid #ddd;
         padding: 10px 0;
         margin-top: 10px;
       }
+
       .reply .meta {
         font-size: 12px;
         color: #555;
       }
+
       .reply .content {
         font-size: 14px;
         margin-top: 5px;
       }
+
       .reply-form {
         margin-top: 40px;
         padding: 20px;
@@ -71,10 +84,12 @@ prefix="c" %>
         border: 1px solid #ddd;
         border-radius: 4px;
       }
+
       .reply-form h2 {
         font-size: 18px;
         margin-bottom: 10px;
       }
+
       .reply-form input,
       .reply-form textarea {
         width: 100%;
@@ -85,6 +100,7 @@ prefix="c" %>
         margin-top: 10px;
         resize: vertical;
       }
+
       .reply-form button {
         margin-top: 10px;
         padding: 10px 20px;
@@ -95,23 +111,35 @@ prefix="c" %>
         border-radius: 4px;
         cursor: pointer;
       }
+
       .reply-form button:hover {
         background-color: #0056b3;
       }
 
       .replyModify {
         background: white;
+        cursor: pointer;
       }
 
       .replyDelete {
         background: white;
+        cursor: pointer;
       }
+
+      .button-group {
+        display: flex;
+        justify-content: flex-end;
+        gap: 5px;
+        margin-top: 10px;
+      }
+
       /* 좋아요/싫어요 버튼 스타일 */
       .like-dislike-buttons {
         margin-top: 20px;
         display: flex;
         gap: 10px;
       }
+
       .like-button,
       .dislike-button {
         padding: 10px 20px;
@@ -121,19 +149,81 @@ prefix="c" %>
         cursor: pointer;
         transition: background-color 0.3s, color 0.3s;
       }
+
       .like-button {
         background-color: #4caf50;
         color: white;
       }
+
       .like-button:hover {
         background-color: #45a049;
       }
+
       .dislike-button {
         background-color: #f44336;
         color: white;
       }
+
       .dislike-button:hover {
         background-color: #da190b;
+      }
+
+      .subReply {
+        background: white;
+        cursor: pointer;
+      }
+
+      /* subRepliesContainer 스타일 추가 */
+      #subRepliesContainer {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+
+      .sub-reply {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+
+      .sub-reply .meta {
+        font-size: 0.9em;
+        color: #777;
+        margin-bottom: 5px;
+      }
+
+      .sub-reply .content {
+        margin-bottom: 10px;
+      }
+
+      .sub-reply .button-group {
+        display: flex;
+      }
+
+      .sub-reply .button-group button {
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      .sub-reply .button-group .subReplyModify {
+        background: white;
+      }
+
+      .sub-reply .button-group .subReplyDelete {
+        background: white;
+      }
+
+      .reply-form {
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f1f1f1;
       }
     </style>
   </head>
@@ -166,7 +256,7 @@ prefix="c" %>
           싫어요 (<span id="dislikeCount">${board.dislikes}</span>)
         </button>
       </div>
-      
+
       <!-- 댓글 영역 -->
 
       <div id="replyContainer">

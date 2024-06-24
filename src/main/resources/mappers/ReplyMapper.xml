@@ -45,4 +45,47 @@
         WHERE reply_id = #{replyId}
     </delete>
 
+    <!--대댓글-->
+
+    <insert id="saveSubReply">
+        INSERT INTO SubReply
+        (sub_reply_content, nickName, reply_id, sub_reply_password, user_id)
+        VALUES
+        (#{subReplyContent}, #{nickName}, #{replyId}, #{subReplyPassword},
+        (SELECT user_id FROM users WHERE user_name = '김하이'))
+    </insert>
+
+    <select id="subReplies" resultType="subReply">
+        SELECT
+        sub_reply_id,
+        user_id,
+        reply_id,
+        nickName,
+        sub_reply_content,
+        sub_reply_created_at,
+        sub_reply_updated_at
+        FROM SubReply
+        WHERE reply_id = #{replyId}
+    </select>
+
+    <update id="updateSubReply">
+        UPDATE SubReply
+        SET sub_reply_content = #{subReplyContent},
+        sub_reply_updated_at = #{subReplyUpdatedAt}
+        WHERE sub_reply_id = #{subReplyId}
+    </update>
+
+    <select id="findOneSubReply" resultType="subReply">
+        select
+        reply_id,
+        sub_reply_password
+        FROM SubReply
+        WHERE sub_reply_id = #{subReplyId}
+    </select>
+
+    <delete id="deleteSubReply">
+        DELETE FROM SubReply
+        WHERE sub_reply_id = #{subReplyId}
+    </delete>
+
 </mapper>

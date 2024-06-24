@@ -63,8 +63,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         background-color: #007bff;
         color: #fff;
       }
-      .table {
-      }
+
     </style>
   </head>
   <body>

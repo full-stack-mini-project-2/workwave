@@ -1,6 +1,7 @@
 package com.workwave.dto.replydto;
 
 import com.workwave.entity.board.Reply;
+import com.workwave.entity.board.SubReply;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -13,22 +14,22 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Builder
-public class ReplyUpdateDto {
+public class SubReplyUpdateDto {
 
     private int replyId;
-    private int boardId;
+    private int subReplyId;
     @NotNull(message = "댓글 비밀번호는 필수 항목입니다.")
-    private String editReplyContent;
+    private String editSubReplyContent;
     @NotNull(message = "댓글 내용은 필수 항목입니다.")
-    private String editReplyPassword;
-    private LocalDateTime replyUpdatedAt = LocalDateTime.now();
+    private String editSubReplyPassword;
+    private LocalDateTime subReplyUpdatedAt = LocalDateTime.now();
 
-    public Reply toEntity() {
-        return Reply.builder()
-                .boardId(this.boardId)
+    public SubReply toEntity() {
+        return SubReply.builder()
                 .replyId(this.replyId)
-                .replyContent(this.editReplyContent)
-                .replyUpdatedAt(this.getReplyUpdatedAt())
+                .subReplyId(this.subReplyId)
+                .subReplyContent(this.editSubReplyContent)
+                .subReplyUpdatedAt(this.getSubReplyUpdatedAt())
                 .build();
     }
 

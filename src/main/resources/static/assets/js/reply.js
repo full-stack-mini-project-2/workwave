@@ -50,6 +50,78 @@ async function fetchReplies(bno) {
   }
 }
 
+// 대댓글을 조회하는 요청
+async function fetchSubReplies(rno) {
+  // GET 요청을 보낼 URL
+  const url = BASE_URL + `/sub/${rno}`;
+
+  try {
+    // fetch API를 사용하여 GET 요청 보내기
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    // 응답 데이터를 JSON으로 변환
+    const data = await response.json();
+
+    // 서버로부터 받은 데이터를 처리하는 로직
+    console.log(data);
+
+    // 배열을 추출
+    const subReplies = data.subReplies;
+
+    let tag = "";
+
+    if (subReplies && subReplies.length > 0) {
+      subReplies.forEach(
+        ({
+          subReplyId,
+          nickName,
+          subReplyCreatedAt,
+          subReplyContent,
+          subReplyUpdatedAt,
+        }) => {
+          tag += `
+          <div class="sub-reply">
+            <div class="meta">
+              작성자: ${nickName} | 작성일: ${subReplyCreatedAt}
+              ${
+                subReplyCreatedAt !== subReplyUpdatedAt
+                  ? ` | 수정일: ${subReplyUpdatedAt}`
+                  : ""
+              }
+            </div>
+            <div class="content">
+              <p>${subReplyContent}</p>
+            </div>
+            <div class="button-group">
+              <button class="subReplyModify" type="button" data-rno=${subReplyId}>수정</button>
+              <button class="subReplyDelete" type="button" data-rno=${subReplyId}>삭제</button>
+            </div>
+
+          </div>
+          <div id="editSubReplyForm-${subReplyId}" class="reply-form" style="display: none" data-rno=${subReplyId}>
+          </div>
+          <div id="editDeleteSubReplyForm-${subReplyId}" class="reply-form" style="display: none" data-rno=${subReplyId}>
+          </div>
+          `;
+        }
+      );
+    } else {
+      return;
+    }
+
+    document.getElementById("subRepliesContainer").style.display = "block";
+    document.getElementById("subRepliesContainer").innerHTML = tag;
+    
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
 // 댓글 작성하는 비동기 요청
 async function saveReply(bno, nickName, replyContent, replyPassword) {
   const url = BASE_URL;
@@ -173,14 +245,25 @@ function displayReplies(replies) {
           <div class="content">
             <p>${replyContent}</p>
           </div>
-          <button class="replyModify" type="button" data-rno=${replyId}>수정</button>
-          <button class="replyDelete" type="button" data-rno=${replyId}>삭제</button>
-      </div>
-      <div id="editReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
-      </div>
-      <div id="editDeleteForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
-      </div>
-       `;
+          <div class="button-group">
+            <button class="replyModify" type="button" data-rno=${replyId}>수정</button>
+            <button class="replyDelete" type="button" data-rno=${replyId}>삭제</button>
+            <button class="subReply" type="button" data-rno=${replyId}>답글</button>
+          </div>
+          <div id="subRepliesContainer" style="display: none">
+          </div>
+        </div>
+        <div id="editSubReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
+        </div>
+        <div id="editReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
+        </div>
+        <div id="editDeleteForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
+        </div>
+        `;
+
+        fetchSubReplies(replyId);
+
+        // 대댓글 목록 렌더링
       }
     );
   } else {
@@ -203,6 +286,14 @@ function displayReplies(replies) {
     button.addEventListener("click", function () {
       const replyId = this.dataset.rno;
       showDeleteForm(replyId);
+    });
+  });
+
+  // 답글 버튼에 이벤트 리스너 추가
+  document.querySelectorAll(".subReply").forEach((button) => {
+    button.addEventListener("click", function () {
+      const replyId = this.dataset.rno;
+      showEditSubReplyForm(replyId);
     });
   });
 }
@@ -275,21 +366,3 @@ function showDeleteForm(replyId) {
     }
   });
 }
-
-// 댓글 목록 서버에서 불러오기
-// fetchReplies();
-//fetchInfScrollReplies(); // 일단 1페이지 데이터 그려놓기
-// setupInfiniteScroll(); // 무한 스크롤 이벤트 등록
-
-// 댓글 작성 이벤트 등록
-//document.getElementById('replyAddBtn').addEventListener('click', e => {
-//  // 댓글 등록 로직
-//  fetchReplyPost();
-//});
-
-// 댓글 삭제 이벤트 등록
-//removeReplyClickEvent();
-//modifyReplyClickEvent();
-
-// 댓글 페이지 클릭이벤트 등록
-// replyPageClickEvent();

@@ -1,9 +1,6 @@
 package com.workwave.controller.boardcontoller;
 
-import com.workwave.dto.replydto.ReplyDeleteDto;
-import com.workwave.dto.replydto.ReplyListDto;
-import com.workwave.dto.replydto.ReplyUpdateDto;
-import com.workwave.dto.replydto.ReplyWriteDto;
+import com.workwave.dto.replydto.*;
 import com.workwave.service.boardservice.ReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -88,5 +85,18 @@ public class ReplyController {
                     .body("댓글 삭제에 실패했습니다.");
         }
 
+    }
+
+    // 대댓글 목록 조회
+    @GetMapping("/sub/{rno}")
+    public ResponseEntity<?> subReplies(@PathVariable("rno") int replyId, HttpSession session) {
+
+        log.info("/sub/{} : GET",replyId);
+
+        SubReplyListDto subReplies = replyService.getSubReplies(replyId);
+
+        return ResponseEntity
+                .ok()
+                .body(subReplies);
     }
 }

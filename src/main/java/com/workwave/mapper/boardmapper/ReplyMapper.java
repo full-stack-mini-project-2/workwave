@@ -1,6 +1,7 @@
 package com.workwave.mapper.boardmapper;
 
 import com.workwave.entity.board.Reply;
+import com.workwave.entity.board.SubReply;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,16 +18,12 @@ public interface ReplyMapper {
     // 댓글 등록
     boolean save(Reply reply);
 
-//    // 조회수 상승
-//    void upViewCount(int boardId);
-
     // 게시물 수정
     boolean update(Reply reply);
 
     // 게시물 삭제
     boolean delete(int replyId);
 
-//    // 총 게시물 수 조회
-//    int count(Search page);
-
+    // 대댓글 목록 조회
+    List<SubReply> subReplies(int replyId);
 }
