@@ -17,17 +17,17 @@ public class CalendarService {
 
         //user의 모든 캘린더 목록 (총 2개)
         public List<CalendarsDto> getMyCalendars(String userId) {
-            return calendarMapper.getCalendars(userId);
+            return calendarMapper.getMyAllCalendars(userId);
         }
 
         //개인 캘린더 일정 목록 아이디로 구하기
         public List<CalendarEventDto> getEvents(String userId) {
-            return calendarMapper.getCalendarEventsById(userId);
+            return calendarMapper.getMyAllCalendarEvents(userId);
         }
 
        //팀 캘린더 일정 목록 아이디로 구하기
        public List<TeamCalendarEventDto> getTeamEvents(String userId) {
-        return calendarMapper.getTeamCalendarEventsById(userId);
+        return calendarMapper.getMyTeamCalendarEvents(userId);
        }
 
         //개인 캘린더 일정 추가

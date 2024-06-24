@@ -14,6 +14,6 @@ import java.time.LocalDateTime;
 public class Calendar {
     private int calendarId;
     private String calendarName;
-    private LocalDateTime createdAt;
+    private LocalDateTime calCreatedAt;
     private String userId;
 }

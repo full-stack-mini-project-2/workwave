@@ -38,3 +38,4 @@ public class CalendarController {
     }
 }
 
+//public String list( Model model, @ModelAttribute("s") Search page) { //상속으로 한번에 네개의 파라미터 받을 수 있음

@@ -10,13 +10,13 @@ import java.util.List;
 @Mapper
 public interface CalendarMapper {
     //전체 캘린더 중 user의 모든 캘린더 가져오기
-    List<CalendarsDto> getCalendars(String userId);
+    List<CalendarsDto> getMyAllCalendars(String userId);
 
     //개인 캘린더 일정 목록 유저 아이디로 구하기
-    List<CalendarEventDto> getCalendarEventsById(String userId);
+    List<CalendarEventDto> getMyAllCalendarEvents(String userId);
 
     //팀 캘린더 일정 목록 유저 아이디로 구하기
-    List<TeamCalendarEventDto> getTeamCalendarEventsById(String userId);
+    List<TeamCalendarEventDto> getMyTeamCalendarEvents(String userId);
 
     //개인 캘린더 일정 추가하기
     boolean insertCalendarEvent(CalendarEventDto calendarEvent);

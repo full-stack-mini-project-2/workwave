@@ -14,31 +14,22 @@
 
 
     <!-- 본인의 모든 캘린더 (개인, 팀)조회 -->
-    <select id="getCalendars" resultType="calendarsDto">
-<!--        test 1 : do you get parameter well?-->
+    <select id="getMyAllCalendars" resultType="calendarsDto">
         SELECT
-        T.t_calendar_id AS tCalendarId,
-        T.t_calendar_name AS tCalendarName,
+        C.calendar_id AS calendarId,
+        C.calendar_name AS calendarName,
+        T.team_calendar_id AS teamCalendarId,
+        T.team_calendar_name AS teamCalendarName,
         U.user_id AS userId
         FROM TeamCalendar T
         JOIN Users U ON T.department_id = U.department_id
+        JOIN Calendar C ON U.user_id = C.user_id
         WHERE U.user_id = #{userId};
     </select>
-    <!--        SELECT-->
-    <!--        C.calendar_id AS calendarId,-->
-    <!--        C.calendar_name AS calendarName,-->
-    <!--        T.t_calendar_id AS tCalendarId,-->
-    <!--        T.t_calendar_name AS tCalendarName,-->
-    <!--        U.user_id AS userId-->
-    <!--        FROM TeamCalendar T-->
-    <!--        JOIN Users U ON T.department_id = U.department_id-->
-    <!--        JOIN Calendar C ON U.user_id = C.user_id-->
-    <!--        WHERE U.user_id = #{userId};-->
-
 
 
     <!-- 개인 캘린더 일정리스트 조회 -->
-    <select id="getCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.CalendarEventDto">
+    <select id="getMyCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.CalendarEventDto">
         SELECT CE.*, U.user_name
         FROM CalendarEvent CE
         JOIN Users U ON CE.user_id = U.user_id
@@ -47,7 +38,7 @@
     </select>
 
     <!-- 본인의 팀 캘린더 일정리스트 조회 -->
-    <select id="getTeamCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.TeamCalendarEventDto">
+    <select id="getMyTeamCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.TeamCalendarEventDto">
         SELECT CE.*, D.department_name
         FROM CalendarEvent CE
         JOIN Department D ON CE.department_id = D.department_id
@@ -58,9 +49,9 @@
     <!-- 본인 캘린더 이벤트 추가 -->
     <insert id="insertCalendarEvent" parameterType="map">
         INSERT INTO CalendarEvent (
-        c_event_date,
-        c_event_title,
-        c_event_description,
+        cal_event_date,
+        cal_event_title,
+        cal_event_description,
         user_id,
         department_id,
         calendar_id,
@@ -72,9 +63,9 @@
         </if>
         )
         VALUES (
-        #{cEventDate},
-        #{cEventTitle},
-        #{cEventDescription},
+        #{calEventDate},
+        #{calEventTitle},
+        #{calEventDescription},
         #{userId},
         #{departmentId},
         #{calendarId},
@@ -90,12 +81,12 @@
     <!-- 본인의 팀 캘린더에 캘린더 공유 일정 추가 -->
     <insert id="insertTeamCalendarEvent" parameterType="map">
         INSERT INTO CalendarEvent (
-        c_event_date,
-        c_event_title,
-        c_event_description,
+        cal_event_date,
+        cal_event_title,
+        cal_event_description,
         user_id,
         department_id,
-        t_calendar_id,
+        team_calendar_id,
         <if test="colorIndexId != null">
             color_index_id,
         </if>
@@ -104,12 +95,12 @@
         </if>
         )
         VALUES (
-        #{cEventDate},
-        #{cEventTitle},
-        #{cEventDescription},
+        #{calEventDate},
+        #{calEventTitle},
+        #{calEventDescription},
         #{userId},
         #{departmentId},
-        #{tCalendarId},
+        #{teamCalendarId},
         <if test="colorIndexId != null">
             #{colorIndexId},
         </if>
@@ -122,7 +113,7 @@
     <!-- 개인 캘린더 및 팀 캘린더 일정을 이벤트 id로 삭제 -->
     <delete id="deleteCalendarEvent">
         DELETE FROM CalendarEvent
-        WHERE c_event_id = #{cEventId};
+        WHERE cal_event_id = #{calEventId};
     </delete>
 
 </mapper>

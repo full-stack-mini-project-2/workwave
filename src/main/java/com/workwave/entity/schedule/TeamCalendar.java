@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @ToString
 @Builder
 public class TeamCalendar {
-    private int tCalendarId;
-    private String tCalendarName;
-    private LocalDateTime tCreatedAt;
+    private int teamCalendarId;
+    private String teamCalendarName;
+    private LocalDateTime teamCalCreatedAt;
     private String departmentId;
 
 
