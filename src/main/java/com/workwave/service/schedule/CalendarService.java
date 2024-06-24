@@ -1,6 +1,6 @@
 package com.workwave.service.schedule;
 
-import com.workwave.dto.scheduleDTO.request.CalendarEventDto;
+import com.workwave.dto.scheduleDTO.request.AllMyCalendarEventDto;
 import com.workwave.dto.scheduleDTO.request.CalendarsDto;
 import com.workwave.dto.scheduleDTO.request.TeamCalendarEventDto;
 import com.workwave.mapper.scheduleMapper.CalendarMapper;
@@ -21,7 +21,7 @@ public class CalendarService {
         }
 
         //개인 캘린더 일정 목록 아이디로 구하기
-        public List<CalendarEventDto> getEvents(String userId) {
+        public List<AllMyCalendarEventDto> getEvents(String userId) {
             return calendarMapper.getMyAllCalendarEvents(userId);
         }
 

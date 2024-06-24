@@ -12,11 +12,13 @@
         <typeAlias type="com.workwave.entity.board.Board" alias="board"/>
         <typeAlias type="com.workwave.entity.user.User" alias="user"/>
 
-<!--        calendar, todoList-->
+<!--        calendar, todoList dto class -->
         <typeAlias alias="calendarsDto" type="com.workwave.dto.scheduleDTO.request.CalendarsDto"/>
-        <typeAlias alias="calendarEventDto" type="com.workwave.dto.scheduleDTO.request.CalendarEventDto"/>
+        <typeAlias alias="calendarEventDto" type="com.workwave.dto.scheduleDTO.request.AllMyCalendarEventDto"/>
         <typeAlias alias="teamCalendarEventDto" type="com.workwave.dto.scheduleDTO.request.TeamCalendarEventDto"/>
 
+
+<!--        calendar entity class -->
         <typeAlias type="com.workwave.entity.schedule.ColorIndex" alias="colorIndex"/>
         <typeAlias type="com.workwave.entity.schedule.Calendar" alias="calendar"/>
         <typeAlias type="com.workwave.entity.schedule.TeamCalendar" alias="teamCalendar"/>

@@ -29,7 +29,7 @@
 
 
     <!-- 개인 캘린더 일정리스트 조회 -->
-    <select id="getMyCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.CalendarEventDto">
+    <select id="getMyCalendarEvent" resultType="com.workwave.dto.scheduleDTO.request.AllMyCalendarEventDto">
         SELECT CE.*, U.user_name
         FROM CalendarEvent CE
         JOIN Users U ON CE.user_id = U.user_id

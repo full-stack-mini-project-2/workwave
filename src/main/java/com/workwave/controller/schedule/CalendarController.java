@@ -1,6 +1,6 @@
 package com.workwave.controller.schedule;
 
-import com.workwave.dto.scheduleDTO.request.CalendarEventDto;
+import com.workwave.dto.scheduleDTO.request.AllMyCalendarEventDto;
 import com.workwave.dto.scheduleDTO.request.CalendarsDto;
 import com.workwave.service.schedule.CalendarService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +32,7 @@ public class CalendarController {
     @GetMapping("/events/{userId}")
     public String getCalendarEvents(@PathVariable("userId") String userId, Model model) {
         log.info("GET : calendar/events/ {}", userId); // {}를 사용하여 userId를 로그에 추가
-        List<CalendarEventDto> calendarEvents = calendarService.getEvents(userId);
+        List<AllMyCalendarEventDto> calendarEvents = calendarService.getEvents(userId);
         model.addAttribute("calendarEvents", calendarEvents);
         return "schedule/calendar/calendarEvents"; // JSP 파일 이름
     }

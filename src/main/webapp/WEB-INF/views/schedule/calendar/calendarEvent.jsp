@@ -23,14 +23,14 @@
   </tr>
   <c:forEach var="event" items="${calendarEvents}">
     <tr>
-      <td>${event.cEventId}</td>
-      <td>${event.cEventDate}</td>
-      <td>${event.cEventTitle}</td>
-      <td>${event.cEventDescription}</td>
+      <td>${event.calEventId}</td>
+      <td>${event.calEventDate}</td>
+      <td>${event.cconalEventTitle}</td>
+      <td>${event.calEventDescription}</td>
       <td>${event.userId}</td>
       <td>${event.departmentId}</td>
       <td>${event.calendarId}</td>
-      <td>${event.tCalendarId}</td>
+      <td>${event.teamCalendarId}</td>
       <td>${event.colorIndexId}</td>
       <td>${event.noticeId}</td>
     </tr>
