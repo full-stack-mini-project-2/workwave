@@ -30,3 +30,4 @@ function getWeather() {
 
 // 날씨API 실행
 getWeather();
+

@@ -15,11 +15,11 @@
 </head>
 <body>
     <div id="map" style="width: 100%; height: 400px;"></div>
-    <form>
-        <h3>지하철</h3>
+    <form action="/traffic-Info"  method="POST">
+        <h1>지하철</h1>
         <label>출발역</label>
         <select id="departure-station">
-            <option value="" disabled selected>출발역</option>
+            <option disabled selected>출발역</option>
             <c:forEach var="station" items="${stationInfo}">
                 <option data-latitude="${station.latitude}" data-line="${station.line}" data-station="${station}" data-longitude="${station.longitude}" value="${station.stationName}">
                     ${station.stationName}
@@ -29,16 +29,19 @@
 
         <label>도착역</label>
         <select id="arrival-station">
-            <option value="" disabled selected>도착역</option>
+            <option disabled selected>도착역</option>
             <c:forEach var="station" items="${stationInfo}">
                 <option data-latitude="${station.latitude}" data-line="${station.line}"data-longitude="${station.longitude}" value="${station.stationName}">
                     ${station.stationName}
                 </option>
             </c:forEach>
-        </select>
+        </select>        
 
         <label>총 역수: <span id="total-stations"></span>역</label>
         <label>총 소요시간: <span id="total-MetroTime"></span>분</label>
+
+        <h1>도착 예정 정보</h1>
+        <div id="infomationMetro"></div> 
     </form>
 
     <form>
