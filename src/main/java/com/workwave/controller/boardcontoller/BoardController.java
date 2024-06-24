@@ -117,28 +117,32 @@ public class BoardController {
 
     @PostMapping("/like")
     @ResponseBody
-    public ResponseEntity<?> upLikeCount(@RequestParam(value = "bno", required = false) Integer boardId) {
+    public ResponseEntity<?> upLikeCount(@RequestParam(value = "bno") Integer boardId) {
 
         if (boardId == null) {
             return ResponseEntity.badRequest().body("boardId parameter is required.");
         }
 
-        System.out.println(boardId);
-
         boardService.upLikeCount(boardId);
 
-        return ResponseEntity.ok().body(boardService.findOne(boardId));
+        return ResponseEntity
+                .ok()
+                .body(boardService.findOne(boardId));
 
     }
 
     @PostMapping("/dislike")
     @ResponseBody
-    public ResponseEntity<?> upDislikeCount(@RequestParam int boardId) {
+    public ResponseEntity<?> upDislikeCount(@RequestParam(value = "bno") Integer boardId) {
+
+        if (boardId == null) {
+            return ResponseEntity.badRequest().body("boardId parameter is required.");
+        }
 
         boardService.upDislikeCount(boardId);
 
         return ResponseEntity
                 .ok()
-                .body("Like count incremented successfully.");
+                .body(boardService.findOne(boardId));
     }
 }

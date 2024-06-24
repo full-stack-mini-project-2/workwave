@@ -46,6 +46,8 @@ public class BoardService {
                         .boardCreatedAt(board.getBoardCreatedAt())
                         .replyCount(board.getReplyCount())
                         .viewCount(board.getViewCount())
+                        .likes(board.getLikes())
+                        .dislikes(board.getDislikes())
                         .build())
                 .collect(Collectors.toList());
     }
@@ -64,6 +66,8 @@ public class BoardService {
                     .boardContent(b.getBoardContent())
                     .boardTitle(b.getBoardTitle())
                     .viewCount(b.getViewCount())
+                    .likes(b.getLikes())
+                    .dislikes(b.getDislikes())
                     .boardCreatedAt(b.getBoardCreatedAt())
                     .boardUpdatedAt(b.getBoardUpdatedAt())
                     .build();
@@ -106,15 +110,15 @@ public class BoardService {
 
     public Boolean upLikeCount(int boardId) {
 
-        boardMapper.upLikeCount(boardId);
+        boolean upLikeCount = boardMapper.upLikeCount(boardId);
 
-        return false;
+        return upLikeCount;
     }
 
     public Boolean upDislikeCount(int boardId){
 
-        boardMapper.upLikeCount(boardId);
+        boolean upDislikeCount = boardMapper.upDislikeCount(boardId);
 
-        return false;
+        return upDislikeCount;
     }
 }
