@@ -70,7 +70,7 @@ public class MetroController {
                 }
 
 
-
+                System.out.println(stationArrayList);
 
                 // System.out.println("stationArrayList: " + stationArrayList);
                 model.addAttribute("stationInfo",stationArrayList);
