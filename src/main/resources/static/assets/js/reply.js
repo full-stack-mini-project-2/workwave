@@ -9,7 +9,7 @@ document.getElementById("submitBtn").addEventListener("click", function () {
 
   console.log(bno);
 
-  saveReply(bno, nickName, replyContent, replyPassword);
+  fetchSaveReply(bno, nickName, replyContent, replyPassword);
 });
 
 // 페이지 로드 시 댓글을 조회
@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // 댓글을 조회하는 요청
 async function fetchReplies(bno) {
   // GET 요청을 보낼 URL
-  // const url = `http://localhost:8383/reply/${bno}`;
   const url = BASE_URL + `/${bno}`;
 
   try {
@@ -116,6 +115,24 @@ async function fetchSubReplies(rno) {
 
     document.getElementById("subRepliesContainer").style.display = "block";
     document.getElementById("subRepliesContainer").innerHTML = tag;
+
+    // 대댓글 수정버튼에 이벤트 리스너 추가
+    document.querySelectorAll(".subReplyModify").forEach((button) => {
+      button.addEventListener("click", function () {
+        // const subReplyId = this.dataset.rno;
+        // showSubEditForm(subReplyId);
+        console.log("답글 수정");
+      });
+    });
+
+    // 대댓글 삭제버튼에 이벤트 리스너 추가
+    document.querySelectorAll(".subReplyDelete").forEach((button) => {
+      button.addEventListener("click", function () {
+        // const subReplyId = this.dataset.rno;
+        // showSubEditForm(subReplyId);
+        console.log("답글 삭제");
+      });
+    });
     
   } catch (error) {
     console.error("Error:", error);
@@ -123,7 +140,7 @@ async function fetchSubReplies(rno) {
 }
 
 // 댓글 작성하는 비동기 요청
-async function saveReply(bno, nickName, replyContent, replyPassword) {
+async function fetchSaveReply(bno, nickName, replyContent, replyPassword) {
   const url = BASE_URL;
 
   const payload = {
