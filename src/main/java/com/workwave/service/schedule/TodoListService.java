@@ -1,6 +1,6 @@
 package com.workwave.service.schedule;
 
-import com.workwave.dto.scheduleDTO.request.TodoListDto;
+import com.workwave.dto.scheduleDTO.request.AllMyTodoListDto;
 import com.workwave.mapper.scheduleMapper.TodoListMapper;
 import org.springframework.stereotype.Service;
 
@@ -14,19 +14,19 @@ public class TodoListService {
         this.todoListMapper = todoListMapper;
     }
 
-    public List<TodoListDto> getAllTodoLists() {
+    public List<AllMyTodoListDto> getAllTodoLists() {
         return todoListMapper.getAllTodoLists();
     }
 
-    public TodoListDto getTodoListById(int todo_id) {
+    public AllMyTodoListDto getTodoListById(int todo_id) {
         return todoListMapper.getTodoListById(todo_id);
     }
 
-    public void insertTodoList(TodoListDto todoList) {
+    public void insertTodoList(AllMyTodoListDto todoList) {
         todoListMapper.insertTodoList(todoList);
     }
 
-    public void updateTodoList(TodoListDto todoList) {
+    public void updateTodoList(AllMyTodoListDto todoList) {
         todoListMapper.updateTodoList(todoList);
     }
 

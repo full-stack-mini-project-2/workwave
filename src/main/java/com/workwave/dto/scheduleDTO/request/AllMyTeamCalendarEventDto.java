@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 @ToString
 @Builder
-public class AllMyCalendarEventDto {
+public class AllMyTeamCalendarEventDto {
     private int calEventId;
     private LocalDateTime calEventDate;
     private String calEventTitle;
@@ -19,7 +19,8 @@ public class AllMyCalendarEventDto {
     private LocalDateTime calEventCreateAt;
     private LocalDateTime calEventUpdateAt;
     private Integer colorIndexId; // Integer로 선언하여 null 값을 허용
-    private String userId;
-    private Integer calendarId; // Integer로 선언하여 null 값을 허용
+    private Integer noticeId; // Integer로 선언하여 null 값을 허용
+    private Integer teamCalendarId; // Integer로 선언하여 null 값을 허용
     private String userName;
+    private String departmentName;
 }

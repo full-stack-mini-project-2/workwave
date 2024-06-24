@@ -14,25 +14,26 @@
     <th>Event Date</th>
     <th>Event Title</th>
     <th>Event Description</th>
-    <th>User ID</th>
-    <th>Department ID</th>
-    <th>Calendar ID</th>
-    <th>Team Calendar ID</th>
+    <th>create At</th>
+    <th>update At</th>
     <th>Color Index ID</th>
-    <th>Notice ID</th>
+    <th>User ID</th>
+    <th>User name</th>
+    <th>Calendar ID</th>
   </tr>
   <c:forEach var="event" items="${calendarEvents}">
     <tr>
       <td>${event.calEventId}</td>
       <td>${event.calEventDate}</td>
-      <td>${event.cconalEventTitle}</td>
+      <td>${event.calEventTitle}</td>
       <td>${event.calEventDescription}</td>
-      <td>${event.userId}</td>
-      <td>${event.departmentId}</td>
-      <td>${event.calendarId}</td>
-      <td>${event.teamCalendarId}</td>
+      <td>${event.calEventCreateAt}</td>
+      <td>${event.calEventUpdateAt}</td>
       <td>${event.colorIndexId}</td>
-      <td>${event.noticeId}</td>
+      <td>${event.userId}</td>
+      <td>${event.userName}</td>
+      <td>${event.calendarId}</td>
+
     </tr>
   </c:forEach>
 </table>

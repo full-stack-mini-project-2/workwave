@@ -1,6 +1,7 @@
 package com.workwave.controller.schedule;
 
 import com.workwave.dto.scheduleDTO.request.AllMyCalendarEventDto;
+import com.workwave.dto.scheduleDTO.request.AllMyTeamCalendarEventDto;
 import com.workwave.dto.scheduleDTO.request.CalendarsDto;
 import com.workwave.service.schedule.CalendarService;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +30,26 @@ public class CalendarController {
         return "schedule/calendar/calendarList";
     }
 
-    @GetMapping("/events/{userId}")
-    public String getCalendarEvents(@PathVariable("userId") String userId, Model model) {
-        log.info("GET : calendar/events/ {}", userId); // {}를 사용하여 userId를 로그에 추가
-        List<AllMyCalendarEventDto> calendarEvents = calendarService.getEvents(userId);
+    //개인 달력 일정 목록
+    @GetMapping("/myEvents/{userId}")
+    public String getMyCalendarEvents(@PathVariable("userId") String userId, Model model) {
+        log.info("GET : calendar/events/ {}   🎔   !!!!!!!!!!!    🎔   !!!!!!!!!!!!!   🎔   !!!!!!!!", userId);
+        List<AllMyCalendarEventDto> calendarEvents = calendarService.getMyEvents(userId);
+        log.info("calendar event 확인 : {}", calendarEvents);
         model.addAttribute("calendarEvents", calendarEvents);
-        return "schedule/calendar/calendarEvents"; // JSP 파일 이름
+        log.info("model 확인 : {}",model);
+        return "schedule/calendar/myAllCalendarEvent"; // JSP 파일 이름
+    }
+
+    // 팀 달력 일정 목록
+    @GetMapping("/teamEvents/{userId}")
+    public String getTeamCalendarEvents(@PathVariable("userId") String userId, Model model) {
+        log.info("GET : TEAM calendar/events/ {}", userId);
+        List<AllMyTeamCalendarEventDto> teamCalendarEvents = calendarService.getMyTeamEvents(userId);
+        log.info("TEAM calendar event 확인 : {}", teamCalendarEvents);
+        model.addAttribute("calendarEvents", teamCalendarEvents);
+        log.info("TEAM model 확인 : {}",model);
+        return "schedule/calendar/myAllTeamCalendarEvent"; // JSP 파일 이름
     }
 }
 
