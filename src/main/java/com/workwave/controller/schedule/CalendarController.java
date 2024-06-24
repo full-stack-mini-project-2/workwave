@@ -27,7 +27,7 @@ public class CalendarController {
         log.info("calendar List index 확인 : {} ",calendars);
         model.addAttribute("calendars", calendars);
         log.info("model 확인 : {} ",model);
-        return "schedule/calendar/calendarList";
+        return "schedule/calendar/myAllCalendarList";
     }
 
     //개인 달력 일정 목록
@@ -38,7 +38,7 @@ public class CalendarController {
         log.info("calendar event 확인 : {}", calendarEvents);
         model.addAttribute("calendarEvents", calendarEvents);
         log.info("model 확인 : {}",model);
-        return "schedule/calendar/myAllCalendarEvent"; // JSP 파일 이름
+        return "schedule/calendar/myAllCalendarEvent";
     }
 
     // 팀 달력 일정 목록
