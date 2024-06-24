@@ -23,7 +23,7 @@ public interface BoardMapper {
     boolean delete(int boardId);
 
     // 조회수 상승
-//    void upViewCount(int boardId);
+    boolean updateViewCount(int boardId);
 
     // 게시물 수정
     boolean update(Board board);
@@ -31,6 +31,8 @@ public interface BoardMapper {
     // 총 게시물 수 조회
     int count(Search page);
 
+    // 댓글 수 업데이트
     boolean updateCount();
+
 
 }

@@ -118,6 +118,7 @@ prefix="c" %>
           test="${board.formattedBoardCreatedAt != board.formattedBoardUpdateAt}"
           >| 수정일: ${board.formattedBoardUpdateAt}
         </c:if>
+         | 조회수: ${board.viewCount}
       </div>
       <div class="content">
         <p>${board.boardContent}</p>

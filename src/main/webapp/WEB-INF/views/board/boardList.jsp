@@ -73,6 +73,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <th>제목</th>
         <th>작성자</th>
         <th>작성일</th>
+        <th>조회수</th>
 
       </tr>
 
@@ -99,6 +100,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
           </td>
           <td>${board.userId}</td>
           <td>${board.formattedBoardCreatedAt}</td>
+          <td style="text-align: center;">${board.viewCount}</td>
         </tr>
       </c:forEach>
     </table>

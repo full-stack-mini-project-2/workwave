@@ -11,7 +11,8 @@
         board_title,
         user_id,
         board_created_at,
-        reply_count
+        reply_count,
+        view_count
         from board
         <if test="type == 'tc'">
             WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
@@ -42,6 +43,7 @@
         board_title,
         board_content,
         user_id,
+        view_count,
         board_created_at,
         board_updated_at
         from board
@@ -77,6 +79,12 @@
         FROM reply r
         WHERE b.board_id = r.board_id
         );
+    </update>
+
+    <update id="updateViewCount">
+        UPDATE board
+        SET view_count = view_count + 1
+        WHERE board_id = #{boardId}
     </update>
 
 </mapper>

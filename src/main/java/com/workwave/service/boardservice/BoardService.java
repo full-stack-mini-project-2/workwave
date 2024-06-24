@@ -45,6 +45,7 @@ public class BoardService {
                         .userId(board.getUserId())
                         .boardCreatedAt(board.getBoardCreatedAt())
                         .replyCount(board.getReplyCount())
+                        .viewCount(board.getViewCount())
                         .build())
                 .collect(Collectors.toList());
     }
@@ -56,14 +57,17 @@ public class BoardService {
         log.info(String.valueOf(b));
 
         if (b != null) {
+
             return BoardDetailDto.builder()
                     .boardId(b.getBoardId())
                     .userId(b.getUserId())
                     .boardContent(b.getBoardContent())
                     .boardTitle(b.getBoardTitle())
+                    .viewCount(b.getViewCount())
                     .boardCreatedAt(b.getBoardCreatedAt())
                     .boardUpdatedAt(b.getBoardUpdatedAt())
                     .build();
+
         }
 
         return null; // 조회된 데이터가 없으면 null 반환
@@ -92,5 +96,11 @@ public class BoardService {
         log.info("upadte DTO: {}", one);
 
         return boardMapper.update(one);
+    }
+
+    public Boolean updateViewCount(int boardId){
+
+       return boardMapper.updateViewCount(boardId);
+
     }
 }

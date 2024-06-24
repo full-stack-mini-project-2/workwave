@@ -17,6 +17,7 @@ public class BoardDetailDto {
     private String userId;
     private String boardTitle;
     private String boardContent;
+    private int viewCount;
     private LocalDateTime boardCreatedAt;
     private LocalDateTime boardUpdatedAt;
 

@@ -45,12 +45,6 @@ public class ReplyService {
 
         boolean save = replyMapper.save(reply);
 
-//        int boardId = reply.getBoardId();
-//
-//        Board upatedBoard = boardMapper.findOne(boardId);
-//
-//        upatedBoard.setReplyCount(upatedBoard.getReplyCount() + 1);
-
         boardMapper.updateCount();
 
         return save;
@@ -79,12 +73,6 @@ public class ReplyService {
         if (original.getReplyPassword().equals(dto.getReplyDeletePassword())) {
 
             boolean delete = replyMapper.delete(dto.getReplyId());
-
-//            int boardId = dto.getBoardId();
-//
-//            Board upatedBoard = boardMapper.findOne(boardId);
-//
-//            upatedBoard.setReplyCount(upatedBoard.getReplyCount() - 1);
 
             boardMapper.updateCount();
 

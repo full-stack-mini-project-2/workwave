@@ -21,5 +21,6 @@ public class Board {
     private LocalDateTime boardCreatedAt = LocalDateTime.now();
     private LocalDateTime boardUpdatedAt;
     private int replyCount;
+    private int viewCount;
 
 }

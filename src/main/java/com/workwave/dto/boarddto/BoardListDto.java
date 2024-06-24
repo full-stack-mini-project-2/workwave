@@ -18,6 +18,7 @@ public class BoardListDto {
     private String userId;
     private LocalDateTime boardCreatedAt;
     private int replyCount;
+    private int viewCount;
 
     // 날짜 변환 메서드 추가
     public String getFormattedBoardCreatedAt() {

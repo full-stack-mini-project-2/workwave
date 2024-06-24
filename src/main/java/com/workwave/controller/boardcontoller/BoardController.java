@@ -64,8 +64,10 @@ public class BoardController {
     @GetMapping("/detail")
     public String findOne(@RequestParam("bno") int boardId, Model model, HttpServletRequest request) {
 
-        BoardDetailDto board = boardService.findOne(boardId);
+        boardService.updateViewCount(boardId);
 
+        BoardDetailDto board = boardService.findOne(boardId);
+        
         model.addAttribute("board", board);
 
         // 게시물 조회를 누를때 주소값을 저장해서 목록으로 돌아갈때 다시 리다이렉트
