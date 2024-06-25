@@ -34,6 +34,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   </head>
   <body>
     <div id="map" style="width: 100%; height: 400px"></div>
+    <a href="http://localhost:8383/traffic-myInfo"><h1>이전 조회 내역</h1></a>
     <form action="/traffic-Info" method="POST">
       <h1>지하철</h1>
       <label>출발역</label>
