@@ -11,7 +11,7 @@
         (#{arrival}, #{departure}, #{station}, #{needTime} , #{regDateTime})
     </insert>
 
-    <select id="findAll">
-
+    <select id="findAll" resultType="com.workwave.dto.traffic.request.totalTrafficInfoDto">
+        SELECT * FROM traffic
     </select>
 </mapper>

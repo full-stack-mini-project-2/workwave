@@ -1,12 +1,17 @@
 package com.workwave.controller.traffic;
 
+import com.workwave.dto.traffic.request.totalTrafficInfoDto;
 import com.workwave.dto.traffic.response.trafficInfo;
 import com.workwave.service.traffic.trafficService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -18,10 +23,20 @@ public class TrafficController {
     @PostMapping("/traffic-Info")
     public String trafficInformation(@RequestBody trafficInfo trafficinfo){
 
-        // 서비스에게 저장 요청 위임
         trafficService.save(trafficinfo);
 
-        return "redirect:traffic-map";
+
+        return "traffic/Traffic";
     }
+
+    @GetMapping("/traffic-myInfo")
+    public String findTrafficInfo(Model model){
+
+        List<totalTrafficInfoDto> totalTraffic = trafficService.findAll();
+        model.addAttribute("totalTraffic",totalTraffic);
+
+        return "traffic/myTrafficInfo";
+    }
+
 
 }
