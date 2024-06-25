@@ -20,25 +20,25 @@ import org.springframework.web.bind.annotation.*;
 public class CalendarController {
 
     private final CalendarService calendarService;
-    @GetMapping("/list/{userId}")
-    public String getCalendars(@PathVariable("userId") String userId, Model model) {
-        log.info("GET : calendar/list/ {}", userId); // {}를 사용하여 userId를 로그에 추가
-        List<CalendarsDto> calendars = calendarService.getMyCalendars(userId);
-        log.info("calendar List index 확인 : {} ",calendars);
-        model.addAttribute("calendars", calendars);
-        log.info("model 확인 : {} ",model);
-        return "schedule/calendar/myAllCalendarList";
-    }
+//    @GetMapping("/list/{userId}")
+//    public String getCalendars(@PathVariable("userId") String userId, Model model) {
+//        log.info("GET : calendar/list/ {}", userId); // {}를 사용하여 userId를 로그에 추가
+//        List<CalendarsDto> calendars = calendarService.getMyCalendars(userId);
+//        log.info("calendar List index 확인 : {} ",calendars);
+//        model.addAttribute("calendars", calendars);
+//        log.info("model 확인 : {} ",model);
+//        return "schedule/calendar/myAllCalendarList";
+//    }
 
     //개인 달력 일정 목록
     @GetMapping("/myEvents/{userId}")
-    public String getMyCalendarEvents(@PathVariable("userId") String userId, Model model) {
+    public String getMyCalendarEvents(@PathVariable("userId") String userId,Model model) {
         log.info("GET : calendar/events/ {}   🎔   !!!!!!!!!!!    🎔   !!!!!!!!!!!!!   🎔   !!!!!!!!", userId);
         List<AllMyCalendarEventDto> calendarEvents = calendarService.getMyEvents(userId);
         log.info("calendar event 확인 : {}", calendarEvents);
         model.addAttribute("calendarEvents", calendarEvents);
         log.info("model 확인 : {}",model);
-        return "schedule/calendar/calendar";
+        return "schedule/calendar/myAllCalendarEvent";
     }
 
     // 팀 달력 일정 목록

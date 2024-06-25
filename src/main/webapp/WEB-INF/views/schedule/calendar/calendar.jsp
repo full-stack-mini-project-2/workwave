@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%-- 다음과 같이 userId와 formattedDate 변수를 선언하십시오 --%>
 <%! private String userId; %>
@@ -27,7 +28,12 @@
 </head>
 <body>
 <h1>Calendar</h1>
-<div id="calendar"></div>
+<div id="calendar">
+  <c:forEach var="calendarEvent" items="${calendarEvents}">
+    <div> ${calendarEvent}</div>
+
+  </c:forEach>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
