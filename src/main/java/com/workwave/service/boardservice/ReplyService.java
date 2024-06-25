@@ -97,4 +97,13 @@ public class ReplyService {
                 .subReplies(dtoList)
                 .build();
     }
+
+    public boolean saveSubReply(SubReplyWriteDto dto) {
+
+        SubReply subReply = dto.toEntity();
+
+        boolean save = replyMapper.saveSubReply(subReply);
+
+        return save;
+    }
 }

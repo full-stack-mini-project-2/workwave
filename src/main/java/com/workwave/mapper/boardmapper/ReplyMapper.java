@@ -26,4 +26,6 @@ public interface ReplyMapper {
 
     // 대댓글 목록 조회
     List<SubReply> subReplies(int replyId);
+
+    boolean saveSubReply(SubReply subReply);
 }

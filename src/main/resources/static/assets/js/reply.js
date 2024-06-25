@@ -133,7 +133,6 @@ async function fetchSubReplies(rno) {
         console.log("답글 삭제");
       });
     });
-    
   } catch (error) {
     console.error("Error:", error);
   }
@@ -170,6 +169,44 @@ async function fetchSaveReply(bno, nickName, replyContent, replyPassword) {
   nickName.value = "";
   replyContent.value = "";
   replyPassword.value = "";
+}
+
+// 대댓글을 작성하는 비동기 요청
+async function fetchSaveSubReply(
+  replyId,
+  subNickName,
+  subReplyContent,
+  subReplyPassword
+) {
+  const url = BASE_URL + "/sub";
+
+  const payload = {
+    nickName: subNickName.value,
+    subReplyContent: subReplyContent.value,
+    replyId: replyId,
+    subReplyPassword: subReplyPassword.value,
+  };
+
+  console.log(payload);
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await response.json();
+
+  console.log(data);
+
+  fetchReplies(bno);
+
+  // 입력창 초기화
+  subNickName.value = "";
+  subReplyContent.value = "";
+  subReplyPassword.value = "";
 }
 
 // 댓글을 수정하는 비동기 요청
@@ -278,9 +315,8 @@ function displayReplies(replies) {
         </div>
         `;
 
-        fetchSubReplies(replyId);
-
         // 대댓글 목록 렌더링
+        fetchSubReplies(replyId);
       }
     );
   } else {
@@ -312,6 +348,51 @@ function displayReplies(replies) {
       const replyId = this.dataset.rno;
       showEditSubReplyForm(replyId);
     });
+  });
+}
+
+// 답글 버튼 클릭시 답글 입력화면 출력
+function showEditSubReplyForm(replyId) {
+  const editSubReplyForm = document.getElementById(
+    `editSubReplyForm-${replyId}`
+  );
+
+  if (editSubReplyForm.style.display === "block") {
+    editSubReplyForm.style.display = "none";
+  } else {
+    editSubReplyForm.style.display = "block";
+    editSubReplyForm.innerHTML = `
+       <div class="subReply-form">
+        <h2>답글 작성</h2>
+        <input type="hidden" id="replyId" value="${replyId}" />
+        <input type="text" id="subNickName" placeholder="닉네임" required />
+        <input
+          type="password"
+          id="subReplyPassword"
+          placeholder="답글 비밀번호"
+          required
+        />
+        <textarea id="subReplyContent" placeholder="답글 내용" required></textarea>
+        <button id="submitSubReplyBtn" type="button">답글 등록</button>
+      </div>
+      `;
+  }
+
+  const subNickName = document.getElementById("subNickName");
+  const subReplyContent = document.getElementById("subReplyContent");
+  const subReplyPassword = document.getElementById("subReplyPassword");
+
+  const submitSubReplyBtn = document.getElementById("submitSubReplyBtn");
+
+  submitSubReplyBtn.addEventListener("click", (e) => {
+    if (e.target === submitSubReplyBtn) {
+      fetchSaveSubReply(
+        replyId,
+        subNickName,
+        subReplyContent,
+        subReplyPassword
+      );
+    }
   });
 }
 

@@ -99,4 +99,18 @@ public class ReplyController {
                 .ok()
                 .body(subReplies);
     }
+
+    // 대댓글 생성 요청
+    @PostMapping("/sub")
+    public ResponseEntity<?> saveSubReply(@RequestBody @Valid SubReplyWriteDto dto) {
+
+        log.info("SubReplyWriteDto: {}", dto);
+
+        // flag를 통하여 에러 검사
+        boolean flag = replyService.saveSubReply(dto);
+
+        return ResponseEntity
+                .ok()
+                .body(replyService.getReplies(dto.getReplyId()));
+    }
 }
