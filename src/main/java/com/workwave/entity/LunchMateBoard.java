@@ -14,6 +14,7 @@ package com.workwave.entity;
 );
 */
 
+import com.workwave.dto.lunchBoardDto.LunchBoardFindAllDto;
 import lombok.*;
 
 import java.sql.ResultSet;
@@ -37,16 +38,15 @@ public class LunchMateBoard {
     private int lunchAttendees; // 최대 모집인원 수
     private String progressStatus; // 모집 인원 진행 상황
 
-    public LunchMateBoard(ResultSet rs) throws SQLException {
-        this.lunchPostNumber = rs.getInt("lunch_post_number");
-        this.userId = rs.getString("user_id");
-        this.lunchPostTitle = rs.getString("lunch_post_title");
-        this.lunchDate = rs.getTimestamp("lunch_date").toLocalDateTime();
-        this.eatTime = rs.getString("eat_time");
-        this.lunchLocation = rs.getString("lunch_location");
-        this.lunchMenuName = rs.getString("lunch_menu_name");
-        this.lunchAttendees = rs.getInt("lunch_attendees");
-        this.progressStatus = rs.getString("progress_status");
+    public LunchBoardFindAllDto toDto() {
+        return LunchBoardFindAllDto.builder()
+                .lunchPostTitle(this.lunchPostTitle)
+                .lunchDate(this.lunchDate)
+                .lunchLocation(this.lunchLocation)
+                .lunchMenuName(this.lunchMenuName)
+                .lunchAttendees(this.lunchAttendees)
+                .progressStatus(this.progressStatus)
+                .build();
 
     }
 

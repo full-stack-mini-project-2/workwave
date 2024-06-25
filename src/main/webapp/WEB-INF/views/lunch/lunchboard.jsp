@@ -49,4 +49,10 @@
                     <td>${board.lunchAttendees}</td>
                     <td>${board.progressStatus}</td>
                 </tr>
-            </c:forEach
+            </c:forEach>
+        </tbody>
+    </table>
+</body>
+</html>
+
+

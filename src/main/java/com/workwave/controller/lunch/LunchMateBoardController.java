@@ -1,8 +1,8 @@
 package com.workwave.controller.lunch;
 
+import com.workwave.dto.lunchBoardDto.LunchBoardFindAllDto;
 import com.workwave.entity.LunchMateBoard;
 import com.workwave.service.lunchService.LunchMateBoardService;
-import com.workwave.dto.lunchBoardDto.LunchBoardDetailResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,22 +38,13 @@ public class LunchMateBoardController {
         List<LunchMateBoard> boards = lunchMateBoardService.findAll();
 
         // LunchMateBoard를 LunchListDto로 변환
-        List<LunchBoardDetailResponseDto> boardDTOs = boards.stream()
-                .map(board -> new LunchBoardDetailResponseDto(
-                        board.getUserId(),
-                        board.getLunchPostTitle(),
-                        board.getLunchDate(),
-                        board.getLunchLocation(),
-                        board.getLunchMenuName(),
-                        board.getLunchAttendees(),
-                        board.getProgressStatus()
-                ))
+        List<LunchBoardFindAllDto> boardDTOs = boards.stream()
+                .map(LunchMateBoard::toDto)
                 .collect(Collectors.toList());
 
         model.addAttribute("boards", boardDTOs);
         return "lunch/lunchboard"; // src/main/webapp/WEB-INF/views/lunch/lunchboard.jsp
     }
-
     // 글 작성 페이지 이동
     @GetMapping("/new")
     public String createForm(Model model) {
