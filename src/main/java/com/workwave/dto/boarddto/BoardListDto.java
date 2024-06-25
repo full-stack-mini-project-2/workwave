@@ -16,6 +16,7 @@ public class BoardListDto {
     private int boardId;
     private String boardTitle;
     private String userId;
+    private String boardNickname;
     private LocalDateTime boardCreatedAt;
     private int replyCount;
     private int viewCount;

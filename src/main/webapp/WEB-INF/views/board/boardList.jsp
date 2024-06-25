@@ -101,7 +101,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
               </c:if>
             </a>
           </td>
-          <td>${board.userId}</td>
+          <td>${board.boardNickname}</td>
           <td>${board.formattedBoardCreatedAt}</td>
           <td style="text-align: center">${board.viewCount}</td>
           <td style="text-align: center">${board.likes}</td>

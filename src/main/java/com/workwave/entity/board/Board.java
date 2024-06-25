@@ -15,6 +15,7 @@ public class Board {
 
     private int boardId;
     private String userId;
+    private String boardNickname;
     private String boardTitle;
     private String boardContent;
     private String boardPassword;

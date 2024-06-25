@@ -12,7 +12,8 @@ import lombok.*;
 @Builder
 public class BoardWriteDto {
 
-    //    private String userId;
+//    private String userId;
+    private String boardNickname;
     private String boardTitle;
     private String boardContent;
     private String boardPassword;
@@ -20,6 +21,7 @@ public class BoardWriteDto {
     public Board toEntity() {
         return Board.builder()
                 .boardTitle(this.boardTitle)
+                .boardNickname(this.boardNickname)
                 .boardContent(this.boardContent)
                 .boardPassword(this.boardPassword)
                 .build();

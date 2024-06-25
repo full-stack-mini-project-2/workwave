@@ -69,11 +69,9 @@ public class BoardController {
 
         // 게시물 조회를 누를때 주소값을 저장해서 목록으로 돌아갈때 다시 리다이렉트
         String referer = request.getHeader("Referer");
-
-        if (referer != null && !referer.contains("/board/update")) {
+        if (referer != null && referer.contains("/list")) {
             request.getSession().setAttribute("referer", referer);
         }
-
         log.info("referer: {}", referer);
 
         return "board/boardDetail";
@@ -89,6 +87,35 @@ public class BoardController {
         boardService.delete(targetId);
 
         return "redirect:/board/list";
+    }
+
+    @GetMapping("/pwcheck")
+    public String PasswordCheck() {
+
+        return "board/boardPwCheck";
+    }
+
+    @PostMapping("/pwcheck")
+    public String isEqualPw(@RequestParam("bno") int boardId,
+                            @RequestParam("action") String action,
+                            @RequestParam("boardPassword") String inputPassword,
+                            Model model) {
+
+        BoardDetailDto board = boardService.findOne(boardId);
+
+        log.info(action);
+
+        if (board.getBoardPassword().equals(inputPassword)) {
+            if ("update".equals(action)) {
+                return "redirect:/board/update?bno=" + boardId;
+            } else if ("delete".equals(action)) {
+                return "redirect:/board/delete?bno=" + boardId;
+            }
+        }
+
+        model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
+
+        return "board/boardPwCheck";
     }
 
     @GetMapping("/update")

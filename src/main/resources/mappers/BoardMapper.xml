@@ -10,6 +10,7 @@
         board_id,
         board_title,
         user_id,
+        board_nickName,
         board_created_at,
         reply_count,
         view_count,
@@ -28,12 +29,14 @@
         INSERT INTO board (
         user_id,
         board_title,
+        board_nickName,
         board_content,
         board_password
         )
         VALUES (
         (SELECT user_id FROM users WHERE user_name = '김하이'),
         #{boardTitle},
+        #{boardNickname},
         #{boardContent},
         #{boardPassword}
         )
@@ -44,6 +47,8 @@
         board_id,
         board_title,
         board_content,
+        board_nickName,
+        board_password,
         user_id,
         view_count,
         likes,

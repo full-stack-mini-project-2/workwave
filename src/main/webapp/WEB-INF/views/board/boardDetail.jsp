@@ -231,7 +231,7 @@ prefix="c" %>
     <div id="reply-container" data-bno="${board.boardId}">
       <h1>${board.boardTitle}</h1>
       <div class="meta">
-        작성자: ${board.userId} | 작성일: ${board.formattedBoardCreatedAt}
+        작성자: ${board.boardNickname} | 작성일: ${board.formattedBoardCreatedAt}
         <c:if
           test="${board.formattedBoardCreatedAt != board.formattedBoardUpdateAt}"
           >| 수정일: ${board.formattedBoardUpdateAt}
@@ -242,8 +242,8 @@ prefix="c" %>
         <p>${board.boardContent}</p>
       </div>
       <div class="actions">
-        <a href="/board/update?bno=${board.boardId}">수정</a>
-        <a href="/board/delete?bno=${board.boardId}">삭제</a>
+        <a href="/board/pwcheck?bno=${board.boardId}&action=update">수정</a>
+        <a href="/board/pwcheck?bno=${board.boardId}&action=delete">삭제</a>
         <a id="backLink" href="${sessionScope.referer}">목록으로 돌아가기</a>
       </div>
 

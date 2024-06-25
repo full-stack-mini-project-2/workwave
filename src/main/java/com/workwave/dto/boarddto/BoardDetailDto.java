@@ -16,7 +16,9 @@ public class BoardDetailDto {
     private int boardId;
     private String userId;
     private String boardTitle;
+    private String boardNickname;
     private String boardContent;
+    private String boardPassword;
     private int viewCount;
     private int likes;
     private int dislikes;
