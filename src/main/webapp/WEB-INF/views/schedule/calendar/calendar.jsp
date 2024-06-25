@@ -1,8 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%-- 다음과 같이 userId와 formattedDate 변수를 선언하십시오 --%>
-<%! private String userId; %>
-<%! private String formattedDate; %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,23 +25,25 @@
 </head>
 <body>
 <h1>Calendar</h1>
-<div id="calendar">
-  <c:forEach var="calendarEvent" items="${calendarEvents}">
-    <div> ${calendarEvent}</div>
 
-  </c:forEach>
-</div>
+<div id="calendar"></div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const userId = '<%= userId %>'; // 스크립트릿 태그 안에서 userId 변수 사용
+    <%--const userId = '${userId}'; // EL 표현식 사용--%>
+    const initialEvents = JSON.parse('<c:out value="${mycalEvents}" escapeXml="false" />'); // EL 표현식 사용
+    const formattedDate = '${formattedDate}'; // EL 표현식 사용
 
     let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth();
 
     function fetchEvents(year, month) {
+      const userId = '${userId}'; // userId는 JSP에서 설정되어 있어야 함
+
       const xhr = new XMLHttpRequest();
       xhr.open('GET', `/api/calendar/myEvents/${userId}?year=${year}&month=${month + 1}`, true);
+      console.log(`/api/calendar/myEvents/${userId}?year=${year}&month=${month + 1}`);
+
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
@@ -57,6 +56,7 @@
       };
       xhr.send();
     }
+
 
     function renderCalendar(events, year, month) {
       const firstDay = new Date(year, month, 1).getDay();
@@ -119,11 +119,13 @@
       fetchEvents(currentYear, currentMonth);
     });
 
-    fetchEvents(currentYear, currentMonth);
+
+    // 모델에서 제공한 초기 이벤트를 렌더링
+    renderCalendar(initialEvents, currentYear, currentMonth);
   });
 </script>
 
-<div>Formatted Date: <span id="formattedDate"><%= formattedDate %></span></div>
+<div>Formatted Date: <span id="formattedDate">${formattedDate}</span></div>
 
 <button id="prev-month">Prev</button>
 <button id="next-month">Next</button>
