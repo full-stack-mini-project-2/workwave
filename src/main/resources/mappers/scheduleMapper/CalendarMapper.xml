@@ -5,6 +5,28 @@
 
 <mapper namespace="com.workwave.mapper.scheduleMapper.CalendarMapper">
 
+    <!-- getCalendarEventsForPeriod 쿼리 -->
+    <select id="getCalendarEventsForPeriod" parameterType="map" resultType="allMyCalendarEventDto">
+        SELECT
+        CE.cal_event_id AS calEventId,
+        CE.cal_event_date AS calEventDate,
+        CE.cal_event_title AS calEventTitle,
+        CE.cal_event_description AS calEventDescription,
+        CE.cal_event_createAt AS calEventCreateAt,
+        CE.cal_event_updateAt AS calEventUpdateAt,
+        CE.color_index_id AS colorIndexId,
+        CE.user_id AS userId,
+        CE.calendar_id AS calendarId,
+        U.user_name AS userName
+        FROM
+        CalendarEvent CE
+        JOIN
+        Users U ON U.user_id = CE.user_id
+        WHERE
+        CE.user_id = #{userId}
+        AND CE.cal_event_date BETWEEN #{startDate} AND #{endDate};
+    </select>
+
 <!--    회원가입 시 개인, 팀 캘린더 공용 사용 권한 부여-->
     <insert id="saveUserCalendars">
         INSERT INTO calendar

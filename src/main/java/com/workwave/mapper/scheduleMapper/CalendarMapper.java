@@ -4,11 +4,17 @@ import com.workwave.dto.scheduleDTO.request.CalendarsDto;
 import com.workwave.dto.scheduleDTO.request.AllMyCalendarEventDto;
 import com.workwave.dto.scheduleDTO.request.AllMyTeamCalendarEventDto;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface CalendarMapper {
+
+    //이번 달 캘린더의 이벤트 가져오기
+    List<AllMyCalendarEventDto> getCalendarEventsForPeriod(@Param("userId") String userId, @Param("startDate") String startDate, @Param("endDate") String endDate);
+
+
     //전체 캘린더 중 user의 모든 캘린더 가져오기
     List<CalendarsDto> getMyAllCalendars(String userId);
 

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/calendar")
@@ -38,7 +38,7 @@ public class CalendarController {
         log.info("calendar event 확인 : {}", calendarEvents);
         model.addAttribute("calendarEvents", calendarEvents);
         log.info("model 확인 : {}",model);
-        return "schedule/calendar/myAllCalendarEvent";
+        return "schedule/calendar/calendar";
     }
 
     // 팀 달력 일정 목록

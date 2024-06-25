@@ -31,6 +31,7 @@
     <mappers>
         <mapper resource="mappers/BoardMapper.xml"/>
         <mapper resource="mappers/UserMapper.xml"/>
+
 <!--        schedule mapper-->
         <mapper resource="mappers/scheduleMapper/CalendarMapper.xml"/>
         <mapper resource="mappers/scheduleMapper/ColorIndexMapper.xml"/>
