@@ -24,7 +24,8 @@
         Users U ON U.user_id = CE.user_id
         WHERE
         CE.user_id = #{userId}
-        AND CE.cal_event_date BETWEEN #{startDate} AND #{endDate};
+        AND CE.cal_event_date BETWEEN #{startDate} AND #{endDate}
+        AND team_calendar_id IS NULL;
     </select>
 
 <!--    회원가입 시 개인, 팀 캘린더 공용 사용 권한 부여-->

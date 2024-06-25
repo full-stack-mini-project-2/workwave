@@ -15,21 +15,13 @@ import java.util.List;
 @RequestMapping("/api/calendar")
 public class CalendarApiController {
 
-    private final CalendarService calendarService;
+        private final CalendarService calendarService;
 
-    @GetMapping("/list/{userId}")
-    public List<CalendarsDto> getCalendars(@PathVariable("userId") String userId) {
-        log.info("GET: /api/calendar/list/{}", userId);
-        return calendarService.getMyCalendars(userId);
-    }
-
-
-        @GetMapping("/myEvents/{userId}")
-        public List<AllMyCalendarEventDto> getMyCalendarEvents(
-                @PathVariable("userId") String userId,
-                @RequestParam int year,
-                @RequestParam int month) {
-            log.info("GET : api/calendar/myEvents/ {} for year {} and month {}", userId, year, month);
-            return calendarService.getMyEventsForMonth(userId, year, month);
+    @GetMapping("/myEvents/{userId}")
+    public List<AllMyCalendarEventDto> getCalendarEventsForPeriod(
+            @PathVariable String userId,
+            @RequestParam int year,
+            @RequestParam int month) {
+        return calendarService.getMyEventsForMonth(userId, year, month);
+            }
         }
-    }
