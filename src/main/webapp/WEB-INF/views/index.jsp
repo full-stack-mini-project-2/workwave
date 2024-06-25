@@ -150,6 +150,19 @@
                     text-decoration: none;
                     font-size: 14px;
                 }
+
+
+                .profile-box {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                }
+
+                .profile-box img {
+                    width: 100%;
+                    height: 100%;
+                }
             </style>
             <link rel="icon" href="/assets/img/workwave_logo.png" />
 
