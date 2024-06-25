@@ -106,4 +106,19 @@ public class ReplyService {
 
         return save;
     }
+
+    public boolean updateSubReply(SubReplyUpdateDto dto) {
+
+        SubReply original = replyMapper.findOneSubReply(dto.getSubReplyId());
+
+        if (original.getSubReplyPassword().equals(dto.getEditSubReplyPassword())) {
+            SubReply modifyReply = dto.toEntity();
+            log.info(modifyReply.toString());
+            boolean updateSubReply = replyMapper.updateSubReply(modifyReply);
+            return updateSubReply;
+        } else {
+            return false;
+        }
+
+    }
 }

@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 public class SubReplyUpdateDto {
 
+    private int boardId;
     private int replyId;
     private int subReplyId;
     @NotNull(message = "댓글 비밀번호는 필수 항목입니다.")

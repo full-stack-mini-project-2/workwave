@@ -104,7 +104,7 @@ async function fetchSubReplies(rno) {
           </div>
           <div id="editSubReplyForm-${subReplyId}" class="reply-form" style="display: none" data-rno=${subReplyId}>
           </div>
-          <div id="editDeleteSubReplyForm-${subReplyId}" class="reply-form" style="display: none" data-rno=${subReplyId}>
+          <div id="DeleteSubReplyForm-${subReplyId}" class="reply-form" style="display: none" data-rno=${subReplyId}>
           </div>
           `;
         }
@@ -119,8 +119,8 @@ async function fetchSubReplies(rno) {
     // 대댓글 수정버튼에 이벤트 리스너 추가
     document.querySelectorAll(".subReplyModify").forEach((button) => {
       button.addEventListener("click", function () {
-        // const subReplyId = this.dataset.rno;
-        // showSubEditForm(subReplyId);
+        const subReplyId = this.dataset.rno;
+        showSubEditForm(subReplyId);
         console.log("답글 수정");
       });
     });
@@ -246,6 +246,36 @@ async function fetchUpdateReply(
   editReplyContent.value = "";
 }
 
+// 답글 수정하는 비동기 요청
+async function fetchUpdateSubReply(bno, subReplyId, editSubReplyContent, editSubReplyPassword) {
+  const url = BASE_URL + "/sub";
+
+  const payload = {
+    boardId: bno,
+    subReplyId: subReplyId,
+    editSubReplyContent: editSubReplyContent.value,
+    editSubReplyPassword: editSubReplyPassword.value,
+  };
+
+  const response = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await response.json();
+
+  console.log(data);
+
+  fetchReplies(bno);
+  
+  // 입력창 초기화
+  editSubReplyPassword.value = "";
+  editSubReplyContent.value = "";
+}
+
 // 댓글을 삭제하는 비동기 요청
 async function fetchDeleteReply(bno, replyId, replyDeletePassword) {
   const url = BASE_URL;
@@ -307,11 +337,11 @@ function displayReplies(replies) {
           <div id="subRepliesContainer" style="display: none">
           </div>
         </div>
-        <div id="editSubReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
+        <div id="SubReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
         </div>
         <div id="editReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
         </div>
-        <div id="editDeleteForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
+        <div id="DeleteReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
         </div>
         `;
 
@@ -353,9 +383,7 @@ function displayReplies(replies) {
 
 // 답글 버튼 클릭시 답글 입력화면 출력
 function showEditSubReplyForm(replyId) {
-  const editSubReplyForm = document.getElementById(
-    `editSubReplyForm-${replyId}`
-  );
+  const editSubReplyForm = document.getElementById(`SubReplyForm-${replyId}`);
 
   if (editSubReplyForm.style.display === "block") {
     editSubReplyForm.style.display = "none";
@@ -406,7 +434,7 @@ function showEditForm(replyId) {
     editForm.style.display = "block";
     editForm.innerHTML = `
       <h2>댓글 수정</h2>
-        <input type="hidden" data-rno="editReplyId" />
+        <input type="hidden" data-rno=${replyId}/>
         <input
           type="password"
           id="editReplyPassword"
@@ -434,9 +462,47 @@ function showEditForm(replyId) {
   });
 }
 
+// 답글 수정 버튼 클릭시 해당 답글 수정화면 출력
+function showSubEditForm(subReplyId) {
+  const editSubform = document.getElementById(`editSubReplyForm-${subReplyId}`);
+
+  if (editSubform.style.display === "block") {
+    editSubform.style.display = "none";
+  } else {
+    editSubform.style.display = "block";
+    editSubform.innerHTML = `
+      <h2>답글 수정</h2>
+        <input type="hidden" data-rno=${subReplyId} />
+        <input
+          type="password"
+          id="editSubReplyPassword"
+          placeholder="답글 비밀번호"
+          required
+        />
+        <textarea
+          id="editSubReplyContent"
+          placeholder="답글 내용"
+          required
+        ></textarea>
+        <button id="editSubReplySubmitBtn" type="button">답글 수정</button>
+      `;
+  }
+
+  const editSubReplyContent = document.getElementById("editSubReplyContent");
+  const editSubReplyPassword = document.getElementById("editSubReplyPassword");
+
+  const editSubReplySubmitBtn = document.getElementById("editSubReplySubmitBtn");
+
+  editSubReplySubmitBtn.addEventListener("click", (e) => {
+    if (e.target === editSubReplySubmitBtn) {
+      fetchUpdateSubReply(bno, subReplyId, editSubReplyContent, editSubReplyPassword);
+    }
+  });
+}
+
 // 삭제 버튼 클릭시 해당 댓글 삭제 화면 출력
 function showDeleteForm(replyId) {
-  const deleteForm = document.getElementById(`editDeleteForm-${replyId}`);
+  const deleteForm = document.getElementById(`DeleteReplyForm-${replyId}`);
 
   if (deleteForm.style.display === "block") {
     deleteForm.style.display = "none";

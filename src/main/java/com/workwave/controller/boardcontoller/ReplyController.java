@@ -113,4 +113,24 @@ public class ReplyController {
                 .ok()
                 .body(replyService.getReplies(dto.getReplyId()));
     }
+
+    // 댓글 수정 요청
+    @RequestMapping(value = "/sub", method = {RequestMethod.PUT, RequestMethod.PATCH})
+    public ResponseEntity<?> updateSubReply(@RequestBody @Valid SubReplyUpdateDto dto) {
+
+        log.info("ReplyUpdateDto: {}", dto);
+
+        boolean flag = replyService.updateSubReply(dto);
+
+        if (flag) {
+            return ResponseEntity
+                    .ok()
+                    .body(replyService.getReplies(dto.getBoardId()));
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("댓글 업데이트에 실패했습니다.");
+        }
+
+    }
 }
