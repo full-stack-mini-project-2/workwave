@@ -2,6 +2,8 @@ package com.workwave.entity.trrafic;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @ToString
 @NoArgsConstructor

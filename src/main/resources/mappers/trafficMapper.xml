@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.workwave.mapper.trafficMapper">
+    <insert id="save" >
+        INSERT INTO traffic
+        (arrival, departure, station, need_Time , regDateTime)
+        VALUES
+        (#{arrival}, #{departure}, #{station}, #{needTime} , #{regDateTime})
+    </insert>
+
+    <select id="findAll">
+
+    </select>
+</mapper>

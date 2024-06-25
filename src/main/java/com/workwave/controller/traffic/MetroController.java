@@ -3,12 +3,11 @@ package com.workwave.controller.traffic;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.workwave.dto.traffic.Station;
+import com.workwave.dto.traffic.request.Station;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 
 import java.io.BufferedReader;

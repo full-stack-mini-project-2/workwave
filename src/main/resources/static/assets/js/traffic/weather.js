@@ -1,9 +1,17 @@
 
+let cityName = '';
+let temperature = '';
+let currentWeather = '';
+let currentHumidity = '';
+let windSpeed ='';
+
+
 
 function getWeather() {
     const apiKey = "a54f739fb74fe16024127bca11322fe5";
     const city = "Seoul";
     const urlString = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+
 
     fetch(urlString)
         .then(response => {
@@ -30,4 +38,10 @@ function getWeather() {
 
 // 날씨API 실행
 getWeather();
+
+
+function weatherInfo (){
+    const weatherInfo = document.getElementById('weather');
+
+}
 

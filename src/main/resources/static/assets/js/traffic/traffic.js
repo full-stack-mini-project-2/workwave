@@ -5,11 +5,6 @@ var mapOptions = {
 
 var map = new naver.maps.Map("map", mapOptions);
 
-// let sx = 126.93737555322481;
-// let sy = 37.55525165729346;
-// let ex = 126.88265238619182;
-// let ey = 37.481440035175375;
-
 let sx, sy, ex, ey;
 let jsonResponse = {};
 
@@ -166,19 +161,46 @@ function drawNaverPolyLine(data) {
   }
 }
 
-function trafficInfomation(totalSation, totalTime) {
-  const station = totalSation;
-  const time = totalTime;
-  const departure = departureOption.textContent.trim();
-  const arrival = arrivalOption.textContent.trim();
+let timeoutId;
 
-  // 객체 생성
-  const trafficInfo = {
-    station: station,
-    time: time,
-    departure: departure,
-    arrival: arrival,
-  };
+function trafficInfomation(totalStation, totalTime) {
+  // 기존 타이머가 있으면 취소
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
 
-  console.log(trafficInfo);
+  // 새로운 타이머 설정 (500ms 지연)
+  timeoutId = setTimeout(() => {
+    const station = totalStation;
+    const time = totalTime;
+    const departure = departureOption.textContent.trim();
+    const arrival = arrivalOption.textContent.trim();
+
+    // 객체 생성
+    const trafficInfo = {
+      station: station,
+      needTime: time,
+      departure: departure,
+      arrival: arrival,
+    };
+
+    // JSON 문자열로 변환 및 서버로 전송
+    const trafficInfoJson = JSON.stringify(trafficInfo);
+
+    fetch('/traffic-Info', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: trafficInfoJson
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    })
+  }, 5000);  // 500ms 지연 시간
 }
+

@@ -1,4 +1,4 @@
-package com.workwave.dto.traffic;
+package com.workwave.dto.traffic.request;
 
 
 import lombok.*;
