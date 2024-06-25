@@ -220,8 +220,8 @@
                             <h1 class="login-title">로그인</h1>
                             <form action="login" method="post" id="loginForm">
                                 <div class="form-group">
-                                    <label for="account">아이디:</label>
-                                    <input type="text" id="account" name="account" required />
+                                    <label for="userId">아이디:</label>
+                                    <input type="text" id="userId" name="userId" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="password">비밀번호:</label>

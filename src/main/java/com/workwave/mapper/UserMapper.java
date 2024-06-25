@@ -17,7 +17,7 @@ public interface UserMapper {
     boolean save(User user);
 
     //회원 정보 개별 조회
-    User findOne(String account);
+    User findOne(String userId);
 
 
     boolean existsById(@Param("type") String type,

@@ -21,7 +21,7 @@ public class JoinDto {
     @NotBlank(message = "아이디는 필수값입니다.")
     @Size(min=4,max=14, message="아이디는 4~14글자")
     @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "아이디는 영문과 숫자만 포함해야 합니다.")
-    private String account;
+    private String userId;
 
     @NotBlank
     private String password;
@@ -57,7 +57,7 @@ public class JoinDto {
                 .password(this.password)
                 .userEmail(this.userEmail)
                 .userName(this.userName)
-                .account(this.account)
+                .userId(this.userId)
                 .userPosition(this.userPosition)
                 .departmentId(this.departmentId)
                 .build();

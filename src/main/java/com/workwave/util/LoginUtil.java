@@ -20,7 +20,7 @@ public class LoginUtil {
     // 로그인한 회원의 계정명 얻기
     public static String getLoggedInUserAccount(HttpSession session) {
         LoginUserInfoDto loggedInUser = getLoggedInUser(session);
-        return loggedInUser != null ? loggedInUser.getAccount() : null;
+        return loggedInUser != null ? loggedInUser.getUserId() : null;
     }
 
     public static LoginUserInfoDto getLoggedInUser(HttpSession session) {

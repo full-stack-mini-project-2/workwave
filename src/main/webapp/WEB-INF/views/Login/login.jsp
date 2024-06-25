@@ -20,7 +20,7 @@
                 <form action="login" method="post" id="loginForm">
                     <div class="form-group">
                         <label for="username">아이디:</label>
-                        <input type="text" id="account" name="account" required />
+                        <input type="text" id="userId" name="userId" required />
                     </div>
                     <div class="form-group">
                         <label for="password">비밀번호:</label>

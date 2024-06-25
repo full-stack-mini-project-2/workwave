@@ -14,5 +14,5 @@ import java.time.LocalDateTime;
 public class AutoLoginDto {
     private  String sessionId; //자동 로그인 쿠키값
     private LocalDateTime limitTime; // 만료 시간
-    private String account;   //계정명
+    private String userId;   //계정명
 }

@@ -1,6 +1,5 @@
 package com.workwave.service;
 
-import com.sun.net.httpserver.Authenticator;
 import com.workwave.dto.DepartmentNameDto;
 import com.workwave.dto.user.AutoLoginDto;
 import com.workwave.dto.user.JoinDto;
@@ -23,7 +22,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static com.sun.jna.platform.unix.X11.Success;
 import static com.workwave.service.LoginResult.*;
 import static com.workwave.util.LoginUtil.*;
 
@@ -64,13 +62,13 @@ public class UserService {
                                     HttpServletResponse response) {
 
         // 회원가입 여부 확인
-        String account = dto.getAccount();
+        String userId = dto.getUserId();
         //멤버 조회 db
-        User foundMember = usermapper.findOne(account);
+        User foundMember = usermapper.findOne(userId);
         log.debug("멤버 조회 found 확인:{}",foundMember);
 
         if (foundMember == null) {
-            log.info("{} - 회원가입이 필요합니다.", account);
+            log.info("{} - 회원가입이 필요합니다.", userId);
             return NO_ACC;
         }
 
@@ -106,7 +104,7 @@ public class UserService {
                     AutoLoginDto.builder()
                             .sessionId(sessionId)
                             .limitTime(LocalDateTime.now().plusDays(90))
-                            .account(account)
+                            .userId(userId)
                             .build()
             );
         }
@@ -135,7 +133,6 @@ public class UserService {
 
 
     public void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
-        log.debug("클리어1 🌈");
         // 1. 쿠키 제거하기
         Cookie c = WebUtils.getCookie(request, AUTO_LOGIN_COOKIE);
         if(c!=null){
@@ -143,16 +140,14 @@ public class UserService {
             c.setMaxAge(0);  //0초로 하면 제거됨.
             response.addCookie(c);
         }
-        log.debug("클리어2 🌈");
         //2. db에 자동로그인 컬럼들을 원래대로 돌림
         usermapper.updateAutoLogin(
                 AutoLoginDto.builder()
                         .sessionId("none")
                         .limitTime(LocalDateTime.now())
-                        .account(LoginUtil.getLoggedInUserAccount(request.getSession()))
+                        .userId(LoginUtil.getLoggedInUserAccount(request.getSession()))
                         .build()
         );
-        log.debug("클리어3 🌈");
     } //auto LoginClear
 
 }//endUserService
