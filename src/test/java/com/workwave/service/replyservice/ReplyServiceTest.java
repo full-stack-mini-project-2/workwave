@@ -1,9 +1,9 @@
-package com.workwave.service.boardservice;
+package com.workwave.service.replyservice;
 
 import com.workwave.dto.replydto.ReplyWriteDto;
 import com.workwave.entity.board.Reply;
-import com.workwave.mapper.boardmapper.BoardMapper;
 import com.workwave.mapper.boardmapper.ReplyMapper;
+import com.workwave.service.boardservice.ReplyService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -40,7 +40,7 @@ class ReplyServiceTest {
 
             Reply reply = dto.toEntity();
             when(replyMapper.save(reply)).thenReturn(true);
-            boardMapper.updateCount();
+
             // When
             boolean result = replyService.save(dto);
 
