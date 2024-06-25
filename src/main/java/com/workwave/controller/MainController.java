@@ -6,6 +6,7 @@ import com.workwave.dto.user.LoginDto;
 import com.workwave.service.LoginResult;
 import com.workwave.service.UserService;
 import com.workwave.util.FileUtil;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,10 +45,13 @@ public class MainController {
     //로그인 페이지 이동  Get
     @GetMapping("/login")
     public String login() {
+
+
         return "/Login/login";
     }
 
-    @PostMapping("/login")
+//    @PostMapping("/login")
+@PostMapping({"/login", "/"})
     public String signIn(LoginDto dto,
                          RedirectAttributes ra,                    //리다이렉트 할때 쓰는 전송 객체
                          HttpServletRequest request,        //세션 사용 목적⭐️
@@ -127,6 +131,29 @@ public class MainController {
         return ResponseEntity
                 .ok()
                 .body(flag);
+    }
+// http://localhost:8383/login?logout
+    //로그 아웃 처리
+    @GetMapping("/member/logout")
+    public String logOut(
+            HttpServletRequest request
+            ,HttpServletResponse response){  //세션 가져오기.(스프링이 알아서 해줌)
+
+        log.debug("삭제 시작~!");
+        //세션에서 로그인 기록 삭제
+        HttpSession session = request.getSession();
+        //자동 로그인 상태인지 확인
+        if(LoginUtil.isAutoLogin(request)) {
+            //쿠키를 제거하고, db에도 자동 로그인 관련 데이터를 원래대로 해놓음
+            userService.autoLoginClear(request, response);
+
+        }
+        session.removeAttribute("login");
+        //세션을 초기화 (reset)
+        session.invalidate();  //무효화
+        //홈으로 보내기
+        return "redirect:/";
+
     }
 
 

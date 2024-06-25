@@ -8,6 +8,7 @@ import com.workwave.dto.user.LoginDto;
 import com.workwave.dto.user.LoginUserInfoDto;
 import com.workwave.entity.User;
 import com.workwave.mapper.UserMapper;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -133,23 +134,25 @@ public class UserService {
     }
 
 
-//    public void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
-//
-//        // 1. 쿠키 제거하기
-//        Cookie c = WebUtils.getCookie(request, AUTO_LOGIN_COOKIE);
-//        if(c!=null){
-//            c.setPath("/");
-//            c.setMaxAge(0);  //0초로 하면 제거됨.
-//            response.addCookie(c);
-//        }
-//        //2. db에 자동로그인 컬럼들을 원래대로 돌림
-//        memberMapper.updateAutoLogin(
-//                AutoLoginDto.builder()
-//                        .sessionId("none")
-//                        .limitTime(LocalDateTime.now())
-//                        .account(LoginUtil.getLoggedInUserAccount(request.getSession()))
-//                        .build()
-//        );
-//    } //auto LoginClear
+    public void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
+        log.debug("클리어1 🌈");
+        // 1. 쿠키 제거하기
+        Cookie c = WebUtils.getCookie(request, AUTO_LOGIN_COOKIE);
+        if(c!=null){
+            c.setPath("/");
+            c.setMaxAge(0);  //0초로 하면 제거됨.
+            response.addCookie(c);
+        }
+        log.debug("클리어2 🌈");
+        //2. db에 자동로그인 컬럼들을 원래대로 돌림
+        usermapper.updateAutoLogin(
+                AutoLoginDto.builder()
+                        .sessionId("none")
+                        .limitTime(LocalDateTime.now())
+                        .account(LoginUtil.getLoggedInUserAccount(request.getSession()))
+                        .build()
+        );
+        log.debug("클리어3 🌈");
+    } //auto LoginClear
 
 }//endUserService
