@@ -29,7 +29,7 @@
 
                     <label>프로필 이미지 추가</label>
 
-                    <input type="file" id="profile-img" accept="image/*" style="display: none" name="profileImage" />
+                    <input type="file" id="profile-img" accept="image/*" style="display: none" name="profileImg" />
                   </div>
                   <table>
                     <tr>

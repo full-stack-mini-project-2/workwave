@@ -10,7 +10,7 @@
         user_email, user_access_level,profile_img,user_created_at,department_id)
         Values
         (#{userId},#{employeeId},#{userPosition},#{password},#{userName},
-        #{userEmail},"USER",#{profileImage},#{userCreateAt},#{departmentId})
+        #{userEmail},"USER",#{profileImg},#{userCreateAt},#{departmentId})
     </insert>
     <select id="findDepartmentAll" resultType="com.workwave.dto.DepartmentNameDto">
         SELECT * FROM Department;

@@ -33,7 +33,7 @@ public class JoinDto {
     @Email
     private String userEmail;
     //프로필 사진 데이터 // 여러장이면 List로 읽기
-    private MultipartFile profileImage;
+    private MultipartFile profileImg;
     //사번
     private String employeeId;
     //직책

@@ -208,6 +208,17 @@
 
             <div class="login-box">
                 <c:if test="${not empty login.nickName}">
+                    <div class="profile-box">
+
+                        <c:choose>
+                            <c:when test="${login != null && login.profile != null}">
+                                <img src="${login.profile}" alt="profile image">
+                            </c:when>
+                            <c:otherwise>
+                                <img src="/assets/img/anonymous.png" alt="profile image">
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
                     <div>
                         <h2 class="intro-text">${login.nickName}님 환영합니다. </h2>
                         <a href="/member/logout" class="logout-button"> <button class="logout-button"> 로그아웃 </button>

@@ -108,7 +108,7 @@ public class MainController {
 
         log.debug("parameter: {}", dto);
         // 프로필 사진 추출
-        MultipartFile profileImage = dto.getProfileImage();
+        MultipartFile profileImage = dto.getProfileImg();
         String profilePath = null;
         if (!profileImage.isEmpty()) {
             log.debug("attached profile image name: {}", profileImage.getOriginalFilename());

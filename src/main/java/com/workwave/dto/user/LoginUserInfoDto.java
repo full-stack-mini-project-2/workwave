@@ -24,6 +24,6 @@ public class LoginUserInfoDto {
         this.email = user.getUserEmail();
         this.nickName = user.getUserName();
         this.userAccessLevel = user.getUserAccessLevel().name();  //.name() 쓰면 enum에서 대문자만 뜯어온다~!
-        this.profile=user.getProfileImage();
+        this.profile=user.getProfileImg();
     }
 }

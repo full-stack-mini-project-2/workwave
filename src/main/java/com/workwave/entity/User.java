@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class User {
     private String employeeId;
     private String userId;
@@ -26,7 +25,7 @@ public class User {
     private LocalDateTime limitTime;
 
     @Setter
-    private String profileImage;
+    private String profileImg;
     @Setter
     private String userCreateAt;
 }

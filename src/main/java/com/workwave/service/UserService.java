@@ -40,7 +40,7 @@ public class UserService {
 
     public  boolean join(JoinDto dto, String profilePath) {
         User user = dto.toEntity();
-        user.setProfileImage(profilePath); // 프로필 사진 경로 엔터티에 설정
+        user.setProfileImg(profilePath); // 프로필 사진 경로 엔터티에 설정
         LocalDateTime currentDateTime = LocalDateTime.now();
 
         // 날짜와 시간 형식 지정
@@ -116,7 +116,7 @@ public class UserService {
 
     public static void maintainLoginState(HttpSession session, User foundUser) {
         log.info("{}님 로그인 성공", foundUser.getUserName());
-
+log.info("프로필 사진:",foundUser.getProfileImg());
         // 세션의 수명 : 설정된 시간 OR 브라우저를 닫기 전까지
         int maxInactiveInterval = session.getMaxInactiveInterval();
         session.setMaxInactiveInterval(60 * 60); // 세션 수명 1시간 설정
