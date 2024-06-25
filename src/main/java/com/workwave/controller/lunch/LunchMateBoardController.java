@@ -59,11 +59,11 @@ public class LunchMateBoardController {
         return "redirect:/lunchMateBoard/list"; // 다시 목록 페이지로 리다이렉트
     }
 
-    // 게시글 상세보기
-    @GetMapping("/view")
-    public String view(@RequestParam("lunchPostNumber") int lunchPostNumber, Model model) {
-        LunchMateBoard board = lunchMateBoardService.findOne(lunchPostNumber);
-        model.addAttribute("board", board);
-        return "lunch/viewLunchBoard"; // src/main/webapp/WEB-INF/views/lunch/viewLunchBoard.jsp
-    }
+//    // 게시글 상세보기
+//    @GetMapping("/view")
+//    public String view(@RequestParam("lunchPostNumber") int lunchPostNumber, Model model) {
+//        LunchMateBoard board = lunchMateBoardService.findOne(lunchPostNumber);
+//        model.addAttribute("board", board);
+//        return "lunch/viewLunchBoard"; // src/main/webapp/WEB-INF/views/lunch/viewLunchBoard.jsp
+//    }
 }

@@ -10,9 +10,9 @@ public interface LunchMateBoardMapper {
 
     // 게시물 목록 조회
     List<LunchMateBoard> findAll();
-
-    // 게시물 상세 조회
-    LunchMateBoard findOne(int lunchPostNumber);
+//
+//    // 게시물 상세 조회
+//    LunchMateBoard findOne(int lunchPostNumber);
 
     // 게시물 등록
     boolean save(LunchMateBoard lunchMateBoard);

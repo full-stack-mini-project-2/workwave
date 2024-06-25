@@ -22,10 +22,10 @@ public class LunchMateBoardService {
         return lunchMateBoardMapper.findAll();
     }
 
-    // 게시물 상세 조회
-    public LunchMateBoard findOne(int lunchPostNumber) {
-        return lunchMateBoardMapper.findOne(lunchPostNumber);
-    }
+//    // 게시물 상세 조회
+//    public LunchMateBoard findOne(int lunchPostNumber) {
+//        return lunchMateBoardMapper.findOne(lunchPostNumber);
+//    }
 
     // 게시물 등록
     public boolean save(LunchMateBoard lunchMateBoard) {
