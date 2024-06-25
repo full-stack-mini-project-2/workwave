@@ -10,8 +10,8 @@ import lombok.*;
 @Builder
 public class SubReplyDeleteDto {
 
-    private int replyId;
+    private int boardId;
     private int subReplyId;
-    private String replyDeletePassword;
+    private String subReplyDeletePassword;
 
 }

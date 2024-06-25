@@ -35,4 +35,7 @@ public interface ReplyMapper {
 
     // 대댓글 수정
     boolean updateSubReply(SubReply subReply);
+
+    // 대댓글 삭제
+    boolean deleteSubReply(int subReplyId);
 }

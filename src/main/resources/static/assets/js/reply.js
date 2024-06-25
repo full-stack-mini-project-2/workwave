@@ -128,8 +128,8 @@ async function fetchSubReplies(rno) {
     // 대댓글 삭제버튼에 이벤트 리스너 추가
     document.querySelectorAll(".subReplyDelete").forEach((button) => {
       button.addEventListener("click", function () {
-        // const subReplyId = this.dataset.rno;
-        // showSubEditForm(subReplyId);
+        const subReplyId = this.dataset.rno;
+        showSubDeleteForm(subReplyId);
         console.log("답글 삭제");
       });
     });
@@ -247,7 +247,12 @@ async function fetchUpdateReply(
 }
 
 // 답글 수정하는 비동기 요청
-async function fetchUpdateSubReply(bno, subReplyId, editSubReplyContent, editSubReplyPassword) {
+async function fetchUpdateSubReply(
+  bno,
+  subReplyId,
+  editSubReplyContent,
+  editSubReplyPassword
+) {
   const url = BASE_URL + "/sub";
 
   const payload = {
@@ -270,7 +275,7 @@ async function fetchUpdateSubReply(bno, subReplyId, editSubReplyContent, editSub
   console.log(data);
 
   fetchReplies(bno);
-  
+
   // 입력창 초기화
   editSubReplyPassword.value = "";
   editSubReplyContent.value = "";
@@ -303,6 +308,35 @@ async function fetchDeleteReply(bno, replyId, replyDeletePassword) {
   fetchReplies(bno);
 
   replyDeletePassword.value = "";
+}
+
+// 대댓글을 삭제하는 비동기 요청
+async function fetchDeleteSubReply(bno, subReplyId, subReplyDeletePassword) {
+  const url = BASE_URL + "/sub";
+
+  const payload = {
+    boardId: bno,
+    subReplyId: subReplyId,
+    subReplyDeletePassword: subReplyDeletePassword.value,
+  };
+
+  console.log(payload);
+
+  const response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const data = await response.json();
+
+  console.log(data);
+
+  fetchReplies(bno);
+
+  subReplyDeletePassword.value = "";
 }
 
 // 댓글 목록을 HTML에 표시하는 요청
@@ -491,11 +525,18 @@ function showSubEditForm(subReplyId) {
   const editSubReplyContent = document.getElementById("editSubReplyContent");
   const editSubReplyPassword = document.getElementById("editSubReplyPassword");
 
-  const editSubReplySubmitBtn = document.getElementById("editSubReplySubmitBtn");
+  const editSubReplySubmitBtn = document.getElementById(
+    "editSubReplySubmitBtn"
+  );
 
   editSubReplySubmitBtn.addEventListener("click", (e) => {
     if (e.target === editSubReplySubmitBtn) {
-      fetchUpdateSubReply(bno, subReplyId, editSubReplyContent, editSubReplyPassword);
+      fetchUpdateSubReply(
+        bno,
+        subReplyId,
+        editSubReplyContent,
+        editSubReplyPassword
+      );
     }
   });
 }
@@ -527,6 +568,43 @@ function showDeleteForm(replyId) {
   deleteSubmitBtn.addEventListener("click", (e) => {
     if (e.target === deleteSubmitBtn) {
       fetchDeleteReply(bno, replyId, replyDeletePassword);
+    }
+  });
+}
+
+// 대댓글 삭제 버튼 클릭시 해당 대댓글 삭제 화면 출력
+function showSubDeleteForm(subReplyId) {
+  const DeleteSubReplyForm = document.getElementById(
+    `DeleteSubReplyForm-${subReplyId}`
+  );
+
+  if (DeleteSubReplyForm.style.display === "block") {
+    DeleteSubReplyForm.style.display = "none";
+  } else {
+    DeleteSubReplyForm.style.display = "block";
+    DeleteSubReplyForm.innerHTML = `
+      <h2>댓글 삭제</h2>
+        <input
+          type="password"
+          id="subReplyDeletePassword"
+          placeholder="답글 비밀번호"
+          required
+        />
+        <button id="deleteSubReplySubmitBtn" type="button">확인</button>
+      `;
+  }
+
+  const subReplyDeletePassword = document.getElementById(
+    "subReplyDeletePassword"
+  );
+
+  const deleteSubReplySubmitBtn = document.getElementById(
+    "deleteSubReplySubmitBtn"
+  );
+
+  deleteSubReplySubmitBtn.addEventListener("click", (e) => {
+    if (e.target === deleteSubReplySubmitBtn) {
+      fetchDeleteSubReply(bno, subReplyId, subReplyDeletePassword);
     }
   });
 }

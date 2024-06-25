@@ -121,4 +121,19 @@ public class ReplyService {
         }
 
     }
+
+    @Transactional
+    public boolean deleteSubReply(SubReplyDeleteDto dto) {
+
+        SubReply original = replyMapper.findOneSubReply(dto.getSubReplyId());
+
+        if (original.getSubReplyPassword().equals(dto.getSubReplyDeletePassword())) {
+
+            boolean delete = replyMapper.deleteSubReply(dto.getSubReplyId());
+
+            return delete;
+        } else {
+            return false;
+        }
+    }
 }

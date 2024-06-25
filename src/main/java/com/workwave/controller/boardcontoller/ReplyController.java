@@ -129,7 +129,27 @@ public class ReplyController {
         } else {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("댓글 업데이트에 실패했습니다.");
+                    .body("대댓글 업데이트에 실패했습니다.");
+        }
+
+    }
+
+    // 대댓글 삭제 요청
+    @DeleteMapping("/sub")
+    public ResponseEntity<?> deleteSubReply(@RequestBody SubReplyDeleteDto dto) {
+
+        log.info("SubReplyDeleteDto: {}", dto);
+
+        boolean flag = replyService.deleteSubReply(dto);
+
+        if (flag) {
+            return ResponseEntity
+                    .ok()
+                    .body(replyService.getReplies(dto.getBoardId()));
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("대댓글 삭제에 실패했습니다.");
         }
 
     }
