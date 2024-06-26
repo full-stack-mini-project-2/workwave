@@ -19,6 +19,14 @@ public class TodoListApiController {
 
     private final TodoListService todoListService;
 
+    //개인의 특정 투두리스트 조회
+    @GetMapping("/personal/aTodo/{todoId}")
+    public ResponseEntity<TodoList> getPersonalOneTodos(@PathVariable int todoId) {
+        TodoList myOneTodo = todoListService.findMyTodoById(todoId);
+        return ResponseEntity.ok(myOneTodo);
+    }
+
+
     // 개인의 투두리스트 조회
     @GetMapping("/personal/{userId}")
     public ResponseEntity<List<TodoList>> getPersonalTodos(@PathVariable String userId) {
@@ -33,14 +41,35 @@ public class TodoListApiController {
         return ResponseEntity.ok(todoList); // 또는 생성된 TodoList 객체를 반환할 수 있습니다.
     }
 
+
     // 개인 투두리스트 수정
-    @PutMapping("/{todoId}")
+    @PutMapping("/personal/{todoId}")
     public ResponseEntity<TodoList> updatePersonalTodo(
             @PathVariable int todoId,
-            @RequestBody TodoList todoList) {
-        todoListService.updatePersonalTodo(todoList);
-        return ResponseEntity.ok(todoList);
+            @RequestBody TodoList updatedTodoList) {
+        TodoList existingTodoList = todoListService.findMyTodoById(todoId);
+
+        if (existingTodoList == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Update fields based on updatedTodoList
+        existingTodoList.setTodoContent(updatedTodoList.getTodoContent());
+        existingTodoList.setTodoStatus(updatedTodoList.getTodoStatus());
+        existingTodoList.setTodoUpdateAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime());
+        // Add more fields as needed
+
+        todoListService.updatePersonalTodo(existingTodoList);
+
+        return ResponseEntity.ok(existingTodoList);
     }
+//    @PutMapping("/personal/{todoId}")
+//    public ResponseEntity<TodoList> updatePersonalTodo(
+//            @PathVariable int todoId,
+//            @RequestBody TodoList todoList) {
+//        todoListService.updatePersonalTodo(todoList);
+//        return ResponseEntity.ok(todoList);
+//    }
 
     // 개인 투두리스트 삭제
     @DeleteMapping("/personal/{todoId}")

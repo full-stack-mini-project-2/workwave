@@ -20,7 +20,7 @@
         SELECT * FROM TodoList
     </select>
 
-    <select id="findById" parameterType="int" resultType="com.workwave.entity.schedule.TodoList">
+    <select id="findByTodoId" parameterType="int" resultType="com.workwave.entity.schedule.TodoList">
         SELECT * FROM TodoList WHERE todo_id = #{todoId}
     </select>
 
@@ -34,14 +34,12 @@
     </insert>
 
     <update id="updatePersonalTodo" parameterType="com.workwave.entity.schedule.TodoList">
-        UPDATE TodoList
-        SET todo_content = #{todoContent},
-            todo_status = #{todoStatus},
-            todo_createAt = #{todoCreateAt},
-            todo_updateAt = #{todoUpdateAt},
-            color_index_id = #{colorIndexId}
-        WHERE todo_id = #{todoId}
-    </update>
+    UPDATE TodoList
+    SET todo_content = #{todoContent},
+        todo_status = #{todoStatus},
+        todo_updateAt = #{todoUpdateAt}
+    WHERE todo_id = #{todoId}
+</update>
 
     <delete id="deletePersonalTodo" parameterType="int">
         DELETE FROM TodoList WHERE todo_id = #{todoId}

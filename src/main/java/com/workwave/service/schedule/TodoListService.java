@@ -14,15 +14,17 @@ import java.util.List;
 @Service
 public class TodoListService {
     private final TodoListMapper todoListMapper;
+
+    // 특정 개인의 투두리스트 목록 하나 조회
+    public TodoList findMyTodoById(int todoId) {
+        return todoListMapper.findByTodoId(todoId);
+    }
+
     // 개인의 투두리스트 조회
     public List<TodoList> findMyPersonalTodos(String userId) {
         return todoListMapper.findByUserId(userId);
     }
 //
-    // 개인의 특정 투두리스트 하나 조회
-    public TodoList findPersonalTodoById(int todoId) {
-        return todoListMapper.findById(todoId);
-    }
 
     // 개인 투두리스트 추가
     public void insertPersonalTodo(TodoList todoList) {
@@ -86,10 +88,6 @@ public class TodoListService {
         return todoListMapper.findAll();
     }
 
-    // 특정 개인의 투두리스트 목록 하나 조회
-    public TodoList findById(int todoId) {
-        return todoListMapper.findById(todoId);
-    }
 
     // 개인 투두리스트 추가
     public void insertPersonalTodo(TodoList todoList) {

@@ -41,13 +41,13 @@ public class TodoListViewController {
         return "redirect:/todos/personal?userId=" + todoList.getUserId();
     }
 
-    // 개인 투두리스트 수정 페이지
-    @GetMapping("/personal/edit/{todoId}")
-    public String showEditPersonalTodoForm(@PathVariable int todoId, Model model) {
-        TodoList todoList = todoListService.findPersonalTodoById(todoId);
-        model.addAttribute("todoList", todoList);
-        return "edit-personal-todo"; // edit-personal-todo.html로 매핑
-    }
+//    // 개인 투두리스트 수정 페이지
+//    @GetMapping("/personal/edit/{todoId}")
+//    public String showEditPersonalTodoForm(@PathVariable int todoId, Model model) {
+//        TodoList todoList = todoListService.findPersonalTodoById(todoId);
+//        model.addAttribute("todoList", todoList);
+//        return "edit-personal-todo"; // edit-personal-todo.html로 매핑
+//    }
 
     // 개인 투두리스트 수정 처리
     @PostMapping("/personal/edit/{todoId}")

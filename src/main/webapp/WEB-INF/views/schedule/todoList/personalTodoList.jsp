@@ -129,32 +129,35 @@
         };
 
     // AngularJS Controller에서 edit 함수 추가
-    $scope.edit = function(task) {
-        $http.get('/api/todos/personal/' + task.todoId)
-            .then(function(response) {
-                $scope.editingTask = response.data;
-            })
-            .catch(function(error) {
-                console.error('Error fetching task to edit:', error);
-            });
-    };
-
-    // 투두리스트 수정 처리 함수
-    $scope.update = function() {
-        $http.put('/api/todos/personal/' + $scope.editingTask.todoId, $scope.editingTask)
-            .then(function(response) {
-                // 수정된 투두리스트로 tasks 배열 업데이트
-                var index = $scope.tasks.findIndex(function(task) {
-                    return task.todoId === $scope.editingTask.todoId;
+        $scope.edit = function(task) {
+            $http.get('/api/todos/personal/aTodo/' + task.todoId)
+                .then(function(response) {
+                    $scope.editingTask = response.data;
+                })
+                .catch(function(error) {
+                    console.error('Error fetching task to edit:', error);
                 });
-                if (index !== -1) {
-                    $scope.tasks[index] = response.data;
-                }
-                $scope.editingTask = null; // 수정 상태 초기화
-            })
-            .catch(function(error) {
-                console.error('Error updating task:', error);
-            });
+        };
+        $scope.update = function() {
+            if ($scope.editingTask && $scope.editingTask.todoId) {
+                $http.put('/api/todos/personal/' + $scope.editingTask.todoId, $scope.editingTask)
+                    .then(function(response) {
+                        var updatedTask = response.data;
+                        // 클라이언트에서 tasks 배열을 업데이트
+                        for (var i = 0; i < $scope.tasks.length; i++) {
+                            if ($scope.tasks[i].todoId === updatedTask.todoId) {
+                                $scope.tasks[i] = updatedTask;
+                                break;
+                            }
+                        }
+                        $scope.editingTask = null; // 수정 상태 초기화
+                    })
+                    .catch(function(error) {
+                        console.error('Error updating task:', error);
+                    });
+            } else {
+                console.error('TodoId is not defined for editingTask:', $scope.editingTask);
+            }
         };
     });
 </script>
