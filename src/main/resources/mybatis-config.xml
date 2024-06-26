@@ -32,5 +32,7 @@
         <mapper resource="mappers/UserMapper.xml"/>
 
         <!--        <mapper resource="mappers/MemoMapper.xml"/>-->
+
+        <mapper resource="mappers/LunchMateBoardMapper.xml"/>
     </mappers>
 </configuration>
