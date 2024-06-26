@@ -1,8 +1,6 @@
 package com.workwave.controller;
 
 import com.workwave.dto.DepartmentNameDto;
-import com.workwave.dto.JoinDto;
-import com.workwave.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
