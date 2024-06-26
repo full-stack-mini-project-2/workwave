@@ -16,7 +16,12 @@ public class BoardListDto {
     private int boardId;
     private String boardTitle;
     private String userId;
+    private String boardNickname;
     private LocalDateTime boardCreatedAt;
+    private int replyCount;
+    private int viewCount;
+    private int likes;
+    private int dislikes;
 
     // 날짜 변환 메서드 추가
     public String getFormattedBoardCreatedAt() {

@@ -16,7 +16,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       .pagination li {
         margin: 0 5px;
       }
-      
+
       /* 페이지네이션 링크 */
       .pagination li a {
         color: #007bff;
@@ -63,16 +63,20 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         background-color: #007bff;
         color: #fff;
       }
+
     </style>
   </head>
   <body>
     <h1>게시물 목록</h1>
     <table>
-      <tr>
+      <tr class="table">
         <th>번호</th>
         <th>제목</th>
         <th>작성자</th>
         <th>작성일</th>
+        <th>조회수</th>
+        <th>추천</th>
+        <th>비추천</th>
       </tr>
 
       <!-- 검색 폼 시작 -->
@@ -90,10 +94,18 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <tr>
           <td>${board.boardId}</td>
           <td>
-            <a href="/board/detail?bno=${board.boardId}">${board.boardTitle}</a>
+            <a href="/board/detail?bno=${board.boardId}"
+              >${board.boardTitle}
+              <c:if test="${board.replyCount != null && board.replyCount ne 0}">
+                <span>(${board.replyCount})</span>
+              </c:if>
+            </a>
           </td>
-          <td>${board.userId}</td>
+          <td>${board.boardNickname}</td>
           <td>${board.formattedBoardCreatedAt}</td>
+          <td style="text-align: center">${board.viewCount}</td>
+          <td style="text-align: center">${board.likes}</td>
+          <td style="text-align: center">${board.dislikes}</td>
         </tr>
       </c:forEach>
     </table>
@@ -168,5 +180,6 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         });
       });
     </script>
+
   </body>
 </html>

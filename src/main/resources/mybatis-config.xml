@@ -13,6 +13,8 @@
 
         <!--        <typeAlias type="com.study.SpringStudy.springmvc.chap05.entity.Member" alias="member"/>-->
         <typeAlias type="com.workwave.entity.board.Board" alias="board"/>
+        <typeAlias type="com.workwave.entity.board.Reply" alias="reply"/>
+        <typeAlias type="com.workwave.entity.board.SubReply" alias="subReply"/>
 
         <typeAlias type="com.workwave.entity.User" alias="user"/>
 
@@ -24,6 +26,7 @@
     <mappers>
 
         <mapper resource="mappers/BoardMapper.xml"/>
+        <mapper resource="mappers/ReplyMapper.xml"/>
         <!--        <mapper resource="mappers/PersonMapper.xml"/>-->
 
         <mapper resource="mappers/UserMapper.xml"/>
