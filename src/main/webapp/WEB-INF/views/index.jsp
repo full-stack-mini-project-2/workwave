@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" %> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 
@@ -10,6 +9,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <head>
             <title>Work-Wave</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
             <style>
                 body {
                     font-family: "Noto Sans KR", sans-serif;
@@ -56,53 +56,117 @@ uri="http://java.sun.com/jsp/jstl/core" %>
                     transform: translateY(-5px);
                 }
 
-                .login-box {
-                    background-color: #fff;
-                    border-radius: 10px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    padding: 30px;
-                    text-align: center;
-                    margin-left: 80px;
-                    margin-right: 100px;
-                    width: 300px;
+                .login-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    background-color: #f0f0f0;
+                    margin: auto;
                 }
 
-                .login-box h2 {
-                    margin-top: 0;
-                    font-size: 1.8rem;
+                .login-box {
+                    background-color: white;
+                    padding: 40px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                    max-width: 400px;
+                    width: 100%;
+                    margin-left: 50px;
+                    margin-right: 50px;
+                }
+
+                .login-title {
+                    text-align: center;
+                    margin-bottom: 30px;
                     color: #333;
                 }
 
-                .login-box input,
-                .login-box button {
+                .form-group {
+                    margin-bottom: 20px;
+                }
+
+                label {
                     display: block;
-                    width: 85%;
-                    margin-bottom: 15px;
-                    padding: 10px 15px;
-                    font-size: 1rem;
-                    border: 1px solid #ddd;
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                    color: #555;
+                }
+
+                input[type="text"],
+                input[type="password"] {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #ccc;
                     border-radius: 5px;
-                    outline: none;
-                    margin-right: 80px;
+                    font-size: 16px;
                 }
 
-                .login-box button {
-                    background-color: #4caf50;
-                    color: #fff;
+                .auto-login {
+                    display: flex;
+                    align-items: center;
+                    font-size: 14px;
+                    color: #555;
+                }
+
+                .auto-login input[type="checkbox"] {
+                    margin-right: 5px;
+                }
+
+                .login-button {
+                    display: block;
+                    width: 100%;
+                    padding: 12px 0;
+                    background-color: #007bff;
+                    color: white;
                     border: none;
+                    border-radius: 5px;
+                    font-size: 16px;
                     cursor: pointer;
-                    transition: background-color 0.3s ease;
-                    width: 96%;
                 }
 
-                .login-box button:hover {
-                    background-color: #45a049;
+                .join-button {
+                    display: block;
+                    text-align: center;
+                    color: #007bff;
+                    text-decoration: none;
+                    font-size: 14px;
+                }
+
+                .error-message {
+                    color: red;
+                    text-align: center;
+                    margin-top: 10px;
+                }
+
+                .intro-text {
+                    display: inline;
+                }
+
+                .logout-button {
+                    display: inline;
+                    text-align: center;
+                    color: #007bff;
+                    text-decoration: none;
+                    font-size: 14px;
+                }
+
+
+                .profile-box {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                }
+
+                .profile-box img {
+                    width: 100%;
+                    height: 100%;
                 }
             </style>
             <link rel="icon" href="/assets/img/workwave_logo.png" />
 
         </head>
-
 
         <body>
             <div class="clock">00:00:00</div>
@@ -156,14 +220,68 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             </div>
 
             <div class="login-box">
-                <h2>Login</h2>
-                <input type="text" placeholder="Username" />
-                <input type="password" placeholder="Password" />
-                <button>Login</button>
+                <c:if test="${not empty login.nickName}">
+                    <div class="profile-box">
+
+                        <c:choose>
+                            <c:when test="${login != null && login.profile != null}">
+                                <img src="${login.profile}" alt="profile image">
+                            </c:when>
+                            <c:otherwise>
+                                <img src="/assets/img/anonymous.png" alt="profile image">
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <div>
+                        <h2 class="intro-text">${login.nickName}님 환영합니다. </h2>
+                        <a href="/member/logout" class="logout-button"> <button class="logout-button"> 로그아웃 </button>
+                        </a>
+                    </div>
+                </c:if>
+                <c:if test="${empty login.nickName}">
+                    <div class="login-container">
+                        <div class="login-box">
+                            <h1 class="login-title">로그인</h1>
+                            <form action="login" method="post" id="loginForm">
+                                <div class="form-group">
+                                    <label for="userId">아이디:</label>
+                                    <input type="text" id="userId" name="userId" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">비밀번호:</label>
+                                    <input type="password" id="password" name="password" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="auto-login" class="auto-login">
+                                        <input type="checkbox" id="auto-login" name="autoLogin" />
+                                        <span> 자동 로그인</span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="login-button">
+                                    로그인 <i class="fas fa-sign-in-alt"></i></button>
+                            </form>
+                            <br /><br />
+                            <div class="form-group">
+                                <a href="/join" class="join-button">회원가입</a>
+                            </div>
+                            <div id="error-message" class="error-message"></div>
+                        </div>
+                    </div>
+                    <script>
+                        //서버에서 전송된
+                        const result = "${result}";
+                        console.log("result " + result);
+
+                        if (result === "NO_ACC") {
+                            alert("아이디가 존재하지 않습니다.");
+                        } else if (result === "NO_PW") {
+                            alert("비밀번호가 틀렸습니다.");
+                        }
+                    </script>
+                </c:if>
             </div>
+
+
         </body>
 
         </html>
-
-
-

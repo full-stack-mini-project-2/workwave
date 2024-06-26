@@ -1,4 +1,4 @@
-package workwave.controller.schedule;
+package com.workwave.controller.schedule;
 
 import com.workwave.entity.*;
 import com.workwave.mapper.*;
