@@ -1,6 +1,6 @@
 package com.workwave.mapper.scheduleMapper;
 
-import com.workwave.dto.scheduleDTO.request.CalendarsDto;
+import com.workwave.dto.schedule_dto.request.CalendarsDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

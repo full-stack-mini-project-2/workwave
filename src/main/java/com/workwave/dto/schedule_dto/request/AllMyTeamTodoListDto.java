@@ -1,17 +1,17 @@
-package com.workwave.entity.schedule;
+package com.workwave.dto.schedule_dto.request;
 
 import lombok.*;
-import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-@Getter @Setter
+@AllArgsConstructor
 @EqualsAndHashCode
 @ToString
 @Builder
-public class TeamTodoList {
+public class AllMyTeamTodoListDto {
     private int teamTodoId;
     private String teamTodoContent;
     private String teamTodoStatus;

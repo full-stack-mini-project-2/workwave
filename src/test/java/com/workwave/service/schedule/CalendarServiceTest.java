@@ -1,6 +1,6 @@
 package com.workwave.service.schedule;
 
-import com.workwave.dto.scheduleDTO.request.CalendarsDto;
+import com.workwave.dto.schedule_dto.request.CalendarsDto;
 import com.workwave.mapper.scheduleMapper.CalendarMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,15 +1,13 @@
 package com.workwave.controller.schedule;
 
-import com.workwave.dto.scheduleDTO.request.AllMyCalendarEventDto;
-import com.workwave.dto.scheduleDTO.request.AllMyTeamCalendarEventDto;
-import com.workwave.dto.scheduleDTO.request.CalendarsDto;
+import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
+import com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto;
 import com.workwave.service.schedule.CalendarService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 

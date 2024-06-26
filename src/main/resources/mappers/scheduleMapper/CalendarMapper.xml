@@ -50,7 +50,7 @@
     </select>
 
     <!-- 개인 캘린더 일정리스트 조회 -->
-    <select id="getMyAllCalendarEvents" resultType="com.workwave.dto.scheduleDTO.request.AllMyCalendarEventDto">
+    <select id="getMyAllCalendarEvents" resultType="com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto">
         SELECT CE.cal_event_id,
         CE.cal_event_date,
         CE.cal_event_title,
@@ -68,7 +68,7 @@
     </select>
 
     <!-- 본인이 속한 팀 캘린더 일정리스트 조회 -->
-    <select id="getMyAllTeamCalendarEvents" resultType="com.workwave.dto.scheduleDTO.request.AllMyTeamCalendarEventDto">
+    <select id="getMyAllTeamCalendarEvents" resultType="com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto">
         SELECT
         CE.cal_event_id,
         CE.cal_event_date,

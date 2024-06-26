@@ -1,7 +1,7 @@
 package com.workwave.controller.schedule;
 
-import com.workwave.dto.scheduleDTO.request.AllMyCalendarEventDto;
-import com.workwave.dto.scheduleDTO.request.AllMyTeamCalendarEventDto;
+import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
+import com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto;
 import com.workwave.service.schedule.CalendarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

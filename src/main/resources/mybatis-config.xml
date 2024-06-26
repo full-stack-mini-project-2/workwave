@@ -13,9 +13,12 @@
         <typeAlias type="com.workwave.entity.user.User" alias="user"/>
 
 <!--        calendar, todoList dto class -->
-        <typeAlias alias="calendarsDto" type="com.workwave.dto.scheduleDTO.request.CalendarsDto"/>
-        <typeAlias alias="allMyCalendarEventDto" type="com.workwave.dto.scheduleDTO.request.AllMyCalendarEventDto"/>
-        <typeAlias alias="teamCalendarEventDto" type="com.workwave.dto.scheduleDTO.request.AllMyTeamCalendarEventDto"/>
+        <typeAlias alias="calendarsDto" type="com.workwave.dto.schedule_dto.request.CalendarsDto"/>
+        <typeAlias alias="allMyCalendarEventDto" type="com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto"/>
+        <typeAlias alias="teamCalendarEventDto" type="com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto"/>
+<!--        todolist class-->
+        <typeAlias alias="AllMyTodoListDto" type="com.workwave.dto.schedule_dto.request.AllMyTodoListDto"/>
+        <typeAlias alias="AllMyTeamTodoListDto" type="com.workwave.dto.schedule_dto.request.AllMyTeamTodoListDto"/>
 
 
 <!--        calendar entity class -->
