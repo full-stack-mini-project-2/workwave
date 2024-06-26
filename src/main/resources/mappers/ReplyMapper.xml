@@ -23,7 +23,7 @@
             reply_updated_at
         FROM reply
         WHERE board_id = #{boardId}
-        order by reply_created_at desc
+        ORDER BY reply_created_at DESC
         LIMIT #{p.pageStart}, #{p.amount}
     </select>
 
@@ -74,6 +74,7 @@
         sub_reply_updated_at
         FROM SubReply
         WHERE reply_id = #{replyId}
+        ORDER BY sub_reply_created_at DESC
     </select>
 
     <update id="updateSubReply">

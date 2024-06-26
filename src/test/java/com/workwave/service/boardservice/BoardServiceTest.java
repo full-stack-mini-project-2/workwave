@@ -41,6 +41,7 @@ class BoardServiceTest {
         for (int i = 0; i < numBoards; i++) {
             BoardWriteDto dto = new BoardWriteDto();
             dto.setBoardTitle("Test Title " + i);
+            dto.setBoardNickname("John Doe");
             dto.setBoardContent("Test Content " + i);
             dto.setBoardPassword("1234" + i);
             Board b = dto.toEntity();

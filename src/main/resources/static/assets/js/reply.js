@@ -1,5 +1,5 @@
 // ====== 전역 변수 ========
-const BASE_URL = "http://localhost:8181/reply";
+const BASE_URL = "http://localhost:8383/reply";
 const bno = document.getElementById("reply-container").dataset.bno;
 
 document.getElementById("submitBtn").addEventListener("click", function () {
@@ -155,8 +155,8 @@ async function fetchSubReplies(rno) {
       return;
     }
 
-    document.getElementById("subRepliesContainer").style.display = "block";
-    document.getElementById("subRepliesContainer").innerHTML = tag;
+    document.getElementById(`subRepliesContainer-${rno}`).style.display = "block";
+    document.getElementById(`subRepliesContainer-${rno}`).innerHTML = tag;
 
     // 대댓글 수정버튼에 이벤트 리스너 추가
     document.querySelectorAll(".subReplyModify").forEach((button) => {
@@ -412,7 +412,7 @@ function displayReplies(replies, pageInfo) {
             <button class="replyDelete" type="button" data-rno=${replyId}>삭제</button>
             <button class="subReply" type="button" data-rno=${replyId}>답글</button>
           </div>
-          <div id="subRepliesContainer" style="display: none">
+          <div id="subRepliesContainer-${replyId}" style="display: none">
           </div>
         </div>
         <div id="SubReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>

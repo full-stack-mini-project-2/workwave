@@ -286,8 +286,8 @@ prefix="c" %>
       }
     </style>
   </head>
-  <script type="module" src="/resources/static/assets/js/reply.js"></script>
-  <script type="module" src="/resources/static/assets/js/board.js"></script>
+  <script type="module" src="/assets/js/reply.js"></script>
+  <script type="module" src="/assets/js/board.js"></script>
   <body>
     <div id="reply-container" data-bno="${board.boardId}">
       <h1>${board.boardTitle}</h1>
