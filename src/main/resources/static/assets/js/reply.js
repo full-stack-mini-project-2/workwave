@@ -91,8 +91,6 @@ function replyPageClickEvent() {
   });
 }
 
-replyPageClickEvent();
-
 // 대댓글을 조회하는 요청
 async function fetchSubReplies(rno) {
   // GET 요청을 보낼 URL
@@ -659,3 +657,7 @@ function showSubDeleteForm(subReplyId) {
     }
   });
 }
+
+// =====================실행========================
+
+replyPageClickEvent();
