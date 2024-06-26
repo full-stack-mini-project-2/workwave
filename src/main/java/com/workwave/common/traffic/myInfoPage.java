@@ -14,7 +14,7 @@ public class myInfoPage {
 
     public myInfoPage() {
         this.pageNo = 1;
-        this.amount = 10;
+        this.amount = 4;
     }
 
     public int getPageStart(){
@@ -31,8 +31,8 @@ public class myInfoPage {
     }
 
     public void setAmount(int amount) {
-        if(amount < 10 || amount > 100){
-            this.amount = 10;
+        if(amount < 4 || amount > 40){
+            this.amount = 4;
             return;
         }
         this.amount = amount;
