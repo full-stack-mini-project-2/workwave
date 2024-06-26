@@ -20,6 +20,16 @@
         <typeAlias alias="AllMyTodoListDto" type="com.workwave.dto.schedule_dto.request.AllMyTodoListDto"/>
         <typeAlias alias="AllMyTeamTodoListDto" type="com.workwave.dto.schedule_dto.request.AllMyTeamTodoListDto"/>
 
+        <typeAlias type="com.workwave.entity.board.Reply" alias="reply"/>
+        <typeAlias type="com.workwave.entity.board.SubReply" alias="subReply"/>
+
+        <typeAlias type="com.workwave.entity.User" alias="user"/>
+
+
+        <typeAlias type="com.workwave.entity.trrafic.Traffic" alias="traffic"/>
+
+
+
 
 <!--        calendar entity class -->
         <typeAlias type="com.workwave.entity.schedule.ColorIndex" alias="colorIndex"/>
@@ -33,6 +43,7 @@
 
     <mappers>
         <mapper resource="mappers/BoardMapper.xml"/>
+
         <mapper resource="mappers/UserMapper.xml"/>
 
 <!--        schedule mapper-->
@@ -40,6 +51,18 @@
         <mapper resource="mappers/scheduleMapper/ColorIndexMapper.xml"/>
         <mapper resource="mappers/scheduleMapper/TodoListMapper.xml"/>
 
-    </mappers>
 
+        <mapper resource="mappers/ReplyMapper.xml"/>
+        <!--        <mapper resource="mappers/PersonMapper.xml"/>-->
+
+        <mapper resource="mappers/UserMapper.xml"/>
+
+        <mapper resource="mappers/trafficMapper.xml"/>
+
+
+        <!--        <mapper resource="mappers/MemoMapper.xml"/>-->
+
+        <mapper resource="mappers/LunchMateBoardMapper.xml"/>
+    </mappers>
 </configuration>
+

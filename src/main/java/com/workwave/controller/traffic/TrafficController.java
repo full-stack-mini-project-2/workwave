@@ -1,51 +1,47 @@
-//package com.workwave.controller.traffic;
-//
-//
-//import lombok.extern.slf4j.Slf4j;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.GetMapping;
-//
-//import java.io.BufferedReader;
-//import java.io.IOException;
-//import java.io.InputStreamReader;
-//import java.net.*;
-//import java.nio.charset.StandardCharsets;
-//
-//@Controller
-//@Slf4j
-//public class TrafficController {
-//
-//    @GetMapping("/traffic-map")
-//    public String trafficApi() throws IOException {
-//
-//        // ODsay Api Key 정보
-//        String apiKey = "w1WM1Vpn8KiSqjB1BVcizSYtug8JqQ7bpTwvXxCSig0";
-//
-//        String urlInfo = "https://api.odsay.com/v1/api/searchBusLane?busNo=130&CID=1000&apiKey="
-//                + URLEncoder.encode(apiKey, StandardCharsets.UTF_8);
-//
-//        // http 연결
-//        URL url = new URL(urlInfo);
-//        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//        conn.setRequestMethod("GET");
-//        conn.setRequestProperty("Content-type", "application/json");
-//
-//        BufferedReader bufferedReader =
-//                new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//
-//        StringBuilder sb = new StringBuilder();
-//        String line;
-//        while ((line = bufferedReader.readLine()) != null) {
-//            sb.append(line);
-//        }
-//        bufferedReader.close();
-//        conn.disconnect();
-//
-//        // 결과 출력
-//        // System.out.println(sb.toString());
-//        return "traffic/Traffic";
-//    }
-//
-//}
-//
-//
+package com.workwave.controller.traffic;
+
+import com.workwave.common.traffic.myInfoPage;
+import com.workwave.common.traffic.myPageMaker;
+import com.workwave.dto.traffic.request.totalTrafficInfoDto;
+import com.workwave.dto.traffic.response.trafficInfoDto;
+import com.workwave.service.traffic.trafficService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
+
+@Controller
+@Slf4j
+@RequiredArgsConstructor
+public class TrafficController {
+
+    private final trafficService trafficService;
+
+    @PostMapping("/traffic-Info")
+    public String trafficInformation(@RequestBody trafficInfoDto trafficinfo){
+
+        trafficService.save(trafficinfo);
+
+
+        return "traffic/Traffic";
+    }
+
+    @GetMapping("/traffic-myInfo")
+    public String findTrafficInfo(Model model, myInfoPage page){
+
+        List<totalTrafficInfoDto> totalTraffic = trafficService.findAll(page);
+        myPageMaker maker = new myPageMaker(page);
+
+        model.addAttribute("maker",maker);
+        model.addAttribute("totalTraffic",totalTraffic);
+
+        return "traffic/myTrafficInfo";
+    }
+
+
+}

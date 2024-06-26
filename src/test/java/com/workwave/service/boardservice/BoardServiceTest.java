@@ -32,7 +32,7 @@ class BoardServiceTest {
     }
 
     @Test
-    @DisplayName("저장을 누르면 게시물이 작성된다.")
+    @DisplayName("저장을 누르면 게시물이 저장된다.")
     void save() {
 
         //given
@@ -43,9 +43,8 @@ class BoardServiceTest {
             dto.setBoardTitle("Test Title " + i);
             dto.setBoardContent("Test Content " + i);
             dto.setBoardPassword("1234" + i);
-//            boardService.save(dto);
             Board b = dto.toEntity();
-            b.setBoardCreateAt(LocalDateTime.now());
+            b.setBoardCreatedAt(LocalDateTime.now());
             boolean save = boardMapper.save(b);// 게시물 저장 메서드 호출
             assertTrue(save); // 각 저장 결과가 true인지 검증
         }
