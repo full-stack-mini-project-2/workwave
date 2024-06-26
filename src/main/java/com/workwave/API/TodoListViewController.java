@@ -1,7 +1,9 @@
 package com.workwave.API;
 
+import com.workwave.entity.schedule.ColorIndex;
 import com.workwave.entity.schedule.TeamTodoList;
 import com.workwave.entity.schedule.TodoList;
+import com.workwave.service.schedule.ColorIndexService;
 import com.workwave.service.schedule.TodoListService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -18,11 +22,22 @@ import java.util.List;
 public class TodoListViewController {
 
     private final TodoListService todoListService;
+    private final ColorIndexService colorIndexService;
 
     // 개인의 투두리스트 조회 페이지
     @GetMapping("/personal/{userId}")
     public String getMyPersonalTodos(@PathVariable String userId, Model model) {
         List<TodoList> personalTodos = todoListService.findPersonalTodosByUserId(userId);
+
+        List<ColorIndex> colorIndexes = colorIndexService.getAllColorIndexes();
+
+        // 컬러 인덱스 아이디에 따른 해시코드 맵 생성
+        Map<Integer, String> colorIndexMap = new HashMap<>();
+        for (ColorIndex colorIndex : colorIndexes) {
+            colorIndexMap.put(colorIndex.getColorIndexId(), colorIndex.getColorCode());
+        }
+
+        model.addAttribute("colorIndexMap", colorIndexMap);
         model.addAttribute("personalTodos", personalTodos);
         return "schedule/todoList/personalTodoList"; // personal-todos.html로 매핑
     }

@@ -1,5 +1,6 @@
 package com.workwave.mapper.scheduleMapper;
 
+import com.workwave.entity.schedule.ColorIndex;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -8,8 +9,8 @@ import java.util.List;
 public interface ColorIndexMapper {
 
     //컬러 인덱스 리스트 가져오기
-//    List<ColorIndexDto> getAllColorIndices();
-//    //컬러 아이디로 인덱스 구하w기
+    List<ColorIndex> getAllColorIndexes();
+//    //컬러 아이디로 인덱스 구하기
 //    ColorIndexDto getColorIndexById(int color_index_id);
 //    //컬러 인덱스 추가하기 (팔레트 수정)
 //    void insertColorIndex(ColorIndexDto colorIndex);

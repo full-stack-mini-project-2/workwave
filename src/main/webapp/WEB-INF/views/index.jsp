@@ -199,6 +199,7 @@
                 %>
                 <a href="<%= redirectUrl %>">
                     <div class="right-box">투두리스트</div>
+
                 </a>
                 <a href="schedule/colorIndex/colorList">
                     <div class="right-box">컬러리스트</div>

@@ -17,9 +17,9 @@ public class ColorIndexController {
     @Autowired
     private ColorIndexService colorIndexService;
 
-//    @GetMapping("/colorList")
+    @GetMapping("/colorList")
 //    public String getAllColorIndices(Model model) {
-//        List<ColorIndexDto> colorIndices = colorIndexService.getAllColorIndices();
+//        ColorIndexDto colorIndices = colorIndexService.getAllColorIndices();
 //        model.addAttribute("colorIndices", colorIndices);
 //        return "schedule/colorIndex/colorList";
 //    }
