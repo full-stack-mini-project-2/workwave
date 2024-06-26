@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.workwave.mapper.scheduleMapper.CalendarMapper">
+
+    <!-- getCalendarEventsForPeriod 쿼리 -->
+    <select id="getCalendarEventsForPeriod" parameterType="map" resultType="allMyCalendarEventDto">
+        SELECT
+        CE.cal_event_id AS calEventId,
+        CE.cal_event_date AS calEventDate,
+        CE.cal_event_title AS calEventTitle,
+        CE.cal_event_description AS calEventDescription,
+        CE.cal_event_createAt AS calEventCreateAt,
+        CE.cal_event_updateAt AS calEventUpdateAt,
+        CE.color_index_id AS colorIndexId,
+        CE.user_id AS userId,
+        CE.calendar_id AS calendarId,
+        U.user_name AS userName
+        FROM
+        CalendarEvent CE
+        JOIN
+        Users U ON U.user_id = CE.user_id
+        WHERE
+        CE.user_id = #{userId}
+        AND CE.cal_event_date BETWEEN #{startDate} AND #{endDate}
+        AND team_calendar_id IS NULL;
+    </select>
+
+<!--    회원가입 시 개인, 팀 캘린더 공용 사용 권한 부여-->
+    <insert id="saveUserCalendars">
+        INSERT INTO calendar
+        () VALUES
+    </insert>
+
+    <!-- 본인의 모든 캘린더 (개인, 팀)조회 -->
+    <select id="getMyAllCalendars" resultType="calendarsDto">
+        SELECT
+        C.calendar_id,
+        C.calendar_name,
+        T.team_calendar_id,
+        T.team_calendar_name,
+        U.user_id,
+        U.user_name
+        FROM TeamCalendar T
+        JOIN Users U ON T.department_id = U.department_id
+        JOIN Calendar C ON U.user_id = C.user_id
+        WHERE U.user_id = #{userId};
+    </select>
+
+    <!-- 개인 캘린더 일정리스트 조회 -->
+    <select id="getMyAllCalendarEvents" resultType="com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto">
+        SELECT CE.cal_event_id,
+        CE.cal_event_date,
+        CE.cal_event_title,
+        CE.cal_event_description,
+        CE.cal_event_createAt,
+        CE.cal_event_updateAt,
+        CE.color_index_id,
+        CE.user_id,
+        CE.calendar_id,
+        U.user_name
+        FROM CalendarEvent CE
+        JOIN Users U ON CE.user_id = U.user_id
+        WHERE CE.user_id = #{userId}
+        AND CE.team_calendar_id IS NULL;
+    </select>
+
+    <!-- 본인이 속한 팀 캘린더 일정리스트 조회 -->
+    <select id="getMyAllTeamCalendarEvents" resultType="com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto">
+        SELECT
+        CE.cal_event_id,
+        CE.cal_event_date,
+        CE.cal_event_title,
+        CE.cal_event_description,
+        CE.cal_event_createAt,
+        CE.cal_event_updateAt,
+        CE.color_index_id,
+        CE.notice_id,
+        CE.team_calendar_id,
+        U.user_name,
+        D.department_name
+        FROM
+        CalendarEvent CE
+        JOIN
+        Users U ON CE.user_id = U.user_id
+        JOIN
+        Department D ON CE.department_id = D.department_id
+        WHERE
+        CE.user_id = #{userId}
+        AND CE.calendar_id IS NULL;
+    </select>
+
+    <!-- 본인 캘린더 이벤트 추가 -->
+    <insert id="insertCalendarEvent" parameterType="map">
+        INSERT INTO CalendarEvent (
+        cal_event_date,
+        cal_event_title,
+        cal_event_description,
+        user_id,
+        department_id,
+        calendar_id,
+        <if test="colorIndexId != null">
+            color_index_id,
+        </if>
+        <if test="noticeId != null">
+            notice_id,
+        </if>
+        )
+        VALUES (
+        #{calEventDate},
+        #{calEventTitle},
+        #{calEventDescription},
+        #{userId},
+        #{departmentId},
+        #{calendarId},
+        <if test="colorIndexId != null">
+            #{colorIndexId},
+        </if>
+        <if test="noticeId != null">
+            #{noticeId},
+        </if>
+        );
+    </insert>
+
+    <!-- 본인의 팀 캘린더에 캘린더 공유 일정 추가 -->
+    <insert id="insertTeamCalendarEvent" parameterType="map">
+        INSERT INTO CalendarEvent (
+        cal_event_date,
+        cal_event_title,
+        cal_event_description,
+        user_id,
+        department_id,
+        team_calendar_id,
+        <if test="colorIndexId != null">
+            color_index_id,
+        </if>
+        <if test="noticeId != null">
+            notice_id,
+        </if>
+        )
+        VALUES (
+        #{calEventDate},
+        #{calEventTitle},
+        #{calEventDescription},
+        #{userId},
+        #{departmentId},
+        #{teamCalendarId},
+        <if test="colorIndexId != null">
+            #{colorIndexId},
+        </if>
+        <if test="noticeId != null">
+            #{noticeId},
+        </if>
+        );
+    </insert>
+
+    <!-- 개인 캘린더 및 팀 캘린더 일정을 이벤트 id로 삭제 -->
+    <delete id="deleteCalendarEvent">
+        DELETE FROM CalendarEvent
+        WHERE cal_event_id = #{calEventId};
+    </delete>
+
+</mapper>

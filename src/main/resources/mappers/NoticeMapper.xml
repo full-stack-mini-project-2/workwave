@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.workwave.mapper.NoticeMapper">
-    <insert id="save" parameterType="com.workwave.entity.Notice">
+<mapper namespace="com.workwave.mapper.boardMapper.NoticeMapper">
+    <insert id="save" parameterType="com.workwave.entity.board.Notice">
         INSERT INTO notice (
                             user_id,
                             notice_title,

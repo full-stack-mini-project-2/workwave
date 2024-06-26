@@ -178,14 +178,14 @@
                 <a href="#">
                     <div class="right-box">우빈2</div>
                 </a>
-                <a href="#">
-                    <div class="right-box">윤종1</div>
+                <a href="schedule/calendar/calendarList">
+                    <div class="right-box">달력</div>
                 </a>
-                <a href="#">
-                    <div class="right-box">윤종2</div>
+                <a href="schedule/todoList/todoList">
+                    <div class="right-box">투두리스트</div>
                 </a>
-                <a href="#">
-                    <div class="right-box">윤종3</div>
+                <a href="schedule/colorIndex/colorList">
+                    <div class="right-box">컬러리스트</div>
                 </a>
                 <a href="#">
                     <div class="right-box">윤종4</div>

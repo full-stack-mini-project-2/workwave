@@ -2,7 +2,7 @@ package com.workwave.service.boardservice;
 
 import com.workwave.dto.boarddto.BoardWriteDto;
 import com.workwave.entity.board.Board;
-import com.workwave.mapper.boardmapper.BoardMapper;
+import com.workwave.mapper.boardMapper.BoardMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest
