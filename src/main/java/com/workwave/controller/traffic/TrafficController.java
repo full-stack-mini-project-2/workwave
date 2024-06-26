@@ -1,7 +1,9 @@
 package com.workwave.controller.traffic;
 
+import com.workwave.common.traffic.myInfoPage;
+import com.workwave.common.traffic.myPageMaker;
 import com.workwave.dto.traffic.request.totalTrafficInfoDto;
-import com.workwave.dto.traffic.response.trafficInfo;
+import com.workwave.dto.traffic.response.trafficInfoDto;
 import com.workwave.service.traffic.trafficService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +23,7 @@ public class TrafficController {
     private final trafficService trafficService;
 
     @PostMapping("/traffic-Info")
-    public String trafficInformation(@RequestBody trafficInfo trafficinfo){
+    public String trafficInformation(@RequestBody trafficInfoDto trafficinfo){
 
         trafficService.save(trafficinfo);
 
@@ -30,9 +32,12 @@ public class TrafficController {
     }
 
     @GetMapping("/traffic-myInfo")
-    public String findTrafficInfo(Model model){
+    public String findTrafficInfo(Model model, myInfoPage page){
 
-        List<totalTrafficInfoDto> totalTraffic = trafficService.findAll();
+        List<totalTrafficInfoDto> totalTraffic = trafficService.findAll(page);
+        myPageMaker maker = new myPageMaker(page);
+
+        model.addAttribute("maker",maker);
         model.addAttribute("totalTraffic",totalTraffic);
 
         return "traffic/myTrafficInfo";

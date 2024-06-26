@@ -2,8 +2,9 @@ package com.workwave.service.traffic;
 
 
 
+import com.workwave.common.traffic.myInfoPage;
 import com.workwave.dto.traffic.request.totalTrafficInfoDto;
-import com.workwave.dto.traffic.response.trafficInfo;
+import com.workwave.dto.traffic.response.trafficInfoDto;
 import com.workwave.mapper.trafficMapper;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -20,9 +20,9 @@ public class trafficService {
 
     private final trafficMapper trafficMapper;
 
-    public boolean save(trafficInfo trafficInfo){
+    public boolean save(trafficInfoDto trafficInfo){
 
-        trafficInfo newTraffic = trafficInfo.builder()
+        trafficInfoDto newTraffic = trafficInfo.builder()
                 .arrival(trafficInfo.getArrival())
                 .departure(trafficInfo.getDeparture())
                 .station(trafficInfo.getStation())
@@ -33,9 +33,9 @@ public class trafficService {
         return trafficMapper.save(newTraffic);
     }
 
-    public List<totalTrafficInfoDto> findAll(){
+    public List<totalTrafficInfoDto> findAll(myInfoPage page){
 
-        List<totalTrafficInfoDto> trafficList = trafficMapper.findAll();
+        List<totalTrafficInfoDto> trafficList = trafficMapper.findAll(page);
 
 
         return trafficList;

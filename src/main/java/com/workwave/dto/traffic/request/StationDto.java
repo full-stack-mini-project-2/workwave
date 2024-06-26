@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode
-public class Station {
+public class StationDto {
 
     private String longitude; // 경도
     private String latitude; // 위도
