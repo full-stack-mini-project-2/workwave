@@ -87,6 +87,7 @@ public class MainController {
     }
 
 
+
     //회원 가입 페이지 이동 Get
     @GetMapping("/join")
     public String join(Model model) {

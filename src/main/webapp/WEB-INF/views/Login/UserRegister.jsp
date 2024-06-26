@@ -33,7 +33,7 @@
                   </div>
                   <table>
                     <tr>
-                      <td>
+                      <td style="text-align: left">
                         <p>
                           <strong>아이디를 입력해주세요.</strong>&nbsp;&nbsp;&nbsp;
                           <span id="idChk"></span>
@@ -47,7 +47,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td>
+                      <td style="text-align: left">
                         <p>
                           <strong>비밀번호를 입력해주세요.</strong>&nbsp;&nbsp;&nbsp;<span id="pwChk"></span>
                         </p>
@@ -61,7 +61,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td>
+                      <td style="text-align: left">
                         <p>
                           <strong>비밀번호를 재확인해주세요.</strong>&nbsp;&nbsp;&nbsp;<span id="pwChk2"></span>
                         </p>
@@ -88,7 +88,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td>
+                      <td style="text-align: left">
                         <p>
                           <strong>이메일을 입력해주세요.</strong>&nbsp;&nbsp;&nbsp;<span id="emailChk"></span>
                         </p>
@@ -98,6 +98,13 @@
                       <td>
                         <input type="email" name="userEmail" id="userEmail" class="signUpInputStyle" required="required"
                           aria-required="true" placeholder="ex) abc@mvc.com" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: left">
+                        <p>
+                          <strong>부서를 선택해주세요.</strong>&nbsp;&nbsp;&nbsp;<span id="departmentChk"></span>
+                        </p>
                       </td>
                     </tr>
                     <tr>
@@ -114,10 +121,24 @@
                       </td>
                     </tr>
                     <tr>
+                      <td style="text-align: left">
+                        <p>
+                          <strong>사원 ID를 작성해주세요.</strong>&nbsp;&nbsp;&nbsp;<span id="employeeIdChk"></span>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
                       <td>
                         <label for="employee_id">사원 ID를 작성하세요</label><br />
                         <input type="text" class="signUpInputStyle" id="employee_id" name="employeeId"
                           placeholder="P000" required /><br />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="text-align: left">
+                        <p>
+                          <strong>직책을 입력해주세요.</strong>&nbsp;&nbsp;&nbsp;<span id="userPositionChk"></span>
+                        </p>
                       </td>
                     </tr>
                     <tr>
