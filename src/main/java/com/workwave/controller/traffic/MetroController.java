@@ -3,7 +3,7 @@ package com.workwave.controller.traffic;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.workwave.dto.traffic.Station;
+import com.workwave.dto.traffic.request.StationDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +15,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 @Controller
 @RequiredArgsConstructor
 public class MetroController {
 
-
+    // 지하철 정보 컨트롤러
     @GetMapping("/traffic-map")
     public String metroInfo(Model model) throws IOException {
 
@@ -30,7 +32,7 @@ public class MetroController {
         String uri = "https://api.odcloud.kr/api/15099316/v1/uddi:cfee6c20-4fee-4c6b-846b-a11c075d0987";
         uri += "?page=1&perPage=300&returnType=JSON&serviceKey=" + serviceKey;
 
-        ArrayList<Station> stationArrayList = null;
+        ArrayList<StationDto> stationArrayList = null;
 
         try {
             URL url = new URL(uri);
@@ -58,7 +60,7 @@ public class MetroController {
 
                 stationArrayList = new ArrayList<>();
                 for (JsonNode jsonNode : dataNode) {
-                    Station stationBuild = Station.builder()
+                    StationDto stationBuild = StationDto.builder()
                             .longitude(jsonNode.path("경도").asText())
                             .latitude(jsonNode.path("위도").asText())
                             .stationId(jsonNode.path("고유역번호(외부역코드)").asInt())
@@ -68,6 +70,10 @@ public class MetroController {
 
                     stationArrayList.add(stationBuild);
                 }
+
+
+                // 리스트값 가나다순으로 역 정렬
+                Collections.sort(stationArrayList, Comparator.comparing(StationDto::getStationName));
 
 
                 // System.out.println("stationArrayList: " + stationArrayList);

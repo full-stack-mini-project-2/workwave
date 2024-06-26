@@ -18,6 +18,10 @@
 
         <typeAlias type="com.workwave.entity.User" alias="user"/>
 
+
+        <typeAlias type="com.workwave.entity.trrafic.Traffic" alias="traffic"/>
+
+
         <!--        <typeAlias type="com.test.mvc.entity.Memo" alias="memo"/>-->
 
     </typeAliases>
@@ -30,6 +34,9 @@
         <!--        <mapper resource="mappers/PersonMapper.xml"/>-->
 
         <mapper resource="mappers/UserMapper.xml"/>
+
+        <mapper resource="mappers/trafficMapper.xml"/>
+
 
         <!--        <mapper resource="mappers/MemoMapper.xml"/>-->
 
