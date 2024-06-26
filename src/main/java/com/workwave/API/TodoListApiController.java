@@ -3,72 +3,83 @@ package com.workwave.API;
 import com.workwave.entity.schedule.TeamTodoList;
 import com.workwave.entity.schedule.TodoList;
 import com.workwave.service.schedule.TodoListService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.List;
 
-
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("api/todos")
 public class TodoListApiController {
 
-        private final TodoListService todoListService;
+    private final TodoListService todoListService;
 
-        public TodoListApiController(TodoListService todoListService) {
-            this.todoListService = todoListService;
-        }
+    // 개인의 투두리스트 조회
+    @GetMapping("/personal/{userId}")
+    public ResponseEntity<List<TodoList>> getPersonalTodos(@PathVariable String userId) {
+        List<TodoList> personalTodos = todoListService.findPersonalTodosByUserId(userId);
+        return ResponseEntity.ok(personalTodos);
+    }
 
-        @GetMapping("/personal/{userId}")
-        public List<TodoList> getPersonalTodos(@PathVariable String userId) {
-            return todoListService.findByUserId(userId);
-        }
-
-        @GetMapping("/team/{departmentId}")
-        public List<TeamTodoList> getTeamTodos(@PathVariable String departmentId) {
-            return todoListService.findTeamTodosByDepartmentId(departmentId);
-        }
-
+    // 개인 투두리스트 추가
     @PostMapping("/personal")
-    public void createPersonalTodo(@RequestBody TodoList todoList) {
-        todoList.setTodoStatus("inprogress");
-        todoList.setTodoCreateAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime());
-        todoList.setTodoUpdateAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime());
-        todoList.setColorIndexId(1);
-        todoListService.insert(todoList);
+    public ResponseEntity<TodoList> createPersonalTodo(@RequestBody TodoList todoList) {
+        todoListService.insertPersonalTodo(todoList);
+        return ResponseEntity.ok(todoList); // 또는 생성된 TodoList 객체를 반환할 수 있습니다.
     }
-        @PutMapping("/personal/{id}")
-        public void updatePersonalTodo(@PathVariable int id, @RequestBody TodoList todoList) {
-            todoList.setTodoId(id);
-            todoListService.update(todoList);
-        }
 
-        @DeleteMapping("/personal/{id}")
-        public void deletePersonalTodo(@PathVariable int id) {
-            todoListService.delete(id);
-        }
+    // 개인 투두리스트 수정
+    @PutMapping("/{todoId}")
+    public ResponseEntity<TodoList> updatePersonalTodo(
+            @PathVariable int todoId,
+            @RequestBody TodoList todoList) {
+        todoListService.updatePersonalTodo(todoList);
+        return ResponseEntity.ok(todoList);
+    }
 
+    // 개인 투두리스트 삭제
+    @DeleteMapping("/personal/{todoId}")
+    public ResponseEntity<Void> deletePersonalTodo(@PathVariable int todoId) {
+        todoListService.deletePersonalTodo(todoId);
+        return ResponseEntity.noContent().build();
+    }
+
+    // 팀 투두리스트 조회
+    @GetMapping("/team/{departmentId}")
+    public ResponseEntity<List<TeamTodoList>> findTeamTodosByDepartmentId(@PathVariable String departmentId) {
+        List<TeamTodoList> teamTodos = todoListService.findTeamTodosByDepartmentId(departmentId);
+        return ResponseEntity.ok(teamTodos);
+    }
+
+    // 팀 투두리스트 추가
     @PostMapping("/team")
-    public void createTeamTodo(@RequestBody TeamTodoList teamTodoList) {
-        teamTodoList.setTeamTodoStatus("inprogress");
-        teamTodoList.setTeamTodoCreateAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime());
-        teamTodoList.setTeamTodoUpdateAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime());
-        teamTodoList.setColorIndexId(1);
+    public ResponseEntity<Void> insertTeamTodo(@RequestBody TeamTodoList teamTodoList) {
         todoListService.insertTeamTodo(teamTodoList);
+        return ResponseEntity.noContent().build();
     }
 
-        @PutMapping("/team/{id}")
-        public void updateTeamTodo(@PathVariable int id, @RequestBody TeamTodoList teamTodoList) {
-            teamTodoList.setTeamTodoId(id);
-            todoListService.updateTeamTodo(teamTodoList);
-        }
-
-        @DeleteMapping("/team/{id}")
-        public void deleteTeamTodo(@PathVariable int id) {
-            todoListService.deleteTeamTodo(id);
-        }
+    // 팀 투두리스트 수정
+    @PutMapping("/team/{teamTodoId}")
+    public ResponseEntity<Void> updateTeamTodo(
+            @PathVariable int teamTodoId,
+            @RequestBody TeamTodoList teamTodoList) {
+        teamTodoList.setTeamTodoId(teamTodoId);
+        todoListService.updateTeamTodo(teamTodoList);
+        return ResponseEntity.noContent().build();
     }
+
+    // 팀 투두리스트 삭제
+    @DeleteMapping("/team/{teamTodoId}")
+    public ResponseEntity<Void> deleteTeamTodo(@PathVariable int teamTodoId) {
+        todoListService.deleteTeamTodo(teamTodoId);
+        return ResponseEntity.noContent().build();
+    }
+}
+
 
 
