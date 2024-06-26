@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.workwave.mapper.UserMapper">
+<mapper namespace="com.workwave.mapper.userMapper.UserMapper">
     <insert id="save">
         Insert into users
         (user_id, employee_id, user_position, password, user_name,

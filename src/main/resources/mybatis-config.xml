@@ -10,7 +10,7 @@
 
     <typeAliases>
         <typeAlias type="com.workwave.entity.board.Board" alias="board"/>
-        <typeAlias type="com.workwave.entity.user.User" alias="user"/>
+        <typeAlias type="com.workwave.entity.User" alias="user"/>
 
 <!--        calendar, todoList dto class -->
         <typeAlias alias="calendarsDto" type="com.workwave.dto.schedule_dto.request.CalendarsDto"/>

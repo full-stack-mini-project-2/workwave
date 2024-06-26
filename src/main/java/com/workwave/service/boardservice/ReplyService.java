@@ -5,7 +5,7 @@ import com.workwave.common.boardpage.PageMaker;
 import com.workwave.dto.replydto.*;
 import com.workwave.entity.board.Reply;
 import com.workwave.entity.board.SubReply;
-import com.workwave.mapper.boardmapper.BoardMapper;
+import com.workwave.mapper.boardMapper.BoardMapper;
 import com.workwave.mapper.boardmapper.ReplyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

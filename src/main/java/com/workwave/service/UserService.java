@@ -6,7 +6,7 @@ import com.workwave.dto.user.JoinDto;
 import com.workwave.dto.user.LoginDto;
 import com.workwave.dto.user.LoginUserInfoDto;
 import com.workwave.entity.User;
-import com.workwave.mapper.UserMapper;
+import com.workwave.mapper.userMapper.UserMapper;
 import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

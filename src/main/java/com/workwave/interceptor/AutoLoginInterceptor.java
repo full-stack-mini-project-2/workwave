@@ -1,7 +1,7 @@
 package com.workwave.interceptor;
 
 import com.workwave.entity.User;
-import com.workwave.mapper.UserMapper;
+import com.workwave.mapper.userMapper.UserMapper;
 import com.workwave.service.UserService;
 import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;

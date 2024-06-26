@@ -10,7 +10,7 @@
             (reply_content, nickName, board_id, reply_password, user_id)
         VALUES
             (#{replyContent}, #{nickName}, #{boardId}, #{replyPassword},
-            (SELECT user_id FROM users WHERE user_name = '김하이'))
+            (SELECT user_id FROM users WHERE user_name = 'John Doe'))
     </insert>
 
     <select id="replies" resultType="reply">
@@ -60,7 +60,7 @@
         (sub_reply_content, nickName, reply_id, sub_reply_password, user_id)
         VALUES
         (#{subReplyContent}, #{nickName}, #{replyId}, #{subReplyPassword},
-        (SELECT user_id FROM users WHERE user_name = '김하이'))
+        (SELECT user_id FROM users WHERE user_name = 'John Doe'))
     </insert>
 
     <select id="subReplies" resultType="subReply">

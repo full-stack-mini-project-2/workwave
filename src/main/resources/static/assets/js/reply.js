@@ -1,5 +1,5 @@
 // ====== 전역 변수 ========
-const BASE_URL = "http://localhost:8383/reply";
+const BASE_URL = "http://localhost:8181/reply";
 const bno = document.getElementById("reply-container").dataset.bno;
 
 document.getElementById("submitBtn").addEventListener("click", function () {
