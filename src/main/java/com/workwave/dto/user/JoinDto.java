@@ -1,4 +1,4 @@
-package com.workwave.dto;
+package com.workwave.dto.user;
 
 import com.workwave.entity.User;
 import lombok.*;
@@ -33,7 +33,7 @@ public class JoinDto {
     @Email
     private String userEmail;
     //프로필 사진 데이터 // 여러장이면 List로 읽기
-    private MultipartFile profileImage;
+    private MultipartFile profileImg;
     //사번
     private String employeeId;
     //직책
@@ -54,7 +54,7 @@ public class JoinDto {
 //                  ll
         return User.builder()
                 .employeeId(this.employeeId)
-                .userPassword(this.password)
+                .password(this.password)
                 .userEmail(this.userEmail)
                 .userName(this.userName)
                 .userId(this.userId)

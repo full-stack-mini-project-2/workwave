@@ -14,10 +14,10 @@
           <td>제목:</td>
           <td><input type="text" name="boardTitle" required /></td>
         </tr>
-        <!-- <tr>
-          <td>작성자:</td>
-          <td><input type="text" name="userId" required /></td>
-        </tr> -->
+        <tr>
+          <td>닉네임:</td>
+          <td><input type="text" name="boardNickname" required /></td>
+        </tr>
         <tr>
           <td>비밀번호:</td>
           <td><input type="password" name="boardPassword" required /></td>
