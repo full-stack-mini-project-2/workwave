@@ -36,5 +36,6 @@ public class myInfoPage {
             return;
         }
         this.amount = amount;
+        this.amount = amount;
     }
 }
