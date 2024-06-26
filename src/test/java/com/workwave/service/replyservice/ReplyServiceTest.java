@@ -2,7 +2,7 @@ package com.workwave.service.replyservice;
 
 import com.workwave.dto.replydto.ReplyWriteDto;
 import com.workwave.entity.board.Reply;
-import com.workwave.mapper.boardmapper.BoardMapper;
+import com.workwave.mapper.boardMapper.BoardMapper;
 import com.workwave.mapper.boardmapper.ReplyMapper;
 import com.workwave.service.boardservice.ReplyService;
 import org.junit.jupiter.api.BeforeEach;

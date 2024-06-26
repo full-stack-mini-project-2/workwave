@@ -41,13 +41,13 @@ public class TodoListViewController {
         model.addAttribute("personalTodos", personalTodos);
         return "schedule/todoList/personalTodoList"; // personal-todos.html로 매핑
     }
-
-    // 개인 투두리스트 추가 페이지
-    @GetMapping("/personal/add")
-    public String showAddPersonalTodoForm(Model model) {
-        model.addAttribute("todoList", new TodoList());
-        return "add-personal-todo"; // add-personal-todo.html로 매핑
-    }
+//
+//    // 개인 투두리스트 추가 페이지
+//    @GetMapping("/personal/add")
+//    public String showAddPersonalTodoForm(Model model) {
+//        model.addAttribute("todoList", new TodoList());
+//        return "add-personal-todo"; // add-personal-todo.html로 매핑
+//    }
 
     // 개인 투두리스트 추가 처리
     @PostMapping("/personal/add")
@@ -79,20 +79,23 @@ public class TodoListViewController {
         return "redirect:/todos/personal?userId=" + userId;
     }
 
+
+
+
     // 팀 투두리스트 조회 페이지
-    @GetMapping("/team")
-    public String getTeamTodos(@RequestParam String departmentId, Model model) {
+    @GetMapping("/team/{departmentId}")
+    public String getTeamTodos(@PathVariable String departmentId, Model model) {
         List<TeamTodoList> teamTodos = todoListService.findTeamTodosByDepartmentId(departmentId);
         model.addAttribute("teamTodos", teamTodos);
-        return "team-todos"; // team-todos.html로 매핑
+        return "schedule/todoList/teamTodoList";
     }
 
-    // 팀 투두리스트 추가 페이지
-    @GetMapping("/team/add")
-    public String showAddTeamTodoForm(Model model) {
-        model.addAttribute("teamTodoList", new TeamTodoList());
-        return "add-team-todo"; // add-team-todo.html로 매핑
-    }
+//    // 팀 투두리스트 추가 페이지
+//    @GetMapping("/team/add")
+//    public String showAddTeamTodoForm(Model model) {
+//        model.addAttribute("teamTodoList", new TeamTodoList());
+//        return "add-team-todo"; // add-team-todo.html로 매핑
+//    }
 
     // 팀 투두리스트 추가 처리
     @PostMapping("/team/add")
@@ -101,13 +104,13 @@ public class TodoListViewController {
         return "redirect:/todos/team?departmentId=" + teamTodoList.getDepartmentId();
     }
 
-    // 팀 투두리스트 수정 페이지
-    @GetMapping("/team/edit/{teamTodoId}")
-    public String showEditTeamTodoForm(@PathVariable int teamTodoId, Model model) {
-        TeamTodoList teamTodoList = todoListService.findTeamTodoById(teamTodoId);
-        model.addAttribute("teamTodoList", teamTodoList);
-        return "edit-team-todo"; // edit-team-todo.html로 매핑
-    }
+//    // 팀 투두리스트 수정 페이지
+//    @GetMapping("/team/edit/{teamTodoId}")
+//    public String showEditTeamTodoForm(@PathVariable int teamTodoId, Model model) {
+//        TeamTodoList teamTodoList = todoListService.findTeamTodoById(teamTodoId);
+//        model.addAttribute("teamTodoList", teamTodoList);
+//        return "edit-team-todo"; // edit-team-todo.html로 매핑
+//    }
 
     // 팀 투두리스트 수정 처리
     @PostMapping("/team/edit/{teamTodoId}")

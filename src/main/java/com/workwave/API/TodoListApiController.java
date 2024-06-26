@@ -79,7 +79,7 @@ public class TodoListApiController {
     }
 
     // 팀 투두리스트 조회
-    @GetMapping("/team/{departmentId}")
+    @GetMapping("/team/aTeamTodos/{departmentId}")
     public ResponseEntity<List<TeamTodoList>> findTeamTodosByDepartmentId(@PathVariable String departmentId) {
         List<TeamTodoList> teamTodos = todoListService.findTeamTodosByDepartmentId(departmentId);
         return ResponseEntity.ok(teamTodos);

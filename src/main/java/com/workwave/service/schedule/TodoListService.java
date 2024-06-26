@@ -20,12 +20,10 @@ public class TodoListService {
         return todoListMapper.findByTodoId(todoId);
     }
 
-    // 개인의 투두리스트 조회
-    public List<TodoList> findMyPersonalTodos(String userId) {
+    // 특정 사용자의 개인 투두리스트 조회
+    public List<TodoList> findPersonalTodosByUserId(String userId) {
         return todoListMapper.findByUserId(userId);
     }
-//
-
     // 개인 투두리스트 추가
     public void insertPersonalTodo(TodoList todoList) {
         todoList.setTodoStatus("inprogress"); // 기본 상태 설정
@@ -46,23 +44,30 @@ public class TodoListService {
         todoListMapper.deletePersonalTodo(todoId);
     }
 
-    // 특정 사용자의 개인 투두리스트 조회
-    public List<TodoList> findPersonalTodosByUserId(String userId) {
-        return todoListMapper.findByUserId(userId);
-    }
+
 
 //    // 모든 팀 투두리스트 조회
 //    public List<TeamTodoList> findAllTeamTodos() {
 //        return todoListMapper.findAllTeamTodos();
 //    }
 
-    // 특정 팀 투두리스트 조회
+
+    // 부서별 팀 투두리스트 조회
+    public List<TeamTodoList> findTeamTodosByDepartmentId(String departmentId) {
+        return todoListMapper.findTeamTodosByDepartmentId(departmentId);
+    }
+
+    // 특정 팀 투두리스트 하나 조회
     public TeamTodoList findTeamTodoById(int teamTodoId) {
         return todoListMapper.findTeamTodoById(teamTodoId);
     }
 
     // 팀 투두리스트 추가
     public void insertTeamTodo(TeamTodoList teamTodoList) {
+        teamTodoList.setTeamTodoStatus("기본값");
+        teamTodoList.setTeamTodoCreateAt(LocalDateTime.now()); // 생성일 설정
+        teamTodoList.setTeamTodoUpdateAt(LocalDateTime.now()); // 업데이트일 설정
+        teamTodoList.setColorIndexId(1); // 기본 색상 인덱스 설정
         todoListMapper.insertTeamTodo(teamTodoList);
     }
 
@@ -76,10 +81,6 @@ public class TodoListService {
         todoListMapper.deleteTeamTodo(teamTodoId);
     }
 
-    // 부서별 팀 투두리스트 조회
-    public List<TeamTodoList> findTeamTodosByDepartmentId(String departmentId) {
-        return todoListMapper.findTeamTodosByDepartmentId(departmentId);
-    }
 }
 
 /*
