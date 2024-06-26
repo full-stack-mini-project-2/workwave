@@ -1,5 +1,6 @@
 package com.workwave.controller.boardcontoller;
 
+import com.workwave.common.boardpage.Page;
 import com.workwave.dto.replydto.*;
 import com.workwave.service.boardservice.ReplyService;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +20,17 @@ public class ReplyController {
 
     private final ReplyService replyService;
 
-    //    @GetMapping("/{bno}/page/{pageNo}")
+
     // 댓글 목록 조회
-    @GetMapping("/{bno}")
-    public ResponseEntity<?> replies(@PathVariable("bno") int boardId, HttpSession session) {
+    @GetMapping("/{bno}/page/{pageNo}")
+    public ResponseEntity<?> replies(@PathVariable("bno") int boardId,
+                                     @PathVariable("pageNo") int pageNo,
+                                     HttpSession session) {
 
         log.info("/reply/{} : GET", boardId);
 
-        ReplyListDto replies = replyService.getReplies(boardId);
+
+        ReplyListDto replies = replyService.getReplies(boardId, new Page(pageNo, 10));
 
         return ResponseEntity
                 .ok()
@@ -44,7 +48,7 @@ public class ReplyController {
 
         return ResponseEntity
                 .ok()
-                .body(replyService.getReplies(dto.getBoardId()));
+                .body(replyService.getReplies(dto.getBoardId(), new Page(1, 10)));
     }
 
     // 댓글 수정 요청
@@ -58,7 +62,7 @@ public class ReplyController {
         if (flag) {
             return ResponseEntity
                     .ok()
-                    .body(replyService.getReplies(dto.getBoardId()));
+                    .body(replyService.getReplies(dto.getBoardId(), new Page(1, 10)));
         } else {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -78,7 +82,7 @@ public class ReplyController {
         if (flag) {
             return ResponseEntity
                     .ok()
-                    .body(replyService.getReplies(dto.getBoardId()));
+                    .body(replyService.getReplies(dto.getBoardId(), new Page(1, 10)));
         } else {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -91,7 +95,7 @@ public class ReplyController {
     @GetMapping("/sub/{rno}")
     public ResponseEntity<?> subReplies(@PathVariable("rno") int replyId, HttpSession session) {
 
-        log.info("/sub/{} : GET",replyId);
+        log.info("/sub/{} : GET", replyId);
 
         SubReplyListDto subReplies = replyService.getSubReplies(replyId);
 
@@ -111,7 +115,7 @@ public class ReplyController {
 
         return ResponseEntity
                 .ok()
-                .body(replyService.getReplies(dto.getReplyId()));
+                .body(replyService.getReplies(dto.getReplyId(), new Page(1, 10)));
     }
 
     // 댓글 수정 요청
@@ -125,7 +129,7 @@ public class ReplyController {
         if (flag) {
             return ResponseEntity
                     .ok()
-                    .body(replyService.getReplies(dto.getBoardId()));
+                    .body(replyService.getReplies(dto.getBoardId(), new Page(1, 10)));
         } else {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -145,7 +149,7 @@ public class ReplyController {
         if (flag) {
             return ResponseEntity
                     .ok()
-                    .body(replyService.getReplies(dto.getBoardId()));
+                    .body(replyService.getReplies(dto.getBoardId(), new Page(1, 10)));
         } else {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)

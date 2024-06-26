@@ -1,41 +1,6 @@
 const BASE_URL = "http://localhost:8383/board";
 const boardId = document.getElementById("reply-container").dataset.bno;
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   const updateButton = document.getElementById("updateButton");
-//   const deleteButton = document.getElementById("deleteButton");
-//   const passwordModal = document.getElementById("passwordModal");
-//   const passwordInput = document.getElementById("passwordInput");
-//   const confirmPasswordButton = document.getElementById(
-//     "confirmPasswordButton"
-//   );
-//   const cancelPasswordButton = document.getElementById("cancelPasswordButton");
-
-//   updateButton.onclick = function () {
-//     showPasswordModal(this.getAttribute("data-url"));
-//   };
-
-//   deleteButton.onclick = function () {
-//     showPasswordModal(this.getAttribute("data-url"));
-//   };
-
-//   cancelPasswordButton.onclick = function () {
-//     passwordModal.style.display = "none";
-//   };
-
-//   function showPasswordModal(url) {
-//     passwordModal.style.display = "block";
-
-//     const password = passwordInput.value;
-
-//     confirmPasswordButton.onclick = function () {
-//       if (url.includes("update")) {
-//         window.location.href = url + "&password=" + password;
-//       }
-//     };
-//   }
-// });
-
 document
   .querySelector(".like-dislike-buttons")
   .addEventListener("click", (e) => {

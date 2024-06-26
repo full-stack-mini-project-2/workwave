@@ -23,6 +23,8 @@
             reply_updated_at
         FROM reply
         WHERE board_id = #{boardId}
+        order by reply_created_at desc
+        LIMIT #{p.pageStart}, #{p.amount}
     </select>
 
     <update id="update">
@@ -44,6 +46,12 @@
         DELETE FROM reply
         WHERE reply_id = #{replyId}
     </delete>
+
+    <select id="countReply" resultType="int">
+        SELECT COUNT(*)
+        FROM reply
+        WHERE board_Id = #{boardId}
+    </select>
 
     <!--대댓글-->
 

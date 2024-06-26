@@ -1,8 +1,10 @@
 package com.workwave.mapper.boardmapper;
 
+import com.workwave.common.boardpage.Page;
 import com.workwave.entity.board.Reply;
 import com.workwave.entity.board.SubReply;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,7 +12,7 @@ import java.util.List;
 public interface ReplyMapper {
 
     // 댓글 목록 조회
-    List<Reply> replies(int boardId);
+    List<Reply> replies(@Param("boardId") int boardId, @Param("p") Page page);
 
     // 댓글 상세 조회
     Reply findOne(int replyId);
@@ -23,6 +25,9 @@ public interface ReplyMapper {
 
     // 댓글 삭제
     boolean delete(int replyId);
+
+    // 게시물 당 총 댓글 수 조회
+    int countReply(int boardId);
 
     // 대댓글 목록 조회
     List<SubReply> subReplies(int replyId);

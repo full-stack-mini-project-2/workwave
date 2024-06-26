@@ -20,9 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // ====== 실행 코드 ========
 
 // 댓글을 조회하는 요청
-async function fetchReplies(bno) {
+async function fetchReplies(bno, pageNo = 1) {
   // GET 요청을 보낼 URL
-  const url = BASE_URL + `/${bno}`;
+  const url = BASE_URL + `/${bno}/page/${pageNo}`;
 
   try {
     // fetch API를 사용하여 GET 요청 보내기
@@ -41,13 +41,57 @@ async function fetchReplies(bno) {
 
     // 배열을 추출
     const replies = data.replies;
+    const pageInfo = data.pageInfo;
 
     // 예: 댓글 목록을 HTML에 표시하기
-    displayReplies(replies);
+    displayReplies(replies, pageInfo);
+
   } catch (error) {
     console.error("Error:", error);
   }
 }
+
+function renderPage({ begin, end, pageInfo, prev, next }) {
+  let tag = "";
+
+  // prev 만들기
+  if (prev)
+    tag += `<li class='page-item'><a class='page-link page-active' href='${
+      begin - 1
+    }'>이전</a></li>`;
+
+  // 페이지 번호 태그 만들기
+  for (let i = begin; i <= end; i++) {
+    let active = "";
+    if (pageInfo.pageNo === i) active = "p-active";
+
+    tag += `
+      <li class='page-item ${active}'>
+        <a class='page-link page-custom' href='${i}'>${i}</a>
+      </li>`;
+  }
+
+  // next 만들기
+  if (next)
+    tag += `<li class='page-item'><a class='page-link page-active' href='${
+      end + 1
+    }'>다음</a></li>`;
+
+  // 페이지 태그 ul에 붙이기
+  const $pageUl = document.querySelector(".pagination");
+  $pageUl.innerHTML = tag;
+}
+
+// 페이지 클릭 이벤트 생성 함수
+function replyPageClickEvent() {
+  document.querySelector(".pagination").addEventListener("click", (e) => {
+    e.preventDefault();
+    // console.log(e.target.getAttribute('href'));
+    fetchReplies(bno, e.target.getAttribute("href"));
+  });
+}
+
+replyPageClickEvent();
 
 // 대댓글을 조회하는 요청
 async function fetchSubReplies(rno) {
@@ -340,14 +384,16 @@ async function fetchDeleteSubReply(bno, subReplyId, subReplyDeletePassword) {
 }
 
 // 댓글 목록을 HTML에 표시하는 요청
-function displayReplies(replies) {
+function displayReplies(replies, pageInfo) {
+
   const $replyContainer = document.getElementById("replyContainer");
+
   $replyContainer.innerHTML = ""; // 기존 댓글 목록 초기화
 
   // 댓글 목록 렌더링
   let tag = "";
   if (replies && replies.length > 0) {
-    tag = `<h2>댓글(${replies.length})</h2>`;
+    tag = `<h2>댓글(${pageInfo.totalCount})</h2>`;
     replies.forEach(
       ({ replyId, nickName, replyCreatedAt, replyContent, replyUpdatedAt }) => {
         tag += `
@@ -379,8 +425,13 @@ function displayReplies(replies) {
         </div>
         `;
 
+        renderPage(pageInfo);
+
         // 대댓글 목록 렌더링
         fetchSubReplies(replyId);
+
+        // 댓글 수 렌더링
+        // document.getElementById("replyCnt").value = pageInfo.totalCount;
       }
     );
   } else {

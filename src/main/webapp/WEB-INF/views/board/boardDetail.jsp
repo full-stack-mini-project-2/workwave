@@ -225,13 +225,73 @@ prefix="c" %>
         border-radius: 5px;
         background-color: #f1f1f1;
       }
+      /* 페이지네이션 컨테이너 */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        list-style: none;
+      }
+
+      /* 페이지네이션 아이템 */
+      .pagination li {
+        margin: 0 5px;
+      }
+
+      /* 페이지네이션 링크 */
+      .pagination li a {
+        color: #007bff;
+        text-decoration: none;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      /* 호버 상태 */
+      .pagination li a:hover {
+        background-color: #e9ecef;
+        color: #0056b3;
+      }
+
+      /* 활성 상태 */
+      .pagination li a.active {
+        background-color: #007bff;
+        color: white;
+        border-color: #007bff;
+      }
+
+      /* 비활성 상태 (필요 시) */
+      .pagination li a.disabled {
+        color: #6c757d;
+        pointer-events: none;
+        cursor: default;
+      }
+
+      /* 큰 페이지네이션 */
+      .pagination-lg li a {
+        padding: 12px 18px;
+        font-size: 1.25rem;
+      }
+
+      /* 커스텀 페이지네이션 스타일 */
+      .pagination-custom li a {
+        background-color: #f8f9fa;
+        color: #007bff;
+      }
+
+      .pagination-custom li a:hover {
+        background-color: #007bff;
+        color: #fff;
+      }
     </style>
   </head>
   <body>
     <div id="reply-container" data-bno="${board.boardId}">
       <h1>${board.boardTitle}</h1>
       <div class="meta">
-        작성자: ${board.boardNickname} | 작성일: ${board.formattedBoardCreatedAt}
+        작성자: ${board.boardNickname} | 작성일:
+        ${board.formattedBoardCreatedAt}
         <c:if
           test="${board.formattedBoardCreatedAt != board.formattedBoardUpdateAt}"
           >| 수정일: ${board.formattedBoardUpdateAt}
@@ -262,6 +322,12 @@ prefix="c" %>
       <div id="replyContainer">
         <!-- 댓글 요청 -->
       </div>
+
+      <ul class="pagination justify-content-center">
+        <!--
+            < JS로 댓글 페이징 DIV삽입 >
+        -->
+      </ul>
 
       <!-- 댓글 작성 영역 -->
       <div class="reply-form">

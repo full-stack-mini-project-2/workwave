@@ -1,5 +1,7 @@
 package com.workwave.service.boardservice;
 
+import com.workwave.common.boardpage.Page;
+import com.workwave.common.boardpage.PageMaker;
 import com.workwave.dto.replydto.*;
 import com.workwave.entity.board.Reply;
 import com.workwave.entity.board.SubReply;
@@ -25,9 +27,9 @@ public class ReplyService {
     private BoardMapper boardMapper;
 
     // 댓글 목록 전체조회
-    public ReplyListDto getReplies(int boardId) {
+    public ReplyListDto getReplies(int boardId, Page page) {
 
-        List<Reply> replies = replyMapper.replies(boardId);
+        List<Reply> replies = replyMapper.replies(boardId, page);
 
         List<ReplyDetailDto> dtoList = replies.stream()
                 .map(r -> new ReplyDetailDto(r))
@@ -35,9 +37,9 @@ public class ReplyService {
 
         return ReplyListDto.builder()
                 .replies(dtoList)
+                .pageInfo(new PageMaker(page, replyMapper.countReply(boardId)))
                 .build();
     }
-
 
     public boolean save(ReplyWriteDto dto) {
 
