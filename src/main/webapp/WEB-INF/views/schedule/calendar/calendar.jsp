@@ -5,30 +5,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Calendar</title>
-  <style>
-    .calendar {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .calendar th, .calendar td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: center;
-    }
-    .event {
-      margin-top: 5px;
-      padding: 3px;
-      background-color: lightblue;
-      border-radius: 3px;
-    }
-  </style>
+  <link rel="stylesheet" href="<c:url value='/assets/css/calendar.css' />">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
-<h1>Calendar</h1>
-<h2>Welcome, <c:out value="${userName}" /></h2>
-<h3 id="current-month"></h3>
-
-<div id="calendar"></div>
+<div class="calendar-container">
+  <div class="calendar-header">
+    <i id="prev-month" class="fa-solid fa-caret-left"></i>
+    <h3 id="current-month"></h3>
+    <i id="next-month" class="fa-solid fa-caret-right"></i>
+  </div>
+  <div id="calendar"></div>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -133,7 +121,5 @@
 
 <div>Formatted Date: <span id="formattedDate"><c:out value="${formattedDate}" /></span></div>
 
-<button id="prev-month">Prev</button>
-<button id="next-month">Next</button>
 </body>
 </html>

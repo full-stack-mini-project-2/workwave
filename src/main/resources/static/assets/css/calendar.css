@@ -1,0 +1,38 @@
+
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+}
+.calendar th, .calendar td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    width: 14.28%; /* Ensure each day cell takes equal width */
+}
+.event {
+    margin-top: 5px;
+    padding: 3px;
+    background-color: lightblue;
+    border-radius: 3px;
+}
+.calendar-container {
+    border: 1px solid #ddd;
+    padding: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 500px;
+    height: 400px;
+}
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.calendar-header h3 {
+    margin: 0;
+}
+.calendar-header i {
+    cursor: pointer;
+    font-size: 1.5em;
+}
