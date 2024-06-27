@@ -6,9 +6,9 @@
 <mapper namespace="com.workwave.mapper.trafficMapper">
     <insert id="save" >
         INSERT INTO traffic
-        (arrival, departure, station, need_Time , regDateTime)
+        (user_id , arrival, departure, station, need_Time , regDateTime)
         VALUES
-        (#{arrival}, #{departure}, #{station}, #{needTime} , #{regDateTime})
+        (#{userId}, #{arrival}, #{departure}, #{station}, #{needTime} , #{regDateTime})
     </insert>
 
     <select id="findAll" resultType="com.workwave.dto.traffic.request.totalTrafficInfoDto">

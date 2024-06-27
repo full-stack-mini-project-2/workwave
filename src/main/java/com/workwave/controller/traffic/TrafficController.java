@@ -4,6 +4,8 @@ import com.workwave.common.traffic.myInfoPage;
 import com.workwave.common.traffic.myPageMaker;
 import com.workwave.dto.traffic.request.totalTrafficInfoDto;
 import com.workwave.dto.traffic.response.trafficInfoDto;
+import com.workwave.dto.user.LoginUserInfoDto;
+import com.workwave.entity.User;
 import com.workwave.service.traffic.trafficService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -22,10 +26,17 @@ public class TrafficController {
 
     private final trafficService trafficService;
 
+
     @PostMapping("/traffic-Info")
-    public String trafficInformation(@RequestBody trafficInfoDto trafficinfo){
+    public String trafficInformation(@RequestBody trafficInfoDto trafficinfo, HttpServletRequest request,User foundUser){
+
+
+        HttpSession session = request.getSession();
+
+
 
         trafficService.save(trafficinfo);
+
 
 
         return "traffic/Traffic";
