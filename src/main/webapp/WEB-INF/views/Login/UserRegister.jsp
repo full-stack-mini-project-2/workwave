@@ -10,7 +10,7 @@
       <!-- reset -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" />
       <link href="https://fonts.google.com/specimen/Roboto" rel="stylesheet" />
-      <link rel="stylesheet" href="/assets/css/UserRegister.css" />
+      <link href="/assets/css/UserRegister.css" rel="stylesheet" />
       <link rel="icon" href="/assets/img/workwave_logo.png" />
     </head>
 
@@ -109,8 +109,7 @@
                     </tr>
                     <tr>
                       <td>
-                        <label for="department_id">부서를 선택하세요.</label><br />
-                        <select class="signUpInputStyle2" id="department_id" name="departmentId" required>
+                        <select class="signUpInputStyle2" id="departmentId" name="departmentId" required>
                           <option value=""></option>
                           <c:forEach items="${dList}" var="department">
                             <option value="${department.departmentId}">
@@ -129,9 +128,8 @@
                     </tr>
                     <tr>
                       <td>
-                        <label for="employee_id">사원 ID를 작성하세요</label><br />
-                        <input type="text" class="signUpInputStyle" id="employee_id" name="employeeId"
-                          placeholder="P000" required /><br />
+                        <input type="text" class="signUpInputStyle" id="employeeId" name="employeeId" placeholder="P000"
+                          required /><br />
                       </td>
                     </tr>
                     <tr>
@@ -143,9 +141,7 @@
                     </tr>
                     <tr>
                       <td>
-                        <label for="user_position">직책을 입력하세요.</label>
-                        <br />
-                        <input type="text" class="signUpInputStyle" id="user_position" name="userPosition"
+                        <input type="text" class="signUpInputStyle" id="userPosition" name="userPosition"
                           placeholder="사원,대리,과장,차장..." required /><br />
                       </td>
                     </tr>

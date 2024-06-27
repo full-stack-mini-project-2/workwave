@@ -27,9 +27,9 @@
                         <input type="password" id="password" name="password" required />
                     </div>
                     <div class="form-group">
-                    <label for="auto-login" class="auto-login">
-             <span><i class="fas fa-sign-in-alt"></i> 자동 로그인</span>
-                        <input type="checkbox" id="auto-login" name="autoLogin" />
+                        <label for="auto-login" class="auto-login">
+                            <span><i class="fas fa-sign-in-alt"></i> 자동 로그인</span>
+                            <input type="checkbox" id="auto-login" name="autoLogin" />
                         </label>
                     </div>
 
