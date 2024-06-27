@@ -5,6 +5,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Calendar</title>
+  <style>
+    .calendar {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    .calendar th, .calendar td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    .event {
+      margin-top: 5px;
+      padding: 3px;
+      border-radius: 3px;
+    }
+    .event-lightblue { background-color: lightblue; }
+    .event-lightgreen { background-color: lightgreen; }
+    .event-lightcoral { background-color: lightcoral; }
+    .event-lightsalmon {background-color: lightsalmon; }
+    .event-lightseagreen { background-color: lightseagreen; }
+    .event-lightgray { background-color: lightgray; }
+  </style>
   <link rel="stylesheet" href="<c:url value='/assets/css/calendar.css' />">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
@@ -31,6 +54,9 @@
     let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth();
 
+    // 초기 데이터 로드
+    fetchEvents(currentYear, currentMonth);
+
     function updateCurrentMonth(year, month) {
       document.getElementById('current-month').textContent = `\${monthNames[month]} \${year}`;
     }
@@ -44,12 +70,18 @@
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             const data = JSON.parse(xhr.responseText);
+            console.log(data);
             renderCalendar(data, year, month);
           } else {
             console.error('Failed to fetch calendar events:', xhr.status, xhr.statusText);
           }
         }
       };
+      // xhr.send();
+      xhr.onerror = function () {
+        console.error('Failed to fetch calendar events: Network Error');
+      };
+
       xhr.send();
     }
 
@@ -80,11 +112,13 @@
 
         calendarHtml += `<td><div>\${date}</div>`;
 
+        if (events && Array.isArray(events)) {
         events.forEach(event => {
           if (event.calEventDate.startsWith(fullDateStr)) {
-            calendarHtml += `<div class="event">${event.calEventTitle}</div>`;
+            calendarHtml += `<div class="event event-\${getColorByIndex(event.colorIndexId)}">${event.calEventTitle}</div>`;
           }
         });
+        }
         calendarHtml += '</td>';
       }
 
@@ -93,6 +127,24 @@
       document.getElementById('calendar').innerHTML = calendarHtml;
       updateCurrentMonth(year, month);
     }
+
+    function getColorByIndex(index) {
+      switch (index) {
+        case 1:
+          return 'lightblue';
+        case 2:
+          return 'lightgreen';
+        case 3:
+          return 'lightcoral';
+        case 4:
+          return 'lightsalmon';
+        case 5:
+          return 'lightseagreen';
+        default:
+          return 'lightgray';
+      }
+    }
+
 
     document.getElementById('prev-month').addEventListener('click', function () {
       if (currentMonth === 0) {
@@ -115,7 +167,7 @@
     });
 
     // 초기 이벤트 및 현재 달 렌더링
-    renderCalendar(myCalEvents, currentYear, currentMonth);
+    renderCalendar(myCalEvents.events, currentYear, currentMonth);
   });
 </script>
 
