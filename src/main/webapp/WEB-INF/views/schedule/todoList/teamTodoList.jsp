@@ -26,14 +26,14 @@
         }
     </style>
 </head>
-<body ng-controller="myController" class="app-container d-flex align-items-center justify-content-center flex-column">
+<body ng-controller="myTeamController" class="app-container d-flex align-items-center justify-content-center flex-column">
 
 <h3 class="mb-4">Team Todo List</h3>
 
 <div class="input-group mb-3">
-    <input ng-model="yourTask" type="text" class="form-control" placeholder="Enter a task here">
+    <input ng-model="yourTeamTask" type="text" class="form-control" placeholder="Enter a task here">
     <div class="input-group-append">
-        <button class="btn btn-primary" type="button" ng-click="saveTask()">Save</button>
+        <button class="btn btn-primary" type="button" ng-click="saveTeamTask()">Save</button>
     </div>
 </div>
 
@@ -48,114 +48,113 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="task in tasks track by task.teamTodoId" ng-class="{'table-success': task.teamTodoStatus, 'table-light': !task.teamTodoStatus}">
+        <tr ng-repeat="teamTask in teamTasks" ng-class="{'table-success': teamTask.teamTodoStatus, 'table-light': !teamTask.teamTodoStatus}">
             <td>{{$index + 1}}</td>
             <td>
                 <!-- 동그라미 표시 -->
-                <span class="color-dot" ng-style="{'background-color': colorIndexMap[task.colorIndexId]}"></span>
-                <span ng-class="{'complete': task.teamTodoStatus}">{{task.teamTodoContent}}</span>
+<%--                <span class="color-dot" ng-style="{'background-color': teamColorIndexMap[teamTask.colorIndexId]}"></span>--%>
+                <span ng-class="{'complete': teamTask.teamTodoStatus}">{{teamTask.teamTodoContent}}</span>
             </td>
             <td>
-                <input type="checkbox" ng-model="task.teamTodoStatus">
+                <input type="checkbox" ng-model="teamTask.teamTodoStatus">
             </td>
             <td>
-                <button ng-click="edit(task)">Edit</button>
-                <button class="btn btn-danger btn-sm" ng-click="delete($index)">Delete</button>
+                <button ng-click="editTeamTask(teamTask)">Edit</button>
+                <button class="btn btn-danger btn-sm" ng-click="deleteTeamTask($index)">Delete</button>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
 <script>
-    var app = angular.module("myAppTeam", []);
+    var appTeam = angular.module("myAppTeam", []);
 
-    app.controller("myController", function($scope, $http) {
+    appTeam.controller("myTeamController", function($scope, $http) {
+        // 초기화 함수: 서버에서 팀 투두리스트 가져오기
+        function initTeam() {
+            var departmentId = '<%= request.getAttribute("departmentId") %>'; // departmentId 가져오기
 
-        // Java에서 전달된 departmentId 사용
-        $scope.departmentId = '<%= request.getAttribute("departmentId") %>';
-
-        function init() {
-            $http.get('/api/todos/team/aTeamTodos/' + $scope.departmentId)
+            $http.get('/api/todos/team/aTeamTodos/' + departmentId)
                 .then(function(response) {
-                    $scope.tasks = response.data;
+                    $scope.teamTasks = response.data;
                 })
                 .catch(function(error) {
-                    console.error('Error fetching tasks:', error);
+                    console.error('Error fetching team tasks:', error);
                 });
         }
 
-        init(); // 페이지 로딩 시 초기화 함수 호출
+        initTeam(); // 페이지 로딩 시 초기화 함수 호출
 
         // 투두리스트 저장 함수
-        $scope.saveTask = function() {
-            var newTask = {
-                teamTodoContent: $scope.yourTask,
+        $scope.saveTeamTask = function() {
+            var newTeamTask = {
+                teamTodoContent: $scope.yourTeamTask,
                 teamTodoStatus: false,
-                departmentId: $scope.departmentId
+                departmentId: '<%= request.getAttribute("departmentId") %>'
             };
 
-
-            $http.post('/api/todos/team', newTask)
+            $http.post('/api/todos/team', newTeamTask)
                 .then(function(response) {
-                    $scope.tasks.push(response.data); // 추가된 투두리스트를 배열에 추가
-                    $scope.yourTask = ''; // 입력 필드 초기화
+                    $scope.teamTasks.push(response.data); // 추가된 팀 투두리스트를 배열에 추가
+                    $scope.yourTeamTask = ''; // 입력 필드 초기화
                 })
                 .catch(function(error) {
-                    console.error('Error saving task:', error);
+                    console.error('Error saving team task:', error);
                 });
         };
 
         // 투두리스트 삭제 함수
-        $scope.delete = function(index) {
-            var teamTodoId = $scope.tasks[index].teamTodoId;
+        $scope.deleteTeamTask = function(index) {
+            var teamTodoId = $scope.teamTasks[index].teamTodoId;
 
             $http.delete('/api/todos/team/' + teamTodoId)
                 .then(function(response) {
-                    $scope.tasks.splice(index, 1); // 배열에서 삭제
+                    $scope.teamTasks.splice(index, 1); // 배열에서 삭제
                 })
                 .catch(function(error) {
-                    console.error('Error deleting task:', error);
+                    console.error('Error deleting team task:', error);
                 });
         };
 
         // 수정 상태로 전환하는 함수
-        $scope.edit = function(task) {
-            task.editing = true;
-            $scope.editingTask = angular.copy(task); // 복사본을 수정 폼에 표시
+        $scope.editTeamTask = function(teamTask) {
+            teamTask.editing = true;
+            $scope.editingTeamTask = angular.copy(teamTask); // 복사본을 수정 폼에 표시
         };
 
         // 수정 취소 함수
-        $scope.cancelEdit = function(task) {
-            task.editing = false;
-            $scope.editingTask = null; // 수정 상태 초기화
+        $scope.cancelEditTeamTask = function(teamTask) {
+            teamTask.editing = false;
+            $scope.editingTeamTask = null; // 수정 상태 초기화
         };
 
         // 업데이트 함수
-        $scope.update = function(task) {
-            $http.put('/api/todos/personal/' + task.teamTodoId, task)
+        $scope.updateTeamTask = function(teamTask) {
+            $http.put('/api/todos/team/' + teamTask.teamTodoId, teamTask)
                 .then(function(response) {
-                    var updatedTask = response.data;
-                    // 클라이언트에서 tasks 배열을 업데이트
-                    for (var i = 0; i < $scope.tasks.length; i++) {
-                        if ($scope.tasks[i].teamTodoId === updatedTask.teamTodoId) {
-                            $scope.tasks[i] = updatedTask;
+                    var updatedTeamTask = response.data;
+                    // 클라이언트에서 teamTasks 배열을 업데이트
+                    for (var i = 0; i < $scope.teamTasks.length; i++) {
+                        if ($scope.teamTasks[i].teamTodoId === updatedTeamTask.teamTodoId) {
+                            $scope.teamTasks[i] = updatedTeamTask;
                             break;
                         }
                     }
-                    task.editing = false; // 수정 상태 초기화
-                    $scope.editingTask = null;
+                    teamTask.editing = false; // 수정 상태 초기화
+                    $scope.editingTeamTask = null;
                 })
                 .catch(function(error) {
-                    console.error('Error updating task:', error);
+                    console.error('Error updating team task:', error);
                 });
         };
 
         // Enter 키를 눌렀을 때 업데이트 수행
-        $scope.handleKeyPress = function(event, task) {
+        $scope.handleKeyPressTeamTask = function(event, teamTask) {
             if (event.keyCode === 13) { // Enter 키 코드는 13입니다.
-                $scope.update(task);
+                $scope.updateTeamTask(teamTask);
             }
         };
     });
