@@ -9,6 +9,7 @@ import com.workwave.dto.boarddto.BoardWriteDto;
 import com.workwave.entity.board.Board;
 import com.workwave.service.boardservice.BoardService;
 import com.workwave.util.LoginUtil;
+import com.workwave.util.PasswordUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -124,14 +125,15 @@ public class BoardController {
 
         log.info(action);
 
-        if (board.getBoardPassword().equals(inputPassword)) {
+        // 해싱된 비밀번호 검증
+        if (PasswordUtil.checkPassword(inputPassword, board.getBoardPassword())) {
             if ("update".equals(action)) {
                 return "redirect:/board/update?bno=" + boardId;
             } else if ("delete".equals(action)) {
                 return "redirect:/board/delete?bno=" + boardId;
             }
         }
-
+        
         model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
 
         return "board/boardPwCheck";

@@ -8,6 +8,7 @@ import com.workwave.dto.boarddto.BoardWriteDto;
 import com.workwave.entity.board.Board;
 import com.workwave.mapper.boardMapper.BoardMapper;
 import com.workwave.util.LoginUtil;
+import com.workwave.util.PasswordUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,13 @@ public class BoardService {
 
     public boolean save(BoardWriteDto dto, HttpSession session) {
 
+        // 비밀번호 해싱
+        String rawPassword = dto.getBoardPassword();
+        String hashedPassword = PasswordUtil.hashPassword(rawPassword);
 
         Board b = dto.toEntity();
-
         b.setUserId(LoginUtil.getLoggedInUserAccount(session));
+        b.setBoardPassword(hashedPassword); // 해싱된 비밀번호 설정
 
         log.info("Saving Board Entity: {}", b);
 
