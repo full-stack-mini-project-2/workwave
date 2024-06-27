@@ -8,6 +8,7 @@ import com.workwave.dto.boarddto.BoardUpdateDto;
 import com.workwave.dto.boarddto.BoardWriteDto;
 import com.workwave.entity.board.Board;
 import com.workwave.service.boardservice.BoardService;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,16 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/list")
-    public String list(Search search, Model model) {
+    public String list(Search search,
+                       Model model,
+                       HttpSession session) {
+
+        if (search.getType() != null && search.getType().equals("id")) {
+            search.setKeyword(LoginUtil.getLoggedInUserAccount(session));
+        }
+
         List<BoardListDto> boardList = boardService.findAll(search);
+
         // 검색 조건에 따른 게시물 수를 계산합니다.
         int totalCount = boardService.boardListCount(search);
         PageMaker maker = new PageMaker(search, totalCount);

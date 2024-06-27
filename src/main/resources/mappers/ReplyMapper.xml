@@ -75,7 +75,7 @@
         WHERE reply_id = #{replyId}
         ORDER BY sub_reply_created_at DESC
     </select>
-    
+
     <update id="updateSubReply">
         UPDATE SubReply
         SET sub_reply_content = #{subReplyContent},

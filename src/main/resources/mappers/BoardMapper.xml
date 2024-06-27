@@ -21,6 +21,9 @@
             WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
             OR board_content LIKE CONCAT('%', #{keyword}, '%')
         </if>
+        <if test="type == 'id'">
+            WHERE user_id = #{keyword}
+        </if>
         ORDER BY board_created_at DESC
         LIMIT #{pageStart}, #{amount}
     </select>
