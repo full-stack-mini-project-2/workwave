@@ -133,7 +133,7 @@ public class BoardController {
                 return "redirect:/board/delete?bno=" + boardId;
             }
         }
-        
+
         model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
 
         return "board/boardPwCheck";

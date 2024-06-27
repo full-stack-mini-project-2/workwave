@@ -45,7 +45,6 @@ async function fetchReplies(bno, pageNo = 1) {
 
     // 예: 댓글 목록을 HTML에 표시하기
     displayReplies(replies, pageInfo);
-
   } catch (error) {
     console.error("Error:", error);
   }
@@ -86,7 +85,7 @@ function renderPage({ begin, end, pageInfo, prev, next }) {
 function replyPageClickEvent() {
   document.querySelector(".pagination").addEventListener("click", (e) => {
     e.preventDefault();
-    
+
     fetchReplies(bno, e.target.getAttribute("href"));
   });
 }
@@ -155,7 +154,8 @@ async function fetchSubReplies(rno) {
       return;
     }
 
-    document.getElementById(`subRepliesContainer-${rno}`).style.display = "block";
+    document.getElementById(`subRepliesContainer-${rno}`).style.display =
+      "block";
     document.getElementById(`subRepliesContainer-${rno}`).innerHTML = tag;
 
     // 대댓글 수정버튼에 이벤트 리스너 추가
@@ -383,8 +383,8 @@ async function fetchDeleteSubReply(bno, subReplyId, subReplyDeletePassword) {
 
 // 댓글 목록을 HTML에 표시하는 요청
 function displayReplies(replies, pageInfo) {
-
   const $replyContainer = document.getElementById("replyContainer");
+  const boardUserId = $replyContainer.dataset.id;
 
   $replyContainer.innerHTML = ""; // 기존 댓글 목록 초기화
 
@@ -393,7 +393,14 @@ function displayReplies(replies, pageInfo) {
   if (replies && replies.length > 0) {
     tag = `<h2>댓글(${pageInfo.totalCount})</h2>`;
     replies.forEach(
-      ({ replyId, nickName, replyCreatedAt, replyContent, replyUpdatedAt }) => {
+      ({
+        replyId,
+        nickName,
+        userId,
+        replyCreatedAt,
+        replyContent,
+        replyUpdatedAt,
+      }) => {
         tag += `
         <div class="reply">
           <div class="meta">
@@ -403,6 +410,9 @@ function displayReplies(replies, pageInfo) {
                 ? ` | 수정일: ${replyUpdatedAt}`
                 : ""
             }
+            <span class="author">${
+              userId === boardUserId ? "글쓴이" : ""
+            }</span>
           </div>
           <div class="content">
             <p>${replyContent}</p>

@@ -225,7 +225,12 @@ prefix="c" %>
         border-radius: 5px;
         background-color: #f1f1f1;
       }
-      
+
+      .author {
+        color: red;
+        font-weight: bold;
+      }
+
       /* 부모 요소 */
       .pagination-container {
         text-align: center;
@@ -331,7 +336,7 @@ prefix="c" %>
 
       <!-- 댓글 영역 -->
 
-      <div id="replyContainer">
+      <div id="replyContainer" data-id="${board.userId}">
         <!-- 댓글 요청 -->
       </div>
 
@@ -342,6 +347,7 @@ prefix="c" %>
       </div>
 
       <!-- 댓글 작성 영역 -->
+
       <div class="reply-form">
         <h2>댓글 작성</h2>
         <input type="hidden" id="boardId" value="${board.boardId}" />
@@ -359,14 +365,4 @@ prefix="c" %>
       <!-- 댓글 영역 end -->
     </div>
   </body>
-
-  <!-- <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      let referer = document.referrer;
-      if (!referer) {
-        referer = "/board/list";
-      }
-      document.getElementById("backLink").href = referer;
-    });
-  </script> -->
 </html>
