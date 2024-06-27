@@ -117,9 +117,21 @@ public class BoardService {
 
     public Boolean upLikeCount(int boardId) {
 
+//        String userId = LoginUtil.getLoggedInUserAccount(session);
+
         boolean upLikeCount = boardMapper.upLikeCount(boardId);
 
         return upLikeCount;
+    }
+
+    public Boolean downLikeCount(int boardId) {
+
+//        String userId = LoginUtil.getLoggedInUserAccount(session);
+
+        boolean downLikeCount = boardMapper.downLikeCount(boardId);
+
+        return downLikeCount;
+
     }
 
     public Boolean upDislikeCount(int boardId) {
@@ -127,5 +139,13 @@ public class BoardService {
         boolean upDislikeCount = boardMapper.upDislikeCount(boardId);
 
         return upDislikeCount;
+    }
+
+    public Boolean downDislikeCount(Integer boardId) {
+
+        boolean downDislikeCount = boardMapper.downDislikeCount(boardId);
+
+        return downDislikeCount;
+
     }
 }

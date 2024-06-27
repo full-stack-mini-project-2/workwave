@@ -312,10 +312,14 @@ prefix="c" %>
       <!-- 추천/비추천 버튼 영역 -->
       <div class="like-dislike-buttons">
         <button id="likeButton" class="like-button">
-          좋아요 (<span id="likeCount">${board.likes}</span>)
+          좋아요 (<span id="likeCount" data-id="${id}"
+            >${board.likes}</span
+          >)
         </button>
         <button id="dislikeButton" class="dislike-button">
-          싫어요 (<span id="dislikeCount">${board.dislikes}</span>)
+          싫어요 (<span id="dislikeCount" data-id="${id}"
+            >${board.dislikes}</span
+          >)
         </button>
       </div>
 
@@ -359,5 +363,4 @@ prefix="c" %>
       document.getElementById("backLink").href = referer;
     });
   </script> -->
-
 </html>

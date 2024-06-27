@@ -105,9 +105,21 @@
         WHERE board_id = #{boardId}
     </update>
 
+    <update id="downLikeCount">
+        UPDATE board
+        SET likes = likes - 1
+        WHERE board_id = #{boardId}
+    </update>
+
     <update id="upDislikeCount">
         UPDATE board
         SET dislikes = dislikes + 1
+        WHERE board_id = #{boardId}
+    </update>
+
+    <update id="downDislikeCount">
+        UPDATE board
+        SET dislikes = dislikes - 1
         WHERE board_id = #{boardId}
     </update>
 

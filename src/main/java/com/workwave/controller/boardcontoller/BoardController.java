@@ -70,20 +70,28 @@ public class BoardController {
     }
 
     @GetMapping("/detail")
-    public String findOne(@RequestParam("bno") int boardId, Model model, HttpServletRequest request) {
+    public String findOne(@RequestParam("bno") int boardId,
+                          Model model,
+                          HttpServletRequest request,
+                          HttpSession session) {
 
         boardService.updateViewCount(boardId);
 
         BoardDetailDto board = boardService.findOne(boardId);
 
+        String account = LoginUtil.getLoggedInUserAccount(session);
+
         model.addAttribute("board", board);
+        model.addAttribute("id", account);
 
         // 게시물 조회를 누를때 주소값을 저장해서 목록으로 돌아갈때 다시 리다이렉트
         String referer = request.getHeader("Referer");
         if (referer != null && referer.contains("/list")) {
             request.getSession().setAttribute("referer", referer);
         }
+
         log.info("referer: {}", referer);
+        log.info("account: {}", account);
 
         return "board/boardDetail";
     }
@@ -153,14 +161,16 @@ public class BoardController {
 
     }
 
-    @PostMapping("/like")
+    @PostMapping("/upLike")
     @ResponseBody
-    public ResponseEntity<?> upLikeCount(@RequestParam(value = "bno") Integer boardId) {
+    public ResponseEntity<?> upLikeCount(@RequestParam(value = "bno") Integer boardId,
+                                         HttpSession session) {
 
         if (boardId == null) {
             return ResponseEntity.badRequest().body("boardId parameter is required.");
         }
 
+        // 세션에서 아이디 검증 후 좋아요 수 조절
         boardService.upLikeCount(boardId);
 
         return ResponseEntity
@@ -169,7 +179,25 @@ public class BoardController {
 
     }
 
-    @PostMapping("/dislike")
+    @PostMapping("/downLike")
+    @ResponseBody
+    public ResponseEntity<?> downLikeCount(@RequestParam(value = "bno") Integer boardId,
+                                         HttpSession session) {
+
+        if (boardId == null) {
+            return ResponseEntity.badRequest().body("boardId parameter is required.");
+        }
+
+        // 세션에서 아이디 검증 후 좋아요 수 조절
+        boardService.downLikeCount(boardId);
+
+        return ResponseEntity
+                .ok()
+                .body(boardService.findOne(boardId));
+
+    }
+
+    @PostMapping("/upDislike")
     @ResponseBody
     public ResponseEntity<?> upDislikeCount(@RequestParam(value = "bno") Integer boardId) {
 
@@ -177,7 +205,24 @@ public class BoardController {
             return ResponseEntity.badRequest().body("boardId parameter is required.");
         }
 
+        // 세션에서 아이디 검증 후 좋아요 수 조절
         boardService.upDislikeCount(boardId);
+
+        return ResponseEntity
+                .ok()
+                .body(boardService.findOne(boardId));
+    }
+
+    @PostMapping("/downDislike")
+    @ResponseBody
+    public ResponseEntity<?> downDislikeCount(@RequestParam(value = "bno") Integer boardId) {
+
+        if (boardId == null) {
+            return ResponseEntity.badRequest().body("boardId parameter is required.");
+        }
+
+        // 세션에서 아이디 검증 후 좋아요 수 조절
+        boardService.downDislikeCount(boardId);
 
         return ResponseEntity
                 .ok()
