@@ -1,3 +1,4 @@
+
 <%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -52,21 +53,20 @@
             <td>{{$index + 1}}</td>
             <td>
                 <!-- 동그라미 표시 -->
-                <span class="color-dot" ng-style="{'background-color': personalColorIndexMap[personalTask.colorIndexId]}"></span>
-                <span ng-class="{'complete': personalTask.todoStatus}">{{personalTask.todoContent}}</span>
+<%--                <span class="color-dot" ng-style="{'background-color': personalColorIndexMap[personalTask.colorIndexId]}"></span>--%>
+                <span ng-show="!personalTask.editing" ng-class="{'complete': personalTask.todoStatus}" ng-click="editPersonalTask(personalTask)">{{personalTask.todoContent}}</span>
+                <input ng-show="personalTask.editing" type="text" ng-model="personalTask.todoContent" ng-blur="updatePersonalTask(personalTask)" ng-keypress="handleKeyPressPersonalTask($event, personalTask)">
             </td>
             <td>
-                <input type="checkbox" ng-model="personalTask.todoStatus">
+                <input type="checkbox" ng-model="personalTask.todoStatus" ng-change="updatePersonalTask(personalTask)">
             </td>
             <td>
-                <button ng-click="editPersonalTask(personalTask)">Edit</button>
                 <button class="btn btn-danger btn-sm" ng-click="deletePersonalTask($index)">Delete</button>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
 <script>
@@ -122,13 +122,6 @@
         // 수정 상태로 전환하는 함수
         $scope.editPersonalTask = function(personalTask) {
             personalTask.editing = true;
-            $scope.editingPersonalTask = angular.copy(personalTask); // 복사본을 수정 폼에 표시
-        };
-
-        // 수정 취소 함수
-        $scope.cancelEditPersonalTask = function(personalTask) {
-            personalTask.editing = false;
-            $scope.editingPersonalTask = null; // 수정 상태 초기화
         };
 
         // 업데이트 함수
@@ -144,7 +137,6 @@
                         }
                     }
                     personalTask.editing = false; // 수정 상태 초기화
-                    $scope.editingPersonalTask = null;
                 })
                 .catch(function(error) {
                     console.error('Error updating personal task:', error);
@@ -165,3 +157,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
