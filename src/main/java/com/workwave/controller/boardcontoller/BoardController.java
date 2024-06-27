@@ -6,7 +6,6 @@ import com.workwave.dto.boarddto.BoardDetailDto;
 import com.workwave.dto.boarddto.BoardListDto;
 import com.workwave.dto.boarddto.BoardUpdateDto;
 import com.workwave.dto.boarddto.BoardWriteDto;
-import com.workwave.entity.board.Board;
 import com.workwave.service.boardservice.BoardService;
 import com.workwave.util.LoginUtil;
 import com.workwave.util.PasswordUtil;
