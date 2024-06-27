@@ -32,7 +32,6 @@
   document.addEventListener('DOMContentLoaded', function () {
     <%--const userId = '${userId}'; // EL 표현식 사용--%>
     const initialEvents = JSON.parse('<c:out value="${mycalEvents}" escapeXml="false" />'); // EL 표현식 사용
-    const formattedDate = '${formattedDate}'; // EL 표현식 사용
 
     let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth();
@@ -81,9 +80,9 @@
         const monthStr = (month + 1 < 10 ? '0' + (month + 1) : month + 1).toString();
         const dateStr = (date < 10 ? '0' + date : date).toString();
 
-        const fullDateStr = `${yearStr}-${monthStr}-${dateStr}`;
+        const fullDateStr = `\${yearStr}-\${monthStr}-\${dateStr}`;
 
-        calendarHtml += `<td><div>${date}</div>`;
+        calendarHtml += `<td><div>\${date}</div>`;
 
         events.forEach(event => {
           if (event.calEventDate.startsWith(fullDateStr)) {
