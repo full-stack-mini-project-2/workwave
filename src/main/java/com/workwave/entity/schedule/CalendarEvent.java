@@ -18,7 +18,6 @@ public class CalendarEvent {
     private LocalDateTime calECreateAt;
     private LocalDateTime calEUpdateAt;
     private Integer colorIndexId; // Integer로 선언하여 null 값을 허용
-    private Integer noticeId; // Integer로 선언하여 null 값을 허용
     private String userId;
     private String departmentId;
     private Integer calendarId; // Integer로 선언하여 null 값을 허용

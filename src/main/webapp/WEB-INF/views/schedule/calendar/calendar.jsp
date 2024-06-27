@@ -41,8 +41,8 @@
       const userId = '${userId}'; // userId는 JSP에서 설정되어 있어야 함
 
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', `/api/calendar/myEvents/${userId}?year=${year}&month=${month + 1}`, true);
-      console.log(`/api/calendar/myEvents/${userId}?year=${year}&month=${month + 1}`);
+      xhr.open('GET', `/api/calendar/myEvents/\${userId}?year=\${year}&month=\${month + 1}`, true);
+      console.log(`/api/calendar/myEvents/\${userId}?year=\${year}&month=\${month + 1}`);
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
