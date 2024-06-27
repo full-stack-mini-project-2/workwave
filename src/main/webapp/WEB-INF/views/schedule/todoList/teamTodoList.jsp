@@ -140,6 +140,7 @@
 
             $http.put('/api/todos/team/' + teamTask.teamTodoId, updatedTask)
                 .then(function(response) {
+
                     teamTask.editing = false; // 수정 상태 초기화
                 })
                 .catch(function(error) {

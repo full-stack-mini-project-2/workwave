@@ -49,16 +49,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="personalTask in personalTasks" ng-class="{'table-success': personalTask.todoStatus, 'table-light': !personalTask.todoStatus}">
+        <tr ng-repeat="personalTask in personalTasks track by $index" ng-class="{'table-success': personalTask.todoStatus === 'true', 'table-light': personalTask.todoStatus === 'false'}">
             <td>{{$index + 1}}</td>
             <td>
                 <!-- 동그라미 표시 -->
 <%--                <span class="color-dot" ng-style="{'background-color': personalColorIndexMap[personalTask.colorIndexId]}"></span>--%>
-                <span ng-show="!personalTask.editing" ng-class="{'complete': personalTask.todoStatus}" ng-click="editPersonalTask(personalTask)">{{personalTask.todoContent}}</span>
+                <span ng-show="!personalTask.editing" ng-class="{'complete': personalTask.todoStatus === 'true'}">{{personalTask.todoContent}}</span>
                 <input ng-show="personalTask.editing" type="text" ng-model="personalTask.todoContent" ng-blur="updatePersonalTask(personalTask)" ng-keypress="handleKeyPressPersonalTask($event, personalTask)">
             </td>
             <td>
-                <input type="checkbox" ng-model="personalTask.todoStatus" ng-change="updatePersonalTask(personalTask)">
+                <input type="checkbox" ng-model="personalTask.todoStatus" ng-true-value="'true'" ng-false-value="'false'" ng-change="updatePersonalTask(personalTask)">
             </td>
             <td>
                 <button class="btn btn-danger btn-sm" ng-click="deletePersonalTask($index)">Delete</button>
@@ -80,6 +80,11 @@
             $http.get('/api/todos/personal/' + userId)
                 .then(function(response) {
                     $scope.personalTasks = response.data;
+                    //문자열 true false 불린값으로 반환하기
+                    $scope.personalTasks.forEach(task => {
+                        task.todoStatus = task.todoStatus === 'true' ? 'true' : 'false';
+                    });
+
                 })
                 .catch(function(error) {
                     console.error('Error fetching personal tasks:', error);
@@ -92,13 +97,19 @@
         $scope.savePersonalTask = function() {
             var newPersonalTask = {
                 todoContent: $scope.yourPersonalTask,
-                todoStatus: false,
+                todoStatus: 'false', //문자열로 받아야함
                 userId: '<%= request.getAttribute("userId") %>'
             };
 
             $http.post('/api/todos/personal', newPersonalTask)
                 .then(function(response) {
-                    $scope.personalTasks.push(response.data); // 추가된 투두리스트를 배열에 추가
+                    var savedMyTask = response.data;
+                    if (savedMyTask && savedMyTask.todoId) {
+                        $scope.personalTasks.push(savedMyTask);
+                    } else {
+                        newPersonalTask.todoId = 'temporary_' + (new Date()).getTime();
+                        $scope.personalTasks.push(newPersonalTask);
+                    }
                     $scope.yourPersonalTask = ''; // 입력 필드 초기화
                 })
                 .catch(function(error) {
@@ -126,17 +137,25 @@
 
         // 업데이트 함수
         $scope.updatePersonalTask = function(personalTask) {
-            $http.put('/api/todos/personal/' + personalTask.todoId, personalTask)
+            if(!personalTask.todoId) return; // 아이디 없을 때 업데이트 방지
+
+            var updatedMyTask = angular.copy(personalTask);
+            updatedMyTask.todoStatus = personalTask.todoStatus.toString();
+
+            $http.put('/api/todos/personal/' + personalTask.todoId, updatedMyTask)
                 .then(function(response) {
-                    var updatedPersonalTask = response.data;
-                    // 클라이언트에서 personalTasks 배열을 업데이트
-                    for (var i = 0; i < $scope.personalTasks.length; i++) {
-                        if ($scope.personalTasks[i].todoId === updatedPersonalTask.todoId) {
-                            $scope.personalTasks[i] = updatedPersonalTask;
-                            break;
-                        }
-                    }
+
                     personalTask.editing = false; // 수정 상태 초기화
+
+                    // var updatedPersonalTask = response.data;
+                    // 클라이언트에서 personalTasks 배열을 업데이트
+                    // for (var i = 0; i < $scope.personalTasks.length; i++) {
+                    //     if ($scope.personalTasks[i].todoId === updatedPersonalTask.todoId) {
+                    //         $scope.personalTasks[i] = updatedPersonalTask;
+                    //         break;
+                    //     }
+                    // }
+                    // personalTask.editing = false; // 수정 상태 초기화
                 })
                 .catch(function(error) {
                     console.error('Error updating personal task:', error);
