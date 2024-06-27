@@ -7825,3 +7825,640 @@ This generated password is for development use only. Your security configuration
 2024-06-27 09:06:04.117  WARN 57480 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m14s635ms).
 2024-06-27 09:06:25.487  INFO 57480 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-06-27 09:06:25.495  INFO 57480 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-27 10:09:11.364  INFO 66997 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 66997 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-27 10:09:11.367 DEBUG 66997 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-27 10:09:11.368  INFO 66997 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-27 10:09:12.004  INFO 66997 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-27 10:09:12.009  INFO 66997 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-27 10:09:12.009  INFO 66997 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-27 10:09:12.163  INFO 66997 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-27 10:09:12.166  INFO 66997 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-27 10:09:12.166  INFO 66997 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 765 ms
+2024-06-27 10:09:12.448  WARN 66997 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 06b4d524-a314-4dd0-8c84-af34f4ee4c30
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-27 10:09:12.489 DEBUG 66997 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-27 10:09:12.496  INFO 66997 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@61b65d54, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b2c4a8b, org.springframework.security.web.context.SecurityContextPersistenceFilter@1142d377, org.springframework.security.web.header.HeaderWriterFilter@2de9ca6, org.springframework.security.web.authentication.logout.LogoutFilter@42297bdf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6e1ae763, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62d40e31, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7f2c57fe, org.springframework.security.web.session.SessionManagementFilter@20cdb152, org.springframework.security.web.access.ExceptionTranslationFilter@110e9982, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7a388990]
+2024-06-27 10:09:12.554 DEBUG 66997 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-27 10:09:12.566  INFO 66997 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-27 10:09:12.595 DEBUG 66997 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2024-06-27 10:09:12.607 DEBUG 66997 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /local/**] in 'resourceHandlerMapping'
+2024-06-27 10:09:12.612 DEBUG 66997 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-27 10:09:12.684  INFO 66997 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-27 10:09:12.692  INFO 66997 --- [main] com.workwave.Main                        : Started Main in 1.55 seconds (JVM running for 1.929)
+2024-06-27 10:09:19.990  INFO 66997 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-27 10:09:19.995  INFO 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-27 10:09:19.999 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-27 10:09:19.999 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-27 10:09:19.999 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-27 10:09:20.002 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6c97b8e5
+2024-06-27 10:09:20.002 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@71c91211
+2024-06-27 10:09:20.002 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-27 10:09:20.002  INFO 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-06-27 10:09:20.009 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /viewTodo/team/D003
+2024-06-27 10:09:20.013 DEBUG 66997 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 10:09:20.015 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 10:09:20.015 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 294316F425369310265D803D3FA4D8DD
+2024-06-27 10:09:20.020 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /viewTodo/team/D003] with attributes [permitAll]
+2024-06-27 10:09:20.021 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /viewTodo/team/D003
+2024-06-27 10:09:20.022 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/viewTodo/team/D003", parameters={}
+2024-06-27 10:09:20.035 DEBUG 66997 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListViewController#getTeamTodos(String, Model)
+2024-06-27 10:09:20.062  INFO 66997 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-27 10:09:20.115  INFO 66997 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-27 10:09:20.119 DEBUG 66997 --- [http-nio-8181-exec-1] c.w.m.s.T.findTeamTodosByDepartmentId    : ==>  Preparing: SELECT * FROM TeamTodoList WHERE department_id = ?
+2024-06-27 10:09:20.127 DEBUG 66997 --- [http-nio-8181-exec-1] c.w.m.s.T.findTeamTodosByDepartmentId    : ==> Parameters: D003(String)
+2024-06-27 10:09:20.138 DEBUG 66997 --- [http-nio-8181-exec-1] c.w.m.s.T.findTeamTodosByDepartmentId    : <==      Total: 9
+2024-06-27 10:09:20.147 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-27 10:09:20.154 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'schedule/todoList/teamTodoList', model {teamTodos=[TeamTodoList(teamTodoId=2, teamTodoContent=Team Task 2, teamTodoStatus=Pending, teamTodoCreateAt=2024-06-12T11:00, teamTodoUpdateAt=2024-06-12T11:00, colorIndexId=2, userId=U003, departmentId=D003), TeamTodoList(teamTodoId=3, teamTodoContent=Team Task 3, teamTodoStatus=Completed, teamTodoCreateAt=2024-06-13T12:00, teamTodoUpdateAt=2024-06-13T12:00, colorIndexId=3, userId=U003, departmentId=D003), TeamTodoList(teamTodoId=4, teamTodoContent=Team Task 4, teamTodoStatus=In Progress, teamTodoCreateAt=2024-06-14T13:00, teamTodoUpdateAt=2024-06-14T13:00, colorIndexId=4, userId=U003, departmentId=D003), TeamTodoList(teamTodoId=11, teamTodoContent=zxx, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T07:45:56, teamTodoUpdateAt=2024-06-27T07:45:56, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=12, teamTodoContent=알닐아, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T07:46, teamTodoUpdateAt=2024-06-27T07:46, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=14, teamTodoContent=이이, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T07:49:01, teamTodoUpdateAt=2024-06-27T07:49:01, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=25, teamTodoContent=도롱뇽, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:12:24, teamTodoUpdateAt=2024-06-27T08:12:24, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=32, teamTodoContent=메롱, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:35:59, teamTodoUpdateAt=2024-06-27T08:35:59, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=33, teamTodoContent=야!!!, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:36:04, teamTodoUpdateAt=2024-06-27T08:36:04, colorIndexId=1, userId=null, departmentId=D003)]}
+2024-06-27 10:09:20.156 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/todoList/teamTodoList.jsp]
+2024-06-27 10:09:20.591 DEBUG 66997 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 10:09:20.593 DEBUG 66997 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 10:09:20.594 DEBUG 66997 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 10:09:20.594 DEBUG 66997 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 10:09:20.698 DEBUG 66997 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/todos/team/aTeamTodos/D003
+2024-06-27 10:09:20.699 DEBUG 66997 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 10:09:20.699 DEBUG 66997 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 10:09:20.700 DEBUG 66997 --- [http-nio-8181-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/todos/team/aTeamTodos/D003] with attributes [permitAll]
+2024-06-27 10:09:20.700 DEBUG 66997 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/todos/team/aTeamTodos/D003
+2024-06-27 10:09:20.701 DEBUG 66997 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/api/todos/team/aTeamTodos/D003", parameters={}
+2024-06-27 10:09:20.702 DEBUG 66997 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#findTeamTodosByDepartmentId(String)
+2024-06-27 10:09:20.723 DEBUG 66997 --- [http-nio-8181-exec-2] c.w.m.s.T.findTeamTodosByDepartmentId    : ==>  Preparing: SELECT * FROM TeamTodoList WHERE department_id = ?
+2024-06-27 10:09:20.736 DEBUG 66997 --- [http-nio-8181-exec-2] c.w.m.s.T.findTeamTodosByDepartmentId    : ==> Parameters: D003(String)
+2024-06-27 10:09:20.763 DEBUG 66997 --- [http-nio-8181-exec-2] c.w.m.s.T.findTeamTodosByDepartmentId    : <==      Total: 9
+2024-06-27 10:09:20.776 DEBUG 66997 --- [http-nio-8181-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 10:09:20.777 DEBUG 66997 --- [http-nio-8181-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[TeamTodoList(teamTodoId=2, teamTodoContent=Team Task 2, teamTodoStatus=Pending, teamTodoCreateAt=20 (truncated)...]
+2024-06-27 10:09:20.828 DEBUG 66997 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 10:09:20.829 DEBUG 66997 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 10:09:20.829 DEBUG 66997 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 10:09:20.829 DEBUG 66997 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 10:09:25.536 DEBUG 66997 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/todos/team
+2024-06-27 10:09:25.537 DEBUG 66997 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 10:09:25.538 DEBUG 66997 --- [http-nio-8181-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 10:09:25.538 DEBUG 66997 --- [http-nio-8181-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/todos/team] with attributes [permitAll]
+2024-06-27 10:09:25.539 DEBUG 66997 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/todos/team
+2024-06-27 10:09:25.539 DEBUG 66997 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : POST "/api/todos/team", parameters={}
+2024-06-27 10:09:25.544 DEBUG 66997 --- [http-nio-8181-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#insertTeamTodo(TeamTodoList)
+2024-06-27 10:09:25.579 DEBUG 66997 --- [http-nio-8181-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [TeamTodoList(teamTodoId=0, teamTodoContent=냐냥, teamTodoStatus=false, teamTodoCreateAt=null, teamTodo (truncated)...]
+2024-06-27 10:09:25.582 DEBUG 66997 --- [http-nio-8181-exec-5] c.w.m.s.TodoListMapper.insertTeamTodo    : ==>  Preparing: INSERT INTO TeamTodoList (team_todo_content, team_todo_status, team_todo_createAt, team_todo_updateAt, color_index_id, user_id, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)
+2024-06-27 10:09:25.584 DEBUG 66997 --- [http-nio-8181-exec-5] c.w.m.s.TodoListMapper.insertTeamTodo    : ==> Parameters: 냐냥(String), 기본값(String), 2024-06-27T10:09:25.582194(LocalDateTime), 2024-06-27T10:09:25.582248(LocalDateTime), 1(Integer), null, D003(String)
+2024-06-27 10:09:25.587 DEBUG 66997 --- [http-nio-8181-exec-5] c.w.m.s.TodoListMapper.insertTeamTodo    : <==    Updates: 1
+2024-06-27 10:09:25.588 DEBUG 66997 --- [http-nio-8181-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 10:09:25.588 DEBUG 66997 --- [http-nio-8181-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 10:09:25.588 DEBUG 66997 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 10:09:25.588 DEBUG 66997 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 10:09:25.588 DEBUG 66997 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 10:10:45.435 DEBUG 66997 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/todos/team
+2024-06-27 10:10:45.437 DEBUG 66997 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 10:10:45.437 DEBUG 66997 --- [http-nio-8181-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 10:10:45.438 DEBUG 66997 --- [http-nio-8181-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/todos/team] with attributes [permitAll]
+2024-06-27 10:10:45.438 DEBUG 66997 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/todos/team
+2024-06-27 10:10:45.438 DEBUG 66997 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : POST "/api/todos/team", parameters={}
+2024-06-27 10:10:45.439 DEBUG 66997 --- [http-nio-8181-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#insertTeamTodo(TeamTodoList)
+2024-06-27 10:10:45.441 DEBUG 66997 --- [http-nio-8181-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [TeamTodoList(teamTodoId=0, teamTodoContent=ㅇㅇㅇ, teamTodoStatus=false, teamTodoCreateAt=null, teamTod (truncated)...]
+2024-06-27 10:10:45.453 DEBUG 66997 --- [http-nio-8181-exec-7] c.w.m.s.TodoListMapper.insertTeamTodo    : ==>  Preparing: INSERT INTO TeamTodoList (team_todo_content, team_todo_status, team_todo_createAt, team_todo_updateAt, color_index_id, user_id, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)
+2024-06-27 10:10:45.455 DEBUG 66997 --- [http-nio-8181-exec-7] c.w.m.s.TodoListMapper.insertTeamTodo    : ==> Parameters: ㅇㅇㅇ(String), 기본값(String), 2024-06-27T10:10:45.442850(LocalDateTime), 2024-06-27T10:10:45.443045(LocalDateTime), 1(Integer), null, D003(String)
+2024-06-27 10:10:45.458 DEBUG 66997 --- [http-nio-8181-exec-7] c.w.m.s.TodoListMapper.insertTeamTodo    : <==    Updates: 1
+2024-06-27 10:10:45.459 DEBUG 66997 --- [http-nio-8181-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 10:10:45.459 DEBUG 66997 --- [http-nio-8181-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 10:10:45.460 DEBUG 66997 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 10:10:45.460 DEBUG 66997 --- [http-nio-8181-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 10:10:45.460 DEBUG 66997 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 10:11:35.577 DEBUG 66997 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/todos/team
+2024-06-27 10:11:35.580 DEBUG 66997 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 10:11:35.580 DEBUG 66997 --- [http-nio-8181-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 10:11:35.582 DEBUG 66997 --- [http-nio-8181-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/todos/team] with attributes [permitAll]
+2024-06-27 10:11:35.582 DEBUG 66997 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/todos/team
+2024-06-27 10:11:35.582 DEBUG 66997 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : POST "/api/todos/team", parameters={}
+2024-06-27 10:11:35.584 DEBUG 66997 --- [http-nio-8181-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#insertTeamTodo(TeamTodoList)
+2024-06-27 10:11:35.601 DEBUG 66997 --- [http-nio-8181-exec-9] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [TeamTodoList(teamTodoId=0, teamTodoContent=qkqkqkqk, teamTodoStatus=false, teamTodoCreateAt=null, te (truncated)...]
+2024-06-27 10:11:35.625 DEBUG 66997 --- [http-nio-8181-exec-9] c.w.m.s.TodoListMapper.insertTeamTodo    : ==>  Preparing: INSERT INTO TeamTodoList (team_todo_content, team_todo_status, team_todo_createAt, team_todo_updateAt, color_index_id, user_id, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)
+2024-06-27 10:11:35.626 DEBUG 66997 --- [http-nio-8181-exec-9] c.w.m.s.TodoListMapper.insertTeamTodo    : ==> Parameters: qkqkqkqk(String), 기본값(String), 2024-06-27T10:11:35.611655(LocalDateTime), 2024-06-27T10:11:35.612724(LocalDateTime), 1(Integer), null, D003(String)
+2024-06-27 10:11:35.687 DEBUG 66997 --- [http-nio-8181-exec-9] c.w.m.s.TodoListMapper.insertTeamTodo    : <==    Updates: 1
+2024-06-27 10:11:35.692 DEBUG 66997 --- [http-nio-8181-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 10:11:35.692 DEBUG 66997 --- [http-nio-8181-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 10:11:35.693 DEBUG 66997 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 10:11:35.693 DEBUG 66997 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 10:11:35.693 DEBUG 66997 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 10:12:33.027  INFO 66997 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-27 10:12:33.036  INFO 66997 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-27 12:01:25.267  INFO 82565 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 82565 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-27 12:01:25.269 DEBUG 82565 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-27 12:01:25.271  INFO 82565 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-27 12:01:25.850  INFO 82565 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-27 12:01:25.854  INFO 82565 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-27 12:01:25.854  INFO 82565 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-27 12:01:25.990  INFO 82565 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-27 12:01:25.993  INFO 82565 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-27 12:01:25.994  INFO 82565 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 690 ms
+2024-06-27 12:01:26.210  WARN 82565 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: cd052bd3-2cad-4bfa-a465-1f70f1983ccf
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-27 12:01:26.247 DEBUG 82565 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-27 12:01:26.253  INFO 82565 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5bda157e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67e0fd6d, org.springframework.security.web.context.SecurityContextPersistenceFilter@433ea2ac, org.springframework.security.web.header.HeaderWriterFilter@ab4aa5e, org.springframework.security.web.authentication.logout.LogoutFilter@457a5b2d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@446e7065, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@d653e41, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@21390938, org.springframework.security.web.session.SessionManagementFilter@1e545821, org.springframework.security.web.access.ExceptionTranslationFilter@50b734c4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@14fc9bd]
+2024-06-27 12:01:26.297 DEBUG 82565 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-27 12:01:26.306  INFO 82565 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-27 12:01:26.330 DEBUG 82565 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2024-06-27 12:01:26.340 DEBUG 82565 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /local/**] in 'resourceHandlerMapping'
+2024-06-27 12:01:26.344 DEBUG 82565 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-27 12:01:26.399  INFO 82565 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-27 12:01:26.405  INFO 82565 --- [main] com.workwave.Main                        : Started Main in 1.334 seconds (JVM running for 1.643)
+2024-06-27 12:09:22.933  INFO 84659 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 84659 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-27 12:09:22.934 DEBUG 84659 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-27 12:09:22.934  INFO 84659 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-27 12:09:23.593  INFO 84659 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-27 12:09:23.596  INFO 84659 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-27 12:09:23.597  INFO 84659 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-27 12:09:23.709  INFO 84659 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-27 12:09:23.711  INFO 84659 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-27 12:09:23.711  INFO 84659 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 720 ms
+2024-06-27 12:09:23.914  WARN 84659 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 2a738b13-b8c0-4384-9e51-f20abd00fb73
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-27 12:09:23.949 DEBUG 84659 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-27 12:09:23.955  INFO 84659 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2b877a54, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@268c030f, org.springframework.security.web.context.SecurityContextPersistenceFilter@4962b41e, org.springframework.security.web.header.HeaderWriterFilter@6e1ae763, org.springframework.security.web.authentication.logout.LogoutFilter@3830f918, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6282b9f5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5b5f9003, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4b87760e, org.springframework.security.web.session.SessionManagementFilter@7fbf26fc, org.springframework.security.web.access.ExceptionTranslationFilter@4cffd3fd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@26d5a317]
+2024-06-27 12:09:24.000 DEBUG 84659 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-27 12:09:24.009  INFO 84659 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-27 12:09:24.032 DEBUG 84659 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2024-06-27 12:09:24.041 DEBUG 84659 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /local/**] in 'resourceHandlerMapping'
+2024-06-27 12:09:24.045 DEBUG 84659 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-27 12:09:24.097  INFO 84659 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-27 12:09:24.103  INFO 84659 --- [main] com.workwave.Main                        : Started Main in 1.438 seconds (JVM running for 1.868)
+2024-06-27 12:09:28.595  INFO 84659 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-27 12:09:28.596  INFO 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-27 12:09:28.596 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-27 12:09:28.596 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-27 12:09:28.596 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-27 12:09:28.597 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3b9875a2
+2024-06-27 12:09:28.597 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@4b4472e9
+2024-06-27 12:09:28.597 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-27 12:09:28.597  INFO 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-27 12:09:28.603 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /viewTodo/team/D003
+2024-06-27 12:09:28.608 DEBUG 84659 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:09:28.610 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:09:28.611 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 0C540E946ED0A5C78D08D63622803FCC
+2024-06-27 12:09:28.616 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /viewTodo/team/D003] with attributes [permitAll]
+2024-06-27 12:09:28.617 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /viewTodo/team/D003
+2024-06-27 12:09:28.618 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/viewTodo/team/D003", parameters={}
+2024-06-27 12:09:28.623 DEBUG 84659 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListViewController#getTeamTodos(String, Model)
+2024-06-27 12:09:28.655  INFO 84659 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-27 12:09:28.696  INFO 84659 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-27 12:09:28.700 DEBUG 84659 --- [http-nio-8181-exec-1] c.w.m.s.T.findTeamTodosByDepartmentId    : ==>  Preparing: SELECT * FROM TeamTodoList WHERE department_id = ?
+2024-06-27 12:09:28.708 DEBUG 84659 --- [http-nio-8181-exec-1] c.w.m.s.T.findTeamTodosByDepartmentId    : ==> Parameters: D003(String)
+2024-06-27 12:09:28.720 DEBUG 84659 --- [http-nio-8181-exec-1] c.w.m.s.T.findTeamTodosByDepartmentId    : <==      Total: 12
+2024-06-27 12:09:28.727 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-27 12:09:28.734 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'schedule/todoList/teamTodoList', model {teamTodos=[TeamTodoList(teamTodoId=2, teamTodoContent=Team Task 2, teamTodoStatus=Pending, teamTodoCreateAt=2024-06-12T11:00, teamTodoUpdateAt=2024-06-12T11:00, colorIndexId=2, userId=U003, departmentId=D003), TeamTodoList(teamTodoId=3, teamTodoContent=Team Task 3, teamTodoStatus=Completed, teamTodoCreateAt=2024-06-13T12:00, teamTodoUpdateAt=2024-06-13T12:00, colorIndexId=3, userId=U003, departmentId=D003), TeamTodoList(teamTodoId=4, teamTodoContent=Team Task 4, teamTodoStatus=In Progress, teamTodoCreateAt=2024-06-14T13:00, teamTodoUpdateAt=2024-06-14T13:00, colorIndexId=4, userId=U003, departmentId=D003), TeamTodoList(teamTodoId=11, teamTodoContent=zxx, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T07:45:56, teamTodoUpdateAt=2024-06-27T07:45:56, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=12, teamTodoContent=알닐아, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T07:46, teamTodoUpdateAt=2024-06-27T07:46, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=14, teamTodoContent=이이, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T07:49:01, teamTodoUpdateAt=2024-06-27T07:49:01, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=25, teamTodoContent=도롱뇽, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:12:24, teamTodoUpdateAt=2024-06-27T08:12:24, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=32, teamTodoContent=메롱, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:35:59, teamTodoUpdateAt=2024-06-27T08:35:59, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=33, teamTodoContent=야!!!, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:36:04, teamTodoUpdateAt=2024-06-27T08:36:04, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=34, teamTodoContent=냐냥, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T10:09:25, teamTodoUpdateAt=2024-06-27T10:09:25, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=35, teamTodoContent=ㅇㅇㅇ, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T10:10:45, teamTodoUpdateAt=2024-06-27T10:10:45, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=36, teamTodoContent=qkqkqkqk, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T10:11:35, teamTodoUpdateAt=2024-06-27T10:11:35, colorIndexId=1, userId=null, departmentId=D003)]}
+2024-06-27 12:09:28.736 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/todoList/teamTodoList.jsp]
+2024-06-27 12:09:29.056 DEBUG 84659 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:09:29.057 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 12:09:29.058 DEBUG 84659 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:09:29.058 DEBUG 84659 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:09:29.154 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/todos/team/aTeamTodos/D003
+2024-06-27 12:09:29.156 DEBUG 84659 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:09:29.156 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:09:29.157 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/todos/team/aTeamTodos/D003] with attributes [permitAll]
+2024-06-27 12:09:29.157 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/todos/team/aTeamTodos/D003
+2024-06-27 12:09:29.157 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/todos/team/aTeamTodos/D003", parameters={}
+2024-06-27 12:09:29.158 DEBUG 84659 --- [http-nio-8181-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#findTeamTodosByDepartmentId(String)
+2024-06-27 12:09:29.160 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.T.findTeamTodosByDepartmentId    : ==>  Preparing: SELECT * FROM TeamTodoList WHERE department_id = ?
+2024-06-27 12:09:29.161 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.T.findTeamTodosByDepartmentId    : ==> Parameters: D003(String)
+2024-06-27 12:09:29.198 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.T.findTeamTodosByDepartmentId    : <==      Total: 12
+2024-06-27 12:09:29.211 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:09:29.211 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[TeamTodoList(teamTodoId=2, teamTodoContent=Team Task 2, teamTodoStatus=Pending, teamTodoCreateAt=20 (truncated)...]
+2024-06-27 12:09:29.236 DEBUG 84659 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:09:29.237 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 12:09:29.237 DEBUG 84659 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:09:29.237 DEBUG 84659 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:09:33.118 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Securing POST /api/todos/team
+2024-06-27 12:09:33.119 DEBUG 84659 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:09:33.119 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:09:33.120 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/todos/team] with attributes [permitAll]
+2024-06-27 12:09:33.121 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Secured POST /api/todos/team
+2024-06-27 12:09:33.121 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : POST "/api/todos/team", parameters={}
+2024-06-27 12:09:33.122 DEBUG 84659 --- [http-nio-8181-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#insertTeamTodo(TeamTodoList)
+2024-06-27 12:09:33.152 DEBUG 84659 --- [http-nio-8181-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [TeamTodoList(teamTodoId=0, teamTodoContent=skskd, teamTodoStatus=false, teamTodoCreateAt=null, teamT (truncated)...]
+2024-06-27 12:09:33.155 DEBUG 84659 --- [http-nio-8181-exec-4] c.w.m.s.TodoListMapper.insertTeamTodo    : ==>  Preparing: INSERT INTO TeamTodoList (team_todo_content, team_todo_status, team_todo_createAt, team_todo_updateAt, color_index_id, user_id, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)
+2024-06-27 12:09:33.156 DEBUG 84659 --- [http-nio-8181-exec-4] c.w.m.s.TodoListMapper.insertTeamTodo    : ==> Parameters: skskd(String), 기본값(String), 2024-06-27T12:09:33.154877(LocalDateTime), 2024-06-27T12:09:33.154910(LocalDateTime), 1(Integer), null, D003(String)
+2024-06-27 12:09:33.161 DEBUG 84659 --- [http-nio-8181-exec-4] c.w.m.s.TodoListMapper.insertTeamTodo    : <==    Updates: 1
+2024-06-27 12:09:33.162 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:09:33.163 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:09:33.163 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:09:33.163 DEBUG 84659 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:09:33.163 DEBUG 84659 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:09:39.036 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/todos/team
+2024-06-27 12:09:39.036 DEBUG 84659 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:09:39.036 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:09:39.037 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/todos/team] with attributes [permitAll]
+2024-06-27 12:09:39.038 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/todos/team
+2024-06-27 12:09:39.038 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : POST "/api/todos/team", parameters={}
+2024-06-27 12:09:39.038 DEBUG 84659 --- [http-nio-8181-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#insertTeamTodo(TeamTodoList)
+2024-06-27 12:09:39.039 DEBUG 84659 --- [http-nio-8181-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [TeamTodoList(teamTodoId=0, teamTodoContent=skskksks, teamTodoStatus=false, teamTodoCreateAt=null, te (truncated)...]
+2024-06-27 12:09:39.042 DEBUG 84659 --- [http-nio-8181-exec-6] c.w.m.s.TodoListMapper.insertTeamTodo    : ==>  Preparing: INSERT INTO TeamTodoList (team_todo_content, team_todo_status, team_todo_createAt, team_todo_updateAt, color_index_id, user_id, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)
+2024-06-27 12:09:39.043 DEBUG 84659 --- [http-nio-8181-exec-6] c.w.m.s.TodoListMapper.insertTeamTodo    : ==> Parameters: skskksks(String), 기본값(String), 2024-06-27T12:09:39.040369(LocalDateTime), 2024-06-27T12:09:39.040403(LocalDateTime), 1(Integer), null, D003(String)
+2024-06-27 12:09:39.044 DEBUG 84659 --- [http-nio-8181-exec-6] c.w.m.s.TodoListMapper.insertTeamTodo    : <==    Updates: 1
+2024-06-27 12:09:39.045 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:09:39.046 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:09:39.046 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:09:39.047 DEBUG 84659 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:09:39.047 DEBUG 84659 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:05.387 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /viewTodo/personal/U001
+2024-06-27 12:10:05.389 DEBUG 84659 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:05.390 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:05.391 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /viewTodo/personal/U001] with attributes [permitAll]
+2024-06-27 12:10:05.391 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /viewTodo/personal/U001
+2024-06-27 12:10:05.391 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/viewTodo/personal/U001", parameters={}
+2024-06-27 12:10:05.392 DEBUG 84659 --- [http-nio-8181-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListViewController#getMyPersonalTodos(String, Model)
+2024-06-27 12:10:05.394 DEBUG 84659 --- [http-nio-8181-exec-8] c.w.m.s.TodoListMapper.findByUserId      : ==>  Preparing: SELECT * FROM TodoList WHERE user_id = ?
+2024-06-27 12:10:05.395 DEBUG 84659 --- [http-nio-8181-exec-8] c.w.m.s.TodoListMapper.findByUserId      : ==> Parameters: U001(String)
+2024-06-27 12:10:05.401 DEBUG 84659 --- [http-nio-8181-exec-8] c.w.m.s.TodoListMapper.findByUserId      : <==      Total: 18
+2024-06-27 12:10:05.401 DEBUG 84659 --- [http-nio-8181-exec-8] c.w.m.s.C.getAllColorIndexes             : ==>  Preparing: SELECT * FROM ColorIndex;
+2024-06-27 12:10:05.401 DEBUG 84659 --- [http-nio-8181-exec-8] c.w.m.s.C.getAllColorIndexes             : ==> Parameters: 
+2024-06-27 12:10:05.403 DEBUG 84659 --- [http-nio-8181-exec-8] c.w.m.s.C.getAllColorIndexes             : <==      Total: 5
+2024-06-27 12:10:05.404 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-27 12:10:05.443 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.web.servlet.view.JstlView            : View name 'schedule/todoList/personalTodoList', model {colorIndexMap={1=#FF0000, 2=#00FF00, 3=#0000FF, 4=#FFFF00, 5=#FF00FF}, personalTodos=[TodoList(todoId=5, todoContent=ㄴ낭날, todoStatus=true, todoCreateAt=2024-06-05T14:00, todoUpdateAt=2024-06-27T06:32:18, colorIndexId=5, userId=U001), TodoList(todoId=11, todoContent=아이공 ~., todoStatus=inprogress, todoCreateAt=2024-06-26T20:28:48, todoUpdateAt=2024-06-27T00:20:40, colorIndexId=1, userId=U001), TodoList(todoId=12, todoContent=후후, todoStatus=inprogress, todoCreateAt=2024-06-26T20:28:55, todoUpdateAt=2024-06-27T00:27:11, colorIndexId=1, userId=U001), TodoList(todoId=13, todoContent=ㄴㅇㄹ, todoStatus=inprogress, todoCreateAt=2024-06-26T20:28:58, todoUpdateAt=2024-06-26T20:28:58, colorIndexId=1, userId=U001), TodoList(todoId=14, todoContent=ㅇㄹㄴㅇㄹ, todoStatus=inprogress, todoCreateAt=2024-06-26T20:30:49, todoUpdateAt=2024-06-26T20:30:49, colorIndexId=1, userId=U001), TodoList(todoId=16, todoContent=null, todoStatus=inprogress, todoCreateAt=2024-06-26T23:01:29, todoUpdateAt=2024-06-26T23:01:29, colorIndexId=1, userId=U001), TodoList(todoId=17, todoContent=sdf, todoStatus=inprogress, todoCreateAt=2024-06-26T23:01:32, todoUpdateAt=2024-06-26T23:01:32, colorIndexId=1, userId=U001), TodoList(todoId=18, todoContent=난 천ㅈ재야 이거 하루만에 끝냈어 ~~~, todoStatus=inprogress, todoCreateAt=2024-06-26T23:02:07, todoUpdateAt=2024-06-26T23:02:07, colorIndexId=1, userId=U001), TodoList(todoId=19, todoContent=ㅇㅇㅇㅇ, todoStatus=inprogress, todoCreateAt=2024-06-26T23:18:02, todoUpdateAt=2024-06-26T23:18:02, colorIndexId=1, userId=U001), TodoList(todoId=20, todoContent=ㄴ, todoStatus=inprogress, todoCreateAt=2024-06-26T23:38:07, todoUpdateAt=2024-06-26T23:38:07, colorIndexId=1, userId=U001), TodoList(todoId=21, todoContent=냐냥, todoStatus=inprogress, todoCreateAt=2024-06-27T00:27:33, todoUpdateAt=2024-06-27T00:27:33, colorIndexId=1, userId=U001), TodoList(todoId=22, todoContent=노농, todoStatus=inprogress, todoCreateAt=2024-06-27T07:50:16, todoUpdateAt=2024-06-27T07:50:16, colorIndexId=1, userId=U001), TodoList(todoId=23, todoContent=누눙, todoStatus=inprogress, todoCreateAt=2024-06-27T07:50:20, todoUpdateAt=2024-06-27T07:50:20, colorIndexId=1, userId=U001), TodoList(todoId=24, todoContent=디디, todoStatus=inprogress, todoCreateAt=2024-06-27T07:50:24, todoUpdateAt=2024-06-27T07:50:24, colorIndexId=1, userId=U001), TodoList(todoId=25, todoContent=sss, todoStatus=inprogress, todoCreateAt=2024-06-27T08:33:21, todoUpdateAt=2024-06-27T08:33:21, colorIndexId=1, userId=U001), TodoList(todoId=26, todoContent=sss, todoStatus=inprogress, todoCreateAt=2024-06-27T08:33:22, todoUpdateAt=2024-06-27T08:33:22, colorIndexId=1, userId=U001), TodoList(todoId=27, todoContent=헤헤헤, todoStatus=inprogress, todoCreateAt=2024-06-27T08:33:44, todoUpdateAt=2024-06-27T08:33:44, colorIndexId=1, userId=U001), TodoList(todoId=28, todoContent=바부, todoStatus=inprogress, todoCreateAt=2024-06-27T08:34, todoUpdateAt=2024-06-27T08:34, colorIndexId=1, userId=U001)]}
+2024-06-27 12:10:05.444 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/todoList/personalTodoList.jsp]
+2024-06-27 12:10:05.500 DEBUG 84659 --- [http-nio-8181-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:05.501 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 12:10:05.501 DEBUG 84659 --- [http-nio-8181-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:05.501 DEBUG 84659 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:05.578 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/todos/personal/U001
+2024-06-27 12:10:05.578 DEBUG 84659 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:05.578 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:05.579 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/todos/personal/U001] with attributes [permitAll]
+2024-06-27 12:10:05.579 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/todos/personal/U001
+2024-06-27 12:10:05.579 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/api/todos/personal/U001", parameters={}
+2024-06-27 12:10:05.579 DEBUG 84659 --- [http-nio-8181-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#getPersonalTodos(String)
+2024-06-27 12:10:05.580 DEBUG 84659 --- [http-nio-8181-exec-9] c.w.m.s.TodoListMapper.findByUserId      : ==>  Preparing: SELECT * FROM TodoList WHERE user_id = ?
+2024-06-27 12:10:05.580 DEBUG 84659 --- [http-nio-8181-exec-9] c.w.m.s.TodoListMapper.findByUserId      : ==> Parameters: U001(String)
+2024-06-27 12:10:05.585 DEBUG 84659 --- [http-nio-8181-exec-9] c.w.m.s.TodoListMapper.findByUserId      : <==      Total: 18
+2024-06-27 12:10:05.586 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:05.588 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[TodoList(todoId=5, todoContent=ㄴ낭날, todoStatus=true, todoCreateAt=2024-06-05T14:00, todoUpdateAt=20 (truncated)...]
+2024-06-27 12:10:05.627 DEBUG 84659 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:05.633 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 12:10:05.634 DEBUG 84659 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:05.634 DEBUG 84659 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:08.600 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/todos/personal
+2024-06-27 12:10:08.601 DEBUG 84659 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:08.601 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:08.602 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/todos/personal] with attributes [permitAll]
+2024-06-27 12:10:08.602 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/todos/personal
+2024-06-27 12:10:08.602 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : POST "/api/todos/personal", parameters={}
+2024-06-27 12:10:08.603 DEBUG 84659 --- [http-nio-8181-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#createPersonalTodo(TodoList)
+2024-06-27 12:10:08.610 DEBUG 84659 --- [http-nio-8181-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [TodoList(todoId=0, todoContent=skskdkfls, todoStatus=false, todoCreateAt=null, todoUpdateAt=null, co (truncated)...]
+2024-06-27 12:10:08.616 DEBUG 84659 --- [http-nio-8181-exec-10] c.w.m.s.T.insertPersonalTodo             : ==>  Preparing: INSERT INTO TodoList (todo_content, todo_status, todo_createAt, todo_updateAt, color_index_id, user_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-06-27 12:10:08.617 DEBUG 84659 --- [http-nio-8181-exec-10] c.w.m.s.T.insertPersonalTodo             : ==> Parameters: skskdkfls(String), inprogress(String), 2024-06-27T12:10:08.611391(LocalDateTime), 2024-06-27T12:10:08.611422(LocalDateTime), 1(Integer), U001(String)
+2024-06-27 12:10:08.619 DEBUG 84659 --- [http-nio-8181-exec-10] c.w.m.s.T.insertPersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:08.620 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:08.620 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [TodoList(todoId=0, todoContent=skskdkfls, todoStatus=inprogress, todoCreateAt=2024-06-27T12:10:08.61 (truncated)...]
+2024-06-27 12:10:08.621 DEBUG 84659 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:08.622 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 12:10:08.622 DEBUG 84659 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:08.622 DEBUG 84659 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:11.118 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/todos/personal
+2024-06-27 12:10:11.118 DEBUG 84659 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:11.119 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:11.120 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/todos/personal] with attributes [permitAll]
+2024-06-27 12:10:11.120 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/todos/personal
+2024-06-27 12:10:11.120 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : POST "/api/todos/personal", parameters={}
+2024-06-27 12:10:11.120 DEBUG 84659 --- [http-nio-8181-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#createPersonalTodo(TodoList)
+2024-06-27 12:10:11.122 DEBUG 84659 --- [http-nio-8181-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [TodoList(todoId=0, todoContent=dsfjlkdsfd, todoStatus=false, todoCreateAt=null, todoUpdateAt=null, c (truncated)...]
+2024-06-27 12:10:11.122 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.T.insertPersonalTodo             : ==>  Preparing: INSERT INTO TodoList (todo_content, todo_status, todo_createAt, todo_updateAt, color_index_id, user_id) VALUES (?, ?, ?, ?, ?, ?)
+2024-06-27 12:10:11.123 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.T.insertPersonalTodo             : ==> Parameters: dsfjlkdsfd(String), inprogress(String), 2024-06-27T12:10:11.122402(LocalDateTime), 2024-06-27T12:10:11.122430(LocalDateTime), 1(Integer), U001(String)
+2024-06-27 12:10:11.129 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.T.insertPersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:11.130 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:11.130 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [TodoList(todoId=0, todoContent=dsfjlkdsfd, todoStatus=inprogress, todoCreateAt=2024-06-27T12:10:11.1 (truncated)...]
+2024-06-27 12:10:11.131 DEBUG 84659 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:11.132 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 12:10:11.132 DEBUG 84659 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:11.132 DEBUG 84659 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:12.113 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/personal/5
+2024-06-27 12:10:12.118 DEBUG 84659 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:12.119 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:12.120 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/personal/5] with attributes [permitAll]
+2024-06-27 12:10:12.120 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/personal/5
+2024-06-27 12:10:12.120 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/personal/5", parameters={}
+2024-06-27 12:10:12.122 DEBUG 84659 --- [http-nio-8181-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deletePersonalTodo(int)
+2024-06-27 12:10:12.124 DEBUG 84659 --- [http-nio-8181-exec-4] c.w.m.s.T.deletePersonalTodo             : ==>  Preparing: DELETE FROM TodoList WHERE todo_id = ?
+2024-06-27 12:10:12.125 DEBUG 84659 --- [http-nio-8181-exec-4] c.w.m.s.T.deletePersonalTodo             : ==> Parameters: 5(Integer)
+2024-06-27 12:10:12.128 DEBUG 84659 --- [http-nio-8181-exec-4] c.w.m.s.T.deletePersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:12.129 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:12.130 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:12.130 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:12.130 DEBUG 84659 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:12.130 DEBUG 84659 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:13.977 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/personal/11
+2024-06-27 12:10:13.979 DEBUG 84659 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:13.980 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:13.981 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/personal/11] with attributes [permitAll]
+2024-06-27 12:10:13.981 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/personal/11
+2024-06-27 12:10:13.982 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/personal/11", parameters={}
+2024-06-27 12:10:13.983 DEBUG 84659 --- [http-nio-8181-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deletePersonalTodo(int)
+2024-06-27 12:10:13.991 DEBUG 84659 --- [http-nio-8181-exec-5] c.w.m.s.T.deletePersonalTodo             : ==>  Preparing: DELETE FROM TodoList WHERE todo_id = ?
+2024-06-27 12:10:13.992 DEBUG 84659 --- [http-nio-8181-exec-5] c.w.m.s.T.deletePersonalTodo             : ==> Parameters: 11(Integer)
+2024-06-27 12:10:14.005 DEBUG 84659 --- [http-nio-8181-exec-5] c.w.m.s.T.deletePersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:14.006 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:14.006 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:14.007 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:14.007 DEBUG 84659 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:14.007 DEBUG 84659 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:14.105 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/personal/12
+2024-06-27 12:10:14.105 DEBUG 84659 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:14.106 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:14.106 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/personal/12] with attributes [permitAll]
+2024-06-27 12:10:14.106 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/personal/12
+2024-06-27 12:10:14.106 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/personal/12", parameters={}
+2024-06-27 12:10:14.106 DEBUG 84659 --- [http-nio-8181-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deletePersonalTodo(int)
+2024-06-27 12:10:14.107 DEBUG 84659 --- [http-nio-8181-exec-6] c.w.m.s.T.deletePersonalTodo             : ==>  Preparing: DELETE FROM TodoList WHERE todo_id = ?
+2024-06-27 12:10:14.107 DEBUG 84659 --- [http-nio-8181-exec-6] c.w.m.s.T.deletePersonalTodo             : ==> Parameters: 12(Integer)
+2024-06-27 12:10:14.108 DEBUG 84659 --- [http-nio-8181-exec-6] c.w.m.s.T.deletePersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:14.109 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:14.109 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:14.109 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:14.110 DEBUG 84659 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:14.110 DEBUG 84659 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:14.243 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/personal/13
+2024-06-27 12:10:14.243 DEBUG 84659 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:14.243 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:14.245 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/personal/13] with attributes [permitAll]
+2024-06-27 12:10:14.245 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/personal/13
+2024-06-27 12:10:14.245 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/personal/13", parameters={}
+2024-06-27 12:10:14.245 DEBUG 84659 --- [http-nio-8181-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deletePersonalTodo(int)
+2024-06-27 12:10:14.246 DEBUG 84659 --- [http-nio-8181-exec-7] c.w.m.s.T.deletePersonalTodo             : ==>  Preparing: DELETE FROM TodoList WHERE todo_id = ?
+2024-06-27 12:10:14.246 DEBUG 84659 --- [http-nio-8181-exec-7] c.w.m.s.T.deletePersonalTodo             : ==> Parameters: 13(Integer)
+2024-06-27 12:10:14.251 DEBUG 84659 --- [http-nio-8181-exec-7] c.w.m.s.T.deletePersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:14.252 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:14.252 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:14.252 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:14.252 DEBUG 84659 --- [http-nio-8181-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:14.252 DEBUG 84659 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:14.388 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/personal/14
+2024-06-27 12:10:14.388 DEBUG 84659 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:14.388 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:14.389 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/personal/14] with attributes [permitAll]
+2024-06-27 12:10:14.389 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/personal/14
+2024-06-27 12:10:14.390 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/personal/14", parameters={}
+2024-06-27 12:10:14.391 DEBUG 84659 --- [http-nio-8181-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deletePersonalTodo(int)
+2024-06-27 12:10:14.392 DEBUG 84659 --- [http-nio-8181-exec-8] c.w.m.s.T.deletePersonalTodo             : ==>  Preparing: DELETE FROM TodoList WHERE todo_id = ?
+2024-06-27 12:10:14.392 DEBUG 84659 --- [http-nio-8181-exec-8] c.w.m.s.T.deletePersonalTodo             : ==> Parameters: 14(Integer)
+2024-06-27 12:10:14.395 DEBUG 84659 --- [http-nio-8181-exec-8] c.w.m.s.T.deletePersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:14.396 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:14.396 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:14.396 DEBUG 84659 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:14.396 DEBUG 84659 --- [http-nio-8181-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:14.396 DEBUG 84659 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:14.523 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/personal/16
+2024-06-27 12:10:14.523 DEBUG 84659 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:14.523 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:14.523 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/personal/16] with attributes [permitAll]
+2024-06-27 12:10:14.523 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/personal/16
+2024-06-27 12:10:14.523 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/personal/16", parameters={}
+2024-06-27 12:10:14.524 DEBUG 84659 --- [http-nio-8181-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deletePersonalTodo(int)
+2024-06-27 12:10:14.524 DEBUG 84659 --- [http-nio-8181-exec-9] c.w.m.s.T.deletePersonalTodo             : ==>  Preparing: DELETE FROM TodoList WHERE todo_id = ?
+2024-06-27 12:10:14.524 DEBUG 84659 --- [http-nio-8181-exec-9] c.w.m.s.T.deletePersonalTodo             : ==> Parameters: 16(Integer)
+2024-06-27 12:10:14.525 DEBUG 84659 --- [http-nio-8181-exec-9] c.w.m.s.T.deletePersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:14.526 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:14.526 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:14.526 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:14.526 DEBUG 84659 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:14.526 DEBUG 84659 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:14.659 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/personal/17
+2024-06-27 12:10:14.659 DEBUG 84659 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:14.659 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:14.659 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/personal/17] with attributes [permitAll]
+2024-06-27 12:10:14.660 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/personal/17
+2024-06-27 12:10:14.660 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/personal/17", parameters={}
+2024-06-27 12:10:14.661 DEBUG 84659 --- [http-nio-8181-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deletePersonalTodo(int)
+2024-06-27 12:10:14.662 DEBUG 84659 --- [http-nio-8181-exec-10] c.w.m.s.T.deletePersonalTodo             : ==>  Preparing: DELETE FROM TodoList WHERE todo_id = ?
+2024-06-27 12:10:14.666 DEBUG 84659 --- [http-nio-8181-exec-10] c.w.m.s.T.deletePersonalTodo             : ==> Parameters: 17(Integer)
+2024-06-27 12:10:14.672 DEBUG 84659 --- [http-nio-8181-exec-10] c.w.m.s.T.deletePersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:14.672 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:14.672 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:14.673 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:14.673 DEBUG 84659 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:14.673 DEBUG 84659 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:14.795 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/personal/18
+2024-06-27 12:10:14.795 DEBUG 84659 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:14.795 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:14.795 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/personal/18] with attributes [permitAll]
+2024-06-27 12:10:14.796 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/personal/18
+2024-06-27 12:10:14.796 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/personal/18", parameters={}
+2024-06-27 12:10:14.796 DEBUG 84659 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deletePersonalTodo(int)
+2024-06-27 12:10:14.796 DEBUG 84659 --- [http-nio-8181-exec-2] c.w.m.s.T.deletePersonalTodo             : ==>  Preparing: DELETE FROM TodoList WHERE todo_id = ?
+2024-06-27 12:10:14.796 DEBUG 84659 --- [http-nio-8181-exec-2] c.w.m.s.T.deletePersonalTodo             : ==> Parameters: 18(Integer)
+2024-06-27 12:10:14.805 DEBUG 84659 --- [http-nio-8181-exec-2] c.w.m.s.T.deletePersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:14.805 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:14.805 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:14.806 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:14.806 DEBUG 84659 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:14.806 DEBUG 84659 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:15.698 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/personal/19
+2024-06-27 12:10:15.699 DEBUG 84659 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:15.699 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:15.699 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/personal/19] with attributes [permitAll]
+2024-06-27 12:10:15.699 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/personal/19
+2024-06-27 12:10:15.700 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/personal/19", parameters={}
+2024-06-27 12:10:15.700 DEBUG 84659 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deletePersonalTodo(int)
+2024-06-27 12:10:15.701 DEBUG 84659 --- [http-nio-8181-exec-1] c.w.m.s.T.deletePersonalTodo             : ==>  Preparing: DELETE FROM TodoList WHERE todo_id = ?
+2024-06-27 12:10:15.702 DEBUG 84659 --- [http-nio-8181-exec-1] c.w.m.s.T.deletePersonalTodo             : ==> Parameters: 19(Integer)
+2024-06-27 12:10:15.704 DEBUG 84659 --- [http-nio-8181-exec-1] c.w.m.s.T.deletePersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:15.705 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:15.705 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:15.705 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:15.706 DEBUG 84659 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:15.706 DEBUG 84659 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:15.846 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/personal/20
+2024-06-27 12:10:15.846 DEBUG 84659 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:15.846 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:15.846 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/personal/20] with attributes [permitAll]
+2024-06-27 12:10:15.846 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/personal/20
+2024-06-27 12:10:15.846 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/personal/20", parameters={}
+2024-06-27 12:10:15.847 DEBUG 84659 --- [http-nio-8181-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deletePersonalTodo(int)
+2024-06-27 12:10:15.847 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.T.deletePersonalTodo             : ==>  Preparing: DELETE FROM TodoList WHERE todo_id = ?
+2024-06-27 12:10:15.847 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.T.deletePersonalTodo             : ==> Parameters: 20(Integer)
+2024-06-27 12:10:15.848 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.T.deletePersonalTodo             : <==    Updates: 1
+2024-06-27 12:10:15.848 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:15.848 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:15.848 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:15.848 DEBUG 84659 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:15.848 DEBUG 84659 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:21.283 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /viewTodo/team/D003
+2024-06-27 12:10:21.286 DEBUG 84659 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:21.287 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:21.288 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /viewTodo/team/D003] with attributes [permitAll]
+2024-06-27 12:10:21.291 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /viewTodo/team/D003
+2024-06-27 12:10:21.291 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/viewTodo/team/D003", parameters={}
+2024-06-27 12:10:21.292 DEBUG 84659 --- [http-nio-8181-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListViewController#getTeamTodos(String, Model)
+2024-06-27 12:10:21.293 DEBUG 84659 --- [http-nio-8181-exec-5] c.w.m.s.T.findTeamTodosByDepartmentId    : ==>  Preparing: SELECT * FROM TeamTodoList WHERE department_id = ?
+2024-06-27 12:10:21.293 DEBUG 84659 --- [http-nio-8181-exec-5] c.w.m.s.T.findTeamTodosByDepartmentId    : ==> Parameters: D003(String)
+2024-06-27 12:10:21.295 DEBUG 84659 --- [http-nio-8181-exec-5] c.w.m.s.T.findTeamTodosByDepartmentId    : <==      Total: 14
+2024-06-27 12:10:21.296 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-27 12:10:21.296 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.web.servlet.view.JstlView            : View name 'schedule/todoList/teamTodoList', model {teamTodos=[TeamTodoList(teamTodoId=2, teamTodoContent=Team Task 2, teamTodoStatus=Pending, teamTodoCreateAt=2024-06-12T11:00, teamTodoUpdateAt=2024-06-12T11:00, colorIndexId=2, userId=U003, departmentId=D003), TeamTodoList(teamTodoId=3, teamTodoContent=Team Task 3, teamTodoStatus=Completed, teamTodoCreateAt=2024-06-13T12:00, teamTodoUpdateAt=2024-06-13T12:00, colorIndexId=3, userId=U003, departmentId=D003), TeamTodoList(teamTodoId=4, teamTodoContent=Team Task 4, teamTodoStatus=In Progress, teamTodoCreateAt=2024-06-14T13:00, teamTodoUpdateAt=2024-06-14T13:00, colorIndexId=4, userId=U003, departmentId=D003), TeamTodoList(teamTodoId=11, teamTodoContent=zxx, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T07:45:56, teamTodoUpdateAt=2024-06-27T07:45:56, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=12, teamTodoContent=알닐아, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T07:46, teamTodoUpdateAt=2024-06-27T07:46, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=14, teamTodoContent=이이, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T07:49:01, teamTodoUpdateAt=2024-06-27T07:49:01, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=25, teamTodoContent=도롱뇽, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:12:24, teamTodoUpdateAt=2024-06-27T08:12:24, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=32, teamTodoContent=메롱, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:35:59, teamTodoUpdateAt=2024-06-27T08:35:59, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=33, teamTodoContent=야!!!, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:36:04, teamTodoUpdateAt=2024-06-27T08:36:04, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=34, teamTodoContent=냐냥, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T10:09:25, teamTodoUpdateAt=2024-06-27T10:09:25, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=35, teamTodoContent=ㅇㅇㅇ, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T10:10:45, teamTodoUpdateAt=2024-06-27T10:10:45, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=36, teamTodoContent=qkqkqkqk, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T10:11:35, teamTodoUpdateAt=2024-06-27T10:11:35, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=37, teamTodoContent=skskd, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T12:09:33, teamTodoUpdateAt=2024-06-27T12:09:33, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=38, teamTodoContent=skskksks, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T12:09:39, teamTodoUpdateAt=2024-06-27T12:09:39, colorIndexId=1, userId=null, departmentId=D003)]}
+2024-06-27 12:10:21.299 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/todoList/teamTodoList.jsp]
+2024-06-27 12:10:21.299 DEBUG 84659 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:21.300 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 12:10:21.300 DEBUG 84659 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:21.300 DEBUG 84659 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:21.377 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/todos/team/aTeamTodos/D003
+2024-06-27 12:10:21.377 DEBUG 84659 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:21.377 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:21.378 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/todos/team/aTeamTodos/D003] with attributes [permitAll]
+2024-06-27 12:10:21.378 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/todos/team/aTeamTodos/D003
+2024-06-27 12:10:21.378 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api/todos/team/aTeamTodos/D003", parameters={}
+2024-06-27 12:10:21.379 DEBUG 84659 --- [http-nio-8181-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#findTeamTodosByDepartmentId(String)
+2024-06-27 12:10:21.380 DEBUG 84659 --- [http-nio-8181-exec-6] c.w.m.s.T.findTeamTodosByDepartmentId    : ==>  Preparing: SELECT * FROM TeamTodoList WHERE department_id = ?
+2024-06-27 12:10:21.383 DEBUG 84659 --- [http-nio-8181-exec-6] c.w.m.s.T.findTeamTodosByDepartmentId    : ==> Parameters: D003(String)
+2024-06-27 12:10:21.386 DEBUG 84659 --- [http-nio-8181-exec-6] c.w.m.s.T.findTeamTodosByDepartmentId    : <==      Total: 14
+2024-06-27 12:10:21.387 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:21.387 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[TeamTodoList(teamTodoId=2, teamTodoContent=Team Task 2, teamTodoStatus=Pending, teamTodoCreateAt=20 (truncated)...]
+2024-06-27 12:10:21.389 DEBUG 84659 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:21.390 DEBUG 84659 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 12:10:21.390 DEBUG 84659 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:21.390 DEBUG 84659 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:23.791 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/todos/team
+2024-06-27 12:10:23.791 DEBUG 84659 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:23.791 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:23.791 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/todos/team] with attributes [permitAll]
+2024-06-27 12:10:23.791 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/todos/team
+2024-06-27 12:10:23.791 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : POST "/api/todos/team", parameters={}
+2024-06-27 12:10:23.792 DEBUG 84659 --- [http-nio-8181-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#insertTeamTodo(TeamTodoList)
+2024-06-27 12:10:23.792 DEBUG 84659 --- [http-nio-8181-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [TeamTodoList(teamTodoId=0, teamTodoContent=dfsdf, teamTodoStatus=false, teamTodoCreateAt=null, teamT (truncated)...]
+2024-06-27 12:10:23.793 DEBUG 84659 --- [http-nio-8181-exec-7] c.w.m.s.TodoListMapper.insertTeamTodo    : ==>  Preparing: INSERT INTO TeamTodoList (team_todo_content, team_todo_status, team_todo_createAt, team_todo_updateAt, color_index_id, user_id, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)
+2024-06-27 12:10:23.793 DEBUG 84659 --- [http-nio-8181-exec-7] c.w.m.s.TodoListMapper.insertTeamTodo    : ==> Parameters: dfsdf(String), 기본값(String), 2024-06-27T12:10:23.792932(LocalDateTime), 2024-06-27T12:10:23.792956(LocalDateTime), 1(Integer), null, D003(String)
+2024-06-27 12:10:23.794 DEBUG 84659 --- [http-nio-8181-exec-7] c.w.m.s.TodoListMapper.insertTeamTodo    : <==    Updates: 1
+2024-06-27 12:10:23.795 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:23.796 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:23.796 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:23.797 DEBUG 84659 --- [http-nio-8181-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:23.797 DEBUG 84659 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:24.722 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/team/2
+2024-06-27 12:10:24.722 DEBUG 84659 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:24.722 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:24.722 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/team/2] with attributes [permitAll]
+2024-06-27 12:10:24.722 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/team/2
+2024-06-27 12:10:24.722 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/team/2", parameters={}
+2024-06-27 12:10:24.723 DEBUG 84659 --- [http-nio-8181-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deleteTeamTodo(int)
+2024-06-27 12:10:24.724 DEBUG 84659 --- [http-nio-8181-exec-10] c.w.m.s.TodoListMapper.deleteTeamTodo    : ==>  Preparing: DELETE FROM TeamTodoList WHERE team_todo_id = ?
+2024-06-27 12:10:24.726 DEBUG 84659 --- [http-nio-8181-exec-10] c.w.m.s.TodoListMapper.deleteTeamTodo    : ==> Parameters: 2(Integer)
+2024-06-27 12:10:24.727 DEBUG 84659 --- [http-nio-8181-exec-10] c.w.m.s.TodoListMapper.deleteTeamTodo    : <==    Updates: 1
+2024-06-27 12:10:24.727 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:24.728 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:24.728 DEBUG 84659 --- [http-nio-8181-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:24.728 DEBUG 84659 --- [http-nio-8181-exec-10] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:24.728 DEBUG 84659 --- [http-nio-8181-exec-10] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:24.868 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/team/3
+2024-06-27 12:10:24.869 DEBUG 84659 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:24.869 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:24.870 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/team/3] with attributes [permitAll]
+2024-06-27 12:10:24.870 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/team/3
+2024-06-27 12:10:24.870 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/team/3", parameters={}
+2024-06-27 12:10:24.871 DEBUG 84659 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deleteTeamTodo(int)
+2024-06-27 12:10:24.872 DEBUG 84659 --- [http-nio-8181-exec-2] c.w.m.s.TodoListMapper.deleteTeamTodo    : ==>  Preparing: DELETE FROM TeamTodoList WHERE team_todo_id = ?
+2024-06-27 12:10:24.872 DEBUG 84659 --- [http-nio-8181-exec-2] c.w.m.s.TodoListMapper.deleteTeamTodo    : ==> Parameters: 3(Integer)
+2024-06-27 12:10:24.877 DEBUG 84659 --- [http-nio-8181-exec-2] c.w.m.s.TodoListMapper.deleteTeamTodo    : <==    Updates: 1
+2024-06-27 12:10:24.879 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:24.879 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:24.879 DEBUG 84659 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:24.879 DEBUG 84659 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:24.879 DEBUG 84659 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:25.015 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/team/4
+2024-06-27 12:10:25.015 DEBUG 84659 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:25.015 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:25.015 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/team/4] with attributes [permitAll]
+2024-06-27 12:10:25.016 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/team/4
+2024-06-27 12:10:25.016 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/team/4", parameters={}
+2024-06-27 12:10:25.016 DEBUG 84659 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deleteTeamTodo(int)
+2024-06-27 12:10:25.016 DEBUG 84659 --- [http-nio-8181-exec-1] c.w.m.s.TodoListMapper.deleteTeamTodo    : ==>  Preparing: DELETE FROM TeamTodoList WHERE team_todo_id = ?
+2024-06-27 12:10:25.016 DEBUG 84659 --- [http-nio-8181-exec-1] c.w.m.s.TodoListMapper.deleteTeamTodo    : ==> Parameters: 4(Integer)
+2024-06-27 12:10:25.017 DEBUG 84659 --- [http-nio-8181-exec-1] c.w.m.s.TodoListMapper.deleteTeamTodo    : <==    Updates: 1
+2024-06-27 12:10:25.017 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:25.017 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:25.017 DEBUG 84659 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:25.018 DEBUG 84659 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:25.018 DEBUG 84659 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:25.164 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/team/11
+2024-06-27 12:10:25.164 DEBUG 84659 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:25.164 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:25.165 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/team/11] with attributes [permitAll]
+2024-06-27 12:10:25.165 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/team/11
+2024-06-27 12:10:25.165 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/team/11", parameters={}
+2024-06-27 12:10:25.165 DEBUG 84659 --- [http-nio-8181-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deleteTeamTodo(int)
+2024-06-27 12:10:25.165 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.TodoListMapper.deleteTeamTodo    : ==>  Preparing: DELETE FROM TeamTodoList WHERE team_todo_id = ?
+2024-06-27 12:10:25.166 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.TodoListMapper.deleteTeamTodo    : ==> Parameters: 11(Integer)
+2024-06-27 12:10:25.167 DEBUG 84659 --- [http-nio-8181-exec-3] c.w.m.s.TodoListMapper.deleteTeamTodo    : <==    Updates: 1
+2024-06-27 12:10:25.168 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:25.168 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:25.168 DEBUG 84659 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:25.168 DEBUG 84659 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:25.169 DEBUG 84659 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:25.299 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Securing DELETE /api/todos/team/12
+2024-06-27 12:10:25.299 DEBUG 84659 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:25.299 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:25.299 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [DELETE /api/todos/team/12] with attributes [permitAll]
+2024-06-27 12:10:25.299 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Secured DELETE /api/todos/team/12
+2024-06-27 12:10:25.299 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : DELETE "/api/todos/team/12", parameters={}
+2024-06-27 12:10:25.299 DEBUG 84659 --- [http-nio-8181-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#deleteTeamTodo(int)
+2024-06-27 12:10:25.300 DEBUG 84659 --- [http-nio-8181-exec-4] c.w.m.s.TodoListMapper.deleteTeamTodo    : ==>  Preparing: DELETE FROM TeamTodoList WHERE team_todo_id = ?
+2024-06-27 12:10:25.300 DEBUG 84659 --- [http-nio-8181-exec-4] c.w.m.s.TodoListMapper.deleteTeamTodo    : ==> Parameters: 12(Integer)
+2024-06-27 12:10:25.301 DEBUG 84659 --- [http-nio-8181-exec-4] c.w.m.s.TodoListMapper.deleteTeamTodo    : <==    Updates: 1
+2024-06-27 12:10:25.302 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:25.302 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:25.302 DEBUG 84659 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:25.302 DEBUG 84659 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:25.302 DEBUG 84659 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:27.700 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/todos/team
+2024-06-27 12:10:27.702 DEBUG 84659 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:27.702 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:27.702 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [POST /api/todos/team] with attributes [permitAll]
+2024-06-27 12:10:27.702 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/todos/team
+2024-06-27 12:10:27.702 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : POST "/api/todos/team", parameters={}
+2024-06-27 12:10:27.702 DEBUG 84659 --- [http-nio-8181-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#insertTeamTodo(TeamTodoList)
+2024-06-27 12:10:27.712 DEBUG 84659 --- [http-nio-8181-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [TeamTodoList(teamTodoId=0, teamTodoContent=dsfds, teamTodoStatus=false, teamTodoCreateAt=null, teamT (truncated)...]
+2024-06-27 12:10:27.722 DEBUG 84659 --- [http-nio-8181-exec-5] c.w.m.s.TodoListMapper.insertTeamTodo    : ==>  Preparing: INSERT INTO TeamTodoList (team_todo_content, team_todo_status, team_todo_createAt, team_todo_updateAt, color_index_id, user_id, department_id) VALUES (?, ?, ?, ?, ?, ?, ?)
+2024-06-27 12:10:27.723 DEBUG 84659 --- [http-nio-8181-exec-5] c.w.m.s.TodoListMapper.insertTeamTodo    : ==> Parameters: dsfds(String), 기본값(String), 2024-06-27T12:10:27.712275(LocalDateTime), 2024-06-27T12:10:27.712286(LocalDateTime), 1(Integer), null, D003(String)
+2024-06-27 12:10:27.724 DEBUG 84659 --- [http-nio-8181-exec-5] c.w.m.s.TodoListMapper.insertTeamTodo    : <==    Updates: 1
+2024-06-27 12:10:27.724 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:27.724 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Nothing to write: null body
+2024-06-27 12:10:27.724 DEBUG 84659 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 204 NO_CONTENT
+2024-06-27 12:10:27.725 DEBUG 84659 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:27.725 DEBUG 84659 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:30.899 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /viewTodo/team/D003
+2024-06-27 12:10:30.900 DEBUG 84659 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:30.900 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:30.900 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /viewTodo/team/D003] with attributes [permitAll]
+2024-06-27 12:10:30.901 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /viewTodo/team/D003
+2024-06-27 12:10:30.901 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/viewTodo/team/D003", parameters={}
+2024-06-27 12:10:30.902 DEBUG 84659 --- [http-nio-8181-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListViewController#getTeamTodos(String, Model)
+2024-06-27 12:10:30.903 DEBUG 84659 --- [http-nio-8181-exec-7] c.w.m.s.T.findTeamTodosByDepartmentId    : ==>  Preparing: SELECT * FROM TeamTodoList WHERE department_id = ?
+2024-06-27 12:10:30.903 DEBUG 84659 --- [http-nio-8181-exec-7] c.w.m.s.T.findTeamTodosByDepartmentId    : ==> Parameters: D003(String)
+2024-06-27 12:10:30.905 DEBUG 84659 --- [http-nio-8181-exec-7] c.w.m.s.T.findTeamTodosByDepartmentId    : <==      Total: 11
+2024-06-27 12:10:30.906 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-27 12:10:30.906 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.web.servlet.view.JstlView            : View name 'schedule/todoList/teamTodoList', model {teamTodos=[TeamTodoList(teamTodoId=14, teamTodoContent=이이, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T07:49:01, teamTodoUpdateAt=2024-06-27T07:49:01, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=25, teamTodoContent=도롱뇽, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:12:24, teamTodoUpdateAt=2024-06-27T08:12:24, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=32, teamTodoContent=메롱, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:35:59, teamTodoUpdateAt=2024-06-27T08:35:59, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=33, teamTodoContent=야!!!, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T08:36:04, teamTodoUpdateAt=2024-06-27T08:36:04, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=34, teamTodoContent=냐냥, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T10:09:25, teamTodoUpdateAt=2024-06-27T10:09:25, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=35, teamTodoContent=ㅇㅇㅇ, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T10:10:45, teamTodoUpdateAt=2024-06-27T10:10:45, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=36, teamTodoContent=qkqkqkqk, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T10:11:35, teamTodoUpdateAt=2024-06-27T10:11:35, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=37, teamTodoContent=skskd, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T12:09:33, teamTodoUpdateAt=2024-06-27T12:09:33, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=38, teamTodoContent=skskksks, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T12:09:39, teamTodoUpdateAt=2024-06-27T12:09:39, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=39, teamTodoContent=dfsdf, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T12:10:23, teamTodoUpdateAt=2024-06-27T12:10:23, colorIndexId=1, userId=null, departmentId=D003), TeamTodoList(teamTodoId=40, teamTodoContent=dsfds, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T12:10:27, teamTodoUpdateAt=2024-06-27T12:10:27, colorIndexId=1, userId=null, departmentId=D003)]}
+2024-06-27 12:10:30.907 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/todoList/teamTodoList.jsp]
+2024-06-27 12:10:30.907 DEBUG 84659 --- [http-nio-8181-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:30.908 DEBUG 84659 --- [http-nio-8181-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 12:10:30.908 DEBUG 84659 --- [http-nio-8181-exec-7] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:30.908 DEBUG 84659 --- [http-nio-8181-exec-7] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-27 12:10:30.957 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/todos/team/aTeamTodos/D003
+2024-06-27 12:10:30.958 DEBUG 84659 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-27 12:10:30.958 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-27 12:10:30.959 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/todos/team/aTeamTodos/D003] with attributes [permitAll]
+2024-06-27 12:10:30.959 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/todos/team/aTeamTodos/D003
+2024-06-27 12:10:30.959 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/api/todos/team/aTeamTodos/D003", parameters={}
+2024-06-27 12:10:30.960 DEBUG 84659 --- [http-nio-8181-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.TodoListApiController#findTeamTodosByDepartmentId(String)
+2024-06-27 12:10:30.960 DEBUG 84659 --- [http-nio-8181-exec-9] c.w.m.s.T.findTeamTodosByDepartmentId    : ==>  Preparing: SELECT * FROM TeamTodoList WHERE department_id = ?
+2024-06-27 12:10:30.960 DEBUG 84659 --- [http-nio-8181-exec-9] c.w.m.s.T.findTeamTodosByDepartmentId    : ==> Parameters: D003(String)
+2024-06-27 12:10:30.966 DEBUG 84659 --- [http-nio-8181-exec-9] c.w.m.s.T.findTeamTodosByDepartmentId    : <==      Total: 11
+2024-06-27 12:10:30.969 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-27 12:10:30.972 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[TeamTodoList(teamTodoId=14, teamTodoContent=이이, teamTodoStatus=기본값, teamTodoCreateAt=2024-06-27T07: (truncated)...]
+2024-06-27 12:10:30.978 DEBUG 84659 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:30.980 DEBUG 84659 --- [http-nio-8181-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-27 12:10:30.980 DEBUG 84659 --- [http-nio-8181-exec-9] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-27 12:10:30.980 DEBUG 84659 --- [http-nio-8181-exec-9] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request

@@ -48,7 +48,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="teamTask in teamTasks" ng-class="{'table-success': teamTask.teamTodoStatus, 'table-light': !teamTask.teamTodoStatus}">
+        <tr ng-repeat="teamTask in teamTasks track by $index" ng-class="{'table-success': teamTask.teamTodoStatus, 'table-light': !teamTask.teamTodoStatus}">
             <td>{{$index + 1}}</td>
             <td>
                 <!-- 동그라미 표시 -->
