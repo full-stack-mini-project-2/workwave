@@ -15,7 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -113,10 +117,32 @@ public class BoardService {
         return boardMapper.update(one);
     }
 
-    public Boolean updateViewCount(int boardId) {
+    public Boolean updateViewCount(int boardId, HttpSession session) {
 
-        return boardMapper.updateViewCount(boardId);
+        final long VIEW_COUNT_INTERVAL_MINUTES = 30;
 
+        @SuppressWarnings("unchecked")
+        Map<Integer, LocalDateTime> viewTimestamps
+                = (Map<Integer, LocalDateTime>) session.getAttribute("viewTimestamps");
+        if (viewTimestamps == null) {
+            viewTimestamps = new HashMap<>();
+            session.setAttribute("viewTimestamps", viewTimestamps);
+        }
+
+        LocalDateTime lastViewTime = viewTimestamps.get(boardId);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (lastViewTime == null ||
+                ChronoUnit.MINUTES.between(lastViewTime, now) >= VIEW_COUNT_INTERVAL_MINUTES) {
+
+            if (boardMapper.updateViewCount(boardId)) {
+                viewTimestamps.put(boardId, now);
+                return true;
+
+            }
+        }
+
+        return false;
     }
 
     public Boolean upLikeCount(int boardId) {

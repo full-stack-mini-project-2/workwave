@@ -76,7 +76,8 @@ public class BoardController {
                           HttpServletRequest request,
                           HttpSession session) {
 
-        boardService.updateViewCount(boardId);
+        // 조회수 증가 처리
+        boardService.updateViewCount(boardId, session);
 
         BoardDetailDto board = boardService.findOne(boardId);
 
