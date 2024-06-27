@@ -68,6 +68,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   </head>
   <body>
     <h1>게시물 목록</h1>
+    <a href="/login">로그인</a>
     <table>
       <tr class="table">
         <th>번호</th>

@@ -1,13 +1,30 @@
 const BASE_URL = "http://localhost:8383/board";
 const boardId = document.getElementById("reply-container").dataset.bno;
-const likeLoggedId = document.getElementById("likeCount").dataset.id;
-const dislikeLoggedId = document.getElementById("dislikeCount").dataset.id;
+const likeLoggedId = `like-${boardId}`;
+const dislikeLoggedId = `dislike-${boardId}`;
 
 const likeButton = document.getElementById("likeButton");
 const dislikeButton = document.getElementById("dislikeButton");
 
-likeButton.addEventListener("click", async (e) => {
+// 로드 시 상태 설정
+document.addEventListener("DOMContentLoaded", () => {
+  const likeCountElem = document.getElementById("likeCount");
+  const dislikeCountElem = document.getElementById("dislikeCount");
 
+  if (localStorage.getItem(likeLoggedId) === "true") {
+    likeCountElem.dataset.id = likeLoggedId + "-clicked";
+  } else {
+    likeCountElem.dataset.id = likeLoggedId;
+  }
+
+  if (localStorage.getItem(dislikeLoggedId) === "true") {
+    dislikeCountElem.dataset.id = dislikeLoggedId + "-clicked";
+  } else {
+    dislikeCountElem.dataset.id = dislikeLoggedId;
+  }
+});
+
+likeButton.addEventListener("click", async (e) => {
   if (e.target === likeButton) {
     const likeCountElem = document.getElementById("likeCount");
     if (likeCountElem.dataset.id === likeLoggedId + "-clicked") {
@@ -20,11 +37,9 @@ likeButton.addEventListener("click", async (e) => {
       }
     }
   }
-
 });
 
 dislikeButton.addEventListener("click", async (e) => {
-
   if (e.target === dislikeButton) {
     const dislikeCountElem = document.getElementById("dislikeCount");
     if (dislikeCountElem.dataset.id === dislikeLoggedId + "-clicked") {
@@ -37,7 +52,6 @@ dislikeButton.addEventListener("click", async (e) => {
       }
     }
   }
-  
 });
 
 async function clickUpLikes(boardId) {
@@ -63,6 +77,10 @@ async function clickUpLikes(boardId) {
 
   document.getElementById("likeCount").dataset.id = likeLoggedId + "-clicked";
   document.getElementById("likeCount").textContent = data.likes;
+
+  // 상태를 localStorage에 저장
+  localStorage.setItem(likeLoggedId, "true");
+  localStorage.removeItem(dislikeLoggedId);
 }
 
 async function clickDownLikes(boardId) {
@@ -88,6 +106,9 @@ async function clickDownLikes(boardId) {
 
   document.getElementById("likeCount").dataset.id = likeLoggedId;
   document.getElementById("likeCount").textContent = data.likes;
+
+  // 상태를 localStorage에서 제거
+  localStorage.removeItem(likeLoggedId);
 }
 
 async function clickUpDislikes(boardId) {
@@ -111,9 +132,12 @@ async function clickUpDislikes(boardId) {
 
   console.log(data);
 
-  document.getElementById("dislikeCount").dataset.id =
-    dislikeLoggedId + "-clicked";
+  document.getElementById("dislikeCount").dataset.id = dislikeLoggedId + "-clicked";
   document.getElementById("dislikeCount").textContent = data.dislikes;
+
+  // 상태를 localStorage에 저장
+  localStorage.setItem(dislikeLoggedId, "true");
+  localStorage.removeItem(likeLoggedId);
 }
 
 async function clickDownDislikes(boardId) {
@@ -139,4 +163,7 @@ async function clickDownDislikes(boardId) {
 
   document.getElementById("dislikeCount").dataset.id = dislikeLoggedId;
   document.getElementById("dislikeCount").textContent = data.dislikes;
+
+  // 상태를 localStorage에서 제거
+  localStorage.removeItem(dislikeLoggedId);
 }
