@@ -26,6 +26,9 @@
 
     <select id="findByUserId" parameterType="String" resultType="com.workwave.entity.schedule.TodoList">
         SELECT * FROM TodoList WHERE user_id = #{userId}
+        ORDER BY
+            todo_status DESC,
+            todo_createAt ASC;
     </select>
 
     <insert id="insertPersonalTodo" parameterType="com.workwave.entity.schedule.TodoList">
@@ -57,6 +60,9 @@
 
     <select id="findTeamTodosByDepartmentId" parameterType="String" resultType="com.workwave.entity.schedule.TeamTodoList">
         SELECT * FROM TeamTodoList WHERE department_id = #{departmentId}
+        ORDER BY
+            team_todo_status DESC,
+            team_todo_createAt ASC;
     </select>
 
     <insert id="insertTeamTodo" parameterType="com.workwave.entity.schedule.TeamTodoList">
@@ -77,5 +83,7 @@
     <delete id="deleteTeamTodo" parameterType="int">
         DELETE FROM TeamTodoList WHERE team_todo_id = #{teamTodoId}
     </delete>
+
+
 
 </mapper>
