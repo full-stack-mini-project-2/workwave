@@ -28,6 +28,7 @@ public class myInfoPage {
             return;
         }
         this.pageNo = pageNo;
+
     }
 
     public void setAmount(int amount) {
@@ -36,6 +37,8 @@ public class myInfoPage {
             return;
         }
         this.amount = amount;
-        this.amount = amount;
     }
+
+
+
 }

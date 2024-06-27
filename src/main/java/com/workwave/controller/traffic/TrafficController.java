@@ -34,9 +34,10 @@ public class TrafficController {
     @GetMapping("/traffic-myInfo")
     public String findTrafficInfo(Model model, myInfoPage page){
 
+        System.out.println(page);
         List<totalTrafficInfoDto> totalTraffic = trafficService.findAll(page);
-        myPageMaker maker = new myPageMaker(page);
-
+        myPageMaker maker = new myPageMaker(page,trafficService.getCount());
+        System.out.println(maker);
         model.addAttribute("maker",maker);
         model.addAttribute("totalTraffic",totalTraffic);
 

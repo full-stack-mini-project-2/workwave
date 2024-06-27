@@ -10,21 +10,23 @@ import lombok.ToString;
 public class myPageMaker {
 
     // 한 화면에 페이지를 몇개씩 배치할 것인가?
-    private static final int PAGE_COUNT = 6;
+    private static final int PAGE_COUNT = 40;
 
     // 페이지 시작번호와 끝번호
     private int begin, end;
 
+    private int totalCount;
+
     // 현재 페이지 정보
     private myInfoPage pageInfo;
 
-    public myPageMaker(myInfoPage page){
+    public myPageMaker(myInfoPage page, int totalCount){
         this.pageInfo = page;
+        this.totalCount =totalCount;
         makePageInfo();
     }
 
 
-    // 페이지 생성에 필요한 데이터를 만드는 알고리즘
     private void makePageInfo(){
 
 
@@ -32,6 +34,10 @@ public class myPageMaker {
 
         this.begin = this.end - PAGE_COUNT + 1;
 
+        int finalPage = (int) Math.ceil((double) totalCount / pageInfo.getAmount());
 
+        if (finalPage < this.end) {
+            this.end = finalPage;
+        }
     }
 }

@@ -40,4 +40,9 @@ public class trafficService {
 
         return trafficList;
     }
+
+    public int getCount() {
+
+        return trafficMapper.count();
+    }
 }
