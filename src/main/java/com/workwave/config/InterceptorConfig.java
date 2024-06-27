@@ -4,6 +4,7 @@ package com.workwave.config;
 import com.workwave.interceptor.AfterLoginInterceptor;
 import com.workwave.interceptor.AutoLoginInterceptor;
 import com.workwave.interceptor.BoardInterceptor;
+import com.workwave.interceptor.ReplyInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -19,7 +20,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     private final AutoLoginInterceptor autoLoginInterceptor;
     private final BoardInterceptor boardInterceptor;
-//    private final ApiAuthInterceptor apiAuthInterceptor;
+    private final ReplyInterceptor replyInterceptor;
 
     //설정 메서드
     @Override
@@ -46,12 +47,14 @@ public class InterceptorConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**");
 
         //REST API 인가 처리 인터셉터 등록
-//        registry
-//                .addInterceptor(apiAuthInterceptor)
-//                .addPathPatterns("/api/v1/**")
-//                .excludePathPatterns("/api/v1/replies/*/page/*")  //조회는 허용
-//        ;
+        registry
+                .addInterceptor(replyInterceptor)
+                .addPathPatterns("/reply/*","/sub")
+                .excludePathPatterns("/reply/*/page/*","/sub/*")  //조회는 허용
+        ;
+
     }
+
 
 
 }
