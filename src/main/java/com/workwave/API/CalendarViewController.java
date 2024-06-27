@@ -29,12 +29,13 @@ public class CalendarViewController {
         List<AllMyCalendarEventDto> myCalendarEvents = calendarService.getMyEvents(userId);
         try {
             String mycalEventsJson = objectMapper.writeValueAsString(myCalendarEvents);
-
-            model.addAttribute("userId", userId);
             model.addAttribute("mycalEvents", mycalEventsJson.replace("'", "\\'"));
             // formattedDate 설정
             String formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             model.addAttribute("formattedDate", formattedDate);
+            // 유저 이름 설정
+            String userName = myCalendarEvents.isEmpty() ? "Unknown User" : myCalendarEvents.get(0).getUserName();
+            model.addAttribute("userName", userName);
 
     } catch (Exception e) {
             log.error("Error converting events to JSON", e);

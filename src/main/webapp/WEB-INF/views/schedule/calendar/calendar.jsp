@@ -25,20 +25,29 @@
 </head>
 <body>
 <h1>Calendar</h1>
+<h2>Welcome, <c:out value="${userName}" /></h2>
+<h3 id="current-month"></h3>
 
 <div id="calendar"></div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    <%--const userId = '${userId}'; // EL 표현식 사용--%>
-    const initialEvents = JSON.parse('<c:out value="${mycalEvents}" escapeXml="false" />'); // EL 표현식 사용
+    // JSON 형식의 문자열을 자바스크립트 객체로 반환
+    const myCalEvents = JSON.parse('<c:out value="${mycalEvents}" escapeXml="false" />'); // EL 표현식 사용
+
+    // 첫 번째 이벤트에서 userId 속성을 가져옴
+    const userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
+
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth();
 
-    function fetchEvents(year, month) {
-      const userId = '${userId}'; // userId는 JSP에서 설정되어 있어야 함
+    function updateCurrentMonth(year, month) {
+      document.getElementById('current-month').textContent = `\${monthNames[month]} \${year}`;
+    }
 
+    function fetchEvents(year, month) {
       const xhr = new XMLHttpRequest();
       xhr.open('GET', `/api/calendar/myEvents/\${userId}?year=\${year}&month=\${month + 1}`, true);
       console.log(`/api/calendar/myEvents/\${userId}?year=\${year}&month=\${month + 1}`);
@@ -55,7 +64,6 @@
       };
       xhr.send();
     }
-
 
     function renderCalendar(events, year, month) {
       const firstDay = new Date(year, month, 1).getDay();
@@ -89,13 +97,13 @@
             calendarHtml += `<div class="event">${event.calEventTitle}</div>`;
           }
         });
-
         calendarHtml += '</td>';
       }
 
       calendarHtml += '</tr></table>';
 
       document.getElementById('calendar').innerHTML = calendarHtml;
+      updateCurrentMonth(year, month);
     }
 
     document.getElementById('prev-month').addEventListener('click', function () {
@@ -118,13 +126,12 @@
       fetchEvents(currentYear, currentMonth);
     });
 
-
-    // 모델에서 제공한 초기 이벤트를 렌더링
-    renderCalendar(initialEvents, currentYear, currentMonth);
+    // 초기 이벤트 및 현재 달 렌더링
+    renderCalendar(myCalEvents, currentYear, currentMonth);
   });
 </script>
 
-<div>Formatted Date: <span id="formattedDate">${formattedDate}</span></div>
+<div>Formatted Date: <span id="formattedDate"><c:out value="${formattedDate}" /></span></div>
 
 <button id="prev-month">Prev</button>
 <button id="next-month">Next</button>

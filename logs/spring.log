@@ -383,3 +383,558 @@ This generated password is for development use only. Your security configuration
 2024-06-28 05:44:52.743 DEBUG 2754 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
 2024-06-28 05:44:52.743 DEBUG 2754 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
 2024-06-28 05:44:52.743 DEBUG 2754 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 05:50:17.921 DEBUG 2754 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/calendar/myEvents/U001?year=2024&month=7
+2024-06-28 05:50:17.922 DEBUG 2754 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 05:50:17.922 DEBUG 2754 --- [http-nio-8181-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 05:50:17.924 DEBUG 2754 --- [http-nio-8181-exec-8] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/calendar/myEvents/U001?year=2024&month=7] with attributes [permitAll]
+2024-06-28 05:50:17.924 DEBUG 2754 --- [http-nio-8181-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/calendar/myEvents/U001?year=2024&month=7
+2024-06-28 05:50:17.925 DEBUG 2754 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api/calendar/myEvents/U001?year=2024&month=7", parameters={masked}
+2024-06-28 05:50:17.927 DEBUG 2754 --- [http-nio-8181-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarApiController#getMyEvents(String, int, int)
+2024-06-28 05:50:17.936 DEBUG 2754 --- [http-nio-8181-exec-8] c.w.m.s.C.getCalendarEventsForPeriod     : ==>  Preparing: SELECT CE.cal_event_id AS calEventId, CE.cal_event_date AS calEventDate, CE.cal_event_title AS calEventTitle, CE.cal_event_description AS calEventDescription, CE.cal_event_createAt AS calEventCreateAt, CE.cal_event_updateAt AS calEventUpdateAt, CE.color_index_id AS colorIndexId, CE.user_id AS userId, CE.calendar_id AS calendarId, U.user_name AS userName FROM CalendarEvent CE JOIN Users U ON U.user_id = CE.user_id WHERE CE.user_id = ? AND CE.cal_event_date BETWEEN ? AND ? AND team_calendar_id IS NULL;
+2024-06-28 05:50:17.937 DEBUG 2754 --- [http-nio-8181-exec-8] c.w.m.s.C.getCalendarEventsForPeriod     : ==> Parameters: U001(String), 2024-07-01(String), 2024-07-31(String)
+2024-06-28 05:50:17.940 DEBUG 2754 --- [http-nio-8181-exec-8] c.w.m.s.C.getCalendarEventsForPeriod     : <==      Total: 0
+2024-06-28 05:50:17.942 DEBUG 2754 --- [http-nio-8181-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-28 05:50:17.943 DEBUG 2754 --- [http-nio-8181-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Writing [[]]
+2024-06-28 05:50:17.944 DEBUG 2754 --- [http-nio-8181-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 05:50:17.946 DEBUG 2754 --- [http-nio-8181-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 05:50:17.946 DEBUG 2754 --- [http-nio-8181-exec-8] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 05:50:17.946 DEBUG 2754 --- [http-nio-8181-exec-8] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:04:20.649  WARN 2754 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7m23s345ms).
+2024-06-28 06:23:52.155  INFO 2754 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-28 06:23:52.159  INFO 2754 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-28 06:23:54.566  INFO 5057 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 5057 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-28 06:23:54.570 DEBUG 5057 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-28 06:23:54.571  INFO 5057 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-28 06:23:55.174  INFO 5057 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-28 06:23:55.178  INFO 5057 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-28 06:23:55.179  INFO 5057 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-28 06:23:55.318  INFO 5057 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-28 06:23:55.321  INFO 5057 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-28 06:23:55.321  INFO 5057 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 716 ms
+2024-06-28 06:23:55.563  WARN 5057 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 872f0558-8ed1-4ddf-b88e-6f2dab58669a
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-28 06:23:55.604 DEBUG 5057 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-28 06:23:55.610  INFO 5057 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4001d8c1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@fb5aeed, org.springframework.security.web.context.SecurityContextPersistenceFilter@50b734c4, org.springframework.security.web.header.HeaderWriterFilter@28ee0a3c, org.springframework.security.web.authentication.logout.LogoutFilter@2ee39e73, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@16d0e521, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@634ca3e7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@73893ec1, org.springframework.security.web.session.SessionManagementFilter@5234b61a, org.springframework.security.web.access.ExceptionTranslationFilter@110b7837, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@380ce5a3]
+2024-06-28 06:23:55.666 DEBUG 5057 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-28 06:23:55.678  INFO 5057 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-28 06:23:55.705 DEBUG 5057 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2024-06-28 06:23:55.716 DEBUG 5057 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /local/**] in 'resourceHandlerMapping'
+2024-06-28 06:23:55.721 DEBUG 5057 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-28 06:23:55.783  INFO 5057 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-28 06:23:55.791  INFO 5057 --- [main] com.workwave.Main                        : Started Main in 1.425 seconds (JVM running for 1.759)
+2024-06-28 06:23:58.922  INFO 5057 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-28 06:23:58.923  INFO 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-28 06:23:58.923 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-28 06:23:58.923 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-28 06:23:58.923 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-28 06:23:58.924 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@31508c74
+2024-06-28 06:23:58.924 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@11cc69db
+2024-06-28 06:23:58.925 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-28 06:23:58.925  INFO 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-06-28 06:23:58.930 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /calendar/view/U001
+2024-06-28 06:23:58.932 DEBUG 5057 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:23:58.933 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:23:58.933 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 10860C3CD36DCE40A04043832737CF72
+2024-06-28 06:23:58.937 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar/view/U001] with attributes [permitAll]
+2024-06-28 06:23:58.937 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /calendar/view/U001
+2024-06-28 06:23:58.938 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/calendar/view/U001", parameters={}
+2024-06-28 06:23:58.943 DEBUG 5057 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarViewController#viewCalendar(String, Model)
+2024-06-28 06:23:58.959  INFO 5057 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-28 06:23:59.009  INFO 5057 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-28 06:23:59.014 DEBUG 5057 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : ==>  Preparing: SELECT CE.cal_event_id, CE.cal_event_date, CE.cal_event_title, CE.cal_event_description, CE.cal_event_createAt, CE.cal_event_updateAt, CE.color_index_id, CE.user_id, CE.calendar_id, U.user_name FROM CalendarEvent CE JOIN Users U ON CE.user_id = U.user_id WHERE CE.user_id = ? AND CE.team_calendar_id IS NULL;
+2024-06-28 06:23:59.021 DEBUG 5057 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : ==> Parameters: U001(String)
+2024-06-28 06:23:59.035 DEBUG 5057 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : <==      Total: 5
+2024-06-28 06:23:59.065 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-28 06:23:59.065 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {mycalEvents=[{"calEventId":1,"calEventDate":"2024-06-01T10:00:00","calEventTitle":"Event 1","calEventDescription":"Description 1","calEventCreateAt":"2024-06-01T10:00:00","calEventUpdateAt":"2024-06-01T10:00:00","colorIndexId":1,"userId":"U001","calendarId":1,"userName":"John Doe"},{"calEventId":2,"calEventDate":"2024-06-02T11:00:00","calEventTitle":"Event 2","calEventDescription":"Description 2","calEventCreateAt":"2024-06-02T11:00:00","calEventUpdateAt":"2024-06-02T11:00:00","colorIndexId":2,"userId":"U001","calendarId":2,"userName":"John Doe"},{"calEventId":3,"calEventDate":"2024-06-03T12:00:00","calEventTitle":"Event 3","calEventDescription":"Description 3","calEventCreateAt":"2024-06-03T12:00:00","calEventUpdateAt":"2024-06-03T12:00:00","colorIndexId":3,"userId":"U001","calendarId":3,"userName":"John Doe"},{"calEventId":4,"calEventDate":"2024-06-04T13:00:00","calEventTitle":"Event 4","calEventDescription":"Description 4","calEventCreateAt":"2024-06-04T13:00:00","calEventUpdateAt":"2024-06-04T13:00:00","colorIndexId":4,"userId":"U001","calendarId":4,"userName":"John Doe"},{"calEventId":5,"calEventDate":"2024-06-05T14:00:00","calEventTitle":"Event 5","calEventDescription":"Description 5","calEventCreateAt":"2024-06-05T14:00:00","calEventUpdateAt":"2024-06-05T14:00:00","colorIndexId":5,"userId":"U001","calendarId":5,"userName":"John Doe"}], formattedDate=2024-06-28 06:23:59}
+2024-06-28 06:23:59.066 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-28 06:23:59.454 DEBUG 5057 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:23:59.456 DEBUG 5057 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:23:59.457 DEBUG 5057 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:23:59.457 DEBUG 5057 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:24:50.959  INFO 5057 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-28 06:24:50.978  INFO 5057 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-28 06:24:52.462  INFO 5135 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 5135 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-28 06:24:52.464 DEBUG 5135 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-28 06:24:52.465  INFO 5135 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-28 06:24:53.081  INFO 5135 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-28 06:24:53.086  INFO 5135 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-28 06:24:53.086  INFO 5135 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-28 06:24:53.224  INFO 5135 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-28 06:24:53.227  INFO 5135 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-28 06:24:53.227  INFO 5135 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 729 ms
+2024-06-28 06:24:53.473  WARN 5135 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 9934be8f-5dc0-4264-ae4b-17c85ef2c820
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-28 06:24:53.514 DEBUG 5135 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-28 06:24:53.521  INFO 5135 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7ed49a7f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1cd6b1bd, org.springframework.security.web.context.SecurityContextPersistenceFilter@491cafec, org.springframework.security.web.header.HeaderWriterFilter@1f536481, org.springframework.security.web.authentication.logout.LogoutFilter@4cffd3fd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4fa86cb8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@54c60202, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@443cdaa4, org.springframework.security.web.session.SessionManagementFilter@6274f21c, org.springframework.security.web.access.ExceptionTranslationFilter@697a0948, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7926352f]
+2024-06-28 06:24:53.580 DEBUG 5135 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-28 06:24:53.592  INFO 5135 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-28 06:24:53.621 DEBUG 5135 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2024-06-28 06:24:53.632 DEBUG 5135 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /local/**] in 'resourceHandlerMapping'
+2024-06-28 06:24:53.637 DEBUG 5135 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-28 06:24:53.704  INFO 5135 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-28 06:24:53.712  INFO 5135 --- [main] com.workwave.Main                        : Started Main in 1.446 seconds (JVM running for 1.809)
+2024-06-28 06:24:57.928  INFO 5135 --- [http-nio-8181-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-28 06:24:57.929  INFO 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-28 06:24:57.929 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-28 06:24:57.929 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-28 06:24:57.929 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-28 06:24:57.931 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1ddf0fdc
+2024-06-28 06:24:57.931 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@4018255f
+2024-06-28 06:24:57.931 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-28 06:24:57.931  INFO 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-06-28 06:24:57.936 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /calendar/view/U001
+2024-06-28 06:24:57.939 DEBUG 5135 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:24:57.940 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:24:57.940 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 5CC4E476B796DA1B77D891FCD856BD4D
+2024-06-28 06:24:57.943 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar/view/U001] with attributes [permitAll]
+2024-06-28 06:24:57.944 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /calendar/view/U001
+2024-06-28 06:24:57.944 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/calendar/view/U001", parameters={}
+2024-06-28 06:24:57.948 DEBUG 5135 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarViewController#viewCalendar(String, Model)
+2024-06-28 06:24:57.964  INFO 5135 --- [http-nio-8181-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-28 06:24:58.002  INFO 5135 --- [http-nio-8181-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-28 06:24:58.006 DEBUG 5135 --- [http-nio-8181-exec-2] c.w.m.s.C.getMyAllCalendarEvents         : ==>  Preparing: SELECT CE.cal_event_id, CE.cal_event_date, CE.cal_event_title, CE.cal_event_description, CE.cal_event_createAt, CE.cal_event_updateAt, CE.color_index_id, CE.user_id, CE.calendar_id, U.user_name FROM CalendarEvent CE JOIN Users U ON CE.user_id = U.user_id WHERE CE.user_id = ? AND CE.team_calendar_id IS NULL;
+2024-06-28 06:24:58.013 DEBUG 5135 --- [http-nio-8181-exec-2] c.w.m.s.C.getMyAllCalendarEvents         : ==> Parameters: U001(String)
+2024-06-28 06:24:58.022 DEBUG 5135 --- [http-nio-8181-exec-2] c.w.m.s.C.getMyAllCalendarEvents         : <==      Total: 5
+2024-06-28 06:24:58.051 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-28 06:24:58.051 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {mycalEvents=[{"calEventId":1,"calEventDate":"2024-06-01T10:00:00","calEventTitle":"Event 1","calEventDescription":"Description 1","calEventCreateAt":"2024-06-01T10:00:00","calEventUpdateAt":"2024-06-01T10:00:00","colorIndexId":1,"userId":"U001","calendarId":1,"userName":"John Doe"},{"calEventId":2,"calEventDate":"2024-06-02T11:00:00","calEventTitle":"Event 2","calEventDescription":"Description 2","calEventCreateAt":"2024-06-02T11:00:00","calEventUpdateAt":"2024-06-02T11:00:00","colorIndexId":2,"userId":"U001","calendarId":2,"userName":"John Doe"},{"calEventId":3,"calEventDate":"2024-06-03T12:00:00","calEventTitle":"Event 3","calEventDescription":"Description 3","calEventCreateAt":"2024-06-03T12:00:00","calEventUpdateAt":"2024-06-03T12:00:00","colorIndexId":3,"userId":"U001","calendarId":3,"userName":"John Doe"},{"calEventId":4,"calEventDate":"2024-06-04T13:00:00","calEventTitle":"Event 4","calEventDescription":"Description 4","calEventCreateAt":"2024-06-04T13:00:00","calEventUpdateAt":"2024-06-04T13:00:00","colorIndexId":4,"userId":"U001","calendarId":4,"userName":"John Doe"},{"calEventId":5,"calEventDate":"2024-06-05T14:00:00","calEventTitle":"Event 5","calEventDescription":"Description 5","calEventCreateAt":"2024-06-05T14:00:00","calEventUpdateAt":"2024-06-05T14:00:00","colorIndexId":5,"userId":"U001","calendarId":5,"userName":"John Doe"}], formattedDate=2024-06-28 06:24:58}
+2024-06-28 06:24:58.052 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-28 06:24:58.422 DEBUG 5135 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:24:58.423 DEBUG 5135 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:24:58.423 DEBUG 5135 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:24:58.424 DEBUG 5135 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:25:09.349 DEBUG 5135 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/calendar/myEvents/user1?year=2024&month=6
+2024-06-28 06:25:09.349 DEBUG 5135 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:25:09.350 DEBUG 5135 --- [http-nio-8181-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:25:09.351 DEBUG 5135 --- [http-nio-8181-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/calendar/myEvents/user1?year=2024&month=6] with attributes [permitAll]
+2024-06-28 06:25:09.351 DEBUG 5135 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/calendar/myEvents/user1?year=2024&month=6
+2024-06-28 06:25:09.352 DEBUG 5135 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/calendar/myEvents/user1?year=2024&month=6", parameters={masked}
+2024-06-28 06:25:09.353 DEBUG 5135 --- [http-nio-8181-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarApiController#getMyEvents(String, int, int)
+2024-06-28 06:25:09.364 DEBUG 5135 --- [http-nio-8181-exec-3] c.w.m.s.C.getCalendarEventsForPeriod     : ==>  Preparing: SELECT CE.cal_event_id AS calEventId, CE.cal_event_date AS calEventDate, CE.cal_event_title AS calEventTitle, CE.cal_event_description AS calEventDescription, CE.cal_event_createAt AS calEventCreateAt, CE.cal_event_updateAt AS calEventUpdateAt, CE.color_index_id AS colorIndexId, CE.user_id AS userId, CE.calendar_id AS calendarId, U.user_name AS userName FROM CalendarEvent CE JOIN Users U ON U.user_id = CE.user_id WHERE CE.user_id = ? AND CE.cal_event_date BETWEEN ? AND ? AND team_calendar_id IS NULL;
+2024-06-28 06:25:09.364 DEBUG 5135 --- [http-nio-8181-exec-3] c.w.m.s.C.getCalendarEventsForPeriod     : ==> Parameters: user1(String), 2024-06-01(String), 2024-06-30(String)
+2024-06-28 06:25:09.366 DEBUG 5135 --- [http-nio-8181-exec-3] c.w.m.s.C.getCalendarEventsForPeriod     : <==      Total: 0
+2024-06-28 06:25:09.371 DEBUG 5135 --- [http-nio-8181-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-28 06:25:09.372 DEBUG 5135 --- [http-nio-8181-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [[]]
+2024-06-28 06:25:09.381 DEBUG 5135 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:25:09.381 DEBUG 5135 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:25:09.382 DEBUG 5135 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:25:09.382 DEBUG 5135 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:25:19.164 DEBUG 5135 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/calendar/myEvents/U001?year=2024&month=6
+2024-06-28 06:25:19.166 DEBUG 5135 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:25:19.166 DEBUG 5135 --- [http-nio-8181-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:25:19.169 DEBUG 5135 --- [http-nio-8181-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/calendar/myEvents/U001?year=2024&month=6] with attributes [permitAll]
+2024-06-28 06:25:19.171 DEBUG 5135 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/calendar/myEvents/U001?year=2024&month=6
+2024-06-28 06:25:19.171 DEBUG 5135 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/api/calendar/myEvents/U001?year=2024&month=6", parameters={masked}
+2024-06-28 06:25:19.173 DEBUG 5135 --- [http-nio-8181-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarApiController#getMyEvents(String, int, int)
+2024-06-28 06:25:19.179 DEBUG 5135 --- [http-nio-8181-exec-4] c.w.m.s.C.getCalendarEventsForPeriod     : ==>  Preparing: SELECT CE.cal_event_id AS calEventId, CE.cal_event_date AS calEventDate, CE.cal_event_title AS calEventTitle, CE.cal_event_description AS calEventDescription, CE.cal_event_createAt AS calEventCreateAt, CE.cal_event_updateAt AS calEventUpdateAt, CE.color_index_id AS colorIndexId, CE.user_id AS userId, CE.calendar_id AS calendarId, U.user_name AS userName FROM CalendarEvent CE JOIN Users U ON U.user_id = CE.user_id WHERE CE.user_id = ? AND CE.cal_event_date BETWEEN ? AND ? AND team_calendar_id IS NULL;
+2024-06-28 06:25:19.180 DEBUG 5135 --- [http-nio-8181-exec-4] c.w.m.s.C.getCalendarEventsForPeriod     : ==> Parameters: U001(String), 2024-06-01(String), 2024-06-30(String)
+2024-06-28 06:25:19.185 DEBUG 5135 --- [http-nio-8181-exec-4] c.w.m.s.C.getCalendarEventsForPeriod     : <==      Total: 5
+2024-06-28 06:25:19.186 DEBUG 5135 --- [http-nio-8181-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-28 06:25:19.204 DEBUG 5135 --- [http-nio-8181-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Writing [[AllMyCalendarEventDto(calEventId=1, calEventDate=2024-06-01T10:00, calEventTitle=Event 1, calEventD (truncated)...]
+2024-06-28 06:25:19.205 DEBUG 5135 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:25:19.206 DEBUG 5135 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:25:19.207 DEBUG 5135 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:25:19.207 DEBUG 5135 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:30:04.246  INFO 5135 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-28 06:30:04.251  INFO 5135 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-28 06:30:06.321  INFO 5495 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 5495 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-28 06:30:06.322 DEBUG 5495 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-28 06:30:06.323  INFO 5495 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-28 06:30:06.916  INFO 5495 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-28 06:30:06.920  INFO 5495 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-28 06:30:06.920  INFO 5495 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-28 06:30:07.063  INFO 5495 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-28 06:30:07.067  INFO 5495 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-28 06:30:07.067  INFO 5495 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 713 ms
+2024-06-28 06:30:07.321  WARN 5495 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 99f7a13e-dd76-4684-88e6-928e9e0bae9e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-28 06:30:07.359 DEBUG 5495 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-28 06:30:07.366  INFO 5495 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@61b65d54, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@b2c4a8b, org.springframework.security.web.context.SecurityContextPersistenceFilter@1142d377, org.springframework.security.web.header.HeaderWriterFilter@2de9ca6, org.springframework.security.web.authentication.logout.LogoutFilter@42297bdf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6e1ae763, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@62d40e31, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7f2c57fe, org.springframework.security.web.session.SessionManagementFilter@20cdb152, org.springframework.security.web.access.ExceptionTranslationFilter@110e9982, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7a388990]
+2024-06-28 06:30:07.419 DEBUG 5495 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-28 06:30:07.431  INFO 5495 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-28 06:30:07.459 DEBUG 5495 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2024-06-28 06:30:07.471 DEBUG 5495 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /local/**] in 'resourceHandlerMapping'
+2024-06-28 06:30:07.477 DEBUG 5495 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-28 06:30:07.543  INFO 5495 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-28 06:30:07.552  INFO 5495 --- [main] com.workwave.Main                        : Started Main in 1.418 seconds (JVM running for 1.724)
+2024-06-28 06:30:16.994  INFO 5495 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-28 06:30:16.995  INFO 5495 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-28 06:30:16.995 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-28 06:30:16.995 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-28 06:30:16.995 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-28 06:30:16.996 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2cf27ed1
+2024-06-28 06:30:16.997 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@471ede95
+2024-06-28 06:30:16.997 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-28 06:30:16.997  INFO 5495 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-06-28 06:30:17.002 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/calendar/myEvents/user1?year=2024&month=6
+2024-06-28 06:30:17.004 DEBUG 5495 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:30:17.005 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:30:17.005 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 24B2E7743266F51603FB72890C82A423
+2024-06-28 06:30:17.009 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/calendar/myEvents/user1?year=2024&month=6] with attributes [permitAll]
+2024-06-28 06:30:17.009 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/calendar/myEvents/user1?year=2024&month=6
+2024-06-28 06:30:17.010 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/api/calendar/myEvents/user1?year=2024&month=6", parameters={masked}
+2024-06-28 06:30:17.015 DEBUG 5495 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarApiController#getMyEvents(String, int, int)
+2024-06-28 06:30:17.031  INFO 5495 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-28 06:30:17.069  INFO 5495 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-28 06:30:17.074 DEBUG 5495 --- [http-nio-8181-exec-1] c.w.m.s.C.getCalendarEventsForPeriod     : ==>  Preparing: SELECT CE.cal_event_id AS calEventId, CE.cal_event_date AS calEventDate, CE.cal_event_title AS calEventTitle, CE.cal_event_description AS calEventDescription, CE.cal_event_createAt AS calEventCreateAt, CE.cal_event_updateAt AS calEventUpdateAt, CE.color_index_id AS colorIndexId, CE.user_id AS userId, CE.calendar_id AS calendarId, U.user_name AS userName FROM CalendarEvent CE JOIN Users U ON U.user_id = CE.user_id WHERE CE.user_id = ? AND CE.cal_event_date BETWEEN ? AND ? AND team_calendar_id IS NULL;
+2024-06-28 06:30:17.082 DEBUG 5495 --- [http-nio-8181-exec-1] c.w.m.s.C.getCalendarEventsForPeriod     : ==> Parameters: user1(String), 2024-06-01(String), 2024-06-30(String)
+2024-06-28 06:30:17.090 DEBUG 5495 --- [http-nio-8181-exec-1] c.w.m.s.C.getCalendarEventsForPeriod     : <==      Total: 0
+2024-06-28 06:30:17.101 DEBUG 5495 --- [http-nio-8181-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-28 06:30:17.101 DEBUG 5495 --- [http-nio-8181-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Writing [[]]
+2024-06-28 06:30:17.108 DEBUG 5495 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:30:17.110 DEBUG 5495 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:30:17.110 DEBUG 5495 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:30:17.110 DEBUG 5495 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:30:17.732 DEBUG 5495 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /calendar/view/U001
+2024-06-28 06:30:17.733 DEBUG 5495 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:30:17.734 DEBUG 5495 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:30:17.736 DEBUG 5495 --- [http-nio-8181-exec-2] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 24B2E7743266F51603FB72890C82A423
+2024-06-28 06:30:17.736 DEBUG 5495 --- [http-nio-8181-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar/view/U001] with attributes [permitAll]
+2024-06-28 06:30:17.736 DEBUG 5495 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /calendar/view/U001
+2024-06-28 06:30:17.737 DEBUG 5495 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/calendar/view/U001", parameters={}
+2024-06-28 06:30:17.738 DEBUG 5495 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarViewController#viewCalendar(String, Model)
+2024-06-28 06:30:17.744 DEBUG 5495 --- [http-nio-8181-exec-2] c.w.m.s.C.getMyAllCalendarEvents         : ==>  Preparing: SELECT CE.cal_event_id, CE.cal_event_date, CE.cal_event_title, CE.cal_event_description, CE.cal_event_createAt, CE.cal_event_updateAt, CE.color_index_id, CE.user_id, CE.calendar_id, U.user_name FROM CalendarEvent CE JOIN Users U ON CE.user_id = U.user_id WHERE CE.user_id = ? AND CE.team_calendar_id IS NULL;
+2024-06-28 06:30:17.744 DEBUG 5495 --- [http-nio-8181-exec-2] c.w.m.s.C.getMyAllCalendarEvents         : ==> Parameters: U001(String)
+2024-06-28 06:30:17.752 DEBUG 5495 --- [http-nio-8181-exec-2] c.w.m.s.C.getMyAllCalendarEvents         : <==      Total: 5
+2024-06-28 06:30:17.787 DEBUG 5495 --- [http-nio-8181-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-28 06:30:17.787 DEBUG 5495 --- [http-nio-8181-exec-2] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {mycalEvents=[{"calEventId":1,"calEventDate":"2024-06-01T10:00:00","calEventTitle":"Event 1","calEventDescription":"Description 1","calEventCreateAt":"2024-06-01T10:00:00","calEventUpdateAt":"2024-06-01T10:00:00","colorIndexId":1,"userId":"U001","calendarId":1,"userName":"John Doe"},{"calEventId":2,"calEventDate":"2024-06-02T11:00:00","calEventTitle":"Event 2","calEventDescription":"Description 2","calEventCreateAt":"2024-06-02T11:00:00","calEventUpdateAt":"2024-06-02T11:00:00","colorIndexId":2,"userId":"U001","calendarId":2,"userName":"John Doe"},{"calEventId":3,"calEventDate":"2024-06-03T12:00:00","calEventTitle":"Event 3","calEventDescription":"Description 3","calEventCreateAt":"2024-06-03T12:00:00","calEventUpdateAt":"2024-06-03T12:00:00","colorIndexId":3,"userId":"U001","calendarId":3,"userName":"John Doe"},{"calEventId":4,"calEventDate":"2024-06-04T13:00:00","calEventTitle":"Event 4","calEventDescription":"Description 4","calEventCreateAt":"2024-06-04T13:00:00","calEventUpdateAt":"2024-06-04T13:00:00","colorIndexId":4,"userId":"U001","calendarId":4,"userName":"John Doe"},{"calEventId":5,"calEventDate":"2024-06-05T14:00:00","calEventTitle":"Event 5","calEventDescription":"Description 5","calEventCreateAt":"2024-06-05T14:00:00","calEventUpdateAt":"2024-06-05T14:00:00","colorIndexId":5,"userId":"U001","calendarId":5,"userName":"John Doe"}], formattedDate=2024-06-28 06:30:17, userName=John Doe}
+2024-06-28 06:30:17.790 DEBUG 5495 --- [http-nio-8181-exec-2] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-28 06:30:18.186 DEBUG 5495 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:30:18.187 DEBUG 5495 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:30:18.187 DEBUG 5495 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:30:18.187 DEBUG 5495 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:31:07.226  INFO 5495 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-28 06:31:07.230  INFO 5495 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-28 06:31:09.218  INFO 5576 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 5576 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-28 06:31:09.221 DEBUG 5576 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-28 06:31:09.222  INFO 5576 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-28 06:31:09.880  INFO 5576 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-28 06:31:09.885  INFO 5576 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-28 06:31:09.885  INFO 5576 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-28 06:31:10.023  INFO 5576 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-28 06:31:10.027  INFO 5576 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-28 06:31:10.027  INFO 5576 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 773 ms
+2024-06-28 06:31:10.265  WARN 5576 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 847a5a4e-4ce7-4e9b-b00a-5e7bdf5429da
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-28 06:31:10.307 DEBUG 5576 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-28 06:31:10.314  INFO 5576 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7926352f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5bc63e20, org.springframework.security.web.context.SecurityContextPersistenceFilter@ab4aa5e, org.springframework.security.web.header.HeaderWriterFilter@217235f5, org.springframework.security.web.authentication.logout.LogoutFilter@1625789b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a7cb3a4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1c297897, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@61037caf, org.springframework.security.web.session.SessionManagementFilter@2744dcae, org.springframework.security.web.access.ExceptionTranslationFilter@28ee0a3c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6e24ce51]
+2024-06-28 06:31:10.367 DEBUG 5576 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-28 06:31:10.379  INFO 5576 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-28 06:31:10.407 DEBUG 5576 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2024-06-28 06:31:10.420 DEBUG 5576 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /local/**] in 'resourceHandlerMapping'
+2024-06-28 06:31:10.426 DEBUG 5576 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-28 06:31:10.497  INFO 5576 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-28 06:31:10.506  INFO 5576 --- [main] com.workwave.Main                        : Started Main in 1.614 seconds (JVM running for 2.212)
+2024-06-28 06:31:13.737  INFO 5576 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-28 06:31:13.738  INFO 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-28 06:31:13.739 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-28 06:31:13.739 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-28 06:31:13.739 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-28 06:31:13.740 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2fcb1a5c
+2024-06-28 06:31:13.741 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@180763c3
+2024-06-28 06:31:13.741 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-28 06:31:13.741  INFO 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-06-28 06:31:13.746 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /calendar/view/U001
+2024-06-28 06:31:13.748 DEBUG 5576 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:31:13.750 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:31:13.750 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id CF7EBC13C8BC2AB3DED63AD7DD9097C4
+2024-06-28 06:31:13.753 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar/view/U001] with attributes [permitAll]
+2024-06-28 06:31:13.754 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /calendar/view/U001
+2024-06-28 06:31:13.755 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/calendar/view/U001", parameters={}
+2024-06-28 06:31:13.759 DEBUG 5576 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarViewController#viewCalendar(String, Model)
+2024-06-28 06:31:13.775  INFO 5576 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-28 06:31:13.823  INFO 5576 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-28 06:31:13.828 DEBUG 5576 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : ==>  Preparing: SELECT CE.cal_event_id, CE.cal_event_date, CE.cal_event_title, CE.cal_event_description, CE.cal_event_createAt, CE.cal_event_updateAt, CE.color_index_id, CE.user_id, CE.calendar_id, U.user_name FROM CalendarEvent CE JOIN Users U ON CE.user_id = U.user_id WHERE CE.user_id = ? AND CE.team_calendar_id IS NULL;
+2024-06-28 06:31:13.835 DEBUG 5576 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : ==> Parameters: U001(String)
+2024-06-28 06:31:13.844 DEBUG 5576 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : <==      Total: 5
+2024-06-28 06:31:13.873 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-28 06:31:13.873 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {mycalEvents=[{"calEventId":1,"calEventDate":"2024-06-01T10:00:00","calEventTitle":"Event 1","calEventDescription":"Description 1","calEventCreateAt":"2024-06-01T10:00:00","calEventUpdateAt":"2024-06-01T10:00:00","colorIndexId":1,"userId":"U001","calendarId":1,"userName":"John Doe"},{"calEventId":2,"calEventDate":"2024-06-02T11:00:00","calEventTitle":"Event 2","calEventDescription":"Description 2","calEventCreateAt":"2024-06-02T11:00:00","calEventUpdateAt":"2024-06-02T11:00:00","colorIndexId":2,"userId":"U001","calendarId":2,"userName":"John Doe"},{"calEventId":3,"calEventDate":"2024-06-03T12:00:00","calEventTitle":"Event 3","calEventDescription":"Description 3","calEventCreateAt":"2024-06-03T12:00:00","calEventUpdateAt":"2024-06-03T12:00:00","colorIndexId":3,"userId":"U001","calendarId":3,"userName":"John Doe"},{"calEventId":4,"calEventDate":"2024-06-04T13:00:00","calEventTitle":"Event 4","calEventDescription":"Description 4","calEventCreateAt":"2024-06-04T13:00:00","calEventUpdateAt":"2024-06-04T13:00:00","colorIndexId":4,"userId":"U001","calendarId":4,"userName":"John Doe"},{"calEventId":5,"calEventDate":"2024-06-05T14:00:00","calEventTitle":"Event 5","calEventDescription":"Description 5","calEventCreateAt":"2024-06-05T14:00:00","calEventUpdateAt":"2024-06-05T14:00:00","colorIndexId":5,"userId":"U001","calendarId":5,"userName":"John Doe"}], formattedDate=2024-06-28 06:31:13, userName=John Doe}
+2024-06-28 06:31:13.875 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-28 06:31:14.242 DEBUG 5576 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:31:14.243 DEBUG 5576 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:31:14.243 DEBUG 5576 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:31:14.244 DEBUG 5576 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:34:14.038  INFO 5576 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-28 06:34:14.085  INFO 5576 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-28 06:34:15.575  INFO 5792 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 5792 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-28 06:34:15.577 DEBUG 5792 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-28 06:34:15.577  INFO 5792 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-28 06:34:16.162  INFO 5792 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-28 06:34:16.166  INFO 5792 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-28 06:34:16.166  INFO 5792 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-28 06:34:16.298  INFO 5792 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-28 06:34:16.301  INFO 5792 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-28 06:34:16.302  INFO 5792 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 697 ms
+2024-06-28 06:34:16.536  WARN 5792 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 786b4d5a-c88f-4329-8bd1-e026927a45bb
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-28 06:34:16.573 DEBUG 5792 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-28 06:34:16.579  INFO 5792 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@67e0fd6d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@21390938, org.springframework.security.web.context.SecurityContextPersistenceFilter@7f977fba, org.springframework.security.web.header.HeaderWriterFilter@b14b60a, org.springframework.security.web.authentication.logout.LogoutFilter@79d7035, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@d653e41, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3b78c683, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1129829c, org.springframework.security.web.session.SessionManagementFilter@12952aff, org.springframework.security.web.access.ExceptionTranslationFilter@2744dcae, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7ed49a7f]
+2024-06-28 06:34:16.632 DEBUG 5792 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-28 06:34:16.652  INFO 5792 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-28 06:34:16.679 DEBUG 5792 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2024-06-28 06:34:16.690 DEBUG 5792 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /local/**] in 'resourceHandlerMapping'
+2024-06-28 06:34:16.695 DEBUG 5792 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-28 06:34:16.757  INFO 5792 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-28 06:34:16.765  INFO 5792 --- [main] com.workwave.Main                        : Started Main in 1.379 seconds (JVM running for 1.732)
+2024-06-28 06:34:24.487  INFO 5792 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-28 06:34:24.489  INFO 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-28 06:34:24.489 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-28 06:34:24.489 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-28 06:34:24.489 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-28 06:34:24.490 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5632cd9c
+2024-06-28 06:34:24.490 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@6f339d3e
+2024-06-28 06:34:24.491 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-28 06:34:24.491  INFO 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-06-28 06:34:24.495 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /calendar/view/U001
+2024-06-28 06:34:24.498 DEBUG 5792 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:34:24.499 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:34:24.499 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 753DADADC0A0272D892A9004A871F254
+2024-06-28 06:34:24.503 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar/view/U001] with attributes [permitAll]
+2024-06-28 06:34:24.503 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /calendar/view/U001
+2024-06-28 06:34:24.504 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/calendar/view/U001", parameters={}
+2024-06-28 06:34:24.508 DEBUG 5792 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarViewController#viewCalendar(String, Model)
+2024-06-28 06:34:24.525  INFO 5792 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-28 06:34:24.561  INFO 5792 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-28 06:34:24.565 DEBUG 5792 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : ==>  Preparing: SELECT CE.cal_event_id, CE.cal_event_date, CE.cal_event_title, CE.cal_event_description, CE.cal_event_createAt, CE.cal_event_updateAt, CE.color_index_id, CE.user_id, CE.calendar_id, U.user_name FROM CalendarEvent CE JOIN Users U ON CE.user_id = U.user_id WHERE CE.user_id = ? AND CE.team_calendar_id IS NULL;
+2024-06-28 06:34:24.574 DEBUG 5792 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : ==> Parameters: U001(String)
+2024-06-28 06:34:24.583 DEBUG 5792 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : <==      Total: 5
+2024-06-28 06:34:24.613 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-28 06:34:24.613 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {mycalEvents=[{"calEventId":1,"calEventDate":"2024-06-01T10:00:00","calEventTitle":"Event 1","calEventDescription":"Description 1","calEventCreateAt":"2024-06-01T10:00:00","calEventUpdateAt":"2024-06-01T10:00:00","colorIndexId":1,"userId":"U001","calendarId":1,"userName":"John Doe"},{"calEventId":2,"calEventDate":"2024-06-02T11:00:00","calEventTitle":"Event 2","calEventDescription":"Description 2","calEventCreateAt":"2024-06-02T11:00:00","calEventUpdateAt":"2024-06-02T11:00:00","colorIndexId":2,"userId":"U001","calendarId":2,"userName":"John Doe"},{"calEventId":3,"calEventDate":"2024-06-03T12:00:00","calEventTitle":"Event 3","calEventDescription":"Description 3","calEventCreateAt":"2024-06-03T12:00:00","calEventUpdateAt":"2024-06-03T12:00:00","colorIndexId":3,"userId":"U001","calendarId":3,"userName":"John Doe"},{"calEventId":4,"calEventDate":"2024-06-04T13:00:00","calEventTitle":"Event 4","calEventDescription":"Description 4","calEventCreateAt":"2024-06-04T13:00:00","calEventUpdateAt":"2024-06-04T13:00:00","colorIndexId":4,"userId":"U001","calendarId":4,"userName":"John Doe"},{"calEventId":5,"calEventDate":"2024-06-05T14:00:00","calEventTitle":"Event 5","calEventDescription":"Description 5","calEventCreateAt":"2024-06-05T14:00:00","calEventUpdateAt":"2024-06-05T14:00:00","colorIndexId":5,"userId":"U001","calendarId":5,"userName":"John Doe"}], formattedDate=2024-06-28 06:34:24, userName=John Doe}
+2024-06-28 06:34:24.614 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-28 06:34:24.987 DEBUG 5792 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:34:24.988 DEBUG 5792 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:34:24.989 DEBUG 5792 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:34:24.989 DEBUG 5792 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:36:40.838  INFO 5792 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-28 06:36:40.847  INFO 5792 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-28 06:36:42.421  INFO 5983 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 5983 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-28 06:36:42.422 DEBUG 5983 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-28 06:36:42.423  INFO 5983 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-28 06:36:42.995  INFO 5983 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-28 06:36:42.999  INFO 5983 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-28 06:36:42.999  INFO 5983 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-28 06:36:43.127  INFO 5983 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-28 06:36:43.130  INFO 5983 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-28 06:36:43.130  INFO 5983 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 682 ms
+2024-06-28 06:36:43.370  WARN 5983 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 003f4a69-83dc-4584-9aba-9c15ff722a60
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-28 06:36:43.408 DEBUG 5983 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-28 06:36:43.414  INFO 5983 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@73893ec1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@37af24cb, org.springframework.security.web.context.SecurityContextPersistenceFilter@16d0e521, org.springframework.security.web.header.HeaderWriterFilter@6b8d54da, org.springframework.security.web.authentication.logout.LogoutFilter@71a4f441, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@ab4aa5e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@b14b60a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7926352f, org.springframework.security.web.session.SessionManagementFilter@54c425b1, org.springframework.security.web.access.ExceptionTranslationFilter@78d23d6a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7d9c45ee]
+2024-06-28 06:36:43.465 DEBUG 5983 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-28 06:36:43.476  INFO 5983 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-28 06:36:43.502 DEBUG 5983 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2024-06-28 06:36:43.513 DEBUG 5983 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /local/**] in 'resourceHandlerMapping'
+2024-06-28 06:36:43.517 DEBUG 5983 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-28 06:36:43.578  INFO 5983 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-28 06:36:43.586  INFO 5983 --- [main] com.workwave.Main                        : Started Main in 1.374 seconds (JVM running for 1.882)
+2024-06-28 06:36:47.855  INFO 5983 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-28 06:36:47.857  INFO 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-28 06:36:47.857 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-28 06:36:47.857 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-28 06:36:47.857 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-28 06:36:47.858 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@28020b2a
+2024-06-28 06:36:47.859 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@7ef73a35
+2024-06-28 06:36:47.859 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-28 06:36:47.859  INFO 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-06-28 06:36:47.866 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /calendar/view/U001
+2024-06-28 06:36:47.869 DEBUG 5983 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:36:47.870 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:36:47.870 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 300C77B83F53E51B20645677E35785DC
+2024-06-28 06:36:47.874 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar/view/U001] with attributes [permitAll]
+2024-06-28 06:36:47.874 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /calendar/view/U001
+2024-06-28 06:36:47.875 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/calendar/view/U001", parameters={}
+2024-06-28 06:36:47.879 DEBUG 5983 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarViewController#viewCalendar(String, Model)
+2024-06-28 06:36:47.895  INFO 5983 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-28 06:36:47.940  INFO 5983 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-28 06:36:47.945 DEBUG 5983 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : ==>  Preparing: SELECT CE.cal_event_id, CE.cal_event_date, CE.cal_event_title, CE.cal_event_description, CE.cal_event_createAt, CE.cal_event_updateAt, CE.color_index_id, CE.user_id, CE.calendar_id, U.user_name FROM CalendarEvent CE JOIN Users U ON CE.user_id = U.user_id WHERE CE.user_id = ? AND CE.team_calendar_id IS NULL;
+2024-06-28 06:36:47.953 DEBUG 5983 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : ==> Parameters: U001(String)
+2024-06-28 06:36:47.962 DEBUG 5983 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : <==      Total: 5
+2024-06-28 06:36:47.992 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-28 06:36:47.992 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {mycalEvents=[{"calEventId":1,"calEventDate":"2024-06-01T10:00:00","calEventTitle":"Event 1","calEventDescription":"Description 1","calEventCreateAt":"2024-06-01T10:00:00","calEventUpdateAt":"2024-06-01T10:00:00","colorIndexId":1,"userId":"U001","calendarId":1,"userName":"John Doe"},{"calEventId":2,"calEventDate":"2024-06-02T11:00:00","calEventTitle":"Event 2","calEventDescription":"Description 2","calEventCreateAt":"2024-06-02T11:00:00","calEventUpdateAt":"2024-06-02T11:00:00","colorIndexId":2,"userId":"U001","calendarId":2,"userName":"John Doe"},{"calEventId":3,"calEventDate":"2024-06-03T12:00:00","calEventTitle":"Event 3","calEventDescription":"Description 3","calEventCreateAt":"2024-06-03T12:00:00","calEventUpdateAt":"2024-06-03T12:00:00","colorIndexId":3,"userId":"U001","calendarId":3,"userName":"John Doe"},{"calEventId":4,"calEventDate":"2024-06-04T13:00:00","calEventTitle":"Event 4","calEventDescription":"Description 4","calEventCreateAt":"2024-06-04T13:00:00","calEventUpdateAt":"2024-06-04T13:00:00","colorIndexId":4,"userId":"U001","calendarId":4,"userName":"John Doe"},{"calEventId":5,"calEventDate":"2024-06-05T14:00:00","calEventTitle":"Event 5","calEventDescription":"Description 5","calEventCreateAt":"2024-06-05T14:00:00","calEventUpdateAt":"2024-06-05T14:00:00","colorIndexId":5,"userId":"U001","calendarId":5,"userName":"John Doe"}], formattedDate=2024-06-28 06:36:47, userName=John Doe}
+2024-06-28 06:36:47.994 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-28 06:36:48.367 DEBUG 5983 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:36:48.369 DEBUG 5983 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:36:48.369 DEBUG 5983 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:36:48.370 DEBUG 5983 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:38:25.785  INFO 5983 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-06-28 06:38:25.810  INFO 5983 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-06-28 06:38:27.507  INFO 6110 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 6110 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-28 06:38:27.509 DEBUG 6110 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-28 06:38:27.509  INFO 6110 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-28 06:38:28.128  INFO 6110 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-28 06:38:28.133  INFO 6110 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-28 06:38:28.133  INFO 6110 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-28 06:38:28.283  INFO 6110 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-28 06:38:28.286  INFO 6110 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-28 06:38:28.286  INFO 6110 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 748 ms
+2024-06-28 06:38:28.530  WARN 6110 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: bd25d7e1-cbcc-4d3d-a023-dc4fdaf6727d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-28 06:38:28.572 DEBUG 6110 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-28 06:38:28.578  INFO 6110 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7742a45c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7ca492d9, org.springframework.security.web.context.SecurityContextPersistenceFilter@6274f21c, org.springframework.security.web.header.HeaderWriterFilter@7cf63b9a, org.springframework.security.web.authentication.logout.LogoutFilter@7fd4e815, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@237add, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@491cafec, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14fc9bd, org.springframework.security.web.session.SessionManagementFilter@1c297897, org.springframework.security.web.access.ExceptionTranslationFilter@4aebee4b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@fb5aeed]
+2024-06-28 06:38:28.631 DEBUG 6110 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-28 06:38:28.643  INFO 6110 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-28 06:38:28.672 DEBUG 6110 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2024-06-28 06:38:28.683 DEBUG 6110 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /local/**] in 'resourceHandlerMapping'
+2024-06-28 06:38:28.689 DEBUG 6110 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-28 06:38:28.756  INFO 6110 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-28 06:38:28.765  INFO 6110 --- [main] com.workwave.Main                        : Started Main in 1.452 seconds (JVM running for 1.985)
+2024-06-28 06:39:47.013  INFO 6201 --- [main] com.workwave.Main                        : Starting Main using Java 11.0.22 on MayMacBook.local with PID 6201 (/Users/sin-yunjong/Desktop/academy/workwave/out/production/classes started by sin-yunjong in /Users/sin-yunjong/Desktop/academy/workwave)
+2024-06-28 06:39:47.015 DEBUG 6201 --- [main] com.workwave.Main                        : Running with Spring Boot v2.7.10, Spring v5.3.26
+2024-06-28 06:39:47.015  INFO 6201 --- [main] com.workwave.Main                        : No active profile set, falling back to 1 default profile: "default"
+2024-06-28 06:39:47.626  INFO 6201 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8181 (http)
+2024-06-28 06:39:47.630  INFO 6201 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-28 06:39:47.630  INFO 6201 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.73]
+2024-06-28 06:39:47.761  INFO 6201 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2024-06-28 06:39:47.764  INFO 6201 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-28 06:39:47.765  INFO 6201 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 717 ms
+2024-06-28 06:39:48.000  WARN 6201 --- [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 37707ecb-4858-4209-a739-ae8705cd9668
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-06-28 06:39:48.042 DEBUG 6201 --- [main] edFilterInvocationSecurityMetadataSource : Adding web access control expression [permitAll] for Ant [pattern='/**']
+2024-06-28 06:39:48.048  INFO 6201 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6aa5974e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e5ddfbc, org.springframework.security.web.context.SecurityContextPersistenceFilter@12952aff, org.springframework.security.web.header.HeaderWriterFilter@16d0e521, org.springframework.security.web.authentication.logout.LogoutFilter@650aa077, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@433ea2ac, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7f977fba, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5bda157e, org.springframework.security.web.session.SessionManagementFilter@54c60202, org.springframework.security.web.access.ExceptionTranslationFilter@22a260ff, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7742a45c]
+2024-06-28 06:39:48.110 DEBUG 6201 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-28 06:39:48.122  INFO 6201 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-06-28 06:39:48.149 DEBUG 6201 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 58 mappings in 'requestMappingHandlerMapping'
+2024-06-28 06:39:48.161 DEBUG 6201 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /local/**] in 'resourceHandlerMapping'
+2024-06-28 06:39:48.166 DEBUG 6201 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-28 06:39:48.231  INFO 6201 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8181 (http) with context path ''
+2024-06-28 06:39:48.239  INFO 6201 --- [main] com.workwave.Main                        : Started Main in 1.411 seconds (JVM running for 1.783)
+2024-06-28 06:39:52.566  INFO 6201 --- [http-nio-8181-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-28 06:39:52.567  INFO 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-28 06:39:52.567 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2024-06-28 06:39:52.567 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2024-06-28 06:39:52.568 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2024-06-28 06:39:52.569 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5ac096ac
+2024-06-28 06:39:52.569 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@3e28ab21
+2024-06-28 06:39:52.569 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-06-28 06:39:52.569  INFO 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-06-28 06:39:52.574 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /calendar/view/U001
+2024-06-28 06:39:52.577 DEBUG 6201 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:39:52.578 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:39:52.578 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.s.w.session.SessionManagementFilter  : Request requested invalid session id 0AFCFF2B6F9B3001D3AEC637FC6449C9
+2024-06-28 06:39:52.581 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /calendar/view/U001] with attributes [permitAll]
+2024-06-28 06:39:52.581 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /calendar/view/U001
+2024-06-28 06:39:52.582 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/calendar/view/U001", parameters={}
+2024-06-28 06:39:52.586 DEBUG 6201 --- [http-nio-8181-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarViewController#viewCalendar(String, Model)
+2024-06-28 06:39:52.602  INFO 6201 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-06-28 06:39:52.639  INFO 6201 --- [http-nio-8181-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-06-28 06:39:52.643 DEBUG 6201 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : ==>  Preparing: SELECT CE.cal_event_id, CE.cal_event_date, CE.cal_event_title, CE.cal_event_description, CE.cal_event_createAt, CE.cal_event_updateAt, CE.color_index_id, CE.user_id, CE.calendar_id, U.user_name FROM CalendarEvent CE JOIN Users U ON CE.user_id = U.user_id WHERE CE.user_id = ? AND CE.team_calendar_id IS NULL;
+2024-06-28 06:39:52.651 DEBUG 6201 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : ==> Parameters: U001(String)
+2024-06-28 06:39:52.660 DEBUG 6201 --- [http-nio-8181-exec-1] c.w.m.s.C.getMyAllCalendarEvents         : <==      Total: 5
+2024-06-28 06:39:52.690 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.7, */*;q=0.8]
+2024-06-28 06:39:52.690 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : View name 'schedule/calendar/calendar', model {mycalEvents=[{"calEventId":1,"calEventDate":"2024-06-01T10:00:00","calEventTitle":"Event 1","calEventDescription":"Description 1","calEventCreateAt":"2024-06-01T10:00:00","calEventUpdateAt":"2024-06-01T10:00:00","colorIndexId":1,"userId":"U001","calendarId":1,"userName":"John Doe"},{"calEventId":2,"calEventDate":"2024-06-02T11:00:00","calEventTitle":"Event 2","calEventDescription":"Description 2","calEventCreateAt":"2024-06-02T11:00:00","calEventUpdateAt":"2024-06-02T11:00:00","colorIndexId":2,"userId":"U001","calendarId":2,"userName":"John Doe"},{"calEventId":3,"calEventDate":"2024-06-03T12:00:00","calEventTitle":"Event 3","calEventDescription":"Description 3","calEventCreateAt":"2024-06-03T12:00:00","calEventUpdateAt":"2024-06-03T12:00:00","colorIndexId":3,"userId":"U001","calendarId":3,"userName":"John Doe"},{"calEventId":4,"calEventDate":"2024-06-04T13:00:00","calEventTitle":"Event 4","calEventDescription":"Description 4","calEventCreateAt":"2024-06-04T13:00:00","calEventUpdateAt":"2024-06-04T13:00:00","colorIndexId":4,"userId":"U001","calendarId":4,"userName":"John Doe"},{"calEventId":5,"calEventDate":"2024-06-05T14:00:00","calEventTitle":"Event 5","calEventDescription":"Description 5","calEventCreateAt":"2024-06-05T14:00:00","calEventUpdateAt":"2024-06-05T14:00:00","colorIndexId":5,"userId":"U001","calendarId":5,"userName":"John Doe"}], formattedDate=2024-06-28 06:39:52, userName=John Doe}
+2024-06-28 06:39:52.691 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/views/schedule/calendar/calendar.jsp]
+2024-06-28 06:39:53.070 DEBUG 6201 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:39:53.071 DEBUG 6201 --- [http-nio-8181-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:39:53.072 DEBUG 6201 --- [http-nio-8181-exec-1] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:39:53.072 DEBUG 6201 --- [http-nio-8181-exec-1] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:39:55.380 DEBUG 6201 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/calendar/myEvents/U001?year=2024&month=7
+2024-06-28 06:39:55.380 DEBUG 6201 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:39:55.380 DEBUG 6201 --- [http-nio-8181-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:39:55.381 DEBUG 6201 --- [http-nio-8181-exec-2] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/calendar/myEvents/U001?year=2024&month=7] with attributes [permitAll]
+2024-06-28 06:39:55.381 DEBUG 6201 --- [http-nio-8181-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/calendar/myEvents/U001?year=2024&month=7
+2024-06-28 06:39:55.382 DEBUG 6201 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/api/calendar/myEvents/U001?year=2024&month=7", parameters={masked}
+2024-06-28 06:39:55.383 DEBUG 6201 --- [http-nio-8181-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarApiController#getMyEvents(String, int, int)
+2024-06-28 06:39:55.395 DEBUG 6201 --- [http-nio-8181-exec-2] c.w.m.s.C.getCalendarEventsForPeriod     : ==>  Preparing: SELECT CE.cal_event_id AS calEventId, CE.cal_event_date AS calEventDate, CE.cal_event_title AS calEventTitle, CE.cal_event_description AS calEventDescription, CE.cal_event_createAt AS calEventCreateAt, CE.cal_event_updateAt AS calEventUpdateAt, CE.color_index_id AS colorIndexId, CE.user_id AS userId, CE.calendar_id AS calendarId, U.user_name AS userName FROM CalendarEvent CE JOIN Users U ON U.user_id = CE.user_id WHERE CE.user_id = ? AND CE.cal_event_date BETWEEN ? AND ? AND team_calendar_id IS NULL;
+2024-06-28 06:39:55.396 DEBUG 6201 --- [http-nio-8181-exec-2] c.w.m.s.C.getCalendarEventsForPeriod     : ==> Parameters: U001(String), 2024-07-01(String), 2024-07-31(String)
+2024-06-28 06:39:55.401 DEBUG 6201 --- [http-nio-8181-exec-2] c.w.m.s.C.getCalendarEventsForPeriod     : <==      Total: 0
+2024-06-28 06:39:55.414 DEBUG 6201 --- [http-nio-8181-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-28 06:39:55.415 DEBUG 6201 --- [http-nio-8181-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Writing [[]]
+2024-06-28 06:39:55.426 DEBUG 6201 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:39:55.426 DEBUG 6201 --- [http-nio-8181-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:39:55.427 DEBUG 6201 --- [http-nio-8181-exec-2] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:39:55.427 DEBUG 6201 --- [http-nio-8181-exec-2] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:39:56.717 DEBUG 6201 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/calendar/myEvents/U001?year=2024&month=6
+2024-06-28 06:39:56.719 DEBUG 6201 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:39:56.719 DEBUG 6201 --- [http-nio-8181-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:39:56.720 DEBUG 6201 --- [http-nio-8181-exec-3] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/calendar/myEvents/U001?year=2024&month=6] with attributes [permitAll]
+2024-06-28 06:39:56.720 DEBUG 6201 --- [http-nio-8181-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/calendar/myEvents/U001?year=2024&month=6
+2024-06-28 06:39:56.721 DEBUG 6201 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/api/calendar/myEvents/U001?year=2024&month=6", parameters={masked}
+2024-06-28 06:39:56.722 DEBUG 6201 --- [http-nio-8181-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarApiController#getMyEvents(String, int, int)
+2024-06-28 06:39:56.724 DEBUG 6201 --- [http-nio-8181-exec-3] c.w.m.s.C.getCalendarEventsForPeriod     : ==>  Preparing: SELECT CE.cal_event_id AS calEventId, CE.cal_event_date AS calEventDate, CE.cal_event_title AS calEventTitle, CE.cal_event_description AS calEventDescription, CE.cal_event_createAt AS calEventCreateAt, CE.cal_event_updateAt AS calEventUpdateAt, CE.color_index_id AS colorIndexId, CE.user_id AS userId, CE.calendar_id AS calendarId, U.user_name AS userName FROM CalendarEvent CE JOIN Users U ON U.user_id = CE.user_id WHERE CE.user_id = ? AND CE.cal_event_date BETWEEN ? AND ? AND team_calendar_id IS NULL;
+2024-06-28 06:39:56.724 DEBUG 6201 --- [http-nio-8181-exec-3] c.w.m.s.C.getCalendarEventsForPeriod     : ==> Parameters: U001(String), 2024-06-01(String), 2024-06-30(String)
+2024-06-28 06:39:56.727 DEBUG 6201 --- [http-nio-8181-exec-3] c.w.m.s.C.getCalendarEventsForPeriod     : <==      Total: 5
+2024-06-28 06:39:56.727 DEBUG 6201 --- [http-nio-8181-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-28 06:39:56.736 DEBUG 6201 --- [http-nio-8181-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [[AllMyCalendarEventDto(calEventId=1, calEventDate=2024-06-01T10:00, calEventTitle=Event 1, calEventD (truncated)...]
+2024-06-28 06:39:56.737 DEBUG 6201 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:39:56.737 DEBUG 6201 --- [http-nio-8181-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:39:56.737 DEBUG 6201 --- [http-nio-8181-exec-3] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:39:56.737 DEBUG 6201 --- [http-nio-8181-exec-3] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:39:58.487 DEBUG 6201 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/calendar/myEvents/U001?year=2024&month=5
+2024-06-28 06:39:58.491 DEBUG 6201 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:39:58.492 DEBUG 6201 --- [http-nio-8181-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:39:58.493 DEBUG 6201 --- [http-nio-8181-exec-4] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/calendar/myEvents/U001?year=2024&month=5] with attributes [permitAll]
+2024-06-28 06:39:58.493 DEBUG 6201 --- [http-nio-8181-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/calendar/myEvents/U001?year=2024&month=5
+2024-06-28 06:39:58.494 DEBUG 6201 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/api/calendar/myEvents/U001?year=2024&month=5", parameters={masked}
+2024-06-28 06:39:58.496 DEBUG 6201 --- [http-nio-8181-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarApiController#getMyEvents(String, int, int)
+2024-06-28 06:39:58.498 DEBUG 6201 --- [http-nio-8181-exec-4] c.w.m.s.C.getCalendarEventsForPeriod     : ==>  Preparing: SELECT CE.cal_event_id AS calEventId, CE.cal_event_date AS calEventDate, CE.cal_event_title AS calEventTitle, CE.cal_event_description AS calEventDescription, CE.cal_event_createAt AS calEventCreateAt, CE.cal_event_updateAt AS calEventUpdateAt, CE.color_index_id AS colorIndexId, CE.user_id AS userId, CE.calendar_id AS calendarId, U.user_name AS userName FROM CalendarEvent CE JOIN Users U ON U.user_id = CE.user_id WHERE CE.user_id = ? AND CE.cal_event_date BETWEEN ? AND ? AND team_calendar_id IS NULL;
+2024-06-28 06:39:58.499 DEBUG 6201 --- [http-nio-8181-exec-4] c.w.m.s.C.getCalendarEventsForPeriod     : ==> Parameters: U001(String), 2024-05-01(String), 2024-05-31(String)
+2024-06-28 06:39:58.501 DEBUG 6201 --- [http-nio-8181-exec-4] c.w.m.s.C.getCalendarEventsForPeriod     : <==      Total: 0
+2024-06-28 06:39:58.502 DEBUG 6201 --- [http-nio-8181-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-28 06:39:58.502 DEBUG 6201 --- [http-nio-8181-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Writing [[]]
+2024-06-28 06:39:58.503 DEBUG 6201 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:39:58.503 DEBUG 6201 --- [http-nio-8181-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:39:58.503 DEBUG 6201 --- [http-nio-8181-exec-4] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:39:58.504 DEBUG 6201 --- [http-nio-8181-exec-4] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:39:59.610 DEBUG 6201 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/calendar/myEvents/U001?year=2024&month=6
+2024-06-28 06:39:59.611 DEBUG 6201 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:39:59.612 DEBUG 6201 --- [http-nio-8181-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:39:59.613 DEBUG 6201 --- [http-nio-8181-exec-5] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/calendar/myEvents/U001?year=2024&month=6] with attributes [permitAll]
+2024-06-28 06:39:59.613 DEBUG 6201 --- [http-nio-8181-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/calendar/myEvents/U001?year=2024&month=6
+2024-06-28 06:39:59.614 DEBUG 6201 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/api/calendar/myEvents/U001?year=2024&month=6", parameters={masked}
+2024-06-28 06:39:59.615 DEBUG 6201 --- [http-nio-8181-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarApiController#getMyEvents(String, int, int)
+2024-06-28 06:39:59.621 DEBUG 6201 --- [http-nio-8181-exec-5] c.w.m.s.C.getCalendarEventsForPeriod     : ==>  Preparing: SELECT CE.cal_event_id AS calEventId, CE.cal_event_date AS calEventDate, CE.cal_event_title AS calEventTitle, CE.cal_event_description AS calEventDescription, CE.cal_event_createAt AS calEventCreateAt, CE.cal_event_updateAt AS calEventUpdateAt, CE.color_index_id AS colorIndexId, CE.user_id AS userId, CE.calendar_id AS calendarId, U.user_name AS userName FROM CalendarEvent CE JOIN Users U ON U.user_id = CE.user_id WHERE CE.user_id = ? AND CE.cal_event_date BETWEEN ? AND ? AND team_calendar_id IS NULL;
+2024-06-28 06:39:59.622 DEBUG 6201 --- [http-nio-8181-exec-5] c.w.m.s.C.getCalendarEventsForPeriod     : ==> Parameters: U001(String), 2024-06-01(String), 2024-06-30(String)
+2024-06-28 06:39:59.627 DEBUG 6201 --- [http-nio-8181-exec-5] c.w.m.s.C.getCalendarEventsForPeriod     : <==      Total: 5
+2024-06-28 06:39:59.628 DEBUG 6201 --- [http-nio-8181-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-28 06:39:59.629 DEBUG 6201 --- [http-nio-8181-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Writing [[AllMyCalendarEventDto(calEventId=1, calEventDate=2024-06-01T10:00, calEventTitle=Event 1, calEventD (truncated)...]
+2024-06-28 06:39:59.631 DEBUG 6201 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:39:59.632 DEBUG 6201 --- [http-nio-8181-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:39:59.633 DEBUG 6201 --- [http-nio-8181-exec-5] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:39:59.633 DEBUG 6201 --- [http-nio-8181-exec-5] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
+2024-06-28 06:40:00.545 DEBUG 6201 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/calendar/myEvents/U001?year=2024&month=5
+2024-06-28 06:40:00.546 DEBUG 6201 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Set SecurityContextHolder to empty SecurityContext
+2024-06-28 06:40:00.547 DEBUG 6201 --- [http-nio-8181-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2024-06-28 06:40:00.548 DEBUG 6201 --- [http-nio-8181-exec-6] o.s.s.w.a.i.FilterSecurityInterceptor    : Authorized filter invocation [GET /api/calendar/myEvents/U001?year=2024&month=5] with attributes [permitAll]
+2024-06-28 06:40:00.548 DEBUG 6201 --- [http-nio-8181-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/calendar/myEvents/U001?year=2024&month=5
+2024-06-28 06:40:00.548 DEBUG 6201 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/api/calendar/myEvents/U001?year=2024&month=5", parameters={masked}
+2024-06-28 06:40:00.550 DEBUG 6201 --- [http-nio-8181-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.workwave.API.CalendarApiController#getMyEvents(String, int, int)
+2024-06-28 06:40:00.553 DEBUG 6201 --- [http-nio-8181-exec-6] c.w.m.s.C.getCalendarEventsForPeriod     : ==>  Preparing: SELECT CE.cal_event_id AS calEventId, CE.cal_event_date AS calEventDate, CE.cal_event_title AS calEventTitle, CE.cal_event_description AS calEventDescription, CE.cal_event_createAt AS calEventCreateAt, CE.cal_event_updateAt AS calEventUpdateAt, CE.color_index_id AS colorIndexId, CE.user_id AS userId, CE.calendar_id AS calendarId, U.user_name AS userName FROM CalendarEvent CE JOIN Users U ON U.user_id = CE.user_id WHERE CE.user_id = ? AND CE.cal_event_date BETWEEN ? AND ? AND team_calendar_id IS NULL;
+2024-06-28 06:40:00.555 DEBUG 6201 --- [http-nio-8181-exec-6] c.w.m.s.C.getCalendarEventsForPeriod     : ==> Parameters: U001(String), 2024-05-01(String), 2024-05-31(String)
+2024-06-28 06:40:00.559 DEBUG 6201 --- [http-nio-8181-exec-6] c.w.m.s.C.getCalendarEventsForPeriod     : <==      Total: 0
+2024-06-28 06:40:00.561 DEBUG 6201 --- [http-nio-8181-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2024-06-28 06:40:00.561 DEBUG 6201 --- [http-nio-8181-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Writing [[]]
+2024-06-28 06:40:00.562 DEBUG 6201 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:40:00.564 DEBUG 6201 --- [http-nio-8181-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-06-28 06:40:00.564 DEBUG 6201 --- [http-nio-8181-exec-6] w.c.HttpSessionSecurityContextRepository : Did not store anonymous SecurityContext
+2024-06-28 06:40:00.564 DEBUG 6201 --- [http-nio-8181-exec-6] s.s.w.c.SecurityContextPersistenceFilter : Cleared SecurityContextHolder to complete request
