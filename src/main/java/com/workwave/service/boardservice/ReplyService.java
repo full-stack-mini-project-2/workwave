@@ -7,12 +7,14 @@ import com.workwave.entity.board.Reply;
 import com.workwave.entity.board.SubReply;
 import com.workwave.mapper.boardMapper.BoardMapper;
 import com.workwave.mapper.boardmapper.ReplyMapper;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +29,9 @@ public class ReplyService {
     private BoardMapper boardMapper;
 
     // 댓글 목록 전체조회
-    public ReplyListDto getReplies(int boardId, Page page) {
+    public ReplyListDto getReplies(int boardId,
+                                   Page page
+    ) {
 
         List<Reply> replies = replyMapper.replies(boardId, page);
 
@@ -41,9 +45,11 @@ public class ReplyService {
                 .build();
     }
 
-    public boolean save(ReplyWriteDto dto) {
+    public boolean save(ReplyWriteDto dto, HttpSession session) {
 
         Reply reply = dto.toEntity();
+
+        reply.setUserId(LoginUtil.getLoggedInUserAccount(session));
 
         boolean save = replyMapper.save(reply);
 
@@ -100,9 +106,11 @@ public class ReplyService {
                 .build();
     }
 
-    public boolean saveSubReply(SubReplyWriteDto dto) {
+    public boolean saveSubReply(SubReplyWriteDto dto,HttpSession session) {
 
         SubReply subReply = dto.toEntity();
+
+        subReply.setUserId(LoginUtil.getLoggedInUserAccount(session));
 
         boolean save = replyMapper.saveSubReply(subReply);
 

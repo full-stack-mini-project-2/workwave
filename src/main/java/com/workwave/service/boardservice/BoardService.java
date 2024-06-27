@@ -7,11 +7,13 @@ import com.workwave.dto.boarddto.BoardUpdateDto;
 import com.workwave.dto.boarddto.BoardWriteDto;
 import com.workwave.entity.board.Board;
 import com.workwave.mapper.boardMapper.BoardMapper;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,9 +25,12 @@ public class BoardService {
     @Autowired
     private final BoardMapper boardMapper;
 
-    public boolean save(BoardWriteDto dto) {
+    public boolean save(BoardWriteDto dto, HttpSession session) {
+
 
         Board b = dto.toEntity();
+
+        b.setUserId(LoginUtil.getLoggedInUserAccount(session));
 
         log.info("Saving Board Entity: {}", b);
 

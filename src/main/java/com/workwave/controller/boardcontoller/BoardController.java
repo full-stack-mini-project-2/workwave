@@ -49,9 +49,11 @@ public class BoardController {
     }
 
     @PostMapping("/write")
-    public String register(BoardWriteDto dto) {
+    public String register(BoardWriteDto dto, HttpSession session) {
+
         log.info("Received DTO: {}", dto);
-        if (boardService.save(dto)) {
+
+        if (boardService.save(dto, session)) {
             return "redirect:/board/list";
         } else {
             return "error";

@@ -3,6 +3,7 @@ package com.workwave.controller.boardcontoller;
 import com.workwave.common.boardpage.Page;
 import com.workwave.dto.replydto.*;
 import com.workwave.service.boardservice.ReplyService;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,8 @@ public class ReplyController {
 
         ReplyListDto replies = replyService.getReplies(boardId, new Page(pageNo, 10));
 
+        replies.setLoginUser(LoginUtil.getLoggedInUser(session));
+
         return ResponseEntity
                 .ok()
                 .body(replies);
@@ -39,12 +42,13 @@ public class ReplyController {
 
     // 댓글 생성 요청
     @PostMapping
-    public ResponseEntity<?> saveReply(@RequestBody @Valid ReplyWriteDto dto) {
+    public ResponseEntity<?> saveReply(@RequestBody @Valid ReplyWriteDto dto,
+                                       HttpSession session) {
 
         log.info("ReplyWriteDto: {}", dto);
 
         // flag를 통하여 에러 검사
-        boolean flag = replyService.save(dto);
+        boolean flag = replyService.save(dto, session);
 
         return ResponseEntity
                 .ok()
@@ -106,12 +110,13 @@ public class ReplyController {
 
     // 대댓글 생성 요청
     @PostMapping("/sub")
-    public ResponseEntity<?> saveSubReply(@RequestBody @Valid SubReplyWriteDto dto) {
+    public ResponseEntity<?> saveSubReply(@RequestBody @Valid SubReplyWriteDto dto,
+                                          HttpSession session) {
 
         log.info("SubReplyWriteDto: {}", dto);
 
         // flag를 통하여 에러 검사
-        boolean flag = replyService.saveSubReply(dto);
+        boolean flag = replyService.saveSubReply(dto, session);
 
         return ResponseEntity
                 .ok()

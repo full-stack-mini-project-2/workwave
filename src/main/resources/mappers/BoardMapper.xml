@@ -34,7 +34,7 @@
         board_password
         )
         VALUES (
-        (SELECT user_id FROM users WHERE user_name = 'John Doe'),
+        #{userId},
         #{boardTitle},
         #{boardNickname},
         #{boardContent},

@@ -49,7 +49,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         //REST API 인가 처리 인터셉터 등록
         registry
                 .addInterceptor(replyInterceptor)
-                .addPathPatterns("/reply/*","/sub")
+                .addPathPatterns("/reply","/sub")
                 .excludePathPatterns("/reply/*/page/*","/sub/*")  //조회는 허용
         ;
 
