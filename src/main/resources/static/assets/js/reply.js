@@ -86,7 +86,7 @@ function renderPage({ begin, end, pageInfo, prev, next }) {
 function replyPageClickEvent() {
   document.querySelector(".pagination").addEventListener("click", (e) => {
     e.preventDefault();
-    // console.log(e.target.getAttribute('href'));
+    
     fetchReplies(bno, e.target.getAttribute("href"));
   });
 }
