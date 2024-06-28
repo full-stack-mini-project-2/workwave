@@ -46,7 +46,6 @@ public class TrafficController {
     @GetMapping("/traffic-myInfo")
     public String findTrafficInfo(Model model, myInfoPage page, HttpSession session){
 
-     ;
         List<totalTrafficInfoDto> totalTraffic = trafficService.findAll(page,session);
         myPageMaker maker = new myPageMaker(page,trafficService.getCount(session));
 
@@ -54,7 +53,6 @@ public class TrafficController {
 
         maker.setUserId(userId);
 
-    ;
         model.addAttribute("maker",maker);
         model.addAttribute("totalTraffic",totalTraffic);
 

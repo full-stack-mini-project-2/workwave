@@ -6,8 +6,16 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
+    <script defer type="text/javascript" src="assets/js/traffic/myTrafficInfo.js"></script>
   </head>
   <body>
+    <select class="form-select" name="year" id="year">년도별</select>
+    <select class="form-select" name="month" id="month">월별</select>
+    <select>
+      <option value="date">날짜별</option>
+      <option value="staion">역</option>
+      <option value="date">등록일</option>
+    </select>
     <c:set var="isFirst" value="true" />
     <c:forEach var="traffic" items="${totalTraffic}">
         <c:if test="${isFirst}">
