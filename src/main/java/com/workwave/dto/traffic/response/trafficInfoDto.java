@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode
+@Setter
 public class trafficInfoDto {
 
     private String userId; // 유저아이디

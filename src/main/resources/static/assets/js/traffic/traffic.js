@@ -1,3 +1,5 @@
+
+
 var mapOptions = {
   center: new naver.maps.LatLng(37.5563, 126.9461), // 이대역 좌표
   zoom: 18,
@@ -202,5 +204,9 @@ function trafficInfomation(totalStation, totalTime) {
       console.error('Error:', error);
     })
   }, 5000);  // 500ms 지연 시간
+
+   
+
+
 }
 

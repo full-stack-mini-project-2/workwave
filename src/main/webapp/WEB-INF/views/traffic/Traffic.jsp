@@ -11,26 +11,13 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
     />
     <title>길찾기 결과 지도에 표출하기</title>
-    <script
-      defer
-      type="text/javascript"
-      src="../../../../resources/static/assets/js/traffic/traffic.js"
-    ></script>
-    <script
-      defer
-      type="text/javascript"
-      src="../../../../resources/static/assets/js/traffic/weather.js"
-    ></script>
-    <script
-      defer
-      type="text/javascript"
-      src="../../../../resources/static/assets/js/traffic/metro.js"
-    ></script>
+    <script defer type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=nbpr5wd89w"></script>
 
-    <script
-      type="text/javascript"
-      src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=nbpr5wd89w"
-    ></script>
+    <script defer  type="text/javascript" src="assets/js/traffic/traffic.js"></script>
+    <script defer  type="text/javascript" src="assets/js/traffic/weather.js"></script>
+    <script defer  type="text/javascript" src="assets/js/traffic/metro.js"></script>
+
+
   </head>
   <body>
     <div id="map" style="width: 100%; height: 400px"></div>

@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class totalTrafficInfoDto {
 
+    private String userId;
     private String arrival;
     private String departure;
     private LocalDateTime regDateTime;
