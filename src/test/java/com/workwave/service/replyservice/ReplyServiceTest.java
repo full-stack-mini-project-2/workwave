@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.servlet.http.HttpSession;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -24,7 +26,7 @@ class ReplyServiceTest {
     private ReplyService replyService;
 
     @Test
-    void save100Replies() {
+    void save100Replies(HttpSession session) {
         for (int i = 1; i <= 100; i++) {
             // Given
             ReplyWriteDto dto = new ReplyWriteDto();
@@ -38,7 +40,7 @@ class ReplyServiceTest {
 //            when(replyMapper.save(reply)).thenReturn(true);
 
             // When
-            boolean result = replyService.save(dto);
+            boolean result = replyService.save(dto, session);
 
             // Then
             assertTrue(result);
