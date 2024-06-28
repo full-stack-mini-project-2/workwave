@@ -145,7 +145,7 @@
             $http.put('/api/todos/personal/' + personalTask.todoId, updatedMyTask)
                 .then(function(response) {
 
-                    personalTask.editing = false; // 수정 상태 초기화
+                    personalTask.editing = false; // 수정 상태 초기화하였답니다.
 
                     // var updatedPersonalTask = response.data;
                     // 클라이언트에서 personalTasks 배열을 업데이트
