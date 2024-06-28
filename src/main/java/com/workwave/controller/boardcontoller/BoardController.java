@@ -110,7 +110,13 @@ public class BoardController {
     }
 
     @GetMapping("/pwcheck")
-    public String PasswordCheck() {
+    public String PasswordCheck(HttpSession session,
+                                @RequestParam("action") String action,
+                                @RequestParam("bno") int boardId) {
+
+        if (LoginUtil.isAdmin(session) && "delete".equals(action)) {
+            return "redirect:/board/delete?bno=" + boardId;
+        }
 
         return "board/boardPwCheck";
     }
@@ -119,6 +125,7 @@ public class BoardController {
     public String isEqualPw(@RequestParam("bno") int boardId,
                             @RequestParam("action") String action,
                             @RequestParam("boardPassword") String inputPassword,
+                            HttpSession session,
                             Model model) {
 
         BoardDetailDto board = boardService.findOne(boardId);
@@ -184,7 +191,7 @@ public class BoardController {
     @PostMapping("/downLike")
     @ResponseBody
     public ResponseEntity<?> downLikeCount(@RequestParam(value = "bno") Integer boardId,
-                                         HttpSession session) {
+                                           HttpSession session) {
 
         if (boardId == null) {
             return ResponseEntity.badRequest().body("boardId parameter is required.");

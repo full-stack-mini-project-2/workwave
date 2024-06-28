@@ -79,9 +79,16 @@ public class ReplyService {
     }
 
     @Transactional
-    public boolean delete(ReplyDeleteDto dto) {
+    public boolean delete(ReplyDeleteDto dto,
+                          HttpSession session) {
 
         Reply original = replyMapper.findOne(dto.getReplyId());
+
+        if (LoginUtil.isAdmin(session)) {
+            boolean delete = replyMapper.delete(dto.getReplyId());
+            boardMapper.updateCount();
+            return delete;
+        }
 
         if (PasswordUtil.checkPassword(dto.getReplyDeletePassword(), original.getReplyPassword())) {
             boolean delete = replyMapper.delete(dto.getReplyId());
@@ -90,6 +97,7 @@ public class ReplyService {
         } else {
             return false;
         }
+
     }
 
     // 대댓글 목록 전체조회
@@ -140,9 +148,16 @@ public class ReplyService {
     }
 
     @Transactional
-    public boolean deleteSubReply(SubReplyDeleteDto dto) {
+    public boolean deleteSubReply(SubReplyDeleteDto dto,
+                                  HttpSession session) {
 
         SubReply original = replyMapper.findOneSubReply(dto.getSubReplyId());
+
+        if(LoginUtil.isAdmin(session)){
+            boolean delete = replyMapper.deleteSubReply(dto.getSubReplyId());
+
+            return delete;
+        }
 
         if (PasswordUtil.checkPassword(dto.getSubReplyDeletePassword(), original.getSubReplyPassword())) {
 
