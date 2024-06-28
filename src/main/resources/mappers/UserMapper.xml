@@ -35,6 +35,8 @@
         FROM Users
         <if test="type == 'account'"> WHERE user_id = #{keyword}</if>
         <if test="type == 'email'"> WHERE user_email = #{keyword}</if>
+        <if test="type == 'employee_id'"> WHERE employee_id = #{keyword}</if>
+
     </select>
 
     <update id ="updateAutoLogin">
