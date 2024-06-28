@@ -50,6 +50,8 @@
         <tbody>
         <tr ng-repeat="teamTask in teamTasks track by $index" ng-class="{'table-success': teamTask.teamTodoStatus === 'true', 'table-light': teamTask.teamTodoStatus === 'false'}">
             <td>{{$index + 1}}</td>
+            <!-- 동그라미 표시 -->
+            <%--                <span class="color-dot" ng-style="{'background-color': personalColorIndexMap[personalTask.colorIndexId]}"></span>--%>
             <td ng-click="editTeamTask(teamTask)">
                 <span ng-show="!teamTask.editing" ng-class="{'complete': teamTask.teamTodoStatus === 'true'}">{{teamTask.teamTodoContent}}</span>
                 <input ng-show="teamTask.editing" type="text" ng-model="teamTask.teamTodoContent" ng-blur="updateTeamTask(teamTask)" ng-keypress="handleKeyPressTeamTask($event, teamTask)">

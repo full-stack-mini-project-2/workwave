@@ -114,8 +114,9 @@
 
         if (events && Array.isArray(events)) {
         events.forEach(event => {
+          const colorIndexId = event.colorIndexId; // 이벤트 객체에서 colorIndexId 가져오기
           if (event.calEventDate.startsWith(fullDateStr)) {
-            calendarHtml += `<div class="event event-\${getColorByIndex(event.colorIndexId)}">${event.calEventTitle}</div>`;
+            calendarHtml += `<div class="event event-\${getColorByIndex(event.colorIndexId)}">\${event.calEventTitle}</div>`;
           }
         });
         }

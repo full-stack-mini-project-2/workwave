@@ -51,7 +51,7 @@
         <tbody>
         <tr ng-repeat="personalTask in personalTasks track by $index" ng-class="{'table-success': personalTask.todoStatus === 'true', 'table-light': personalTask.todoStatus === 'false'}">
             <td>{{$index + 1}}</td>
-            <td>
+            <td ng-click="editPersonalTask(personalTask)">
                 <!-- 동그라미 표시 -->
 <%--                <span class="color-dot" ng-style="{'background-color': personalColorIndexMap[personalTask.colorIndexId]}"></span>--%>
                 <span ng-show="!personalTask.editing" ng-class="{'complete': personalTask.todoStatus === 'true'}">{{personalTask.todoContent}}</span>
