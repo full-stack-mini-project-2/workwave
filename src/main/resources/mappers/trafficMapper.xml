@@ -13,7 +13,7 @@
 
     <select id="findAll" resultType="com.workwave.dto.traffic.request.totalTrafficInfoDto">
         SELECT * FROM traffic
-        WHERE user_id = #{userId}
+        WHERE user_id=#{userId}
         ORDER BY regDateTime desc
         LIMIT #{pageStart} , #{amount}
     </select>
@@ -21,6 +21,7 @@
     <select id="count" resultType="int">
         SELECT COUNT(*)
         FROM traffic
+        WHERE user_id=#{userId}
     </select>
 
 </mapper>

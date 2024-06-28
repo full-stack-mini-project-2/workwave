@@ -16,5 +16,5 @@ public interface trafficMapper {
     // 선택한 교통내용 불러오기
     List<totalTrafficInfoDto> findAll(myInfoPage page);
 
-    int count();
+    int count(String userId);
 }

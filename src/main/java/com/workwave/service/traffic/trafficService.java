@@ -6,10 +6,12 @@ import com.workwave.common.traffic.myInfoPage;
 import com.workwave.dto.traffic.request.totalTrafficInfoDto;
 import com.workwave.dto.traffic.response.trafficInfoDto;
 import com.workwave.mapper.trafficMapper;
+import com.workwave.util.LoginUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,7 +36,11 @@ public class trafficService {
         return trafficMapper.save(newTraffic);
     }
 
-    public List<totalTrafficInfoDto> findAll(myInfoPage page){
+    public List<totalTrafficInfoDto> findAll(myInfoPage page, HttpSession session){
+
+        String userId = LoginUtil.getLoggedInUser(session).getUserId();
+
+        page.setUserId(userId);
 
         List<totalTrafficInfoDto> trafficList = trafficMapper.findAll(page);
 
@@ -42,8 +48,9 @@ public class trafficService {
         return trafficList;
     }
 
-    public int getCount() {
+    public int getCount(HttpSession session) {
+        String userId = LoginUtil.getLoggedInUser(session).getUserId();
 
-        return trafficMapper.count();
+        return trafficMapper.count(userId);
     }
 }

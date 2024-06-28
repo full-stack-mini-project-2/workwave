@@ -33,12 +33,10 @@ public class TrafficController {
     @PostMapping("/traffic-Info")
     public String trafficInformation(@RequestBody trafficInfoDto trafficInfo, HttpSession session){
 
-        System.out.println("isLoggedIn: " + LoginUtil.isLoggedIn(session));
-        System.out.println("getLoggedIN: " + LoginUtil.getLoggedInUser(session));
         String userId = LoginUtil.getLoggedInUser(session).getUserId();
 
         trafficInfo.setUserId(userId);
-        System.out.println("trafficInfo = " + trafficInfo);
+
         trafficService.save(trafficInfo);
 
 
@@ -46,12 +44,17 @@ public class TrafficController {
     }
 
     @GetMapping("/traffic-myInfo")
-    public String findTrafficInfo(Model model, myInfoPage page){
+    public String findTrafficInfo(Model model, myInfoPage page, HttpSession session){
 
-        System.out.println(page);
-        List<totalTrafficInfoDto> totalTraffic = trafficService.findAll(page);
-        myPageMaker maker = new myPageMaker(page,trafficService.getCount());
-        System.out.println(maker);
+     ;
+        List<totalTrafficInfoDto> totalTraffic = trafficService.findAll(page,session);
+        myPageMaker maker = new myPageMaker(page,trafficService.getCount(session));
+
+        String userId = LoginUtil.getLoggedInUser(session).getUserId();
+
+        maker.setUserId(userId);
+
+    ;
         model.addAttribute("maker",maker);
         model.addAttribute("totalTraffic",totalTraffic);
 

@@ -1,18 +1,21 @@
 package com.workwave.common.traffic;
 
 
+import com.workwave.dto.user.LoginDto;
+import com.workwave.entity.User;
 import com.workwave.util.LoginUtil;
 import lombok.*;
 
 import javax.servlet.http.HttpSession;
 
 @Getter @ToString
+@Setter
 @EqualsAndHashCode
 @AllArgsConstructor
 @Builder
 public class myInfoPage {
 
-    private String user;
+    private String userId;
     private int pageNo;        // 현재 페이지 번호
     private int amount;       // 페이지당 출력할 데이터 개수
 
@@ -20,6 +23,10 @@ public class myInfoPage {
     public myInfoPage() {
         this.pageNo = 1;
         this.amount = 4;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public int getPageStart(){

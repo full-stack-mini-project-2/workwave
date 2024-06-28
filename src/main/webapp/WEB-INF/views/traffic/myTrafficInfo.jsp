@@ -8,8 +8,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <title>Insert title here</title>
   </head>
   <body>
-    <h1>내가 조회했던 정보</h1>
+    <c:set var="isFirst" value="true" />
     <c:forEach var="traffic" items="${totalTraffic}">
+        <c:if test="${isFirst}">
+            <h1>${traffic.userId} 조회했던 정보</h1>
+            <c:set var="isFirst" value="false" />
+        </c:if>
         <div>
             <p>출발역: ${traffic.departure}</p>
             <p>도착역: ${traffic.arrival}</p>
