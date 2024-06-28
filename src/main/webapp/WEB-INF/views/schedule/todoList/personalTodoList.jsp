@@ -1,11 +1,13 @@
+
+<%@ page import="java.util.Map" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="myAppPersonal">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App</title>
+    <title>Personal Todo List</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <style>
         .app-container {
@@ -14,20 +16,25 @@
         }
         .complete {
             text-decoration: line-through;
+            color: gray;
+        }
+        .color-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
         }
     </style>
 </head>
-<body ng-controller="myController" class="app-container d-flex align-items-center justify-content-center flex-column">
+<body ng-controller="myPersonalController" class="app-container d-flex align-items-center justify-content-center flex-column">
 
-<h3 class="mb-4">Todo App</h3>
+<h3 class="mb-4">Personal Todo List</h3>
 
 <div class="input-group mb-3">
-    <input ng-model="yourTask" type="text" class="form-control" placeholder="Enter a task here">
+    <input ng-model="yourPersonalTask" type="text" class="form-control" placeholder="Enter a task here">
     <div class="input-group-append">
-        <button class="btn btn-primary" type="button" ng-click="saveTask()">Save</button>
-    </div>
-    <div class="input-group-append">
-        <button class="btn btn-warning" type="button" ng-click="getTask()">Get Tasks</button>
+        <button class="btn btn-primary" type="button" ng-click="savePersonalTask()">Save</button>
     </div>
 </div>
 
@@ -42,13 +49,19 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="task in tasks" ng-class="{'table-success': task.status, 'table-light': !task.status}">
+        <tr ng-repeat="personalTask in personalTasks track by $index" ng-class="{'table-success': personalTask.todoStatus === 'true', 'table-light': personalTask.todoStatus === 'false'}">
             <td>{{$index + 1}}</td>
-            <td ng-class="{'complete': task.status}">{{task.task_name}}</td>
-            <td>{{task.status ? 'Completed' : 'In progress'}}</td>
             <td>
-                <button class="btn btn-danger btn-sm" ng-click="delete($index)">Delete</button>
-                <button class="btn btn-success btn-sm" ng-click="finished($index)">Finished</button>
+                <!-- 동그라미 표시 -->
+<%--                <span class="color-dot" ng-style="{'background-color': personalColorIndexMap[personalTask.colorIndexId]}"></span>--%>
+                <span ng-show="!personalTask.editing" ng-class="{'complete': personalTask.todoStatus === 'true'}">{{personalTask.todoContent}}</span>
+                <input ng-show="personalTask.editing" type="text" ng-model="personalTask.todoContent" ng-blur="updatePersonalTask(personalTask)" ng-keypress="handleKeyPressPersonalTask($event, personalTask)">
+            </td>
+            <td>
+                <input type="checkbox" ng-model="personalTask.todoStatus" ng-true-value="'true'" ng-false-value="'false'" ng-change="updatePersonalTask(personalTask)">
+            </td>
+            <td>
+                <button class="btn btn-danger btn-sm" ng-click="deletePersonalTask($index)">Delete</button>
             </td>
         </tr>
         </tbody>
@@ -57,53 +70,103 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
 <script>
-    var app = angular.module("myApp", []);
+    var appPersonal = angular.module("myAppPersonal", []);
 
-    app.controller("myController", function($scope) {
-        $scope.tasks = [
-            {
-                "todoId": 1,
-                "todoContent": "Buy office supplies",
-                "todoStatus": false,
-                "todoCreateAt": "2024-06-24T15:23:49",
-                "todoUpdateAt": "2024-06-24T15:23:49",
-                "colorIndexId": 1,
-                "userId": "user1"
-            },
-            {
-                "todoId": 2,
-                "todoContent": "Schedule meeting with team",
-                "todoStatus": false,
-                "todoCreateAt": "2024-06-24T15:23:49",
-                "todoUpdateAt": "2024-06-24T15:23:49",
-                "colorIndexId": 2,
-                "userId": "user1"
+    appPersonal.controller("myPersonalController", function($scope, $http) {
+        // 초기화 함수: 서버에서 개인 투두리스트 가져오기
+        function initPersonal() {
+            var userId = '<%= request.getAttribute("userId") %>'; // userId 가져오기
+
+            $http.get('/api/todos/personal/' + userId)
+                .then(function(response) {
+                    $scope.personalTasks = response.data;
+                    //문자열 true false 불린값으로 반환하기
+                    $scope.personalTasks.forEach(task => {
+                        task.todoStatus = task.todoStatus === 'true' ? 'true' : 'false';
+                    });
+
+                })
+                .catch(function(error) {
+                    console.error('Error fetching personal tasks:', error);
+                });
+        }
+
+        initPersonal(); // 페이지 로딩 시 초기화 함수 호출
+
+        // 투두리스트 저장 함수
+        $scope.savePersonalTask = function() {
+            var newPersonalTask = {
+                todoContent: $scope.yourPersonalTask,
+                todoStatus: 'false', //문자열로 받아야함
+                userId: '<%= request.getAttribute("userId") %>'
+            };
+
+            $http.post('/api/todos/personal', newPersonalTask)
+                .then(function(response) {
+                    var savedMyTask = response.data;
+                    if (savedMyTask && savedMyTask.todoId) {
+                        $scope.personalTasks.push(savedMyTask);
+                    } else {
+                        newPersonalTask.todoId = 'temporary_' + (new Date()).getTime();
+                        $scope.personalTasks.push(newPersonalTask);
+                    }
+                    $scope.yourPersonalTask = ''; // 입력 필드 초기화
+                })
+                .catch(function(error) {
+                    console.error('Error saving personal task:', error);
+                });
+        };
+
+        // 투두리스트 삭제 함수
+        $scope.deletePersonalTask = function(index) {
+            var personalTodoId = $scope.personalTasks[index].todoId;
+
+            $http.delete('/api/todos/personal/' + personalTodoId)
+                .then(function(response) {
+                    $scope.personalTasks.splice(index, 1); // 배열에서 삭제
+                })
+                .catch(function(error) {
+                    console.error('Error deleting personal task:', error);
+                });
+        };
+
+        // 수정 상태로 전환하는 함수
+        $scope.editPersonalTask = function(personalTask) {
+            personalTask.editing = true;
+        };
+
+        // 업데이트 함수
+        $scope.updatePersonalTask = function(personalTask) {
+            if(!personalTask.todoId) return; // 아이디 없을 때 업데이트 방지
+
+            var updatedMyTask = angular.copy(personalTask);
+            updatedMyTask.todoStatus = personalTask.todoStatus.toString();
+
+            $http.put('/api/todos/personal/' + personalTask.todoId, updatedMyTask)
+                .then(function(response) {
+
+                    personalTask.editing = false; // 수정 상태 초기화
+
+                    // var updatedPersonalTask = response.data;
+                    // 클라이언트에서 personalTasks 배열을 업데이트
+                    // for (var i = 0; i < $scope.personalTasks.length; i++) {
+                    //     if ($scope.personalTasks[i].todoId === updatedPersonalTask.todoId) {
+                    //         $scope.personalTasks[i] = updatedPersonalTask;
+                    //         break;
+                    //     }
+                    // }
+                    // personalTask.editing = false; // 수정 상태 초기화
+                })
+                .catch(function(error) {
+                    console.error('Error updating personal task:', error);
+                });
+        };
+
+        // Enter 키를 눌렀을 때 업데이트 수행
+        $scope.handleKeyPressPersonalTask = function(event, personalTask) {
+            if (event.keyCode === 13) { // Enter 키 코드는 13입니다.
+                $scope.updatePersonalTask(personalTask);
             }
-        ];
-
-        $scope.saveTask = function() {
-            $scope.tasks.push({
-                todoContent: $scope.yourTask,
-                todoStatus: false,
-                todoCreateAt: new Date().toISOString(),
-                todoUpdateAt: new Date().toISOString(),
-                colorIndexId: 1,
-                userId: 'current_user_id' // replace with actual userId
-            });
-            $scope.yourTask = ''; // Clear input field after adding task
-        };
-
-        $scope.getTask = function() {
-            // Simulated get task functionality, could be used for refreshing tasks
-            // Not implemented for the sake of simplicity in this example
-        };
-
-        $scope.delete = function(index) {
-            $scope.tasks.splice(index, 1);
-        };
-
-        $scope.finished = function(index) {
-            $scope.tasks[index].todoStatus = true;
         };
     });
 </script>
@@ -114,110 +177,4 @@
 </body>
 </html>
 
-<%--<!DOCTYPE html>--%>
-<%--<html lang="en">--%>
-<%--<head>--%>
-<%--    <meta charset="UTF-8">--%>
-<%--    <title>Personal To-Do List</title>--%>
-<%--    <style>--%>
-<%--        .completed {--%>
-<%--            color: gray;--%>
-<%--            text-decoration: line-through;--%>
-<%--        }--%>
-<%--    </style>--%>
-<%--</head>--%>
-<%--<script>--%>
-<%--    // JavaScript function to toggle the status of a to-do item--%>
-<%--    function toggleTodoStatus(todoId) {--%>
-<%--        fetch(`/api/todos/personal/${todoId}`, {--%>
-<%--            method: 'PUT',--%>
-<%--            headers: {--%>
-<%--                'Content-Type': 'application/json'--%>
-<%--            },--%>
-<%--            body: JSON.stringify({todoStatus: 'completed'})--%>
-<%--        }).then(response => {--%>
-<%--            if (response.ok) {--%>
-<%--                location.reload();--%>
-<%--            }--%>
-<%--        });--%>
-<%--    }--%>
-<%--    // JavaScript function to edit a to-do item--%>
-<%--    function editTodo(todoId) {--%>
-<%--        let newContent = prompt("Enter new to-do content:");--%>
-<%--        fetch(`/api/todos/personal/${todoId}`, {--%>
-<%--            method: 'PUT',--%>
-<%--            headers: {--%>
-<%--                'Content-Type': 'application/json'--%>
-<%--            },--%>
-<%--            body: JSON.stringify({todoContent: newContent})--%>
-<%--        }).then(response => {--%>
-<%--            if (response.ok) {--%>
-<%--                location.reload();--%>
-<%--            }--%>
-<%--        });--%>
-<%--    }--%>
-<%--    // JavaScript function to delete a to-do item--%>
-<%--    function deleteTodo(todoId) {--%>
-<%--        fetch(`/api/todos/personal/${todoId}`, {--%>
-<%--            method: 'DELETE'--%>
-<%--        }).then(response => {--%>
-<%--            if (response.ok) {--%>
-<%--                location.reload();--%>
-<%--            }--%>
-<%--        });--%>
-<%--    }--%>
-<%--    // JavaScript function to add a new to-do item--%>
-<%--    function addTodo() {--%>
-<%--        let content = prompt("Enter new to-do content:");--%>
-<%--        if (content) {--%>
-<%--            fetch('/api/todos/personal', {--%>
-<%--                method: 'POST',--%>
-<%--                headers: {--%>
-<%--                    'Content-Type': 'application/json'--%>
-<%--                },--%>
-<%--                body: JSON.stringify({--%>
-<%--                    todoContent: content,--%>
-<%--                    userId: 'current_user_id',  // replace 'current_user_id' with actual userId--%>
-<%--                    todoStatus: 'inprogress',--%>
-<%--                    colorIndexId: 1,--%>
-<%--                    todoCreateAt: new Date().toISOString(),--%>
-<%--                    todoUpdateAt: new Date().toISOString()--%>
-<%--                })--%>
-<%--            }).then(response => {--%>
-<%--                if (response.ok) {--%>
-<%--                    location.reload();--%>
-<%--                } else {--%>
-<%--                    response.json().then(data => {--%>
-<%--                        alert('Error: ' + data.message);--%>
-<%--                    });--%>
-<%--                }--%>
-<%--            }).catch(error => {--%>
-<%--                console.error('Error:', error);--%>
-<%--            });--%>
-<%--        }--%>
-<%--    }--%>
-<%--</script>--%>
-<%--<body>--%>
-<%--<h1>Personal To-Do List</h1>--%>
-<%--<button onclick="addTodo()">Add New To-Do</button>--%>
-<%--<ul>--%>
-<%--    <c:forEach items="${todos}" var="todo">--%>
-<%--        <li>--%>
-<%--            <form action="<c:url value='/api/todos/personal/${todo.todoId}' />" method="post">--%>
-<%--                <input type="checkbox" onclick="this.form.submit()" ${todo.todoStatus == 'completed' ? 'checked' : ''} />--%>
-<%--                <input type="hidden" name="_method" value="put" />--%>
-<%--                <input type="hidden" name="userId" value="${userId}" />--%>
-<%--                <input type="hidden" name="todoId" value="${todo.todoId}" />--%>
-<%--                <input type="hidden" name="todoContent" value="${todo.todoContent}" />--%>
-<%--                <input type="hidden" name="todoStatus" value="${todo.todoStatus == 'completed' ? 'pending' : 'completed'}" />--%>
-<%--                <span style="text-decoration: ${todo.todoStatus == 'completed' ? 'line-through' : 'none'}">${todo.todoContent}</span>--%>
-<%--                <a href="<c:url value='/api/todos/personal/${todo.todoId}?userId=${userId}' />" onclick="event.preventDefault(); if(confirm('Are you sure?')) { this.parentElement.submit(); }">Delete</a>--%>
-<%--            </form>--%>
-<%--        </li>--%>
-<%--    </c:forEach>--%>
-<%--</ul>--%>
 
-
-
-<%--</body>--%>
-<%--</html>--%>

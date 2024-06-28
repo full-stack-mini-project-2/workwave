@@ -3,6 +3,10 @@
 
 <mapper namespace="com.workwave.mapper.scheduleMapper.ColorIndexMapper">
 
+    <select id="getAllColorIndexes" resultType="com.workwave.entity.schedule.ColorIndex">
+        SELECT * FROM ColorIndex;
+    </select>
+
     <!-- Insert query for saving color -->
     <insert id="saveColorIndex" parameterType="ColorIndex">
         INSERT INTO ColorIndex (color_name, color_code)

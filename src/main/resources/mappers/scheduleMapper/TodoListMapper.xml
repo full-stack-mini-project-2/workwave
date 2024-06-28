@@ -15,123 +15,75 @@
         <result property="userId" column="user_id"/>
     </resultMap>
 
-    <!-- 개인 투두리스트 모든 사람 목록 전체 조회 -->
-    <select id="findAll" resultMap="TodoListResultMap">
+    <!-- 개인 투두리스트 쿼리 맵핑 -->
+    <select id="findAll" resultType="com.workwave.entity.schedule.TodoList">
         SELECT * FROM TodoList
     </select>
 
-    <!-- 개인별 투두리스트 조회 -->
-    <select id="findById" resultMap="TodoListResultMap">
+    <select id="findByTodoId" parameterType="int" resultType="com.workwave.entity.schedule.TodoList">
         SELECT * FROM TodoList WHERE todo_id = #{todoId}
     </select>
 
-    <!-- Insert todo -->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="todoId">
-        INSERT INTO
-            TodoList(
-                             todo_content,
-                             todo_status,
-                             color_index_id,
-                             user_id
-        )
-        VALUES(
-               #{todoContent},
-               #{todoStatus},
-               #{colorIndexId},
-               #{userId}
-              )
-    </insert>
-
-    <!-- Update todo -->
-    <update id="update">
-        UPDATE TodoList
-        SET
-            todo_content=#{todoContent},
-            todo_status=#{todoStatus},
-            color_index_id=#{colorIndexId},
-            user_id=#{userId}
-        WHERE
-            todo_id=#{todoId}
-    </update>
-
-    <!-- Delete todo -->
-    <delete id="delete">
-        DELETE FROM
-                   TodoList
-               WHERE
-                   todo_id=#{todoId}
-    </delete>
-
-    <!-- Select todos by user ID -->
-    <select id="findByUserId" resultMap="TodoListResultMap">
-        SELECT * FROM
-                     TodoList
-                 WHERE
-                     user_id = #{userId}
+    <select id="findByUserId" parameterType="String" resultType="com.workwave.entity.schedule.TodoList">
+        SELECT * FROM TodoList WHERE user_id = #{userId}
+        ORDER BY
+            todo_status DESC,
+            todo_createAt ASC;
     </select>
 
-    <!-- ResultMap for TeamTodoList -->
-    <resultMap id="TeamTodoListResultMap" type="com.workwave.dto.schedule_dto.request.AllMyTeamTodoListDto">
-        <id property="teamTodoId" column="team_todo_id"/>
-        <result property="teamTodoContent" column="team_todo_content"/>
-        <result property="teamTodoStatus" column="team_todo_status"/>
-        <result property="teamTodoCreateAt" column="team_todo_createAt"/>
-        <result property="teamTodoUpdateAt" column="team_todo_updateAt"/>
-        <result property="colorIndexId" column="color_index_id"/>
-        <result property="userId" column="user_id"/>
-        <result property="departmentId" column="department_id"/>
-    </resultMap>
+    <insert id="insertPersonalTodo" parameterType="com.workwave.entity.schedule.TodoList">
+        INSERT INTO TodoList (todo_content, todo_status, todo_createAt, todo_updateAt, color_index_id, user_id)
+        VALUES (#{todoContent}, #{todoStatus}, #{todoCreateAt}, #{todoUpdateAt}, #{colorIndexId}, #{userId})
+    </insert>
 
-    <!-- Select all team todos -->
-    <select id="findAllTeamTodos" resultMap="TeamTodoListResultMap">
+    <update id="updatePersonalTodo" parameterType="com.workwave.entity.schedule.TodoList">
+    UPDATE TodoList
+    SET todo_content = #{todoContent},
+        todo_status = #{todoStatus},
+        todo_updateAt = #{todoUpdateAt}
+    WHERE todo_id = #{todoId}
+</update>
+
+    <delete id="deletePersonalTodo" parameterType="int">
+        DELETE FROM TodoList WHERE todo_id = #{todoId}
+    </delete>
+
+    <!-- 팀 투두리스트 쿼리 맵핑 -->
+
+    <select id="findAllTeamTodos" resultType="com.workwave.entity.schedule.TeamTodoList">
         SELECT * FROM TeamTodoList
     </select>
 
-    <!-- Select team todo by ID -->
-    <select id="findTeamTodoById" resultMap="TeamTodoListResultMap">
+    <select id="findTeamTodoById" parameterType="int" resultType="com.workwave.entity.schedule.TeamTodoList">
         SELECT * FROM TeamTodoList WHERE team_todo_id = #{teamTodoId}
     </select>
 
-    <!-- Insert team todo -->
-    <insert id="insertTeamTodo" useGeneratedKeys="true" keyProperty="teamTodoId">
-        INSERT INTO TeamTodoList(team_todo_content,
-                                 team_todo_status,
-                                 color_index_id,
-                                 user_id,
-                                 department_id
-        )
-        VALUES(
-               #{teamTodoContent},
-               #{teamTodoStatus},
-               #{colorIndexId},
-               #{userId},
-               #{departmentId}
-              )
+    <select id="findTeamTodosByDepartmentId" parameterType="String" resultType="com.workwave.entity.schedule.TeamTodoList">
+        SELECT * FROM TeamTodoList WHERE department_id = #{departmentId}
+        ORDER BY
+            team_todo_status DESC,
+            team_todo_createAt ASC;
+    </select>
+
+    <insert id="insertTeamTodo" parameterType="com.workwave.entity.schedule.TeamTodoList">
+        INSERT INTO TeamTodoList (team_todo_content, team_todo_status, team_todo_createAt, team_todo_updateAt, color_index_id, user_id, department_id)
+        VALUES (#{teamTodoContent}, #{teamTodoStatus}, #{teamTodoCreateAt}, #{teamTodoUpdateAt}, #{colorIndexId}, #{userId}, #{departmentId})
     </insert>
 
-    <!-- Update team todo -->
-    <update id="updateTeamTodo">
+    <update id="updateTeamTodo" parameterType="com.workwave.entity.schedule.TeamTodoList">
         UPDATE TeamTodoList
-        SET
-            team_todo_content=#{teamTodoContent},
-            team_todo_status=#{teamTodoStatus},
-            color_index_id=#{colorIndexId},
-            user_id=#{userId},
-            department_id=#{departmentId}
-        WHERE
-            team_todo_id=#{teamTodoId}
+        SET team_todo_content = #{teamTodoContent},
+            team_todo_status = #{teamTodoStatus},
+            team_todo_createAt = #{teamTodoCreateAt},
+            team_todo_updateAt = #{teamTodoUpdateAt},
+            color_index_id = #{colorIndexId}
+        WHERE team_todo_id = #{teamTodoId}
     </update>
 
-    <!-- Delete team todo -->
-    <delete id="deleteTeamTodo">
-        DELETE FROM TeamTodoList WHERE team_todo_id=#{teamTodoId}
+    <delete id="deleteTeamTodo" parameterType="int">
+        DELETE FROM TeamTodoList WHERE team_todo_id = #{teamTodoId}
     </delete>
 
-    <!-- Select team todos by department ID -->
-    <select id="findTeamTodosByDepartmentId" resultMap="TeamTodoListResultMap">
-        SELECT * FROM
-                     TeamTodoList
-                 WHERE
-                     department_id = #{departmentId}
-    </select>
+
+
 </mapper>

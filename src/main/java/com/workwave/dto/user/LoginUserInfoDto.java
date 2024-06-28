@@ -17,6 +17,7 @@ public class LoginUserInfoDto {
     private String email;           //이메일
     private String userAccessLevel;            //권한
     private String profile;        //프로필 경로
+    private String departmentId;
 
     //생성자
     public LoginUserInfoDto(User user){
@@ -25,5 +26,6 @@ public class LoginUserInfoDto {
         this.nickName = user.getUserName();
         this.userAccessLevel = user.getUserAccessLevel().name();  //.name() 쓰면 enum에서 대문자만 뜯어온다~!
         this.profile=user.getProfileImg();
+        this.departmentId = getDepartmentId();
     }
 }

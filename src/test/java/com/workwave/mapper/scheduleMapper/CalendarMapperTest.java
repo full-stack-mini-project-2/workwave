@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+package com.workwave.mapper.scheduleMapper;
+
+import com.workwave.dto.schedule_dto.request.CalendarsDto;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
+class CalendarMapperTest {
+    @Autowired
+    CalendarMapper calendarMapper;
+    
+=======
 //package com.workwave.mapper.scheduleMapper;
 //
 //import com.workwave.dto.schedule_dto.request.CalendarsDto;
@@ -14,6 +32,7 @@
 //    @Autowired
 //    CalendarMapper calendarMapper;
 //
+>>>>>>> test240624-1
 //    @Test
 //    @DisplayName("search all team calendar id")
 //    void getCalendar() {
@@ -40,5 +59,10 @@
 ////        assertEquals("Team Calendar 2", secondCalendar.getTCalendarName(), "두 번째 캘린더의 이름이 예상과 일치하지 않습니다.");
 ////        assertEquals("user1", secondCalendar.getUserId(), "두 번째 캘린더의 사용자 ID가 예상과 일치하지 않습니다.");
 //    }
+<<<<<<< HEAD
+
+}
+=======
 //
 //}
+>>>>>>> test240624-1
