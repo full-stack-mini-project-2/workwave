@@ -22,6 +22,8 @@ const namePattern = /^[가-힣]+$/;
 // 이메일 패턴: 기본적인 이메일 형식
 const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 
+const departmentPattern = /^[0-9]+$/;
+
 export const validateInput = {
   // 아이디 유효성 검사 함수
   account: async (value) => {
@@ -92,5 +94,20 @@ export const validateInput = {
     return isAvailable
       ? { valid: true }
       : { valid: false, message: "이메일이 중복되었습니다." };
+  },
+  employeeId: async (value) => {
+    if (!value.trim()) return { valid: false, message: "사번은 필수값입니다!" };
+    // return { valid: true };
+
+    // 중복 검사
+    const isAvailable = await checkAvailability("employee_id", value);
+    // 중복 여부에 따라 결과 반환
+    return isAvailable
+      ? { valid: true }
+      : { valid: false, message: "사번이 중복되었습니다." };
+  },
+  userPosition: (value) => {
+    if (!value.trim()) return { valid: false, message: "직책은 필수값입니다!" };
+    return { valid: true };
   },
 };

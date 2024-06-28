@@ -3,8 +3,11 @@
   <head>
     <title>게시물 작성</title>
 
-    <!-- ck editor -->
-    <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+    <!-- CKEditor 라이브러리 -->
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <!-- Turndown 라이브러리 -->
+    <script src="https://cdn.jsdelivr.net/npm/turndown/dist/turndown.min.js"></script>
+
   </head>
   <body>
     <h1>게시물 작성</h1>
@@ -25,18 +28,7 @@
         <tr>
           <td>내용:</td>
           <td>
-            <textarea
-              name="boardContent"
-              rows="10"
-              cols="30"
-              required
-            ></textarea>
-            <script>
-              CKEDITOR.replace("boardContent", {
-                filebrowserUploadUrl: "upload",
-                filebrowserUploadMethod: "form",
-              });
-            </script>
+            <textarea name="boardContent" id="boardContent" rows="10" cols="30" required></textarea>
           </td>
         </tr>
         <tr>
@@ -47,5 +39,15 @@
       </table>
     </form>
     <a href="list">목록으로</a>
+
+    <script>
+      CKEDITOR.replace("boardContent", {
+        filebrowserUploadUrl: "/upload", // 업로드 URL 설정
+        filebrowserUploadMethod: "form",
+        extraPlugins: "uploadimage", // 이미지 업로드 플러그인 추가
+        removeDialogTabs: "link:upload;image:Upload" // 불필요한 탭 제거
+      });
+    </script>
+
   </body>
 </html>

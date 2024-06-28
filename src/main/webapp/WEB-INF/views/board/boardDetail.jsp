@@ -225,17 +225,30 @@ prefix="c" %>
         border-radius: 5px;
         background-color: #f1f1f1;
       }
-      /* 페이지네이션 컨테이너 */
+
+      .author {
+        color: red;
+        font-weight: bold;
+      }
+
+      /* 부모 요소 */
+      .pagination-container {
+        text-align: center;
+      }
+
+      /* .pagination 클래스 */
       .pagination {
-        display: flex;
+        display: inline-flex;
         justify-content: center;
+        align-items: center;
         padding: 0;
         list-style: none;
+        margin: 0 auto; /* 가운데 정렬을 위한 추가 */
       }
 
       /* 페이지네이션 아이템 */
       .pagination li {
-        margin: 0 5px;
+        margin: 20px 5px;
       }
 
       /* 페이지네이션 링크 */
@@ -286,8 +299,8 @@ prefix="c" %>
       }
     </style>
   </head>
-  <script type="module" src="/resources/static/assets/js/reply.js"></script>
-  <script type="module" src="/resources/static/assets/js/board.js"></script>
+  <script type="module" src="/assets/js/reply.js"></script>
+  <script type="module" src="/assets/js/board.js"></script>
   <body>
     <div id="reply-container" data-bno="${board.boardId}">
       <h1>${board.boardTitle}</h1>
@@ -312,26 +325,29 @@ prefix="c" %>
       <!-- 추천/비추천 버튼 영역 -->
       <div class="like-dislike-buttons">
         <button id="likeButton" class="like-button">
-          좋아요 (<span id="likeCount">${board.likes}</span>)
+          좋아요 (<span id="likeCount" data-id="${id}">${board.likes}</span>)
         </button>
         <button id="dislikeButton" class="dislike-button">
-          싫어요 (<span id="dislikeCount">${board.dislikes}</span>)
+          싫어요 (<span id="dislikeCount" data-id="${id}"
+            >${board.dislikes}</span
+          >)
         </button>
       </div>
 
       <!-- 댓글 영역 -->
 
-      <div id="replyContainer">
+      <div id="replyContainer" data-id="${board.userId}">
         <!-- 댓글 요청 -->
       </div>
 
-      <ul class="pagination justify-content-center">
-        <!--
-            < JS로 댓글 페이징 DIV삽입 >
-        -->
-      </ul>
+      <div class="pagination-container">
+        <ul class="pagination">
+          <!-- 페이지네이션 항목들 -->
+        </ul>
+      </div>
 
       <!-- 댓글 작성 영역 -->
+
       <div class="reply-form">
         <h2>댓글 작성</h2>
         <input type="hidden" id="boardId" value="${board.boardId}" />
@@ -349,15 +365,4 @@ prefix="c" %>
       <!-- 댓글 영역 end -->
     </div>
   </body>
-
-  <!-- <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      let referer = document.referrer;
-      if (!referer) {
-        referer = "/board/list";
-      }
-      document.getElementById("backLink").href = referer;
-    });
-  </script> -->
-
 </html>

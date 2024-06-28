@@ -12,7 +12,6 @@ import lombok.*;
 @Builder
 public class BoardWriteDto {
 
-//    private String userId;
     private String boardNickname;
     private String boardTitle;
     private String boardContent;

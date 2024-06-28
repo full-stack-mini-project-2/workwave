@@ -42,13 +42,25 @@ const fields = [
     errorElement: "emailChk",
     valid: false,
   },
+  {
+    id: "employeeId",
+    validator: validateInput.employeeId,
+    errorElement: "employeeIdChk",
+    valid: false,
+  },
+  {
+    id: "userPosition",
+    validator: validateInput.userPosition,
+    errorElement: "userPositionChk",
+    valid: false,
+  },
+
 ];
 
 // 버튼 상태를 업데이트하는 함수
 const updateButtonState = () => {
   // 모든 valid가 true인지 확인
   const isFormValid = fields.every((field) => field.valid);
-
   if (isFormValid) {
     signupButton.disabled = false;
     signupButton.style.backgroundColor = "orangered"; // 활성화된 버튼 배경색
@@ -100,9 +112,23 @@ fields.forEach((field) => {
 signupButton.addEventListener("click", (e) => {
   e.preventDefault();
   // console.log("form: ", form);
-
-  form.submit();
+  const chk = etc_check(); // Changed 'boolean' to 'const'
+  if (chk) {
+    form.submit();
+  } else {
+    return;
+  }
 });
+
+const etc_check = () => {
+  const $select = document.getElementById("departmentId"); // Added 'const'
+  if ($select.value === "") {
+    const $errorSpan = document.getElementById("departmentChk");
+    $errorSpan.innerHTML = `<b class="warning">[부서를 선택해주세요.]</b>`;
+    return false;
+  }
+  return true;
+};
 
 // 페이지 로드 시 초기 버튼 상태 업데이트
 updateButtonState();

@@ -10,7 +10,11 @@
       <!-- reset -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" />
       <link href="https://fonts.google.com/specimen/Roboto" rel="stylesheet" />
-      <link rel="stylesheet" href="/assets/css/UserRegister.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+      <link href="/assets/css/UserRegister.css" rel="stylesheet" />
       <link rel="icon" href="/assets/img/workwave_logo.png" />
     </head>
 
@@ -42,6 +46,7 @@
                     </tr>
                     <tr>
                       <td>
+                        <i class="fas fa-user-tie"></i>
                         <input type="text" name="userId" id="userId" class="signUpInputStyle" maxlength="14"
                           required="required" aria-required="true" placeholder="숫자와 영어로 4-14자" />
                       </td>
@@ -55,6 +60,7 @@
                     </tr>
                     <tr>
                       <td>
+                        <i class="fas fa-lock"></i>
                         <input type="password" size="17" maxlength="20" id="password" name="password"
                           class="signUpInputStyle" maxlength="20" required="required" aria-required="true"
                           placeholder="영문과 특수문자를 포함한 최소 8자" />
@@ -69,6 +75,7 @@
                     </tr>
                     <tr>
                       <td>
+                        <i class="fas fa-lock"></i>
                         <input type="password" size="17" maxlength="20" id="password_check" name="pw_check"
                           class="signUpInputStyle" maxlength="20" required="required" aria-required="true"
                           placeholder="비밀번호가 일치해야합니다." />
@@ -83,6 +90,7 @@
                     </tr>
                     <tr>
                       <td>
+                        <i class="fas fa-user-tie"></i>
                         <input type="text" name="userName" id="userName" class="signUpInputStyle" maxlength="6"
                           required="required" aria-required="true" placeholder="한글로 최대 6자" />
                       </td>
@@ -96,6 +104,7 @@
                     </tr>
                     <tr>
                       <td>
+                        <i class="fas fa-envelope"></i>
                         <input type="email" name="userEmail" id="userEmail" class="signUpInputStyle" required="required"
                           aria-required="true" placeholder="ex) abc@mvc.com" />
                       </td>
@@ -109,8 +118,8 @@
                     </tr>
                     <tr>
                       <td>
-                        <label for="department_id">부서를 선택하세요.</label><br />
-                        <select class="signUpInputStyle2" id="department_id" name="departmentId" required>
+                        <i class="fas fa-building"></i>
+                        <select class="signUpInputStyle2" id="departmentId" name="departmentId" required>
                           <option value=""></option>
                           <c:forEach items="${dList}" var="department">
                             <option value="${department.departmentId}">
@@ -129,9 +138,9 @@
                     </tr>
                     <tr>
                       <td>
-                        <label for="employee_id">사원 ID를 작성하세요</label><br />
-                        <input type="text" class="signUpInputStyle" id="employee_id" name="employeeId"
-                          placeholder="P000" required /><br />
+                        <i class="fas fa-id-card-alt"></i>
+                        <input type="text" class="signUpInputStyle" id="employeeId" name="employeeId" placeholder="P000"
+                          required /><br />
                       </td>
                     </tr>
                     <tr>
@@ -143,9 +152,8 @@
                     </tr>
                     <tr>
                       <td>
-                        <label for="user_position">직책을 입력하세요.</label>
-                        <br />
-                        <input type="text" class="signUpInputStyle" id="user_position" name="userPosition"
+                        <i class="fas fa-user-tie"></i>
+                        <input type="text" class="signUpInputStyle" id="userPosition" name="userPosition"
                           placeholder="사원,대리,과장,차장..." required /><br />
                       </td>
                     </tr>

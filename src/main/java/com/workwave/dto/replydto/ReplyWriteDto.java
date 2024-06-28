@@ -16,6 +16,8 @@ public class ReplyWriteDto {
     // 컨트롤러의 @Validated와 함께 유효성 검사 추후 추가
     private int boardId;
 
+    private String userId;
+
     @NotNull(message = "닉네임은 필수 항목입니다.")
     private String nickName;
 
@@ -28,6 +30,7 @@ public class ReplyWriteDto {
     public Reply toEntity() {
         return Reply.builder()
                 .boardId(this.boardId)
+                .userId(this.userId)
                 .replyContent(this.replyContent)
                 .replyPassword(this.replyPassword)
                 .nickName(this.nickName)

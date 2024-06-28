@@ -68,6 +68,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   </head>
   <body>
     <h1>게시물 목록</h1>
+    <a href="/login">로그인</a>
     <table>
       <tr class="table">
         <th>번호</th>
@@ -84,6 +85,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <label for="searchType">검색 : </label>
         <select id="searchType" name="type">
           <option value="tc">제목+내용</option>
+          <option value="id">내가 쓴 글</option>
         </select>
         <input type="text" name="keyword" placeholder="검색어 입력" />
         <button type="submit">검색</button>

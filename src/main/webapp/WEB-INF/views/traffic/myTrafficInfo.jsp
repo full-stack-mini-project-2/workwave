@@ -17,9 +17,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         </div>
         <hr>
     </c:forEach>
-    <c:forEach var="i" begin="1" end="${maker.end}">
-      <li data-page-num="${i}" class="page-item">
-        <a class="page-link" href="/traffic-myInfo?pageNo=${i}">${i}</a> 
+    <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
+      <li data-page-num="${i}">
+        <a  href="/traffic-myInfo?pageNo=${i}">${i}</a> 
       </li>
     </c:forEach>
 

@@ -10,7 +10,7 @@
             (reply_content, nickName, board_id, reply_password, user_id)
         VALUES
             (#{replyContent}, #{nickName}, #{boardId}, #{replyPassword},
-            (SELECT user_id FROM users WHERE user_name = 'John Doe'))
+            #{userId})
     </insert>
 
     <select id="replies" resultType="reply">
@@ -23,7 +23,7 @@
             reply_updated_at
         FROM reply
         WHERE board_id = #{boardId}
-        order by reply_created_at desc
+        ORDER BY reply_created_at
         LIMIT #{p.pageStart}, #{p.amount}
     </select>
 
@@ -59,8 +59,7 @@
         INSERT INTO SubReply
         (sub_reply_content, nickName, reply_id, sub_reply_password, user_id)
         VALUES
-        (#{subReplyContent}, #{nickName}, #{replyId}, #{subReplyPassword},
-        (SELECT user_id FROM users WHERE user_name = 'John Doe'))
+        (#{subReplyContent}, #{nickName}, #{replyId}, #{subReplyPassword}, #{userId})
     </insert>
 
     <select id="subReplies" resultType="subReply">
@@ -74,6 +73,7 @@
         sub_reply_updated_at
         FROM SubReply
         WHERE reply_id = #{replyId}
+        ORDER BY sub_reply_created_at
     </select>
 
     <update id="updateSubReply">

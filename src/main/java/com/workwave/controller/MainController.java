@@ -94,7 +94,7 @@ public class MainController {
     public String join(Model model) {
         //켜기 전에 부서 넘겨주기
         List<DepartmentNameDto> dList = userService.findDepartmentName();
-        System.out.println("dList = " + dList);
+//        System.out.println("dList = " + dList);
         model.addAttribute("dList", dList);
         return "/Login/UserRegister";
     }

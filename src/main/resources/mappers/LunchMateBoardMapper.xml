@@ -11,16 +11,23 @@
         SELECT * FROM lunch_posts
     </select>
 
-    <!-- 게시물 상세 조회 -->
-    <select id="findOne" parameterType="int" resultType="com.workwave.entity.LunchMateBoard">
-        SELECT * FROM lunch_posts WHERE lunch_post_number = #{lunchPostNumber}
-    </select>
-
-    <!-- 게시물 등록 -->
+    <!-- LunchMateBoardMapper.xml -->
     <insert id="save" parameterType="com.workwave.entity.LunchMateBoard">
-        INSERT INTO lunch_posts (user_id, lunch_post_title, lunch_date, lunch_location, lunch_menu_name, lunch_attendees, progress_status)
-        VALUES (#{userId}, #{lunchPostTitle}, #{lunchDate}, #{lunchLocation}, #{lunchMenuName}, #{lunchAttendees}, #{progressStatus})
+        INSERT INTO lunch_posts (user_id, lunch_post_title, lunch_date, eat_time, lunch_location, lunch_menu_name, lunch_attendees, progress_status)
+        VALUES (#{userId}, #{lunchPostTitle}, #{lunchDate}, #{eatTime}, #{lunchLocation}, #{lunchMenuName}, #{lunchAttendees}, #{progressStatus})
     </insert>
+
+
+    <!--    &lt;!&ndash; 게시물 상세 조회 &ndash;&gt;-->
+<!--    <select id="findOne" parameterType="int" resultType="com.workwave.entity.LunchMateBoard">-->
+<!--        SELECT * FROM lunch_posts WHERE lunch_post_number = #{lunchPostNumber}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash; 게시물 등록 &ndash;&gt;-->
+<!--    <insert id="save" parameterType="com.workwave.entity.LunchMateBoard">-->
+<!--        INSERT INTO lunch_posts (user_id, lunch_post_title, lunch_date, lunch_location, lunch_menu_name, lunch_attendees, progress_status)-->
+<!--        VALUES (#{userId}, #{lunchPostTitle}, #{lunchDate}, #{lunchLocation}, #{lunchMenuName}, #{lunchAttendees}, #{progressStatus})-->
+<!--    </insert>-->
 
     <!-- 게시물 삭제 -->
     <delete id="delete" parameterType="int">
