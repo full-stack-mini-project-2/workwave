@@ -23,6 +23,7 @@ public class trafficService {
     public boolean save(trafficInfoDto trafficInfo){
 
         trafficInfoDto newTraffic = trafficInfo.builder()
+                .userId(trafficInfo.getUserId())
                 .arrival(trafficInfo.getArrival())
                 .departure(trafficInfo.getDeparture())
                 .station(trafficInfo.getStation())

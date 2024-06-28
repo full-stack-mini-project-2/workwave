@@ -42,7 +42,7 @@ public class UserService {
         User user = dto.toEntity();
         user.setProfileImg(profilePath); // 프로필 사진 경로 엔터티에 설정
         LocalDateTime currentDateTime = LocalDateTime.now();
-
+        System.out.println(user);
         // 날짜와 시간 형식 지정
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
