@@ -60,6 +60,8 @@ public class LunchMateBoardController {
     public String create(@ModelAttribute("board") LunchMateBoard board) {
         // 현재 시간을 작성 시간으로 설정
         board.setLunchDate(LocalDateTime.now());
+        board.setProgressStatus("준비");
+        board.setEatTime(LocalDateTime.now().toString());
         lunchMateBoardService.save(board);
         return "redirect:/lunchMateBoard/list"; // 다시 목록 페이지로 리다이렉트
     }
