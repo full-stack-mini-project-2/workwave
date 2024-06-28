@@ -1,7 +1,10 @@
 package com.workwave.common.traffic;
 
 
+import com.workwave.util.LoginUtil;
 import lombok.*;
+
+import javax.servlet.http.HttpSession;
 
 @Getter @ToString
 @EqualsAndHashCode
@@ -9,8 +12,10 @@ import lombok.*;
 @Builder
 public class myInfoPage {
 
+    private String user;
     private int pageNo;        // 현재 페이지 번호
     private int amount;       // 페이지당 출력할 데이터 개수
+
 
     public myInfoPage() {
         this.pageNo = 1;
