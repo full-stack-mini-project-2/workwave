@@ -26,6 +26,6 @@ public class CalendarApiController {
         } catch (Exception e) {
             log.error("Error fetching events for user: " + userId, e);
             throw new RuntimeException("Error fetching events");
-                 }
+                }
             }
         }
