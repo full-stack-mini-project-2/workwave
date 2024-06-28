@@ -21,7 +21,10 @@
             WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
             OR board_content LIKE CONCAT('%', #{keyword}, '%')
         </if>
-        order by board_id desc
+        <if test="type == 'id'">
+            WHERE user_id = #{keyword}
+        </if>
+        ORDER BY board_created_at DESC
         LIMIT #{pageStart}, #{amount}
     </select>
 
@@ -34,7 +37,7 @@
         board_password
         )
         VALUES (
-        (SELECT user_id FROM users WHERE user_name = 'John Doe'),
+        #{userId},
         #{boardTitle},
         #{boardNickname},
         #{boardContent},
@@ -102,9 +105,21 @@
         WHERE board_id = #{boardId}
     </update>
 
+    <update id="downLikeCount">
+        UPDATE board
+        SET likes = likes - 1
+        WHERE board_id = #{boardId}
+    </update>
+
     <update id="upDislikeCount">
         UPDATE board
         SET dislikes = dislikes + 1
+        WHERE board_id = #{boardId}
+    </update>
+
+    <update id="downDislikeCount">
+        UPDATE board
+        SET dislikes = dislikes - 1
         WHERE board_id = #{boardId}
     </update>
 

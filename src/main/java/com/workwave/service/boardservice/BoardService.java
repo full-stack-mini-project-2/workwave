@@ -7,12 +7,19 @@ import com.workwave.dto.boarddto.BoardUpdateDto;
 import com.workwave.dto.boarddto.BoardWriteDto;
 import com.workwave.entity.board.Board;
 import com.workwave.mapper.boardMapper.BoardMapper;
+import com.workwave.util.LoginUtil;
+import com.workwave.util.PasswordUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,9 +30,15 @@ public class BoardService {
     @Autowired
     private final BoardMapper boardMapper;
 
-    public boolean save(BoardWriteDto dto) {
+    public boolean save(BoardWriteDto dto, HttpSession session) {
+
+        // 비밀번호 해싱
+        String rawPassword = dto.getBoardPassword();
+        String hashedPassword = PasswordUtil.hashPassword(rawPassword);
 
         Board b = dto.toEntity();
+        b.setUserId(LoginUtil.getLoggedInUserAccount(session));
+        b.setBoardPassword(hashedPassword); // 해싱된 비밀번호 설정
 
         log.info("Saving Board Entity: {}", b);
 
@@ -104,17 +117,51 @@ public class BoardService {
         return boardMapper.update(one);
     }
 
-    public Boolean updateViewCount(int boardId) {
+    public Boolean updateViewCount(int boardId, HttpSession session) {
 
-        return boardMapper.updateViewCount(boardId);
+        final long VIEW_COUNT_INTERVAL_MINUTES = 30;
 
+        @SuppressWarnings("unchecked")
+        Map<Integer, LocalDateTime> viewTimestamps
+                = (Map<Integer, LocalDateTime>) session.getAttribute("viewTimestamps");
+        if (viewTimestamps == null) {
+            viewTimestamps = new HashMap<>();
+            session.setAttribute("viewTimestamps", viewTimestamps);
+        }
+
+        LocalDateTime lastViewTime = viewTimestamps.get(boardId);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (lastViewTime == null ||
+                ChronoUnit.MINUTES.between(lastViewTime, now) >= VIEW_COUNT_INTERVAL_MINUTES) {
+
+            if (boardMapper.updateViewCount(boardId)) {
+                viewTimestamps.put(boardId, now);
+                return true;
+
+            }
+        }
+
+        return false;
     }
 
     public Boolean upLikeCount(int boardId) {
 
+//        String userId = LoginUtil.getLoggedInUserAccount(session);
+
         boolean upLikeCount = boardMapper.upLikeCount(boardId);
 
         return upLikeCount;
+    }
+
+    public Boolean downLikeCount(int boardId) {
+
+//        String userId = LoginUtil.getLoggedInUserAccount(session);
+
+        boolean downLikeCount = boardMapper.downLikeCount(boardId);
+
+        return downLikeCount;
+
     }
 
     public Boolean upDislikeCount(int boardId) {
@@ -122,5 +169,13 @@ public class BoardService {
         boolean upDislikeCount = boardMapper.upDislikeCount(boardId);
 
         return upDislikeCount;
+    }
+
+    public Boolean downDislikeCount(Integer boardId) {
+
+        boolean downDislikeCount = boardMapper.downDislikeCount(boardId);
+
+        return downDislikeCount;
+
     }
 }
