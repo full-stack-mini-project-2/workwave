@@ -26,6 +26,30 @@ public class CalendarViewController {
     private final CalendarService calendarService;
     private final ObjectMapper objectMapper;
 
+    갖고온 것
+    @GetMapping("/view/{userId}")
+    public String viewCalendar(@PathVariable("userId") String userId, Model model, HttpSession session) {
+        List<AllMyCalendarEventDto> myCalendarEvents = calendarService.getMyEventsForMonth(userId);
+        try {
+            System.out.println("isLoggedIn: " + LoginUtil.isLoggedIn(session));
+            System.out.println("getLoggedIN: " + LoginUtil.getLoggedInUser(session));
+
+            String mycalEventsJson = objectMapper.writeValueAsString(myCalendarEvents);
+            model.addAttribute("mycalEvents", mycalEventsJson.replace("'", "\\'"));
+            // formattedDate 설정
+            String formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            model.addAttribute("formattedDate", formattedDate);
+            // 유저 이름 설정
+            String userName = myCalendarEvents.isEmpty() ? "Unknown User" : myCalendarEvents.get(0).getUserName();
+            model.addAttribute("userName", userName);
+
+        } catch (Exception e) {
+            log.error("Error converting events to JSON", e);
+        }
+        return "schedule/calendar/calendar";
+
+
+
     @GetMapping("/view")
     public String viewCalendar(Model model, HttpSession session) {
         // 세션에서 userId 가져오기
@@ -35,7 +59,7 @@ public class CalendarViewController {
             throw new RuntimeException("User is not logged in");
         }
         try {
-            List<AllMyCalendarEventDto> myCalendarEvents = calendarService.getMyEventsForMonth(userId, );
+            List<AllMyCalendarEventDto> myCalendarEvents = calendarService.getMyAllEvents(userId);
 
             String mycalEventsJson = objectMapper.writeValueAsString(myCalendarEvents);
             model.addAttribute("mycalEvents", mycalEventsJson.replace("'", "\\'"));

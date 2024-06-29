@@ -37,20 +37,6 @@ public class CalendarApiController {
         }
     }
 
-    @GetMapping("/myEvents/{userId}")
-    public List<AllMyCalendarEventDto> getMyEvents(
-            @PathVariable("userId") String userId,
-            @RequestParam("year") int year,
-            @RequestParam("month") int month) {
-        try {
-            return calendarService.getMyEventsForMonth(userId, year, month);
-        } catch (Exception e) {
-            log.error("Error fetching events for user: " + userId, e);
-            throw new RuntimeException("Error fetching events");
-        }
-    }
-}
-
     // 개인의 캘린더 목록 전체 조회하기 (세션 사용)
     @GetMapping("/myEvents/All")
     public List<AllMyCalendarEventDto> getMyAllEvents(HttpSession session) {
