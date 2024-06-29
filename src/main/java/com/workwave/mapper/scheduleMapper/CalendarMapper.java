@@ -15,7 +15,7 @@ public interface CalendarMapper {
     List<AllMyCalendarEventDto> getCalendarEventsForPeriod(@Param("userId") String userId, @Param("startDate") String startDate, @Param("endDate") String endDate);
 
     // 전체 캘린더 중 user의 모든 캘린더 가져오기
-    List<CalendarsDto> getMyAllCalendars(@Param("userId") String userId);
+    List<AllMyCalendarEventDto> getMyAllCalendars(@Param("userId") String userId);
 
     // 개인 캘린더 일정 목록 구하기
     List<AllMyCalendarEventDto> getMyAllCalendarEvents(@Param("userId") String userId);

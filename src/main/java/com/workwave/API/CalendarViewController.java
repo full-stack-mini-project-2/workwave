@@ -34,11 +34,8 @@ public class CalendarViewController {
             log.info("userId 가 없습니다. {}", session.getAttribute("userId"));
             throw new RuntimeException("User is not logged in");
         }
-
-        List<AllMyCalendarEventDto> myCalendarEvents = calendarService.getMyAllEvents(userId);
         try {
-            System.out.println("isLoggedIn: " + LoginUtil.isLoggedIn(session));
-            System.out.println("getLoggedIN: " + LoginUtil.getLoggedInUser(session));
+            List<AllMyCalendarEventDto> myCalendarEvents = calendarService.getMyEventsForMonth(userId, );
 
             String mycalEventsJson = objectMapper.writeValueAsString(myCalendarEvents);
             model.addAttribute("mycalEvents", mycalEventsJson.replace("'", "\\'"));
@@ -67,6 +64,5 @@ public class CalendarViewController {
         calendarService.addEvent(myCalendarEventDto, userId, userName);
         return "redirect:/calendar/view/" + userId;
     }
-
-
 }
+

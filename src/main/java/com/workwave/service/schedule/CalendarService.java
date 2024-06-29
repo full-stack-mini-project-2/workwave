@@ -18,7 +18,7 @@ public class CalendarService {
         private final CalendarMapper calendarMapper;
 
     //user의 모든 캘린더 목록 (총 2개)
-    public List<CalendarsDto> getCalendars(String userId) {
+    public List<AllMyCalendarEventDto> getCalendars(String userId) {
         return calendarMapper.getMyAllCalendars(userId);
     }
 
