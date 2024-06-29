@@ -22,7 +22,8 @@ public class CalendarService {
         return calendarMapper.getMyAllCalendars(userId);
     }
 
-    // 달 별로 개인 일정 불러오기
+
+    // 달 별 개인일정 조회
         public List<AllMyCalendarEventDto> getMyEventsForMonth(String userId, int year, int month) {
             // startDate는 해당 연도의 해당 월의 첫 번째 날
             String startDate = String.format("%d-%02d-01", year, month);
@@ -30,6 +31,7 @@ public class CalendarService {
             String endDate = String.format("%d-%02d-%02d", year, month, getLastDayOfMonth(year, month));
               return calendarMapper.getCalendarEventsForPeriod(userId, startDate, endDate);
         }
+
 
     // 해당 연도와 월의 마지막 날짜를 가져오는 헬퍼 메서드
         private int getLastDayOfMonth(int year, int month) {
@@ -44,23 +46,27 @@ public class CalendarService {
             return calendarMapper.getMyAllCalendarEvents(userId);
         }
 
-    //개인 캘린더 일정 추가
-    public void addMyEvent(AllMyCalendarEventDto myCalendarEventDto) {
-        myCalendarEventDto.builder()
+
+    // 개인 캘린더 일정 추가
+    public void addEvent(AllMyCalendarEventDto myCalendarEventDto, String userId, String userName) {
+        AllMyCalendarEventDto newEvent = AllMyCalendarEventDto.builder()
                 .calEventDate(LocalDateTime.now())
                 .calEventTitle("None")
                 .calEventDescription("None")
                 .calEventCreateAt(LocalDateTime.now())
                 .calEventUpdateAt(LocalDateTime.now())
-                .colorIndexId(1) //기본값
+                .userId(userId)
+                .userName(userName)
+                .colorIndexId(1) // 기본값
                 .build();
+        calendarMapper.insertCalendarEvent(newEvent); // 실제로 이벤트를 삽입하는 코드
     }
-    //개인 캐캘린더 일정 수정
-    public void updateMyCalEvent(AllMyCalendarEventDto allMyCalendarEvent) {
-        calendarMapper.updateCalendarEvent(allMyCalendarEvent);
+    //개인, 팀 캘린더 일정 수정
+    public void updateCalEvent(AllMyCalendarEventDto allMyCalendarEvent) {
+        calendarMapper.updateCalEvent(allMyCalendarEvent);
     }
 
-    //개인 캘린더 일정 삭제
+    //개인, 팀 캘린더 일정 삭제
     public void deleteMyCalEvent(int calEventId) {
         calendarMapper.deleteCalendarEvent(calEventId);
     }
@@ -68,12 +74,4 @@ public class CalendarService {
     //팀 캘린더 일정 목록
     public List<AllMyTeamCalendarEventDto> getMyTeamEvents(String departmentId) {return calendarMapper.getMyAllTeamCalendarEvents(departmentId);
     }
-
-
-
-
-
-
-
-
     }

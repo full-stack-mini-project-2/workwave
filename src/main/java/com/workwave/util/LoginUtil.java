@@ -44,4 +44,19 @@ public class LoginUtil {
         Cookie autoLoginCookie = WebUtils.getCookie(request, AUTO_LOGIN_COOKIE);
         return autoLoginCookie != null;   // 널이 아니면 자동로그인 상태
     }
+
+    // 세션에서 userId, nickName, departmentId, profile을 배열로 가져오기
+    public static String[] getLoggedInUserInfo(HttpSession session) {
+        LoginUserInfoDto loggedInUser = getLoggedInUser(session);
+        if (loggedInUser != null) {
+            String[] userInfo = new String[4];
+            userInfo[0] = loggedInUser.getUserId();
+            userInfo[1] = loggedInUser.getNickName();
+            userInfo[2] = loggedInUser.getDepartmentId();
+            userInfo[3] = loggedInUser.getProfile();
+            return userInfo;
+        }
+        return null; // 로그인되지 않은 경우 null 반환
+    }
+
 }

@@ -5,9 +5,7 @@
 
 <mapper namespace="com.workwave.mapper.scheduleMapper.CalendarMapper">
 
-
-
-    <!-- getCalendarEventsForPeriod 쿼리 -->
+<!--달 별 개인일정 조회 -->
     <select id="getCalendarEventsForPeriod" parameterType="map" resultType="allMyCalendarEventDto">
         SELECT
         CE.cal_event_id AS calEventId,
@@ -31,7 +29,7 @@
     </select>
 
 
-    <!-- 본인의 모든 캘린더 (개인, 팀)조회 -->
+    <!-- 본인의 모든 캘린더 (개인달력, 팀달력)조회 -->
     <select id="getMyAllCalendars" resultType="calendarsDto">
         SELECT
         C.calendar_id,
@@ -46,8 +44,8 @@
         WHERE U.user_id = #{userId};
     </select>
 
-    <!-- 개인 캘린더 일정리스트 조회 -->
-    <select id="getMyAllCalendarEvents" resultType="com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto">
+    <!-- 개인 캘린더 모든 일정 리스트 조회 -->
+    <select id="getMyAllCalendarEvents" resultType="allMyCalendarEventDto">
         SELECT CE.cal_event_id,
         CE.cal_event_date,
         CE.cal_event_title,
@@ -64,8 +62,8 @@
         AND CE.team_calendar_id IS NULL;
     </select>
 
-    <!-- 본인이 속한 팀 캘린더 일정리스트 조회 -->
-    <select id="getMyAllTeamCalendarEvents" resultType="com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto">
+    <!-- 본인이 속한 팀 캘린더 모든 일정 리스트 조회 -->
+    <select id="getMyAllTeamCalendarEvents" resultType="allMyCalendarEventDto">
         SELECT
         CE.cal_event_id,
         CE.cal_event_date,
@@ -89,8 +87,8 @@
         AND CE.calendar_id IS NULL;
     </select>
 
-    <!-- 본인 캘린더 이벤트 추가 -->
-    <insert id="insertCalendarEvent" parameterType="map">
+    <!-- 본인 캘린더 이벤트 저장 -->
+    <insert id="insertCalendarEvent" parameterType="allMyCalendarEventDto">
         INSERT INTO CalendarEvent (
         cal_event_date,
         cal_event_title,
@@ -121,8 +119,8 @@
         );
     </insert>
 
-    <!-- 본인의 팀 캘린더에 캘린더 공유 일정 추가 -->
-    <insert id="insertTeamCalendarEvent" parameterType="map">
+    <!-- 팀 캘린더에 캘린더 공유 일정 저장 -->
+    <insert id="insertTeamCalendarEvent" parameterType="allMyCalendarEventDto">
         INSERT INTO CalendarEvent (
         cal_event_date,
         cal_event_title,
@@ -152,6 +150,19 @@
         </if>
         );
     </insert>
+
+<!--    본인 및 캘린더 이벤트 업데이트 -->
+    <update id="updateMyCalEvent" parameterType="allMyCalendarEventDto">
+        UPDATE CalendarEvent
+        SET
+        cal_event_date = #{calEventDate},
+        cal_event_title = #{calEventTitle},
+        cal_event_description = #{calEventDescription},
+        cal_event_updateAt = #{calEventUpdateAt},
+        user_id = #{userId},
+        color_index_id = #{colorIndexId}
+        WHERE cal_event_id = #{calEventId}
+    </update>
 
     <!-- 개인 캘린더 및 팀 캘린더 일정을 이벤트 id로 삭제 -->
     <delete id="deleteCalendarEvent">

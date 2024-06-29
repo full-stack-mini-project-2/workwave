@@ -4,6 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
+<!--    카멜케이스 변환 -->
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
@@ -12,20 +13,27 @@
         <typeAlias type="com.workwave.entity.board.Board" alias="board"/>
         <typeAlias type="com.workwave.entity.User" alias="user"/>
 
-<!--        calendar, todoList dto class -->
+<!--        캘린더 dto -->
         <typeAlias alias="calendarsDto" type="com.workwave.dto.schedule_dto.request.CalendarsDto"/>
         <typeAlias alias="allMyCalendarEventDto" type="com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto"/>
         <typeAlias alias="teamCalendarEventDto" type="com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto"/>
-<!--        todolist class-->
-        <typeAlias alias="AllMyTodoListDto" type="com.workwave.dto.schedule_dto.request.AllMyTodoListDto"/>
-        <typeAlias alias="AllMyTeamTodoListDto" type="com.workwave.dto.schedule_dto.request.AllMyTeamTodoListDto"/>
+        <typeAlias alias="AllCalendarEvents" type="com.workwave.entity.schedule.CalendarEvent"/>
 
+<!--        투두리스트 dto -->
+        <typeAlias alias="allMyTodoListDto" type="com.workwave.dto.schedule_dto.request.AllMyTodoListDto"/>
+        <typeAlias alias="allMyTeamTodoListDto" type="com.workwave.dto.schedule_dto.request.AllMyTeamTodoListDto"/>
+        <typeAlias alias="todoList" type="com.workwave.entity.schedule.TodoList"/>
+        <typeAlias alias="teamTodoList" type="com.workwave.entity.schedule.TeamTodoList"/>
+
+
+<!--        익명게시판 dto-->
         <typeAlias type="com.workwave.entity.board.Reply" alias="reply"/>
         <typeAlias type="com.workwave.entity.board.SubReply" alias="subReply"/>
 
+<!--        유저 dto-->
         <typeAlias type="com.workwave.entity.User" alias="user"/>
 
-
+<!--교통상황 dto-->
         <typeAlias type="com.workwave.entity.trrafic.Traffic" alias="traffic"/>
 
 
