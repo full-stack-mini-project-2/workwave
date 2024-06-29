@@ -27,7 +27,7 @@ public class TodoListService {
 
     // 개인 투두리스트 추가
     public void insertPersonalTodo(TodoList todoList) {
-        todoList.setTodoStatus("inprogress"); // 기본 상태 설정
+        todoList.setTodoStatus("false"); // 기본 상태 설정
         todoList.setTodoCreateAt(LocalDateTime.now()); // 생성일 설정
         todoList.setTodoUpdateAt(LocalDateTime.now()); // 업데이트일 설정
         todoList.setColorIndexId(1); // 기본 색상 인덱스 설정

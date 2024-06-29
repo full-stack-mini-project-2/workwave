@@ -16,6 +16,7 @@ public class CalendarApiController {
 
     private final CalendarService calendarService;
 
+    //개인의 캘린더 목록 달에 따라서 조회하기
     @GetMapping("/myEvents/{userId}")
     public List<AllMyCalendarEventDto> getMyEvents(
             @PathVariable("userId") String userId,
@@ -28,4 +29,15 @@ public class CalendarApiController {
             throw new RuntimeException("Error fetching events");
                 }
             }
+
+           //개인의 캘린더 목록 전체 조회하기
+    @GetMapping("/myEvents/All/{userId}")
+    public List<AllMyCalendarEventDto> getMyAllEvents(
+            @PathVariable("userId") String userId)
+    {
+        return calendarService.getMyAllEvents(userId);
+    }
+
+
+
         }

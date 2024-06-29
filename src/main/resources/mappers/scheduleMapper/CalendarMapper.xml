@@ -5,6 +5,8 @@
 
 <mapper namespace="com.workwave.mapper.scheduleMapper.CalendarMapper">
 
+
+
     <!-- getCalendarEventsForPeriod 쿼리 -->
     <select id="getCalendarEventsForPeriod" parameterType="map" resultType="allMyCalendarEventDto">
         SELECT
@@ -28,11 +30,6 @@
         AND team_calendar_id IS NULL;
     </select>
 
-<!--    회원가입 시 개인, 팀 캘린더 공용 사용 권한 부여-->
-    <insert id="saveUserCalendars">
-        INSERT INTO calendar
-        () VALUES
-    </insert>
 
     <!-- 본인의 모든 캘린더 (개인, 팀)조회 -->
     <select id="getMyAllCalendars" resultType="calendarsDto">

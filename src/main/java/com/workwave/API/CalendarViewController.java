@@ -2,15 +2,15 @@ package com.workwave.API;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
+import com.workwave.entity.schedule.TeamTodoList;
+import com.workwave.service.UserService;
 import com.workwave.service.schedule.CalendarService;
 import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
@@ -45,7 +45,14 @@ public class CalendarViewController {
     } catch (Exception e) {
             log.error("Error converting events to JSON", e);
         }
-        return "schedule/calendar/calendar";
+        return "schedule/calendar/myCalendar";
     }
+
+    @PostMapping("/addCal")
+    public String addMyEvent(@ModelAttribute AllMyCalendarEventDto myCalendarEventDto, HttpSession httpSession) {
+        calendarService.addMyEvent(myCalendarEventDto);
+        return "redirect:/calendar/view?userId=" + myCalendarEventDto.getUserId();
+    }
+
+
 }
-//                    .replaceAll("\"", "\\\\\""); // 이스케이프 처리 Json
