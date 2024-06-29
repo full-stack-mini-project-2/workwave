@@ -35,6 +35,7 @@ public class CalendarApiController {
             log.error("Error fetching events for user: " + userId, e);
             throw new RuntimeException("Error fetching events");
         }
+
     }
 
     // 개인의 캘린더 목록 전체 조회하기 (세션 사용)

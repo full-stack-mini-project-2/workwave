@@ -270,9 +270,9 @@
 
     function fetchEvents(year, month) {
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', `/api/calendar/myEvents/\${userId}?year=\${year}&month=\${month + 1}`, true);
+      xhr.open('GET', `/api/calendar/myEvents?year=\${year}&month=\${month + 1}`, true);
 
-      console.log(`/api/calendar/myEvents/\${userId}?year=\${year}&month=\${month + 1}`);
+      console.log(`/api/calendar/myEvents?year=\${year}&month=\${month + 1}`);
 
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
