@@ -3,6 +3,7 @@ package com.workwave.repository;
 import com.workwave.entity.LunchMateBoard;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface LunchMateBoardRepository {
 
@@ -17,5 +18,6 @@ public interface LunchMateBoardRepository {
 
     // 게시물 삭제
     boolean delete(int lunchPostNumber);
+
 
 }

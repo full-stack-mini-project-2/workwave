@@ -10,8 +10,9 @@
     <body>
         <h1>새 글 쓰기</h1>
         <form action="/lunchMateBoard/new" method="post">
+            <!-- 작성자 정보는 자동으로 설정되도록 변경 -->
             <label for="userId">작성자:</label>
-            <input type="text" id="userId" name="userId" required><br>
+            <span id="userId">${loggedInUser.userId}</span><br>
 
             <label for="lunchPostTitle">제목:</label>
             <input type="text" id="lunchPostTitle" name="lunchPostTitle" required><br>

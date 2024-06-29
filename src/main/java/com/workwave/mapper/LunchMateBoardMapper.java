@@ -1,5 +1,6 @@
 package com.workwave.mapper;
 
+import com.workwave.common.boardpage.Search;
 import com.workwave.entity.LunchMateBoard;
 import org.apache.ibatis.annotations.Mapper;
 
