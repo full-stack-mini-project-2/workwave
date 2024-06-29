@@ -1,5 +1,6 @@
 package com.workwave.API;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
 import com.workwave.entity.schedule.TodoList;
 import com.workwave.service.schedule.CalendarService;
@@ -10,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -19,6 +22,7 @@ import java.util.List;
 public class CalendarApiController {
 
     private final CalendarService calendarService;
+    private final ObjectMapper objectMapper;
 
     // 개인의 캘린더 목록 전체 조회하기 (세션 사용)
     @GetMapping("/myEvents/All")
@@ -52,7 +56,7 @@ public class CalendarApiController {
 
     //개인 캘린더 일정 추가
     @PostMapping("/addEvent")
-    public ResponseEntity<AllMyCalendarEventDto> createCalEvent(
+    public ResponseEntity<Map<String, Object>> createCalEvent(
             @RequestBody AllMyCalendarEventDto addEventDto,
             HttpSession session
     ) {
@@ -62,8 +66,26 @@ public class CalendarApiController {
         if(userId == null) {
             throw new RuntimeException("User is not logged in");
         }
-        AllMyCalendarEventDto newEvent = calendarService.addEvent(addEventDto, userId, userName);
-        return ResponseEntity.ok(newEvent);
+
+        boolean isSuccess = false;
+        String message = "Failed to create event";
+
+        try {
+            AllMyCalendarEventDto newEvent = calendarService.addEvent(addEventDto, userId, userName);
+            isSuccess = newEvent != null;
+            message = isSuccess ? "Event created successfully" : message;
+        } catch (Exception e) {
+            message = e.getMessage();
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", isSuccess);
+        response.put("message", message);
+
+        return ResponseEntity.ok(response);
+//        AllMyCalendarEventDto newEvent = calendarService.addEvent(addEventDto, userId, userName);
+//        return ResponseEntity.ok(newEvent);
+        }
     }
 
     //개인 캘린더 일정 수정
@@ -78,5 +100,4 @@ public class CalendarApiController {
 
 
 
-}
 

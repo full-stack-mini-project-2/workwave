@@ -2,6 +2,7 @@ package com.workwave.dto.schedule_dto.request;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 public class AllMyTeamCalendarEventDto {
     private int calEventId;
-    private LocalDateTime calEventDate;
+    private LocalDate calEventDate;
     private String calEventTitle;
     private String calEventDescription;
     private LocalDateTime calEventCreateAt;

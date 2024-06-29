@@ -7,6 +7,7 @@ import com.workwave.mapper.scheduleMapper.CalendarMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
@@ -45,7 +46,7 @@ public class CalendarService {
     // 캘린더 일정 추가
     public AllMyCalendarEventDto addEvent(AllMyCalendarEventDto addEventDto, String userId, String userName) {
         AllMyCalendarEventDto newEvent = AllMyCalendarEventDto.builder()
-                .calEventDate(LocalDateTime.now())
+                .calEventDate(LocalDate.now())
                 .calEventTitle(addEventDto.getCalEventTitle())
                 .calEventDescription(addEventDto.getCalEventDescription())
                 .calEventCreateAt(LocalDateTime.now())

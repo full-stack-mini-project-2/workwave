@@ -94,13 +94,9 @@
         cal_event_title,
         cal_event_description,
         user_id,
-        department_id,
         calendar_id
         <if test="colorIndexId != null">
             ,color_index_id
-        </if>
-        <if test="noticeId != null">
-            ,notice_id
         </if>
         )
         VALUES (
@@ -108,13 +104,9 @@
         #{calEventTitle},
         #{calEventDescription},
         #{userId},
-        #{departmentId},
         #{calendarId}
         <if test="colorIndexId != null">
             ,#{colorIndexId}
-        </if>
-        <if test="noticeId != null">
-            ,#{noticeId}
         </if>
         );
     </insert>

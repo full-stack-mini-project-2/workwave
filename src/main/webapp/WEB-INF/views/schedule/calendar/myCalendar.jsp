@@ -5,127 +5,127 @@
 <head>
   <meta charset="UTF-8">
   <title>Calendar</title>
-<%--  css--%>
-<%--  <link rel="stylesheet" href="<c:url value='/assets/css/calendar.css' />">--%>
+  <%--  css--%>
+  <%--  <link rel="stylesheet" href="<c:url value='/assets/css/calendar.css' />">--%>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-<%--  http://localhost:8181/assets/css/main.css--%>
+  <%--  http://localhost:8181/assets/css/main.css--%>
   <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">
   <!-- JavaScript 파일 포함 -->
-<%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
-<style>
-  .calendar {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  }
-  .calendar th, .calendar td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-  }
-  .event {
-  margin-top: 5px;
-  padding: 3px;
-  border-radius: 3px;
-  cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능한 상태로 만듦 */
-  }
+  <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
+  <style>
+    .calendar {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    .calendar th, .calendar td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    .event {
+      margin-top: 5px;
+      padding: 3px;
+      border-radius: 3px;
+      cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능한 상태로 만듦 */
+    }
 
-  .event-lightblue { background-color: lightblue; }
-  .event-lightgreen { background-color: lightgreen; }
-  .event-lightcoral { background-color: lightcoral; }
-  .event-lightsalmon {background-color: lightsalmon; }
-  .event-lightseagreen { background-color: lightseagreen; }
-  .event-lightgray { background-color: lightgray; }
+    .event-lightblue { background-color: lightblue; }
+    .event-lightgreen { background-color: lightgreen; }
+    .event-lightcoral { background-color: lightcoral; }
+    .event-lightsalmon {background-color: lightsalmon; }
+    .event-lightseagreen { background-color: lightseagreen; }
+    .event-lightgray { background-color: lightgray; }
 
-  /* 모달 스타일 */
-  .modal {
-  display: none; /* 초기에는 모달 숨김 */
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4);
-  }
+    /* 모달 스타일 */
+    .modal {
+      display: none; /* 초기에는 모달 숨김 */
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
 
-  .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
 
-  .close {
-  color: #aaa;
-  float: left;
-  font-size: 28px;
-  font-weight: bold;
-  }
+    .close {
+      color: #aaa;
+      float: left;
+      font-size: 28px;
+      font-weight: bold;
+    }
 
-  .fa-pencil {
-    float: right;
-  }
+    .fa-pencil {
+      float: right;
+    }
 
-  .close:hover,
-  .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-  }
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
 
-  .color-picker {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
-  }
+    .color-picker {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+    }
 
-  .color-picker div {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  cursor: pointer;
-  }
+    .color-picker div {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
 
-  .color-red { background-color: red; }
-  .color-green { background-color: green; }
-  .color-blue { background-color: blue; }
-  .color-yellow { background-color: yellow; }
-  .color-magenta { background-color: magenta; }
-  .calendar th, .calendar td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-  width: 14.28%; /* Ensure each day cell takes equal width */
-  }
+    .color-red { background-color: red; }
+    .color-green { background-color: green; }
+    .color-blue { background-color: blue; }
+    .color-yellow { background-color: yellow; }
+    .color-magenta { background-color: magenta; }
+    .calendar th, .calendar td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+      width: 14.28%; /* Ensure each day cell takes equal width */
+    }
 
-  .calendar-container {
-  border: 1px solid #ddd;
-  padding: 10px;
-  max-width: 800px;
-  margin: 0 auto;
-  width: 500px;
-  height: 400px;
-  }
-  .calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  }
-  .calendar-header h3 {
-  margin: 0;
-  }
-  .calendar-header i {
-  cursor: pointer;
-  font-size: 1.5em;
-  }
-  .fa-add {
-    float: right;
-  }
-</style>
+    .calendar-container {
+      border: 1px solid #ddd;
+      padding: 10px;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 500px;
+      height: 400px;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .calendar-header h3 {
+      margin: 0;
+    }
+    .calendar-header i {
+      cursor: pointer;
+      font-size: 1.5em;
+    }
+    .fa-add {
+      float: right;
+    }
+  </style>
 </head>
 <body>
 
@@ -220,23 +220,20 @@
 
 
   // 이벤트 상세보기
-  function openModal(eventIndex) {
-    console.log('openModal called with eventIndex:', eventIndex);
+  function openModal(eventId) {
+    console.log('openModal called with eventId:', eventId);
 
-    const selectedEvent = myCalEvents[eventIndex];
+    const selectedEvent = myCalEvents.find(event => event.calEventId === eventId);
     console.log('Selected Event:', selectedEvent);
 
     const modal = document.getElementById('eventModal');
     const modalContent = modal.querySelector('.modal-content');
     const eventDetails = modal.querySelector('#eventDetails');
 
-    // if(selectedEvent) {
-    // 이벤트 세부 정보 구성
     eventDetails.innerHTML = `
     <li><strong>제목:</strong> \${selectedEvent.calEventTitle}</li>
     <li><strong>이벤트 내용:</strong> \${selectedEvent.calEventDescription}</li>
     <li><strong>이벤트 날짜:</strong> \${selectedEvent.calEventDate}</li>
-
     <li><strong>작성자:</strong> \${selectedEvent.userName}</li>
   `;
     // <li><strong>색상:</strong> \${getColorByIndex(selectedEvent.colorIndexId)}</li>
@@ -244,7 +241,7 @@
     //   eventDetails.innerHTML = '<li>이벤트 정보를 가져올 수 없습니다.</li>';
     // }
 
-    // 모달 보이기
+    //모달 보이기
     modal.style.display = 'block';
 
     // 모달 외부를 클릭하면 닫기
@@ -263,10 +260,8 @@
 
   document.addEventListener('DOMContentLoaded', function () {
 
-
     // 첫 번째 이벤트에서 userId 속성을 가져옴
     const userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
-
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     let currentYear = new Date().getFullYear();
@@ -275,8 +270,8 @@
     // 초기 데이터 로드
     fetchEvents(currentYear, currentMonth);
 
+    // 현재 날짜 업데이트
     function updateCurrentMonth(year, month) {
-
       document.getElementById('current-month').textContent = `\${monthNames[month]} \${year}`;
     }
 
@@ -337,7 +332,7 @@
         if (filteredEvents.length > 0) {
           filteredEvents.forEach(event => {
             const colorClass = `event-\${getColorByIndex(event.colorIndexId)}`;
-            calendarHtml += `<div class="event \${colorClass}" onclick="openModal(\${events.indexOf(event)})">\${event.calEventTitle}</div>`;
+            calendarHtml += `<div class="event \${colorClass}" onclick="openModal(\${event.calEventId})">\${event.calEventTitle}</div>`;
           });
         }
 
@@ -405,49 +400,40 @@
         calEventDescription: description,
         calEventCreateAt: new Date().toISOString(),
         colorIndexId: colorIndex,
-        username: 'User'
+        userName: 'User'
       };
 
       //새로운 일정 추가
-      myCalEvents.push(newEvent);
-      renderCalendar(myCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
+      // myCalEvents.push(newEvent);
+      // renderCalendar(myCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
 
-      document.getElementById('addEventModal').style.display = 'none';
-    });
+      // document.getElementById('addEventModal').style.display = 'none';
 
 
-    const addEventForm = document.getElementById('addEventForm');
-    document.getElementById('saveEventButton').addEventListener('click', function () {
-      const title = document.getElementById('calEventTitle').value || 'Event';
-      const date = document.getElementById('calEventDate').value || new Date().toISOString().split('T')[0] + "T00:00:00";
-      const description = document.getElementById('calEventDescription').value || 'None';
-      const colorIndex = document.getElementById('calColorIndex').value || null;
 
-      const newEvent = {
-        calEventTitle: title,
-        calEventDate: date,
-        calEventDescription: description,
-        colorIndexId: colorIndex
-      };
-
+      // AJAX 요청으로 이벤트 저장
       fetch('/api/calendar/addEvent', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newEvent)
+        body: JSON.stringify(newEvent),
       })
               .then(response => response.json())
               .then(data => {
-                console.log('Success:', data);
-                document.getElementById('addEventModal').style.display = 'none';
-                // You may want to refresh or update the calendar here
+                if (data.success) {
+                  myCalEvents.push(newEvent);
+                  renderCalendar(myCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
+                  document.getElementById('addEventModal').style.display = 'none';
+                } else {
+                  alert('Error saving event: ' + data.message);
+                }
               })
-              .catch((error) => {
+              .catch(error => {
                 console.error('Error:', error);
+                alert('Error saving event');
               });
-    });
-
+        });
   });
 </script>
 
