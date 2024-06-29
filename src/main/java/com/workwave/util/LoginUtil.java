@@ -48,6 +48,7 @@ public class LoginUtil {
         return autoLoginCookie != null;   // 널이 아니면 자동로그인 상태
     }
 
+    //♦︎ - 신윤종 추가
     // 세션에서 userId, nickName, departmentId, profile을 배열로 가져오기
     public static List<LoginUserInfoListDto> getLoggedInUserInfoList(HttpSession session) {
         List<LoginUserInfoListDto> loggedInUserInfoList = new ArrayList<>();

@@ -5,6 +5,45 @@
 
 <mapper namespace="com.workwave.mapper.scheduleMapper.CalendarMapper">
 
+    <!-- 개인 캘린더 존재 여부 확인 -->
+    <select id="countPersonalCalendar" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM Calendar
+        WHERE user_id = #{userId};
+    </select>
+
+    <!-- 부서에 따른 팀 캘린더 조회 -->
+    <select id="getTeamCalendarByDepartmentId" parameterType="string" resultType="teamCalendar">
+        SELECT team_calendar_id, team_calendar_name
+        FROM TeamCalendar
+        WHERE department_id = #{departmentId};
+    </select>
+
+    <!-- 사용자가 팀 캘린더에 접근할 수 있는지 확인 -->
+    <select id="countUserTeamCalendar" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM UserTeamCalendar
+        WHERE user_id = #{userId}
+        AND team_calendar_id = #{teamCalendarId};
+    </select>
+
+    <!-- 사용자와 팀 캘린더 연결 설정 -->
+    <insert id="insertUserTeamCalendar" parameterType="map">
+        INSERT INTO UserTeamCalendar (user_id, team_calendar_id)
+        VALUES (#{userId}, #{teamCalendarId});
+    </insert>
+
+    <!-- 회원가입 후 첫 로그인 시 개인 캘린더 생성 -->
+    <insert id="insertPersonalCalendar" parameterType="map">
+        INSERT INTO Calendar (user_id, calendar_name)
+        VALUES (#{userId}, #{calendarName});
+    </insert>
+
+
+
+    <!--    CRUD=================================================-->
+
+
 <!--달 별 개인일정 조회 -->
     <select id="getCalendarEventsForPeriod" parameterType="map" resultType="allMyCalendarEventDto">
         SELECT
@@ -162,5 +201,6 @@
         DELETE FROM CalendarEvent
         WHERE cal_event_id = #{calEventId};
     </delete>
+
 
 </mapper>

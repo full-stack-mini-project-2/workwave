@@ -22,7 +22,6 @@ import java.util.Map;
 public class CalendarApiController {
 
     private final CalendarService calendarService;
-    private final ObjectMapper objectMapper;
 
     // 개인의 캘린더 목록 전체 조회하기 (세션 사용)
     @GetMapping("/myEvents/All")

@@ -3,20 +3,54 @@ package com.workwave.service.schedule;
 import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
 import com.workwave.dto.schedule_dto.request.CalendarsDto;
 import com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto;
+import com.workwave.entity.schedule.TeamCalendar;
 import com.workwave.mapper.scheduleMapper.CalendarMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
 public class CalendarService {
 
         private final CalendarMapper calendarMapper;
+
+        // 로그인 시 달력 유무 체크
+    @Transactional
+    public void checkAndSetupCalendars(String userId, String departmentId) {
+        // 개인 캘린더가 존재하는지 확인
+        Integer personalCalendarCount = calendarMapper.countPersonalCalendar(userId);
+        if (personalCalendarCount == 0) {
+            // 개인 캘린더 생성
+            Map<String, Object> params = new HashMap<>();
+            params.put("userId", userId);
+            params.put("calendarName", "Personal Calendar");
+            calendarMapper.insertPersonalCalendar(params);
+        }
+
+        // 팀 캘린더와의 연결 확인 및 설정
+        TeamCalendar teamCalendar = calendarMapper.getTeamCalendarByDepartmentId(departmentId);
+        if (teamCalendar != null) {
+            // 팀 캘린더를 사용자가 조회할 수 있도록 설정 (필요한 경우에만)
+            Integer teamCalendarCount = calendarMapper.countUserTeamCalendar(userId);
+            if (teamCalendarCount == 0) {
+                Map<String, Object> params = new HashMap<>();
+                params.put("userId", userId);
+                params.put("calendarName", "Personal Calendar");
+                calendarMapper.insertPersonalCalendar(params);
+
+            }
+        }
+    }
+
+
 
     //user의 모든 캘린더 목록 (총 2개)
     public List<AllMyCalendarEventDto> getCalendars(String userId) {

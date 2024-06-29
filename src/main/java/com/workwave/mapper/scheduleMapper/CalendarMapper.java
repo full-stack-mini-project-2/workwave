@@ -3,10 +3,12 @@ package com.workwave.mapper.scheduleMapper;
 import com.workwave.dto.schedule_dto.request.CalendarsDto;
 import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
 import com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto;
+import com.workwave.entity.schedule.TeamCalendar;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface CalendarMapper {
@@ -34,4 +36,18 @@ public interface CalendarMapper {
 
     // 개인, 팀 캘린더 일정 수정하기
     void updateCalEvent(AllMyCalendarEventDto calendarEvent);
+
+    // 로그인 시, 개인 캘린더 개수 확인 (새로 만들지 유무)
+    Integer countPersonalCalendar(String userId);
+
+    // 로그인 시, 팀 캘린더 개수 확인 (새로 만들지 유무)
+    Integer countUserTeamCalendar(String userId);
+
+    void insertPersonalCalendar(Map<String, Object> params);
+
+    //해당하는 팀 캘린더 유무 확인
+    TeamCalendar getTeamCalendarByDepartmentId(String departmentId);
+
+    //팀 캘린더
+    void insertUserTeamCalendar(Map<String, Object> teamParams);
 }
