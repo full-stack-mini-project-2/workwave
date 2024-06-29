@@ -6,10 +6,10 @@
   <meta charset="UTF-8">
   <title>Calendar</title>
 <%--  css--%>
-  <link rel="stylesheet" href="<c:url value='../assets/css/calendar.css' />">
+  <link rel="stylesheet" href="<c:url value='./assets/css/calendar.css' />">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <!-- JavaScript 파일 포함 -->
-  <script type="module" src="<c:url value='../assets/js/myCalendar.js' />" defer></script>
+  <script type="module" src="<c:url value='./assets/js/myCalendar.js' />" defer></script>
 </head>
 <body>
 
@@ -33,7 +33,9 @@
       <input type="text" id="calEventTitle" name="calEventTitle" placeholder="Event"><br>
 
       <label for="calEventDate">날짜:</label>
-      <input type="date" id="calEventDate" name="calEventDate" value="${new java.text.SimpleDateFormat('yyyy-MM-dd').format(new java.util.Date())}"><br>
+
+
+      <input type="date" id="calEventDate" name="calEventDate" value="\${fn:substring(new java.text.SimpleDateFormat('yyyy-MM-dd').format(new java.util.Date()), 0, 10)}}"><br>
 
       <label for="calEventDescription">내용:</label>
       <input type="text" id="calEventDescription" name="calEventDescription" placeholder="None"><br>

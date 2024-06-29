@@ -178,31 +178,18 @@
                 <a href="#">
                     <div class="right-box">우빈2</div>
                 </a>
-                <a href="schedule/calendar/calendarList">
+                <a href="/calendar/view">
                     <div class="right-box">달력</div>
                 </a>
-                <%
-                    // userId를 세션이나 다른 방법으로 가져왔다고 가정합니다.
-                    String userId = (String) session.getAttribute("userId");
-
-                    // 리다이렉트할 URL을 초기화합니다.
-                    String redirectUrl = null;
-
-                    // userId가 null이 아니고 빈 문자열이 아닌지 확인합니다.
-                    if (userId != null && !userId.isEmpty()) {
-                        // 리다이렉트할 URL을 만듭니다.
-                        redirectUrl = "http://localhost:8181/calendar/view/" + userId;
-                    } else {
-                        // userId가 없으면 에러 메시지를 표시합니다.
-                        out.println("User ID is not available.");
-                    }
-                %>
-                <a href="<%= redirectUrl %>">
-                    <div class="right-box">투두리스트</div>
+                <a href="/calendar/view">
+                    <div class="right-box">팀 달력</div>
+                </a>
+                <a href="/viewTodo/personal">
+                    <div class="right-box">개인 투두리스트</div>
 
                 </a>
-                <a href="schedule/colorIndex/colorList">
-                    <div class="right-box">컬러리스트</div>
+                <a href="/viewTodo/team">
+                    <div class="right-box">팀 투두리스트</div>
                 </a>
                 <a href="#">
                     <div class="right-box">윤종4</div>

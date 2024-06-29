@@ -1,12 +1,15 @@
 package com.workwave.util;
 
 import com.workwave.dto.user.LoginUserInfoDto;
+import com.workwave.dto.user.LoginUserInfoListDto;
 import com.workwave.entity.AccessLevel;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginUtil {
     public static final String LOGIN = "login";
@@ -46,17 +49,23 @@ public class LoginUtil {
     }
 
     // 세션에서 userId, nickName, departmentId, profile을 배열로 가져오기
-    public static String[] getLoggedInUserInfo(HttpSession session) {
+    public static List<LoginUserInfoListDto> getLoggedInUserInfoList(HttpSession session) {
+        List<LoginUserInfoListDto> loggedInUserInfoList = new ArrayList<>();
+
         LoginUserInfoDto loggedInUser = getLoggedInUser(session);
         if (loggedInUser != null) {
-            String[] userInfo = new String[4];
-            userInfo[0] = loggedInUser.getUserId();
-            userInfo[1] = loggedInUser.getNickName();
-            userInfo[2] = loggedInUser.getDepartmentId();
-            userInfo[3] = loggedInUser.getProfile();
-            return userInfo;
+            // 세션에서 필요한 정보 가져오기
+            String userId = loggedInUser.getUserId();
+            String nickName = loggedInUser.getNickName();
+            String departmentId = loggedInUser.getDepartmentId();
+            String profile = loggedInUser.getProfile();
+
+            // LoginUserInfoDto 객체 생성 후 리스트에 추가
+            LoginUserInfoListDto userInfo = new LoginUserInfoListDto(userId, nickName, departmentId, profile);
+            loggedInUserInfoList.add(userInfo);
         }
-        return null; // 로그인되지 않은 경우 null 반환
+
+        return loggedInUserInfoList.isEmpty() ? null : loggedInUserInfoList;
     }
 
 }

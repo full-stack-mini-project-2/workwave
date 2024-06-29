@@ -1,4 +1,6 @@
-// JSON 형식의 문자열을 자바스크립트 객체로 반환
+
+
+// JSON 형식의 문자열을 자바스크립트 객체로 반환하기
 const myCalEvents = JSON.parse('<c:out value="${mycalEvents}" escapeXml="false" />'); // 전역변수로 놓고 렌더링
 console.log("mycalevents",myCalEvents);
 
@@ -22,15 +24,12 @@ document.querySelector('.fa-calendar-plus').addEventListener('click', function (
     };
 });
 
-// 색상 선택
+// 원하는 형광 색상 선택
 document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
     colorDiv.addEventListener('click', function () {
         document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
     });
 });
-
-
-
 
 
 // 이벤트 상세보기
@@ -63,7 +62,7 @@ function openModal(eventIndex) {
 
     // 모달 외부를 클릭하면 닫기
     window.onclick = function (event) {
-        if (event.target == modal) {
+        if (event.target === modal) {
             modal.style.display = 'none';
         }
     };
@@ -163,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updateCurrentMonth(year, month);
     }
 
-    // getColorByIndex 함수는 그대로 사용합니다.
+    // colorindex에 따라 색 부여하기
     function getColorByIndex(index) {
         switch (index) {
             case 1:
@@ -181,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 이전 달/다음 달 이동 버튼 처리
+    // 이전 달로 넘어가기
     document.getElementById('prev-month').addEventListener('click', function () {
         if (currentMonth === 0) {
             currentYear--;
@@ -192,6 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchEvents(currentYear, currentMonth);
     });
 
+    //다음달로 넘어가기
     document.getElementById('next-month').addEventListener('click', function () {
         if (currentMonth === 11) {
             currentYear++;
@@ -209,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const description = document.getElementById('calEventDescription').value || 'None';
         const colorIndex = document.getElementById('calColorIndex').value || null;
 
+        //일정 저장 내용
         const newEvent = {
             calEventId: myCalEvents.length + 1,
             calEventDate: date,
@@ -219,6 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
             username: 'User'
         };
 
+        //새로운 일정 추가
         myCalEvents.push(newEvent);
         renderCalendar(myCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
 

@@ -1,13 +1,17 @@
 package com.workwave.API;
 
+import com.workwave.dto.user.LoginUserInfoListDto;
 import com.workwave.entity.schedule.TeamTodoList;
 import com.workwave.entity.schedule.TodoList;
 import com.workwave.service.schedule.TodoListService;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -19,6 +23,24 @@ public class TodoListApiController {
 
     private final TodoListService todoListService;
 
+    // 개인의 투두리스트 목록 조회
+    @GetMapping("/personal")
+    public ResponseEntity<List<TodoList>> getPersonalTodos(HttpSession session) {
+
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        if (userId == null) {
+            throw new RuntimeException("User is not logged in");
+        }
+        try {
+            List<TodoList> personalTodos = todoListService.findPersonalTodosByUserId(userId);
+            return (ResponseEntity<List<TodoList>>) personalTodos;
+        } catch (Exception e) {
+            log.error("Error fetching events for user: " + userId, e);
+            throw new RuntimeException("Error fetching events");
+        }
+    }
+
+
     //개인의 특정 투두리스트 조회
     @GetMapping("/personal/aTodo/{todoId}")
     public ResponseEntity<TodoList> getPersonalOneTodos(@PathVariable int todoId) {
@@ -27,12 +49,7 @@ public class TodoListApiController {
     }
 
 
-    // 개인의 투두리스트 조회
-    @GetMapping("/personal/{userId}")
-    public ResponseEntity<List<TodoList>> getPersonalTodos(@PathVariable String userId) {
-        List<TodoList> personalTodos = todoListService.findPersonalTodosByUserId(userId);
-        return ResponseEntity.ok(personalTodos);
-    }
+
 
     // 개인 투두리스트 추가
     @PostMapping("/personal")
@@ -79,10 +96,27 @@ public class TodoListApiController {
     }
 
     // 팀 투두리스트 조회
-    @GetMapping("/team/aTeamTodos/{departmentId}")
-    public ResponseEntity<List<TeamTodoList>> findTeamTodosByDepartmentId(@PathVariable String departmentId) {
-        List<TeamTodoList> teamTodos = todoListService.findTeamTodosByDepartmentId(departmentId);
-        return ResponseEntity.ok(teamTodos);
+    @GetMapping("/team/aTeamTodos")
+    public ResponseEntity<List<TeamTodoList>> findTeamTodosByDepartmentId( HttpSession session) {
+
+        //세션으로 팀 아이디 조회
+        List<LoginUserInfoListDto> loggedInUserInfoList = LoginUtil.getLoggedInUserInfoList(session);
+
+        if (loggedInUserInfoList == null || loggedInUserInfoList.isEmpty()) {
+            throw new RuntimeException("User is not logged in"); // 로그인 안된 경우 예외 처리
+        }
+        try {
+            // 예시로 첫 번째 사용자의 departmentId 가져오기
+            String departmentId = loggedInUserInfoList.get(0).getDepartmentId();
+            //팀 아이디로 투두리스트 조회
+            List<TeamTodoList> teamTodos = todoListService.findTeamTodosByDepartmentId(departmentId);
+            return ResponseEntity.ok(teamTodos);
+        } catch (Exception e) {
+
+            // 제대로 서버 전달이 안되었을 경우 에러 메시지
+            log.error("Error fetching events for user: " + loggedInUserInfoList, e);
+            throw new RuntimeException("Error fetching events");
+        }
     }
 
     // 팀 투두리스트 추가

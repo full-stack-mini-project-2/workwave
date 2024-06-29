@@ -1,16 +1,21 @@
 package com.workwave.API;
 
+import com.workwave.dto.user.LoginUserInfoDto;
+import com.workwave.dto.user.LoginUserInfoListDto;
 import com.workwave.entity.schedule.ColorIndex;
 import com.workwave.entity.schedule.TeamTodoList;
 import com.workwave.entity.schedule.TodoList;
 import com.workwave.service.schedule.ColorIndexService;
 import com.workwave.service.schedule.TodoListService;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +30,27 @@ public class TodoListViewController {
     private final ColorIndexService colorIndexService;
 
     // 개인의 투두리스트 조회 페이지
-    @GetMapping("/personal/{userId}")
-    public String getMyPersonalTodos(@PathVariable String userId, Model model) {
-        List<TodoList> personalTodos = todoListService.findPersonalTodosByUserId(userId);
+    @GetMapping("/personal")
+    public String getMyPersonalTodos(
+            HttpSession session,
+            Model model
+    ) {
+        //세션으로 유저 아이디 조회
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        if (userId == null) {
+            throw new RuntimeException("User is not logged in"); //로그인 안되었을 시 익셉션
+        }
+        try {
+            // 유저 아이디의 투두리스트 조회
+            List<TodoList> personalTodos = todoListService.findPersonalTodosByUserId(userId);
+            model.addAttribute("personalTodos", personalTodos);
+        } catch (Exception e) {
+            // 제대로 서버 전달이 안되었을 경우 에러 메시지
+            log.error("Error fetching events for user: " + userId, e);
+            throw new RuntimeException("Error fetching events");
+        }
 
+        //컬러 인덱스 목록 가쟈오기
         List<ColorIndex> colorIndexes = colorIndexService.getAllColorIndexes();
 
         // 컬러 인덱스 아이디에 따른 해시코드 맵 생성
@@ -38,16 +60,11 @@ public class TodoListViewController {
         }
 
         model.addAttribute("colorIndexMap", colorIndexMap);
-        model.addAttribute("personalTodos", personalTodos);
-        return "schedule/todoList/personalTodoList"; // personal-todos.html로 매핑
+
+        return "schedule/todoList/personalTodoList";
+
     }
-//
-//    // 개인 투두리스트 추가 페이지
-//    @GetMapping("/personal/add")
-//    public String showAddPersonalTodoForm(Model model) {
-//        model.addAttribute("todoList", new TodoList());
-//        return "add-personal-todo"; // add-personal-todo.html로 매핑
-//    }
+
 
     // 개인 투두리스트 추가 처리
     @PostMapping("/personal/add")
@@ -55,14 +72,6 @@ public class TodoListViewController {
         todoListService.insertPersonalTodo(todoList);
         return "redirect:/todos/personal?userId=" + todoList.getUserId();
     }
-
-//    // 개인 투두리스트 수정 페이지
-//    @GetMapping("/personal/edit/{todoId}")
-//    public String showEditPersonalTodoForm(@PathVariable int todoId, Model model) {
-//        TodoList todoList = todoListService.findPersonalTodoById(todoId);
-//        model.addAttribute("todoList", todoList);
-//        return "edit-personal-todo"; // edit-personal-todo.html로 매핑
-//    }
 
     // 개인 투두리스트 수정 처리
     @PostMapping("/personal/edit/{todoId}")
@@ -80,22 +89,36 @@ public class TodoListViewController {
     }
 
 
-
-
     // 팀 투두리스트 조회 페이지
-    @GetMapping("/team/{departmentId}")
-    public String getTeamTodos(@PathVariable String departmentId, Model model) {
-        List<TeamTodoList> teamTodos = todoListService.findTeamTodosByDepartmentId(departmentId);
-        model.addAttribute("teamTodos", teamTodos);
+    @GetMapping("/team")
+    public String getTeamTodos( HttpSession session,
+                                Model model) {
+        //세션으로 팀 아이디 조회
+        List<LoginUserInfoListDto> loggedInUserInfoList = LoginUtil.getLoggedInUserInfoList(session);
+
+        if (loggedInUserInfoList == null || loggedInUserInfoList.isEmpty()) {
+            throw new RuntimeException("User is not logged in"); // 로그인 안된 경우 예외 처리
+        }
+
+        try {
+            // 예시로 첫 번째 사용자의 departmentId 가져오기
+            String departmentId = loggedInUserInfoList.get(0).getDepartmentId();
+            model.addAttribute("departmentId", departmentId);
+
+            //팀 아이디로 투두리스트 조회
+            List<TeamTodoList> teamTodos = todoListService.findTeamTodosByDepartmentId(departmentId);
+            model.addAttribute("teamTodos", teamTodos);
+
+        } catch (Exception e) {
+
+            // 제대로 서버 전달이 안되었을 경우 에러 메시지
+            log.error("Error fetching events for user: " + loggedInUserInfoList, e);
+            throw new RuntimeException("Error fetching events");
+        }
+
         return "schedule/todoList/teamTodoList";
     }
 
-//    // 팀 투두리스트 추가 페이지
-//    @GetMapping("/team/add")
-//    public String showAddTeamTodoForm(Model model) {
-//        model.addAttribute("teamTodoList", new TeamTodoList());
-//        return "add-team-todo"; // add-team-todo.html로 매핑
-//    }
 
     // 팀 투두리스트 추가 처리
     @PostMapping("/team/add")
@@ -104,13 +127,6 @@ public class TodoListViewController {
         return "redirect:/todos/team?departmentId=" + teamTodoList.getDepartmentId();
     }
 
-//    // 팀 투두리스트 수정 페이지
-//    @GetMapping("/team/edit/{teamTodoId}")
-//    public String showEditTeamTodoForm(@PathVariable int teamTodoId, Model model) {
-//        TeamTodoList teamTodoList = todoListService.findTeamTodoById(teamTodoId);
-//        model.addAttribute("teamTodoList", teamTodoList);
-//        return "edit-team-todo"; // edit-team-todo.html로 매핑
-//    }
 
     // 팀 투두리스트 수정 처리
     @PostMapping("/team/edit/{teamTodoId}")
