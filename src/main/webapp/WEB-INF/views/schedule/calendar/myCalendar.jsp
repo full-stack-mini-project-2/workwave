@@ -8,6 +8,8 @@
 <%--  css--%>
 <%--  <link rel="stylesheet" href="<c:url value='/assets/css/calendar.css' />">--%>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<%--  http://localhost:8181/assets/css/main.css--%>
+  <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">
   <!-- JavaScript 파일 포함 -->
 <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
 <style>
@@ -58,9 +60,13 @@
 
   .close {
   color: #aaa;
-  float: right;
+  float: left;
   font-size: 28px;
   font-weight: bold;
+  }
+
+  .fa-pencil {
+    float: right;
   }
 
   .close:hover,
@@ -116,6 +122,9 @@
   cursor: pointer;
   font-size: 1.5em;
   }
+  .fa-add {
+    float: right;
+  }
 </style>
 </head>
 <body>
@@ -124,6 +133,7 @@
 <div id="eventModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
+    <i class="fa-solid fa-pencil" style="color: #444444;"></i>
     <ul id="eventDetails">
       <!-- 여기에 이벤트 세부 정보가 추가-->
     </ul>
@@ -134,6 +144,8 @@
 <div id="addEventModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
+    <button class="fa-add" type="button" id="saveEventButton">추가</button>
+
     <h2>일정 추가</h2>
     <form id="addEventForm">
       <label for="calEventTitle">제목:</label>
@@ -157,7 +169,6 @@
       </div>
       <input type="hidden" id="calColorIndex" name="calColorIndex" value=""><br>
 
-      <button type="button" id="saveEventButton">추가</button>
     </form>
   </div>
 </div>
@@ -265,6 +276,7 @@
     fetchEvents(currentYear, currentMonth);
 
     function updateCurrentMonth(year, month) {
+
       document.getElementById('current-month').textContent = `\${monthNames[month]} \${year}`;
     }
 
@@ -403,8 +415,43 @@
       document.getElementById('addEventModal').style.display = 'none';
     });
 
+
+    const addEventForm = document.getElementById('addEventForm');
+    document.getElementById('saveEventButton').addEventListener('click', function () {
+      const title = document.getElementById('calEventTitle').value || 'Event';
+      const date = document.getElementById('calEventDate').value || new Date().toISOString().split('T')[0] + "T00:00:00";
+      const description = document.getElementById('calEventDescription').value || 'None';
+      const colorIndex = document.getElementById('calColorIndex').value || null;
+
+      const newEvent = {
+        calEventTitle: title,
+        calEventDate: date,
+        calEventDescription: description,
+        colorIndexId: colorIndex
+      };
+
+      fetch('/api/calendar/addEvent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newEvent)
+      })
+              .then(response => response.json())
+              .then(data => {
+                console.log('Success:', data);
+                document.getElementById('addEventModal').style.display = 'none';
+                // You may want to refresh or update the calendar here
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+    });
+
   });
 </script>
+
+
 
 <%--실제 일정--%>
 <div>Formatted Date: <span id="formattedDate"><c:out value="${formattedDate}" /></span></div>

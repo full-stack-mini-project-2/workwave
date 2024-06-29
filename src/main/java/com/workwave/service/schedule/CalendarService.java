@@ -42,21 +42,22 @@ public class CalendarService {
             return calendarMapper.getMyAllCalendarEvents(userId);
         }
 
-
-    // 개인 캘린더 일정 추가
-    public void addEvent(AllMyCalendarEventDto myCalendarEventDto, String userId, String userName) {
+    // 캘린더 일정 추가
+    public AllMyCalendarEventDto addEvent(AllMyCalendarEventDto addEventDto, String userId, String userName) {
         AllMyCalendarEventDto newEvent = AllMyCalendarEventDto.builder()
                 .calEventDate(LocalDateTime.now())
-                .calEventTitle("None")
-                .calEventDescription("None")
+                .calEventTitle(addEventDto.getCalEventTitle())
+                .calEventDescription(addEventDto.getCalEventDescription())
                 .calEventCreateAt(LocalDateTime.now())
                 .calEventUpdateAt(LocalDateTime.now())
                 .userId(userId)
                 .userName(userName)
-                .colorIndexId(1) // 기본값
+                .colorIndexId(addEventDto.getColorIndexId()) // Set from the request
                 .build();
         calendarMapper.insertCalendarEvent(newEvent); // 실제로 이벤트를 삽입하는 코드
+        return newEvent;
     }
+
     //개인, 팀 캘린더 일정 수정
     public void updateCalEvent(AllMyCalendarEventDto allMyCalendarEvent) {
         calendarMapper.updateCalEvent(allMyCalendarEvent);

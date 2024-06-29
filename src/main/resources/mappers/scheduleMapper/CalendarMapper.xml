@@ -95,12 +95,12 @@
         cal_event_description,
         user_id,
         department_id,
-        calendar_id,
+        calendar_id
         <if test="colorIndexId != null">
-            color_index_id,
+            ,color_index_id
         </if>
         <if test="noticeId != null">
-            notice_id,
+            ,notice_id
         </if>
         )
         VALUES (
@@ -109,15 +109,16 @@
         #{calEventDescription},
         #{userId},
         #{departmentId},
-        #{calendarId},
+        #{calendarId}
         <if test="colorIndexId != null">
-            #{colorIndexId},
+            ,#{colorIndexId}
         </if>
         <if test="noticeId != null">
-            #{noticeId},
+            ,#{noticeId}
         </if>
         );
     </insert>
+
 
     <!-- 팀 캘린더에 캘린더 공유 일정 저장 -->
     <insert id="insertTeamCalendarEvent" parameterType="allMyCalendarEventDto">
