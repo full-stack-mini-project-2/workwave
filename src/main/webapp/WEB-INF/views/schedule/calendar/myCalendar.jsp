@@ -362,25 +362,22 @@
 
         saveChangesButton.style.display = 'block';
       };
+      // const dateInput = document.createElement('input');
+      // dateInput.type = 'date';
+      // dateInput.id = 'edit-date';
+      // dateInput.value = selectedEvent.calEventDate;
 
+      // dateSpan.textContent = ''; // Clear existing content
+      // dateSpan.appendChild(dateInput);
 
+      // const descriptionInput = document.createElement('input');
+      // descriptionInput.type = 'text';
+      // descriptionInput.id = 'edit-description';
+      // descriptionInput.value = selectedEvent.calEventDescription;
+      // descriptionSpan.textContent = ''; // Clear existing content
+      // descriptionSpan.appendChild(descriptionInput);
 
-        // const dateInput = document.createElement('input');
-        // dateInput.type = 'date';
-        // dateInput.id = 'edit-date';
-        // dateInput.value = selectedEvent.calEventDate;
-
-        // dateSpan.textContent = ''; // Clear existing content
-        // dateSpan.appendChild(dateInput);
-
-        // const descriptionInput = document.createElement('input');
-        // descriptionInput.type = 'text';
-        // descriptionInput.id = 'edit-description';
-        // descriptionInput.value = selectedEvent.calEventDescription;
-        // descriptionSpan.textContent = ''; // Clear existing content
-        // descriptionSpan.appendChild(descriptionInput);
-
-        // saveChangesButton.style.display = 'block';
+      // saveChangesButton.style.display = 'block';
 
 
       //   editButton.onclick = function () {
@@ -440,7 +437,8 @@
                     console.error('Error:', error);
                     alert('Error saving event');
                   });
-        } else {
+        }
+          else {
           alert('제목과 날짜를 입력하세요.');
         }
       };

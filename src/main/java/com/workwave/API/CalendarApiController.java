@@ -7,6 +7,7 @@ import com.workwave.service.schedule.CalendarService;
 import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -103,11 +104,28 @@ public class CalendarApiController {
         return ResponseEntity.ok(response);
     }
 
-    //개인 캘린더 수정
+    //개인 일정 수정
     @PostMapping("/updateEvent")
-    public String updateCalEvent(HttpSession session) {
-    return null;
+    public ResponseEntity<Map<String, Object>> editMyEvent(@RequestBody AllMyCalendarEventDto myCalendarEventDto, HttpSession session) {
+        // Get userId from session
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        if (userId == null) {
+            return ResponseEntity.status(401).body(Map.of("message", "User is not logged in"));
+        }
+
+        try {
+            boolean success = calendarService.updateCalEvent(myCalendarEventDto);
+            if (success) {
+                return ResponseEntity.ok(Map.of("success", true, "message", "Event updated successfully"));
+            } else {
+                return ResponseEntity.status(400).body(Map.of("success", false, "message", "Failed to update event"));
+            }
+        } catch (Exception e) {
+            log.error("Error updating event", e);
+            return ResponseEntity.status(500).body(Map.of("message", "Error updating event"));
+        }
     }
+
 
     //개인 캘린더 삭제
     @GetMapping("deleteEvent")

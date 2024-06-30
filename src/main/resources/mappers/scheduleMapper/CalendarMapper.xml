@@ -183,7 +183,7 @@
         );
     </insert>
 
-<!--    본인 및 캘린더 이벤트 업데이트 -->
+<!--    본인 및 캘린더 이벤트 수정 -->
     <update id="updateMyCalEvent" parameterType="allMyCalendarEventDto">
         UPDATE CalendarEvent
         SET

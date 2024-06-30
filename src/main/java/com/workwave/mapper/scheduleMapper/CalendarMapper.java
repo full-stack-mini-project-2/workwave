@@ -35,7 +35,7 @@ public interface CalendarMapper {
     void deleteCalendarEvent(@Param("calEventId") int calEventId);
 
     // 개인, 팀 캘린더 일정 수정하기
-    void updateCalEvent(AllMyCalendarEventDto calendarEvent);
+    void updateMyCalEvent(AllMyCalendarEventDto calendarEvent);
 
     // 로그인 시, 개인 캘린더 개수 확인 (새로 만들지 유무)
     Integer countPersonalCalendar(String userId);

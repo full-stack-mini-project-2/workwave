@@ -95,8 +95,14 @@ public class CalendarService {
     }
 
     // 개인, 팀 캘린더 일정 수정
-    public void updateCalEvent(AllMyCalendarEventDto allMyCalendarEvent) {
-        calendarMapper.updateCalEvent(allMyCalendarEvent);
+    public boolean updateCalEvent(AllMyCalendarEventDto calendarEvent) {
+        try {
+            calendarMapper.updateMyCalEvent(calendarEvent);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     // 개인, 팀 캘린더 일정 삭제
