@@ -1,15 +1,15 @@
-package com.workwave.dto.user;
+package com.workwave.dto.schedule_dto;
 
 import com.workwave.entity.User;
 import lombok.*;
 
-@Getter
+@Getter @Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LoginUserInfoDto {
+public class LoginUserInfoTestDto {
 
     //클라이언트에 보낼 정보
     private String userId;     //계정명
@@ -20,10 +20,10 @@ public class LoginUserInfoDto {
     private String departmentId;
 
     //생성자
-    public LoginUserInfoDto(User user){
+    public LoginUserInfoTestDto(User user){
         this.userId = user.getUserId();
-        this.nickName = user.getUserName();
         this.email = user.getUserEmail();
+        this.nickName = user.getUserName();
         this.userAccessLevel = user.getUserAccessLevel().name();  //.name() 쓰면 enum에서 대문자만 뜯어온다~!
         this.profile=user.getProfileImg();
         this.departmentId = getDepartmentId();

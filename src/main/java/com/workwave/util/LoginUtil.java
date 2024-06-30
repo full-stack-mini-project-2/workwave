@@ -20,10 +20,18 @@ public class LoginUtil {
         return session.getAttribute(LOGIN) != null;
     }
 
-    // 로그인한 회원의 계정명 얻기
+  //로그인한 회원의 계정명 얻기
     public static String getLoggedInUserAccount(HttpSession session) {
         LoginUserInfoDto loggedInUser = getLoggedInUser(session);
         return loggedInUser != null ? loggedInUser.getUserId() : null;
+    }
+
+    //♦︎ - 신윤종 추가
+    // 세션에서 department 가져오기
+    //로그인한 회원의 부서명 얻기
+    public static String getLoggedInDepartmentId(HttpSession session) {
+        LoginUserInfoDto loggedInUser = getLoggedInUser(session);
+        return loggedInUser != null ? loggedInUser.getDepartmentId() : null;
     }
 
     public static LoginUserInfoDto getLoggedInUser(HttpSession session) {
@@ -46,27 +54,6 @@ public class LoginUtil {
     public static boolean isAutoLogin(HttpServletRequest request) {
         Cookie autoLoginCookie = WebUtils.getCookie(request, AUTO_LOGIN_COOKIE);
         return autoLoginCookie != null;   // 널이 아니면 자동로그인 상태
-    }
-
-    //♦︎ - 신윤종 추가
-    // 세션에서 userId, nickName, departmentId, profile을 배열로 가져오기
-    public static List<LoginUserInfoListDto> getLoggedInUserInfoList(HttpSession session) {
-        List<LoginUserInfoListDto> loggedInUserInfoList = new ArrayList<>();
-
-        LoginUserInfoDto loggedInUser = getLoggedInUser(session);
-        if (loggedInUser != null) {
-            // 세션에서 필요한 정보 가져오기
-            String userId = loggedInUser.getUserId();
-            String nickName = loggedInUser.getNickName();
-            String departmentId = loggedInUser.getDepartmentId();
-            String profile = loggedInUser.getProfile();
-
-            // LoginUserInfoDto 객체 생성 후 리스트에 추가
-            LoginUserInfoListDto userInfo = new LoginUserInfoListDto(userId, nickName, departmentId, profile);
-            loggedInUserInfoList.add(userInfo);
-        }
-
-        return loggedInUserInfoList.isEmpty() ? null : loggedInUserInfoList;
     }
 
 }
