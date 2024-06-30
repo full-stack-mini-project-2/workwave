@@ -7,6 +7,7 @@ import com.workwave.service.schedule.TodoListService;
 import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,17 +24,33 @@ public class TodoListApiController {
 
     private final TodoListService todoListService;
 
+    //angularJS에서 사용자 정보 바로 받아와서 사용하기
+    @GetMapping("/user/info")
+    public ResponseEntity<LoginUserInfoListDto> getUserInfo(HttpSession session) {
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        List<LoginUserInfoListDto> userInfoList = LoginUtil.getLoggedInUserInfoList(session);
+        if (userInfoList == null || userInfoList.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        // 예시로 첫 번째 사용자 정보 반환
+        return ResponseEntity.ok(userInfoList.get(0));
+    }
+
     // 개인의 투두리스트 목록 조회
     @GetMapping("/personal")
-    public ResponseEntity<List<TodoList>> getPersonalTodos(HttpSession session) {
+    public List<TodoList>getPersonalTodos(HttpSession session) {
 
         String userId = LoginUtil.getLoggedInUserAccount(session);
         if (userId == null) {
             throw new RuntimeException("User is not logged in");
         }
         try {
-            List<TodoList> personalTodos = todoListService.findPersonalTodosByUserId(userId);
-            return (ResponseEntity<List<TodoList>>) personalTodos;
+             return todoListService.findPersonalTodosByUserId(userId);
         } catch (Exception e) {
             log.error("Error fetching events for user: " + userId, e);
             throw new RuntimeException("Error fetching events");
