@@ -1,18 +1,10 @@
 package com.workwave.util;
 
-import com.workwave.dto.schedule_dto.LoginUserInfoTestDto;
-import com.workwave.dto.user.LoginUserInfoDto;
-import com.workwave.dto.user.LoginUserInfoListDto;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.servlet.http.HttpSession;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class LoginUtilTest {

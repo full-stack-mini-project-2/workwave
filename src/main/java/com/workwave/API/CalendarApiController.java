@@ -62,7 +62,7 @@ public class CalendarApiController {
             @RequestBody AllMyCalendarEventDto addEventDto,
             HttpSession session
     ) {
-        String userName = LoginUtil.getLoggedInUserInfoList(session).get(0).getNickName();
+        String userName = LoginUtil.getLoggedInUser(session).getNickName();
         String userId = LoginUtil.getLoggedInUserAccount(session);
 
         // 비 로그인자 방지

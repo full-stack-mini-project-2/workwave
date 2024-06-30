@@ -94,25 +94,27 @@ public class TodoListViewController {
     public String getTeamTodos( HttpSession session,
                                 Model model) {
         //세션으로 팀 아이디 조회
-        List<LoginUserInfoListDto> loggedInUserInfoList = LoginUtil.getLoggedInUserInfoList(session);
+        String loggedInUser = LoginUtil.getLoggedInUserAccount(session);
 
-        if (loggedInUserInfoList == null || loggedInUserInfoList.isEmpty()) {
+        if (loggedInUser == null || loggedInUser.isEmpty()) {
             throw new RuntimeException("User is not logged in"); // 로그인 안된 경우 예외 처리
         }
 
         try {
-            // 예시로 첫 번째 사용자의 departmentId 가져오기
-            String departmentId = loggedInUserInfoList.get(0).getDepartmentId();
-            model.addAttribute("departmentId", departmentId);
+            // 세션에서 departmentId 가져오기
+            String loggedInDepartmentId = LoginUtil.getLoggedInDepartmentId(session);
+            model.addAttribute("departmentId", loggedInDepartmentId);
+
+            log.info("viewcontroller 에서 부서아이디 세션에서 가져옴 {}", loggedInDepartmentId);
 
             //팀 아이디로 투두리스트 조회
-            List<TeamTodoList> teamTodos = todoListService.findTeamTodosByDepartmentId(departmentId);
+            List<TeamTodoList> teamTodos = todoListService.findTeamTodosByDepartmentId(loggedInDepartmentId);
             model.addAttribute("teamTodos", teamTodos);
 
         } catch (Exception e) {
 
             // 제대로 서버 전달이 안되었을 경우 에러 메시지
-            log.error("Error fetching events for user: " + loggedInUserInfoList, e);
+            log.error("Error fetching events for user: " + loggedInUser, e);
             throw new RuntimeException("Error fetching events");
         }
 
