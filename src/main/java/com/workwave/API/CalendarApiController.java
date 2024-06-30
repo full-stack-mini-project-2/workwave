@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.time.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,8 +62,9 @@ public class CalendarApiController {
     ) {
         String userName = LoginUtil.getLoggedInUserInfoList(session).get(0).getNickName();
         String userId = LoginUtil.getLoggedInUserAccount(session);
+
         // 비 로그인자 방지
-        if(userId == null) {
+        if (userId == null) {
             throw new RuntimeException("User is not logged in");
         }
 
@@ -70,7 +72,24 @@ public class CalendarApiController {
         String message = "Failed to create event";
 
         try {
-            AllMyCalendarEventDto newEvent = calendarService.addEvent(addEventDto, userId, userName);
+            // 클라이언트에서 전송된 날짜 데이터를 UTC로 변환하여 처리
+            LocalDate eventDate = LocalDate.parse(addEventDto.getCalEventDate()); // ISO 8601 포맷의 문자열을 LocalDate로 변환
+            Instant calEventInstant = eventDate.atStartOfDay(ZoneOffset.UTC).toInstant();
+
+            // UTC 시간으로 변환된 일정 데이터 생성
+            AllMyCalendarEventDto newEvent = AllMyCalendarEventDto.builder()
+                    .calEventDate(eventDate.toString()) // LocalDate를 문자열로 다시 저장
+                    .calEventTitle(addEventDto.getCalEventTitle())
+                    .calEventDescription(addEventDto.getCalEventDescription())
+                    .calEventCreateAt(LocalDateTime.now())
+                    .calEventUpdateAt(LocalDateTime.now())
+                    .colorIndexId(addEventDto.getColorIndexId())
+                    .userId(userId)
+                    .userName(userName)
+                    .build();
+
+            // 서비스를 통해 일정 저장
+            newEvent = calendarService.addEvent(newEvent, userId, userName);
             isSuccess = newEvent != null;
             message = isSuccess ? "Event created successfully" : message;
         } catch (Exception e) {
@@ -82,9 +101,45 @@ public class CalendarApiController {
         response.put("message", message);
 
         return ResponseEntity.ok(response);
-//        AllMyCalendarEventDto newEvent = calendarService.addEvent(addEventDto, userId, userName);
-//        return ResponseEntity.ok(newEvent);
-        }
+    }
+
+
+
+
+//    @PostMapping("/addEvent")
+//    public ResponseEntity<Map<String, Object>> createCalEvent(
+//            @RequestBody AllMyCalendarEventDto addEventDto,
+//            HttpSession session
+//    ) {
+//        // addEventDto에서 날짜와 시간을 처리
+//        LocalDate eventDate = addEventDto.getCalEventDate(); // LocalDate 필드로 받음
+//
+//        String userName = LoginUtil.getLoggedInUserInfoList(session).get(0).getNickName();
+//        String userId = LoginUtil.getLoggedInUserAccount(session);
+//        // 비 로그인자 방지
+//        if(userId == null) {
+//            throw new RuntimeException("User is not logged in");
+//        }
+//
+//        boolean isSuccess = false;
+//        String message = "Failed to create event";
+//
+//        try {
+//            AllMyCalendarEventDto newEvent = calendarService.addEvent(addEventDto, userId, userName);
+//            isSuccess = newEvent != null;
+//            message = isSuccess ? "Event created successfully" : message;
+//        } catch (Exception e) {
+//            message = e.getMessage();
+//        }
+//
+//        Map<String, Object> response = new HashMap<>();
+//        response.put("success", isSuccess);
+//        response.put("message", message);
+//
+//        return ResponseEntity.ok(response);
+////        AllMyCalendarEventDto newEvent = calendarService.addEvent(addEventDto, userId, userName);
+////        return ResponseEntity.ok(newEvent);
+//        }
     }
 
     //개인 캘린더 일정 수정

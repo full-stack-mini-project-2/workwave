@@ -2,6 +2,7 @@ package com.workwave.dto.schedule_dto.request;
 
 import lombok.*;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 public class AllMyCalendarEventDto {
     private int calEventId;
-    private LocalDate calEventDate;
+    private String calEventDate; // 서버 클라이언트 시간을 받을 수 있도록 localdate -> instant로 변경
     private String calEventTitle;
     private String calEventDescription;
     private LocalDateTime calEventCreateAt;

@@ -129,6 +129,8 @@
 </head>
 <body>
 
+
+
 <%-- 이벤트 상세 내용 --%>
 <div id="eventModal" class="modal">
   <div class="modal-content">
@@ -388,11 +390,11 @@
     // 일정 저장
     document.getElementById('saveEventButton').addEventListener('click', function () {
       const title = document.getElementById('calEventTitle').value || 'Event';
-      const date = document.getElementById('calEventDate').value || new Date().toISOString().split('T')[0];
+      const date = document.getElementById('calEventDate').value || new Date().toISOString().split('T')[0]; // 날짜만 가져오기
       const description = document.getElementById('calEventDescription').value || 'None';
       const colorIndex = document.getElementById('calColorIndex').value || null;
 
-      //일정 저장 내용
+      // 일정 저장 내용
       const newEvent = {
         calEventId: myCalEvents.length + 1,
         calEventDate: date,
@@ -402,14 +404,6 @@
         colorIndexId: colorIndex,
         userName: 'User'
       };
-
-      //새로운 일정 추가
-      // myCalEvents.push(newEvent);
-      // renderCalendar(myCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
-
-      // document.getElementById('addEventModal').style.display = 'none';
-
-
 
       // AJAX 요청으로 이벤트 저장
       fetch('/api/calendar/addEvent', {
@@ -433,7 +427,8 @@
                 console.error('Error:', error);
                 alert('Error saving event');
               });
-        });
+    });
+
   });
 </script>
 

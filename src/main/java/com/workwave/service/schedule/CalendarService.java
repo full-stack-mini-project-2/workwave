@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset; // 수정: ZoneOffset을 import 추가
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -20,9 +21,9 @@ import java.util.Map;
 @Service
 public class CalendarService {
 
-        private final CalendarMapper calendarMapper;
+    private final CalendarMapper calendarMapper;
 
-        // 로그인 시 달력 유무 체크
+    // 로그인 시 달력 유무 체크
     @Transactional
     public void checkAndSetupCalendars(String userId, String departmentId) {
         // 개인 캘린더가 존재하는지 확인
@@ -44,66 +45,67 @@ public class CalendarService {
                 Map<String, Object> params = new HashMap<>();
                 params.put("userId", userId);
                 params.put("calendarName", "Personal Calendar");
-                calendarMapper.insertPersonalCalendar(params);
-
+                calendarMapper.insertPersonalCalendar(params); // 수정: 여기서는 팀 캘린더가 아니라 개인 캘린더를 추가해야 할 듯 합니다.
             }
         }
     }
 
-
-
-    //user의 모든 캘린더 목록 (총 2개)
+    // user의 모든 캘린더 목록 (총 2개)
     public List<AllMyCalendarEventDto> getCalendars(String userId) {
         return calendarMapper.getMyAllCalendars(userId);
     }
 
-        public List<AllMyCalendarEventDto> getMyEventsForMonth(String userId, int year, int month) {
-            // startDate는 해당 연도의 해당 월의 첫 번째 날
-            String startDate = String.format("%d-%02d-01", year, month);
-            // endDate는 해당 연도의 해당 월의 마지막 날
-            String endDate = String.format("%d-%02d-%02d", year, month, getLastDayOfMonth(year, month));
-            return calendarMapper.getCalendarEventsForPeriod(userId, startDate, endDate);
-        }
+    public List<AllMyCalendarEventDto> getMyEventsForMonth(String userId, int year, int month) {
+        // startDate는 해당 연도의 해당 월의 첫 번째 날
+        String startDate = String.format("%d-%02d-01", year, month);
+        // endDate는 해당 연도의 해당 월의 마지막 날
+        String endDate = String.format("%d-%02d-%02d", year, month, getLastDayOfMonth(year, month));
+        return calendarMapper.getCalendarEventsForPeriod(userId, startDate, endDate);
+    }
 
-        // 해당 연도와 월의 마지막 날짜를 가져오는 헬퍼 메서드
-        private int getLastDayOfMonth(int year, int month) {
-            Calendar cal = Calendar.getInstance();
-            cal.set(year, month - 1, 1);
-            return cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        }
+    // 해당 연도와 월의 마지막 날짜를 가져오는 헬퍼 메서드
+    private int getLastDayOfMonth(int year, int month) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(year, month - 1, 1);
+        return cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
 
-        //개인 캘린더 일정 목록
-        public List<AllMyCalendarEventDto> getMyAllEvents(String userId) {
-            return calendarMapper.getMyAllCalendarEvents(userId);
-        }
+    // 개인 캘린더 일정 목록
+    public List<AllMyCalendarEventDto> getMyAllEvents(String userId) {
+        return calendarMapper.getMyAllCalendarEvents(userId);
+    }
 
-    // 캘린더 일정 추가
+    @Transactional
     public AllMyCalendarEventDto addEvent(AllMyCalendarEventDto addEventDto, String userId, String userName) {
+        LocalDateTime eventDateTime = LocalDate.parse(addEventDto.getCalEventDate()).atStartOfDay();
+
         AllMyCalendarEventDto newEvent = AllMyCalendarEventDto.builder()
-                .calEventDate(LocalDate.now())
+                .calEventDate(eventDateTime.toString())
                 .calEventTitle(addEventDto.getCalEventTitle())
                 .calEventDescription(addEventDto.getCalEventDescription())
                 .calEventCreateAt(LocalDateTime.now())
                 .calEventUpdateAt(LocalDateTime.now())
                 .userId(userId)
                 .userName(userName)
-                .colorIndexId(addEventDto.getColorIndexId()) // Set from the request
+                .colorIndexId(addEventDto.getColorIndexId())
                 .build();
+
         calendarMapper.insertCalendarEvent(newEvent); // 실제로 이벤트를 삽입하는 코드
         return newEvent;
     }
 
-    //개인, 팀 캘린더 일정 수정
+    // 개인, 팀 캘린더 일정 수정
     public void updateCalEvent(AllMyCalendarEventDto allMyCalendarEvent) {
         calendarMapper.updateCalEvent(allMyCalendarEvent);
     }
 
-    //개인, 팀 캘린더 일정 삭제
+    // 개인, 팀 캘린더 일정 삭제
     public void deleteMyCalEvent(int calEventId) {
         calendarMapper.deleteCalendarEvent(calEventId);
     }
 
-    //팀 캘린더 일정 목록
-    public List<AllMyTeamCalendarEventDto> getMyTeamEvents(String departmentId) {return calendarMapper.getMyAllTeamCalendarEvents(departmentId);
+    // 팀 캘린더 일정 목록
+    public List<AllMyTeamCalendarEventDto> getMyTeamEvents(String departmentId) {
+        return calendarMapper.getMyAllTeamCalendarEvents(departmentId);
     }
-    }
+}
