@@ -180,10 +180,10 @@
                 <a href="#">
                     <div class="right-box">우빈2</div>
                 </a>
-                <a href="/calendar/view">
+                <a href="/myCalendar/view">
                     <div class="right-box">달력</div>
                 </a>
-                <a href="/calendar/view">
+                <a href="/myCalendar/view">
                     <div class="right-box">팀 달력</div>
                 </a>
                 <a href="/viewTodo/personal">
