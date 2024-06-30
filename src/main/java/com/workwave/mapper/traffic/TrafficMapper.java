@@ -1,4 +1,4 @@
-package com.workwave.mapper;
+package com.workwave.mapper.traffic;
 
 import com.workwave.common.traffic.myInfoPage;
 import com.workwave.dto.traffic.request.totalTrafficInfoDto;
@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface trafficMapper {
+public interface TrafficMapper {
 
     // 선택 교통내용 저장
     boolean save(trafficInfoDto trafficInfo);

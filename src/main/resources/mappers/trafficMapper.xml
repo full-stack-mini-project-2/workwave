@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.workwave.mapper.trafficMapper">
+<mapper namespace="com.workwave.mapper.traffic.TrafficMapper">
     <insert id="save" >
         INSERT INTO traffic
         (user_id , arrival, departure, station, need_Time , regDateTime)

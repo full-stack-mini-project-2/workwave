@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.workwave.mapper.trafficMapper.trafficViewMapper">
+    <select id="favoriteFindStation" resultType="com.workwave.dto.traffic.response.StationViewResponseDto">
+        SELECT t.user_id, t.arrival, t.departure, COALESCE(sv.view_count, 0) AS view_count
+        FROM traffic t
+        LEFT JOIN station_views sv ON t.traffic_id = sv.traffic_id
+        WHERE t.user_id = #{userId}
+        ORDER BY sv.view_count DESC
+        LIMIT 5
+    </select>
+
+    <insert id="station_views" >
+        INSERT INTO traffic
+        (traffic_id , arrival, departure, arrival, viewCount)
+        VALUES
+        (#{trafficId}, #{userId}, #{departure}, #{arrival}, #{viewCount})
+    </insert>
+
+    <select id="findOne" resultType="com.workwave.dto.traffic.response.StationViewResponseDto">
+        SELECT user_id, arrival, departure, view_count
+        FROM station_views
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>
+

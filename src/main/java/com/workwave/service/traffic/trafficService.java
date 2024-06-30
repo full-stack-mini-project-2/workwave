@@ -4,8 +4,10 @@ package com.workwave.service.traffic;
 
 import com.workwave.common.traffic.myInfoPage;
 import com.workwave.dto.traffic.request.totalTrafficInfoDto;
+import com.workwave.dto.traffic.response.StationViewResponseDto;
 import com.workwave.dto.traffic.response.trafficInfoDto;
-import com.workwave.mapper.trafficMapper;
+import com.workwave.mapper.traffic.TrafficMapper;
+import com.workwave.mapper.trafficMapper.trafficViewMapper;
 import com.workwave.util.LoginUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,16 +15,20 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 @Builder
 public class trafficService {
 
-    private final trafficMapper trafficMapper;
+    private final TrafficMapper trafficMapper;
+    private final TrafficViewService trafficViewService;
+    private final trafficViewMapper trafficViewMapper;
 
-    public boolean save(trafficInfoDto trafficInfo){
+    public boolean save(trafficInfoDto trafficInfo, HttpSession session) {
 
         trafficInfoDto newTraffic = trafficInfo.builder()
                 .userId(trafficInfo.getUserId())
@@ -33,17 +39,50 @@ public class trafficService {
                 .regDateTime(LocalDateTime.now())
                 .build();
 
+        String userId = LoginUtil.getLoggedInUser(session).getUserId();
+
+        List<StationViewResponseDto> result = trafficViewMapper.favoriteFindStation(userId);
+
+        boolean foundExisting = false;
+
+        for (StationViewResponseDto dto : result) {
+            if (userId.equals(dto.getUserId())) {
+                if (dto.getDeparture().equals(newTraffic.getDeparture()) && dto.getArrival().equals(newTraffic.getArrival())) {
+
+                    trafficViewService.findOne(userId);
+                    System.out.println("기존내역있음");
+                    foundExisting = true;
+                    break;
+                } else {
+                    trafficViewService.save(userId, newTraffic);
+                    System.out.println("기존내역없음");
+                }
+            }
+        }
+
+
         return trafficMapper.save(newTraffic);
     }
 
-    public List<totalTrafficInfoDto> findAll(myInfoPage page, HttpSession session){
-
+    public List<totalTrafficInfoDto> findAll(myInfoPage page, HttpSession session, String sort) {
         String userId = LoginUtil.getLoggedInUser(session).getUserId();
-
         page.setUserId(userId);
 
         List<totalTrafficInfoDto> trafficList = trafficMapper.findAll(page);
 
+        if ("departure".equals(sort)) {
+            trafficList = trafficList.stream()
+                    .sorted(Comparator.comparing(totalTrafficInfoDto::getDeparture))
+                    .collect(Collectors.toList());
+        } else if ("arrival".equals(sort)) {
+            trafficList = trafficList.stream()
+                    .sorted(Comparator.comparing(totalTrafficInfoDto::getArrival))
+                    .collect(Collectors.toList());
+        } else if ("regDate".equals(sort)) {
+            trafficList = trafficList.stream()
+                    .sorted(Comparator.comparing(totalTrafficInfoDto::getRegDateTime))
+                    .collect(Collectors.toList());
+        }
 
         return trafficList;
     }

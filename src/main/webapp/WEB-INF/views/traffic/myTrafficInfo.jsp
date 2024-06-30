@@ -7,33 +7,44 @@ uri="http://java.sun.com/jsp/jstl/core" %>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
     <script defer type="text/javascript" src="assets/js/traffic/myTrafficInfo.js"></script>
+
+    <link rel="stylesheet" href="assets/css/traffic/myTrafficInfo.css">
+
   </head>
   <body>
-    <select class="form-select" name="year" id="year">년도별</select>
-    <select class="form-select" name="month" id="month">월별</select>
-    <select>
-      <option value="date">날짜별</option>
-      <option value="staion">역</option>
-      <option value="date">등록일</option>
-    </select>
+    <div class="form-container">
+      <form id="sortForm" action="/traffic-myInfo" method="get">
+        <select class="form-select" name="sort" id="sort">
+          <option value="departure">출발역</option>
+          <option value="arrival">도착역</option>
+          <option value="regDate">등록일</option>
+        </select>
+        <button type="submit">정렬</button>
+      </form>
+    </div>
+
     <c:set var="isFirst" value="true" />
     <c:forEach var="traffic" items="${totalTraffic}">
-        <c:if test="${isFirst}">
-            <h1>${traffic.userId} 조회했던 정보</h1>
-            <c:set var="isFirst" value="false" />
-        </c:if>
-        <div>
-            <p>출발역: ${traffic.departure}</p>
-            <p>도착역: ${traffic.arrival}</p>
-            <p>등록 일시: ${traffic.regDateTime}</p>
-        </div>
-        <hr>
-    </c:forEach>
-    <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
-      <li data-page-num="${i}">
-        <a  href="/traffic-myInfo?pageNo=${i}">${i}</a> 
-      </li>
+      <c:if test="${isFirst}">
+        <h1>${traffic.userId} 조회했던 정보 <a href="/traffic-rank">조회 리스트 Best</a></h1>
+        <c:set var="isFirst" value="false" />
+      </c:if>
+      <div class="traffic-info">
+        <span>출발역: ${traffic.departure}</span>
+        <span>도착역: ${traffic.arrival}</span>
+        <span class="regDate" data-reg-date="${traffic.regDateTime}">등록 일시: ${traffic.regDateTime}</span>
+      </div>
     </c:forEach>
 
+    <ul class="pagination">
+      <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
+        <li data-page-num="${i}">
+          <a href="/traffic-myInfo?pageNo=${i}">${i}</a>
+        </li>
+      </c:forEach>
+    </ul>
+
+    <br>
+    <a href="traffic-map"><h1>이전으로 돌아가기</h1></a>
   </body>
 </html>

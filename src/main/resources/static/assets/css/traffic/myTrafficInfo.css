@@ -1,0 +1,16 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center; /* 페이지 전체를 가운데 정렬 */
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center; /* 페이지 번호들을 가운데 정렬 */
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px; /* 간격 조정을 위한 마진 */
+  }
+
+  .pagination li {
+    margin: 0 5px;
+  }
