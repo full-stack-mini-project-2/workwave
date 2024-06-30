@@ -103,54 +103,20 @@ public class CalendarApiController {
         return ResponseEntity.ok(response);
     }
 
-
-
-
-//    @PostMapping("/addEvent")
-//    public ResponseEntity<Map<String, Object>> createCalEvent(
-//            @RequestBody AllMyCalendarEventDto addEventDto,
-//            HttpSession session
-//    ) {
-//        // addEventDto에서 날짜와 시간을 처리
-//        LocalDate eventDate = addEventDto.getCalEventDate(); // LocalDate 필드로 받음
-//
-//        String userName = LoginUtil.getLoggedInUserInfoList(session).get(0).getNickName();
-//        String userId = LoginUtil.getLoggedInUserAccount(session);
-//        // 비 로그인자 방지
-//        if(userId == null) {
-//            throw new RuntimeException("User is not logged in");
-//        }
-//
-//        boolean isSuccess = false;
-//        String message = "Failed to create event";
-//
-//        try {
-//            AllMyCalendarEventDto newEvent = calendarService.addEvent(addEventDto, userId, userName);
-//            isSuccess = newEvent != null;
-//            message = isSuccess ? "Event created successfully" : message;
-//        } catch (Exception e) {
-//            message = e.getMessage();
-//        }
-//
-//        Map<String, Object> response = new HashMap<>();
-//        response.put("success", isSuccess);
-//        response.put("message", message);
-//
-//        return ResponseEntity.ok(response);
-////        AllMyCalendarEventDto newEvent = calendarService.addEvent(addEventDto, userId, userName);
-////        return ResponseEntity.ok(newEvent);
-//        }
+    //개인 캘린더 수정
+    @PostMapping("/updateEvent")
+    public String updateCalEvent(HttpSession session) {
+    return null;
     }
 
-    //개인 캘린더 일정 수정
-
-    //개인 캘린더 일정 삭제
-
-    //개인 캘린더 색상으로 검색
-
-    //개인 캘린더 제목으로 검색
+    //개인 캘린더 삭제
+    @GetMapping("deleteEvent")
+    public String deleteCalEvent(int calEventId, HttpSession session) {
+        return null;
+    }
 
 
+}
 
 
 

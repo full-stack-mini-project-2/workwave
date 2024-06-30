@@ -69,12 +69,6 @@
       float: right;
     }
 
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
 
     .color-picker {
       display: flex;
@@ -128,17 +122,19 @@
   </style>
 </head>
 <body>
+<%--일정 삭제 모달 --%>
+<i class="fa-regular fa-square-minus fa-2xs" style="color: #ff2600;"></i>
 
 
-
-<%-- 이벤트 상세 내용 --%>
+<!-- 이벤트 상세 및 일정 수정 모달 -->
 <div id="eventModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <i class="fa-solid fa-pencil" style="color: #444444;"></i>
+    <i class="fa-solid fa-pencil" style="color: #444444;" id="editEvent"></i>
     <ul id="eventDetails">
-      <!-- 여기에 이벤트 세부 정보가 추가-->
+      <!-- 여기에 이벤트 세부 정보가 추가 -->
     </ul>
+    <button id="saveChangesButton" style="display:none;">Save Changes</button>
   </div>
 </div>
 
@@ -187,11 +183,138 @@
 </div>
 
 <script>
-
-
   // JSON 형식의 문자열을 자바스크립트 객체로 반환하기
   const myCalEvents = JSON.parse('<c:out value="${mycalEvents}" escapeXml="false" />'); // 전역변수로 놓고 렌더링
-  console.log("mycalevents",myCalEvents);
+  console.log("mycalevents", myCalEvents);
+
+  const userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  let currentYear = new Date().getFullYear();
+  let currentMonth = new Date().getMonth();
+
+  // 초기 데이터 로드
+  fetchEvents(currentYear, currentMonth);
+
+  function fetchEvents(year, month) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/api/calendar/myEvents?year=\${year}&month=\${month + 1}`, true);
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          const data = JSON.parse(xhr.responseText);
+          renderCalendar(data, year, month);
+        } else {
+          console.error('Failed to fetch calendar events:', xhr.status, xhr.statusText);
+        }
+      }
+    };
+
+    xhr.onerror = function () {
+      console.error('Failed to fetch calendar events: Network Error');
+    };
+
+    xhr.send();
+  }
+
+  renderCalendar();
+
+
+  //화면에 달력 데이터 렌더링
+  function renderCalendar(events, year, month) {
+    const firstDay = new Date(year, month, 1).getDay();
+    const lastDate = new Date(year, month + 1, 0).getDate();
+
+    let calendarHtml = '<table class="calendar">';
+    calendarHtml += '<tr>';
+    calendarHtml += '<th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>';
+    calendarHtml += '</tr><tr>';
+
+    for (let i = 0; i < firstDay; i++) {
+      calendarHtml += '<td></td>';
+    }
+
+    for (let date = 1; date <= lastDate; date++) {
+      const day = (firstDay + date - 1) % 7;
+      if (day === 0 && date > 1) {
+        calendarHtml += '</tr><tr>';
+      }
+
+      const yearStr = year.toString();
+      const monthStr = (month + 1 < 10 ? '0' + (month + 1) : month + 1).toString();
+      const dateStr = (date < 10 ? '0' + date : date).toString();
+
+      const fullDateStr = `\${yearStr}-\${monthStr}-\${dateStr}`;
+
+      calendarHtml += `<td><div>\${date}</div>`;
+
+      // 해당 날짜에 해당하는 이벤트 필터링
+      const filteredEvents = events.filter(event => event.calEventDate.startsWith(fullDateStr));
+
+      if (filteredEvents.length > 0) {
+        filteredEvents.forEach(event => {
+          const colorClass = `event-\${getColorByIndex(event.colorIndexId)}`;
+          calendarHtml += `<div class="event \${colorClass}" onclick="openModal(\${event.calEventId})">\${event.calEventTitle}</div>`;
+        });
+      }
+
+      calendarHtml += '</td>';
+    }
+
+    calendarHtml += '</tr></table>';
+
+    document.getElementById('calendar').innerHTML = calendarHtml;
+    updateCurrentMonth(year, month);
+  }
+
+  // 현재 날짜 업데이트 함수
+  function updateCurrentMonth(year, month) {
+    document.getElementById('current-month').textContent = `\${monthNames[month]} \${year}`;
+  }
+
+  // colorindex에 따라 색 부여하기
+  function getColorByIndex(index) {
+    switch (index) {
+      case 1:
+        return 'lightblue';
+      case 2:
+        return 'lightgreen';
+      case 3:
+        return 'lightcoral';
+      case 4:
+        return 'lightsalmon';
+      case 5:
+        return 'lightseagreen';
+      default:
+        return 'lightgray';
+    }
+  }
+
+  // Event Modal 닫기 로직 수정
+  document.addEventListener('click', function (event) {
+    const modal = document.getElementById('eventModal');
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  // 일정 추가 모달 (addEventModal) 개선
+  document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
+    const addEventModal = document.getElementById('addEventModal');
+    addEventModal.style.display = 'block';
+
+    // 닫기 버튼 클릭 시 모달 닫기
+    const closeBtn = addEventModal.querySelector('.close');
+    closeBtn.onclick = function () {
+      addEventModal.style.display = 'none';
+    };
+
+    // 초기화 로직 추가 (모달이 열릴 때 입력 필드 초기화)
+    document.getElementById('calEventTitle').value = '';
+    document.getElementById('calEventDate').value = '';
+    document.getElementById('calEventDescription').value = '';
+    document.getElementById('calColorIndex').value = '';
+  });
 
 
   // 일정 추가 모달 열기
@@ -199,242 +322,247 @@
     const addEventModal = document.getElementById('addEventModal');
     addEventModal.style.display = 'block';
 
-    // 모달 외부를 클릭하면 닫기
-    window.onclick = function (event) {
-      if (event.target == addEventModal) {
-        addEventModal.style.display = 'none';
-      }
-    };
-
-    // 닫기 버튼 클릭 시 모달 닫기
-    const closeBtn = addEventModal.querySelector('.close');
-    closeBtn.onclick = function () {
-      addEventModal.style.display = 'none';
-    };
-  });
-
-  // 원하는 형광 색상 선택
-  document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
-    colorDiv.addEventListener('click', function () {
-      document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+    // 원하는 형광 색상 선택
+    document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
+      colorDiv.addEventListener('click', function () {
+        document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+      });
     });
   });
 
+    // 이벤트 상세보기
+    function openModal(eventId) {
+      console.log('openModal called with eventId:', eventId);
 
-  // 이벤트 상세보기
-  function openModal(eventId) {
-    console.log('openModal called with eventId:', eventId);
+      const selectedEvent = myCalEvents.find(event => event.calEventId === eventId);
+      console.log('Selected Event:', selectedEvent);
 
-    const selectedEvent = myCalEvents.find(event => event.calEventId === eventId);
-    console.log('Selected Event:', selectedEvent);
+      const modal = document.getElementById('eventModal');
+      const modalContent = modal.querySelector('.modal-content');
+      const eventDetails = modal.querySelector('#eventDetails');
 
-    const modal = document.getElementById('eventModal');
-    const modalContent = modal.querySelector('.modal-content');
-    const eventDetails = modal.querySelector('#eventDetails');
 
-    eventDetails.innerHTML = `
-    <li><strong>제목:</strong> \${selectedEvent.calEventTitle}</li>
-    <li><strong>이벤트 내용:</strong> \${selectedEvent.calEventDescription}</li>
-    <li><strong>이벤트 날짜:</strong> \${selectedEvent.calEventDate}</li>
-    <li><strong>작성자:</strong> \${selectedEvent.userName}</li>
-  `;
-    // <li><strong>색상:</strong> \${getColorByIndex(selectedEvent.colorIndexId)}</li>
-    // } else {
-    //   eventDetails.innerHTML = '<li>이벤트 정보를 가져올 수 없습니다.</li>';
-    // }
+      eventDetails.innerHTML = `
+        <li><strong>제목:</strong> \${selectedEvent.calEventTitle}</li>
+        <li><strong>이벤트 내용:</strong> \${selectedEvent.calEventDescription}</li>
+        <li><strong>이벤트 날짜:</strong> \${selectedEvent.calEventDate}</li>
+        <li><strong>작성자:</strong> \${selectedEvent.userName}</li>
+      `;
 
-    //모달 보이기
-    modal.style.display = 'block';
+      // 수정 버튼 클릭 시 수정 기능 활성화
+      const editButton = modal.querySelector('#editEvent');
+      const saveChangesButton = modal.querySelector('#saveChangesButton');
 
-    // 모달 외부를 클릭하면 닫기
-    window.onclick = function (event) {
-      if (event.target === modal) {
-        modal.style.display = 'none';
-      }
-    };
+      // 수정 버튼 클릭 시 수정 기능 활성화
+      editButton.onclick = function () {
+        const titleInput = document.createElement('input');
+        titleInput.type = 'text';
+        titleInput.id = 'edit-title';
+        titleInput.value = selectedEvent.calEventTitle;
+        // titleSpan.textContent = ''; // Clear existing content
+        // titleSpan.appendChild(titleInput);
 
-    // 닫기 버튼 클릭 시 모달 닫기
-    const closeBtn = modal.querySelector('.close');
-    closeBtn.onclick = function () {
-      modal.style.display = 'none';
-    };
-  }
+        const dateInput = document.createElement('input');
+        dateInput.type = 'date';
+        dateInput.id = 'edit-date';
+        dateInput.value = selectedEvent.calEventDate;
 
-  document.addEventListener('DOMContentLoaded', function () {
+        // dateSpan.textContent = ''; // Clear existing content
+        // dateSpan.appendChild(dateInput);
 
-    // 첫 번째 이벤트에서 userId 속성을 가져옴
-    const userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const descriptionInput = document.createElement('input');
+        descriptionInput.type = 'text';
+        descriptionInput.id = 'edit-description';
+        descriptionInput.value = selectedEvent.calEventDescription;
+        // descriptionSpan.textContent = ''; // Clear existing content
+        // descriptionSpan.appendChild(descriptionInput);
 
-    let currentYear = new Date().getFullYear();
-    let currentMonth = new Date().getMonth();
+        saveChangesButton.style.display = 'block';
+      };
 
-    // 초기 데이터 로드
-    fetchEvents(currentYear, currentMonth);
 
-    // 현재 날짜 업데이트
-    function updateCurrentMonth(year, month) {
-      document.getElementById('current-month').textContent = `\${monthNames[month]} \${year}`;
+      editButton.onclick = function () {
+        const titleSpan = document.getElementById('event-title');
+        const dateSpan = document.getElementById('event-date');
+        const descriptionSpan = document.getElementById('event-description');
+
+        // Populate inputs with current event details
+        titleSpan.innerHTML = `<input type="text" id="edit-title" value="\${selectedEvent.calEventTitle}">`;
+        dateSpan.innerHTML = `<input type="date" id="edit-date" value="\${selectedEvent.calEventDate}">`;
+        descriptionSpan.innerHTML = `<input type="text" id="edit-description" value="\${selectedEvent.calEventDescription}">`;
+
+        saveChangesButton.style.display = 'block';
+      };
+
+      // Save edited event
+      saveChangesButton.onclick = function () {
+        const updatedTitle = document.getElementById('edit-title').value;
+        const updatedDate = document.getElementById('edit-date').value;
+        const updatedDescription = document.getElementById('edit-description').value;
+
+        // Validate inputs
+        if (updatedTitle && updatedDate) {
+          const updateEvent = {
+            calEventId: selectedEvent.calEventId,
+            calEventTitle: updatedTitle,
+            calEventDate: updatedDate,
+            calEventDescription: updatedDescription,
+            calColorIndex: selectedEvent.calColorIndex
+          };
+
+          // Send update request via AJAX
+          fetch('/api/calendar/updateEvent', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updateEvent),
+          })
+                  .then(response => response.json())
+                  .then(data => {
+                    if (data.success) {
+                      // Update local data
+                      selectedEvent.calEventTitle = updatedTitle;
+                      selectedEvent.calEventDate = updatedDate;
+                      selectedEvent.calEventDescription = updatedDescription;
+
+                      // Close modal and re-render calendar
+                      modal.style.display = 'none';
+                      //입력한 일정으로 달력화면 보여주기
+                      renderCalendar(myCalEvents, new Date(updatedDate).getFullYear(), new Date(updatedDate).getMonth());
+                    } else {
+                      alert('Error saving event: ' + data.message);
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error saving event');
+                  });
+        } else {
+          alert('제목과 날짜를 입력하세요.');
+        }
+      };
+      /*
+
+      // Delete event 버튼 클릭 시 이벤트 삭제
+      const deleteButton = modal.querySelector('#deleteEvent');
+      deleteButton.onclick = function () {
+        if (confirm('정말 이 이벤트를 삭제하시겠습니까?')) {
+          fetch('/api/calendar/deleteEvent', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({calEventId: selectedEvent.calEventId}),
+          })
+                  .then(response => response.json())
+                  .then(data => {
+                    if (data.success) {
+                      // Remove event from local data
+                      const index = myCalEvents.findIndex(event => event.calEventId === selectedEvent.calEventId);
+                      if (index !== -1) {
+                        myCalEvents.splice(index, 1);
+                      }
+
+                      // Close modal and re-render calendar
+                      modal.style.display = 'none';
+                      renderCalendar(myCalEvents, new Date(selectedEvent.calEventDate).getFullYear(), new Date(selectedEvent.calEventDate).getMonth());
+                    } else {
+                      alert('Error deleting event: ' + data.message);
+                    }
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error deleting event');
+                  });
+        }
+      };
+
+       */
+      // 모달 보이기
+      modal.style.display = 'block';
+
+      // 모달 외부를 클릭하면 닫기
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      };
     }
 
-    function fetchEvents(year, month) {
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', `/api/calendar/myEvents?year=\${year}&month=\${month + 1}`, true);
+      // 일정 저장
+      document.getElementById('saveEventButton').addEventListener('click', function () {
+        const title = document.getElementById('calEventTitle').value || 'Event';
+        const date = document.getElementById('calEventDate').value || new Date().toISOString().split('T')[0]; // 날짜만 가져오기
+        const description = document.getElementById('calEventDescription').value || 'None';
+        const colorIndex = document.getElementById('calColorIndex').value || null;
 
-      console.log(`/api/calendar/myEvents?year=\${year}&month=\${month + 1}`);
+        // 일정 저장 내용
+        const newEvent = {
+          calEventId: myCalEvents.length + 1,
+          calEventDate: date,
+          calEventTitle: title,
+          calEventDescription: description,
+          calEventCreateAt: new Date().toISOString(),
+          colorIndexId: colorIndex,
+          userName: 'User'
+        };
 
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            const data = JSON.parse(xhr.responseText);
-            renderCalendar(data, year, month);
+        // AJAX 요청으로 이벤트 저장
+        fetch('/api/calendar/addEvent', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newEvent),
+        })
+                .then(response => response.json())
+                .then(data => {
+                  if (data.success) {
+                    myCalEvents.push(newEvent);
+                    renderCalendar(myCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
+                    document.getElementById('addEventModal').style.display = 'none';
+                  } else {
+                    alert('Error saving event: ' + data.message);
+                  }
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                  alert('Error saving event');
+                });
+      });
+
+
+      // DOMContentLoaded 이벤트 발생 시 실행
+      document.addEventListener('DOMContentLoaded', function () {
+
+        // 이전 달로 넘어가기
+        document.getElementById('prev-month').addEventListener('click', function () {
+          if (currentMonth === 0) {
+            currentYear--;
+            currentMonth = 11;
           } else {
-            console.error('Failed to fetch calendar events:', xhr.status, xhr.statusText);
+            currentMonth--;
           }
-        }
-      };
+          fetchEvents(currentYear, currentMonth);
+        });
 
-      xhr.onerror = function () {
-        console.error('Failed to fetch calendar events: Network Error');
-      };
+        //다음달로 넘어가기
+        document.getElementById('next-month').addEventListener('click', function () {
+          if (currentMonth === 11) {
+            currentYear++;
+            currentMonth = 0;
+          } else {
+            currentMonth++;
+          }
+          fetchEvents(currentYear, currentMonth);
+        });
+        renderCalendar();
+      });
 
-      xhr.send();
-    }
-
-    function renderCalendar(events, year, month) {
-      const firstDay = new Date(year, month, 1).getDay();
-      const lastDate = new Date(year, month + 1, 0).getDate();
-
-      let calendarHtml = '<table class="calendar">';
-      calendarHtml += '<tr>';
-      calendarHtml += '<th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>';
-      calendarHtml += '</tr><tr>';
-
-      for (let i = 0; i < firstDay; i++) {
-        calendarHtml += '<td></td>';
-      }
-
-      for (let date = 1; date <= lastDate; date++) {
-        const day = (firstDay + date - 1) % 7;
-        if (day === 0 && date > 1) {
-          calendarHtml += '</tr><tr>';
-        }
-
-        const yearStr = year.toString();
-        const monthStr = (month + 1 < 10 ? '0' + (month + 1) : month + 1).toString();
-        const dateStr = (date < 10 ? '0' + date : date).toString();
-
-        const fullDateStr = `\${yearStr}-\${monthStr}-\${dateStr}`;
-
-        calendarHtml += `<td><div>\${date}</div>`;
-
-        // 해당 날짜에 해당하는 이벤트 필터링
-        const filteredEvents = events.filter(event => event.calEventDate.startsWith(fullDateStr));
-
-        if (filteredEvents.length > 0) {
-          filteredEvents.forEach(event => {
-            const colorClass = `event-\${getColorByIndex(event.colorIndexId)}`;
-            calendarHtml += `<div class="event \${colorClass}" onclick="openModal(\${event.calEventId})">\${event.calEventTitle}</div>`;
-          });
-        }
-
-        calendarHtml += '</td>';
-      }
-
-      calendarHtml += '</tr></table>';
-
-      document.getElementById('calendar').innerHTML = calendarHtml;
-      updateCurrentMonth(year, month);
-    }
-
-    // colorindex에 따라 색 부여하기
-    function getColorByIndex(index) {
-      switch (index) {
-        case 1:
-          return 'lightblue';
-        case 2:
-          return 'lightgreen';
-        case 3:
-          return 'lightcoral';
-        case 4:
-          return 'lightsalmon';
-        case 5:
-          return 'lightseagreen';
-        default:
-          return 'lightgray';
-      }
-    }
-
-    // 이전 달로 넘어가기
-    document.getElementById('prev-month').addEventListener('click', function () {
-      if (currentMonth === 0) {
-        currentYear--;
-        currentMonth = 11;
-      } else {
-        currentMonth--;
-      }
-      fetchEvents(currentYear, currentMonth);
-    });
-
-    //다음달로 넘어가기
-    document.getElementById('next-month').addEventListener('click', function () {
-      if (currentMonth === 11) {
-        currentYear++;
-        currentMonth = 0;
-      } else {
-        currentMonth++;
-      }
-      fetchEvents(currentYear, currentMonth);
-    });
-
-    // 일정 저장
-    document.getElementById('saveEventButton').addEventListener('click', function () {
-      const title = document.getElementById('calEventTitle').value || 'Event';
-      const date = document.getElementById('calEventDate').value || new Date().toISOString().split('T')[0]; // 날짜만 가져오기
-      const description = document.getElementById('calEventDescription').value || 'None';
-      const colorIndex = document.getElementById('calColorIndex').value || null;
-
-      // 일정 저장 내용
-      const newEvent = {
-        calEventId: myCalEvents.length + 1,
-        calEventDate: date,
-        calEventTitle: title,
-        calEventDescription: description,
-        calEventCreateAt: new Date().toISOString(),
-        colorIndexId: colorIndex,
-        userName: 'User'
-      };
-
-      // AJAX 요청으로 이벤트 저장
-      fetch('/api/calendar/addEvent', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newEvent),
-      })
-              .then(response => response.json())
-              .then(data => {
-                if (data.success) {
-                  myCalEvents.push(newEvent);
-                  renderCalendar(myCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
-                  document.getElementById('addEventModal').style.display = 'none';
-                } else {
-                  alert('Error saving event: ' + data.message);
-                }
-              })
-              .catch(error => {
-                console.error('Error:', error);
-                alert('Error saving event');
-              });
-    });
-
-  });
 </script>
 
-
-
-<%--실제 일정--%>
+<%--현재 날짜 --%>
 <div>Formatted Date: <span id="formattedDate"><c:out value="${formattedDate}" /></span></div>
 </body>
 </html>
