@@ -101,8 +101,52 @@
         AND CE.team_calendar_id IS NULL;
     </select>
 
+<!--    개인 일정 하나 조회 -->
+    <select id="findOneMyCalEvent" resultType="allMyCalendarEventDto">
+        SELECT CE.cal_event_id,
+        CE.cal_event_date,
+        CE.cal_event_title,
+        CE.cal_event_description,
+        CE.cal_event_createAt,
+        CE.cal_event_updateAt,
+        CE.color_index_id,
+        CE.user_id,
+        CE.calendar_id,
+        U.user_name
+        FROM CalendarEvent CE
+        JOIN Users U ON CE.user_id = U.user_id
+        WHERE CE.cal_event_id = #{calEventId}
+        AND CE.team_calendar_id IS NULL;
+    </select>
+
+    <!--    팀 일정 하나 조회 -->
+    <select id="findOneTeamCalEvent" resultType="allMyTeamCalendarEventDto">
+        SELECT
+        CE.cal_event_id,
+        CE.cal_event_date,
+        CE.cal_event_title,
+        CE.cal_event_description,
+        CE.cal_event_createAt,
+        CE.cal_event_updateAt,
+        CE.color_index_id,
+        CE.notice_id,
+        CE.team_calendar_id,
+        U.user_name,
+        D.department_name
+        FROM
+        CalendarEvent CE
+        JOIN
+        Users U ON CE.user_id = U.user_id
+        JOIN
+        Department D ON CE.department_id = D.department_id
+        WHERE
+        WHERE CE.cal_event_id = #{calEventId}
+        AND CE.calendar_id IS NULL;
+    </select>
+
+
     <!-- 본인이 속한 팀 캘린더 모든 일정 리스트 조회 -->
-    <select id="getMyAllTeamCalendarEvents" resultType="allMyCalendarEventDto">
+    <select id="getMyAllTeamCalendarEvents" resultType="allMyTeamCalendarEventDto">
         SELECT
         CE.cal_event_id,
         CE.cal_event_date,
@@ -159,31 +203,38 @@
         cal_event_description,
         user_id,
         department_id,
-        team_calendar_id,
+        team_calendar_id
         <if test="colorIndexId != null">
-            color_index_id,
+            ,color_index_id
         </if>
         <if test="noticeId != null">
-            notice_id,
+            ,notice_id
         </if>
         )
-        VALUES (
+        SELECT
         #{calEventDate},
         #{calEventTitle},
         #{calEventDescription},
         #{userId},
         #{departmentId},
-        #{teamCalendarId},
+        tc.team_calendar_id
         <if test="colorIndexId != null">
-            #{colorIndexId},
+            ,#{colorIndexId}
         </if>
         <if test="noticeId != null">
-            #{noticeId},
+            ,#{noticeId}
         </if>
-        );
+        FROM
+        TeamCalendar tc
+        JOIN
+        Users u ON u.department_id = tc.department_id
+        WHERE
+        u.user_id = #{userId}
+        AND tc.department_id = #{departmentId};
     </insert>
 
-<!--    본인 및 캘린더 이벤트 수정 -->
+
+    <!--    본인 이벤트 수정 -->
     <update id="updateMyCalEvent" parameterType="allMyCalendarEventDto">
         UPDATE CalendarEvent
         SET

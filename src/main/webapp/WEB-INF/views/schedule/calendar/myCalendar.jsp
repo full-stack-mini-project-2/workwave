@@ -409,7 +409,7 @@
             calColorIndex: selectedEvent.calColorIndex
           };
 
-          // Send update request via AJAX
+          //일정 수정
           fetch('/api/calendar/updateEvent', {
             method: 'POST',
             headers: {
@@ -451,7 +451,6 @@
           modal.style.display = 'none';
         }
       };
-      /*
 
       // Delete event 버튼 클릭 시 이벤트 삭제
       const deleteButton = modal.querySelector('#deleteEvent');
@@ -487,7 +486,6 @@
         }
       };
 
-       */
     }
   // 일정 추가 모달 열기
   document.querySelector('.fa-calendar-plus').addEventListener('click', function () {

@@ -25,6 +25,12 @@ public interface CalendarMapper {
     // 팀 캘린더 일정 목록 유저 구하기
     List<AllMyTeamCalendarEventDto> getMyAllTeamCalendarEvents(@Param("userId") String userId);
 
+    //개인 일정 하나 조회
+    AllMyCalendarEventDto findOneMyCalEvent(int calEventId);
+
+    //팀 일정 하나 조회
+    AllMyTeamCalendarEventDto findOneTeamCalEvent(int calEventId);
+
     // 개인 캘린더 일정 추가하기
     void insertCalendarEvent(AllMyCalendarEventDto calendarEvent);
 

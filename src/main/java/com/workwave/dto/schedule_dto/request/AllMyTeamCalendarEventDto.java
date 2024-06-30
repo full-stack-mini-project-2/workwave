@@ -23,5 +23,6 @@ public class AllMyTeamCalendarEventDto {
     private Integer noticeId; // Integer로 선언하여 null 값을 허용
     private Integer teamCalendarId; // Integer로 선언하여 null 값을 허용
     private String userName;
+    private String departmentId;
     private String departmentName;
 }

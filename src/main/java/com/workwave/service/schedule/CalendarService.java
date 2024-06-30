@@ -3,6 +3,7 @@ package com.workwave.service.schedule;
 import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
 import com.workwave.dto.schedule_dto.request.CalendarsDto;
 import com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto;
+import com.workwave.entity.schedule.CalendarEvent;
 import com.workwave.entity.schedule.TeamCalendar;
 import com.workwave.mapper.scheduleMapper.CalendarMapper;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset; // 수정: ZoneOffset을 import 추가
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -95,8 +97,23 @@ public class CalendarService {
     }
 
     // 개인, 팀 캘린더 일정 수정
+    @Transactional
     public boolean updateCalEvent(AllMyCalendarEventDto calendarEvent) {
         try {
+            // 기존 이벤트를 가져오기
+            AllMyCalendarEventDto existingEvent = calendarMapper.findOneMyCalEvent(calendarEvent.getCalEventId());
+
+            // 업데이트할 필드 설정
+            calendarEvent.setCalEventUpdateAt(LocalDateTime.now());
+
+            if (calendarEvent.getColorIndexId() == null) {
+                if (existingEvent.getColorIndexId() == null) {
+                    calendarEvent.setColorIndexId(getDefaultColorIndex());
+                } else {
+                    calendarEvent.setColorIndexId(existingEvent.getColorIndexId());
+                }
+            }
+
             calendarMapper.updateMyCalEvent(calendarEvent);
             return true;
         } catch (Exception e) {
@@ -106,6 +123,7 @@ public class CalendarService {
     }
 
     // 개인, 팀 캘린더 일정 삭제
+    @Transactional
     public void deleteMyCalEvent(int calEventId) {
         calendarMapper.deleteCalendarEvent(calEventId);
     }
@@ -114,4 +132,10 @@ public class CalendarService {
     public List<AllMyTeamCalendarEventDto> getMyTeamEvents(String departmentId) {
         return calendarMapper.getMyAllTeamCalendarEvents(departmentId);
     }
+
+    private Integer getDefaultColorIndex() {
+        // Return default color index
+        return 1; // 예시로 기본 색인 인덱스를 1로 설정
+    }
+
 }

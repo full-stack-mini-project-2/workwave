@@ -1,5 +1,6 @@
 package com.workwave.dto.schedule_dto.request;
 
+import com.workwave.entity.schedule.CalendarEvent;
 import lombok.*;
 
 import java.time.Instant;
@@ -24,4 +25,5 @@ public class AllMyCalendarEventDto {
     private String userId;
     private Integer calendarId; // Integer로 선언하여 null 값을 허용
     private String userName;
+
 }

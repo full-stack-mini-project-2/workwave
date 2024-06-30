@@ -16,7 +16,7 @@
 <!--        캘린더 dto -->
         <typeAlias alias="calendarsDto" type="com.workwave.dto.schedule_dto.request.CalendarsDto"/>
         <typeAlias alias="allMyCalendarEventDto" type="com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto"/>
-        <typeAlias alias="teamCalendarEventDto" type="com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto"/>
+        <typeAlias alias="allMyTeamCalendarEventDto" type="com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto"/>
         <typeAlias alias="AllCalendarEvents" type="com.workwave.entity.schedule.CalendarEvent"/>
 
 <!--        투두리스트 dto -->

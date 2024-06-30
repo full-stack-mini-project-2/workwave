@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,7 +105,7 @@ public class CalendarApiController {
         return ResponseEntity.ok(response);
     }
 
-    //개인 일정 수정
+    // Update an existing event
     @PostMapping("/updateEvent")
     public ResponseEntity<Map<String, Object>> editMyEvent(@RequestBody AllMyCalendarEventDto myCalendarEventDto, HttpSession session) {
         // Get userId from session
@@ -112,8 +113,31 @@ public class CalendarApiController {
         if (userId == null) {
             return ResponseEntity.status(401).body(Map.of("message", "User is not logged in"));
         }
-
         try {
+            // Ensure calEventUpdateAt is not null before parsing
+            if (myCalendarEventDto.getCalEventUpdateAt() == null) {
+                // Handle the case where calEventUpdateAt is not provided by client
+                // For example, you may choose to use the current time as updatedAt
+                LocalDateTime updatedAt = LocalDateTime.now(); // Or any default value you prefer
+                myCalendarEventDto.setCalEventUpdateAt(updatedAt);
+            } else {
+                // ISO-8601 형식으로 전송된 updateAt 문자열을 파싱
+                LocalDateTime updatedAt = LocalDateTime.parse(myCalendarEventDto.getCalEventUpdateAt().toString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                myCalendarEventDto.setCalEventUpdateAt(updatedAt);
+            }
+
+            // Update the event with additional fields
+            myCalendarEventDto.setUserId(userId);
+
+//        try {
+//             ISO-8601 형식으로 전송된 updateAt 문자열을 파싱하여 LocalDateTime 객체로 변환
+//            LocalDateTime updatedAt = LocalDateTime.parse(myCalendarEventDto.getCalEventUpdateAt().toString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+            // Update the event DTO with additional fields
+//            myCalendarEventDto.setUserId(userId);
+//            myCalendarEventDto.setCalEventUpdateAt(updatedAt); // 이 부분에서 LocalDateTime 값을 DTO에 설정해줍니다.
+
+            // 캘린더 서비스를 통해 이벤트 업데이트를 시도
             boolean success = calendarService.updateCalEvent(myCalendarEventDto);
             if (success) {
                 return ResponseEntity.ok(Map.of("success", true, "message", "Event updated successfully"));
