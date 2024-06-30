@@ -123,7 +123,7 @@
 </head>
 <body>
 <%--일정 삭제 모달 --%>
-<i class="fa-regular fa-square-minus fa-2xs" style="color: #ff2600;"></i>
+<i class="fa-regular fa-trash-can" style="color: #929292;"></i>
 
 
 <!-- 이벤트 상세 및 일정 수정 모달 -->
@@ -132,7 +132,7 @@
     <span class="close">&times;</span>
     <i class="fa-solid fa-pencil" style="color: #444444;" id="editEvent"></i>
     <ul id="eventDetails">
-      <!-- 여기에 이벤트 세부 정보가 추가 -->
+      <!-- Event details will be dynamically added here -->
     </ul>
     <button id="saveChangesButton" style="display:none;">Save Changes</button>
   </div>
@@ -143,7 +143,6 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <button class="fa-add" type="button" id="saveEventButton">추가</button>
-
     <h2>일정 추가</h2>
     <form id="addEventForm">
       <label for="calEventTitle">제목:</label>
@@ -349,50 +348,53 @@
         <li><strong>작성자:</strong> \${selectedEvent.userName}</li>
       `;
 
-      // 수정 버튼 클릭 시 수정 기능 활성화
       const editButton = modal.querySelector('#editEvent');
       const saveChangesButton = modal.querySelector('#saveChangesButton');
 
-      // 수정 버튼 클릭 시 수정 기능 활성화
       editButton.onclick = function () {
-        const titleInput = document.createElement('input');
-        titleInput.type = 'text';
-        titleInput.id = 'edit-title';
-        titleInput.value = selectedEvent.calEventTitle;
-        // titleSpan.textContent = ''; // Clear existing content
-        // titleSpan.appendChild(titleInput);
+        const titleSpan = eventDetails.querySelector('#eventDetails li:nth-child(1)');
+        const descriptionSpan = eventDetails.querySelector('#eventDetails li:nth-child(2)');
+        const dateSpan = eventDetails.querySelector('#eventDetails li:nth-child(3)');
 
-        const dateInput = document.createElement('input');
-        dateInput.type = 'date';
-        dateInput.id = 'edit-date';
-        dateInput.value = selectedEvent.calEventDate;
+        titleSpan.innerHTML = `<input type="text" id="edit-title" value="\${selectedEvent.calEventTitle}">`;
+        descriptionSpan.innerHTML = `<input type="text" id="edit-description" value="\${selectedEvent.calEventDescription}">`;
+        dateSpan.innerHTML = `<input type="date" id="edit-date" value="\${selectedEvent.calEventDate}">`;
+
+        saveChangesButton.style.display = 'block';
+      };
+
+
+
+        // const dateInput = document.createElement('input');
+        // dateInput.type = 'date';
+        // dateInput.id = 'edit-date';
+        // dateInput.value = selectedEvent.calEventDate;
 
         // dateSpan.textContent = ''; // Clear existing content
         // dateSpan.appendChild(dateInput);
 
-        const descriptionInput = document.createElement('input');
-        descriptionInput.type = 'text';
-        descriptionInput.id = 'edit-description';
-        descriptionInput.value = selectedEvent.calEventDescription;
+        // const descriptionInput = document.createElement('input');
+        // descriptionInput.type = 'text';
+        // descriptionInput.id = 'edit-description';
+        // descriptionInput.value = selectedEvent.calEventDescription;
         // descriptionSpan.textContent = ''; // Clear existing content
         // descriptionSpan.appendChild(descriptionInput);
 
-        saveChangesButton.style.display = 'block';
-      };
+        // saveChangesButton.style.display = 'block';
 
 
-      editButton.onclick = function () {
-        const titleSpan = document.getElementById('event-title');
-        const dateSpan = document.getElementById('event-date');
-        const descriptionSpan = document.getElementById('event-description');
-
-        // Populate inputs with current event details
-        titleSpan.innerHTML = `<input type="text" id="edit-title" value="\${selectedEvent.calEventTitle}">`;
-        dateSpan.innerHTML = `<input type="date" id="edit-date" value="\${selectedEvent.calEventDate}">`;
-        descriptionSpan.innerHTML = `<input type="text" id="edit-description" value="\${selectedEvent.calEventDescription}">`;
-
-        saveChangesButton.style.display = 'block';
-      };
+      //   editButton.onclick = function () {
+      //     const titleSpan = eventDetails.querySelector('#event-title');
+      //     const dateSpan = eventDetails.querySelector('#event-date');
+      //     const descriptionSpan = eventDetails.querySelector('#event-description');
+      //
+      //   // Populate inputs with current event details
+      //   titleSpan.innerHTML = `<input type="text" id="edit-title" value="\${selectedEvent.calEventTitle}">`;
+      //   dateSpan.innerHTML = `<input type="date" id="edit-date" value="\${selectedEvent.calEventDate}">`;
+      //   descriptionSpan.innerHTML = `<input type="text" id="edit-description" value="\${selectedEvent.calEventDescription}">`;
+      //
+      //   saveChangesButton.style.display = 'block';
+      // };
 
       // Save edited event
       saveChangesButton.onclick = function () {
@@ -442,6 +444,15 @@
           alert('제목과 날짜를 입력하세요.');
         }
       };
+      // 모달 보이기
+      modal.style.display = 'block';
+
+      // 모달 외부를 클릭하면 닫기
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      };
       /*
 
       // Delete event 버튼 클릭 시 이벤트 삭제
@@ -479,16 +490,28 @@
       };
 
        */
-      // 모달 보이기
-      modal.style.display = 'block';
-
-      // 모달 외부를 클릭하면 닫기
-      window.onclick = function (event) {
-        if (event.target === modal) {
-          modal.style.display = 'none';
-        }
-      };
     }
+  // 일정 추가 모달 열기
+  document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
+    const addEventModal = document.getElementById('addEventModal');
+    addEventModal.style.display = 'block';
+
+    document.getElementById('calEventTitle').value = '';
+    document.getElementById('calEventDate').value = '';
+    document.getElementById('calEventDescription').value = '';
+    document.getElementById('calColorIndex').value = '';
+
+    document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
+      colorDiv.addEventListener('click', function () {
+        document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+      });
+    });
+
+    const closeBtn = addEventModal.querySelector('.close');
+    closeBtn.onclick = function () {
+      addEventModal.style.display = 'none';
+    };
+  });
 
       // 일정 저장
       document.getElementById('saveEventButton').addEventListener('click', function () {
