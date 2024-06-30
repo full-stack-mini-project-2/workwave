@@ -122,15 +122,17 @@
   </style>
 </head>
 <body>
-<%--일정 삭제 모달 --%>
-<i class="fa-regular fa-trash-can" style="color: #929292;"></i>
+
 
 
 <!-- 이벤트 상세 및 일정 수정 모달 -->
 <div id="eventModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
+<%--    수정버튼--%>
     <i class="fa-solid fa-pencil" style="color: #444444;" id="editEvent"></i>
+<%--    삭제버튼--%>
+    <i class="fa-regular fa-trash-can" style="color: #929292;" id="deleteEvent"></i>
     <ul id="eventDetails">
       <!-- Event details will be dynamically added here -->
     </ul>
@@ -362,36 +364,6 @@
 
         saveChangesButton.style.display = 'block';
       };
-      // const dateInput = document.createElement('input');
-      // dateInput.type = 'date';
-      // dateInput.id = 'edit-date';
-      // dateInput.value = selectedEvent.calEventDate;
-
-      // dateSpan.textContent = ''; // Clear existing content
-      // dateSpan.appendChild(dateInput);
-
-      // const descriptionInput = document.createElement('input');
-      // descriptionInput.type = 'text';
-      // descriptionInput.id = 'edit-description';
-      // descriptionInput.value = selectedEvent.calEventDescription;
-      // descriptionSpan.textContent = ''; // Clear existing content
-      // descriptionSpan.appendChild(descriptionInput);
-
-      // saveChangesButton.style.display = 'block';
-
-
-      //   editButton.onclick = function () {
-      //     const titleSpan = eventDetails.querySelector('#event-title');
-      //     const dateSpan = eventDetails.querySelector('#event-date');
-      //     const descriptionSpan = eventDetails.querySelector('#event-description');
-      //
-      //   // Populate inputs with current event details
-      //   titleSpan.innerHTML = `<input type="text" id="edit-title" value="\${selectedEvent.calEventTitle}">`;
-      //   dateSpan.innerHTML = `<input type="date" id="edit-date" value="\${selectedEvent.calEventDate}">`;
-      //   descriptionSpan.innerHTML = `<input type="text" id="edit-description" value="\${selectedEvent.calEventDescription}">`;
-      //
-      //   saveChangesButton.style.display = 'block';
-      // };
 
       // Save edited event
       saveChangesButton.onclick = function () {
@@ -452,12 +424,12 @@
         }
       };
 
-      // Delete event 버튼 클릭 시 이벤트 삭제
       const deleteButton = modal.querySelector('#deleteEvent');
       deleteButton.onclick = function () {
+        console.log(selectedEvent.calEventId); // 이벤트 아이디 잘 나옴
         if (confirm('정말 이 이벤트를 삭제하시겠습니까?')) {
-          fetch('/api/calendar/deleteEvent', {
-            method: 'POST',
+          fetch(`/api/calendar/deleteEvent/\${selectedEvent.calEventId}`, {
+            method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -466,16 +438,15 @@
                   .then(response => response.json())
                   .then(data => {
                     if (data.success) {
-                      // Remove event from local data
+                      // 성공적으로 삭제된 경우
                       const index = myCalEvents.findIndex(event => event.calEventId === selectedEvent.calEventId);
                       if (index !== -1) {
                         myCalEvents.splice(index, 1);
                       }
-
-                      // Close modal and re-render calendar
                       modal.style.display = 'none';
                       renderCalendar(myCalEvents, new Date(selectedEvent.calEventDate).getFullYear(), new Date(selectedEvent.calEventDate).getMonth());
                     } else {
+                      // 삭제 실패한 경우
                       alert('Error deleting event: ' + data.message);
                     }
                   })
@@ -485,7 +456,6 @@
                   });
         }
       };
-
     }
   // 일정 추가 모달 열기
   document.querySelector('.fa-calendar-plus').addEventListener('click', function () {

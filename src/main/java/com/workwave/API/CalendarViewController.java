@@ -20,7 +20,7 @@ import java.util.List;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/calendar")
+@RequestMapping("/myCalendar")
 public class CalendarViewController {
 
     private final CalendarService calendarService;
@@ -53,7 +53,7 @@ public class CalendarViewController {
         return "schedule/calendar/myCalendar";
     }
 
-    //일정 추가하기
+    //일정 추가 화면처리
     @PostMapping("/add")
     public String addMyEvent(@ModelAttribute AllMyCalendarEventDto myCalendarEventDto, HttpSession session) {
         // 세션에서 userId userName 가져오기
@@ -66,7 +66,7 @@ public class CalendarViewController {
         return "redirect:/calendar/view/" + userId;
     }
 
-    // 일정 수정하기
+    // 일정 수정 화면처리
     @PostMapping("/update")
     public String editMyEvent(@ModelAttribute AllMyCalendarEventDto myCalendarEventDto, HttpSession session) {
         // 세션에서 userId 가져오기
@@ -78,6 +78,20 @@ public class CalendarViewController {
         boolean success = calendarService.updateCalEvent(myCalendarEventDto);
         if (!success) {
             throw new RuntimeException("Failed to update event");
+        }
+        return "redirect:/calendar/view/" + userId;
+    }
+
+    //일정 삭제 화면처리
+    @GetMapping("/delete/{calEventId}")
+    public String deleteCalEvent(@PathVariable int calEventId, HttpSession session) {
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        if (userId == null) {
+            throw new RuntimeException("User is not logged in");
+        }
+        boolean success = calendarService.deleteCalEvent(calEventId);
+        if(!success) {
+            throw new RuntimeException("failed to delete event");
         }
         return "redirect:/calendar/view/" + userId;
     }

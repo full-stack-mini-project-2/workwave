@@ -76,7 +76,7 @@ public class CalendarApiController {
         try {
             // 클라이언트에서 전송된 날짜 데이터를 UTC로 변환하여 처리
             LocalDate eventDate = LocalDate.parse(addEventDto.getCalEventDate()); // ISO 8601 포맷의 문자열을 LocalDate로 변환
-            Instant calEventInstant = eventDate.atStartOfDay(ZoneOffset.UTC).toInstant();
+//            Instant calEventInstant = eventDate.atStartOfDay(ZoneOffset.UTC).toInstant();
 
             // UTC 시간으로 변환된 일정 데이터 생성
             AllMyCalendarEventDto newEvent = AllMyCalendarEventDto.builder()
@@ -152,12 +152,24 @@ public class CalendarApiController {
 
 
     //개인 캘린더 삭제
-    @GetMapping("deleteEvent")
-    public String deleteCalEvent(int calEventId, HttpSession session) {
-        return null;
+    @DeleteMapping("/deleteEvent/{calEventId}")
+    public ResponseEntity<Map<String, Object>> deleteCalEvent(@PathVariable int calEventId, HttpSession session) {
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        if (userId == null) {
+            throw new RuntimeException("User is not logged in");
+        }
+        try {
+            boolean success = calendarService.deleteCalEvent(calEventId);
+            if (success) {
+                return ResponseEntity.ok(Map.of("success", true, "message", "Event deleted successfully"));
+            } else {
+                return ResponseEntity.status(400).body(Map.of("success", false, "message", "Failed to delete event"));
+            }
+        } catch (Exception e) {
+            log.error("Error deleting event", e);
+            return ResponseEntity.status(500).body(Map.of("message", "Error deleting event"));
+        }
     }
-
-
 }
 
 

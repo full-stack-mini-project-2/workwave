@@ -1,6 +1,5 @@
 package com.workwave.mapper.scheduleMapper;
 
-import com.workwave.dto.schedule_dto.request.CalendarsDto;
 import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
 import com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto;
 import com.workwave.entity.schedule.TeamCalendar;
@@ -38,7 +37,7 @@ public interface CalendarMapper {
     void insertTeamCalendarEvent(AllMyTeamCalendarEventDto teamCalendarEvent);
 
     // 개인, 팀 캘린더 일정 삭제하기
-    void deleteCalendarEvent(@Param("calEventId") int calEventId);
+    void deleteCalendarEvent(int calEventId);
 
     // 개인, 팀 캘린더 일정 수정하기
     void updateMyCalEvent(AllMyCalendarEventDto calendarEvent);

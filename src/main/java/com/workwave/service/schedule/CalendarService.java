@@ -1,19 +1,17 @@
 package com.workwave.service.schedule;
 
 import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
-import com.workwave.dto.schedule_dto.request.CalendarsDto;
 import com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto;
-import com.workwave.entity.schedule.CalendarEvent;
 import com.workwave.entity.schedule.TeamCalendar;
 import com.workwave.mapper.scheduleMapper.CalendarMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneOffset; // 수정: ZoneOffset을 import 추가
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +19,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class CalendarService {
 
     private final CalendarMapper calendarMapper;
@@ -123,9 +122,14 @@ public class CalendarService {
     }
 
     // 개인, 팀 캘린더 일정 삭제
-    @Transactional
-    public void deleteMyCalEvent(int calEventId) {
-        calendarMapper.deleteCalendarEvent(calEventId);
+    public boolean deleteCalEvent(int calEventId) {
+        try {
+            calendarMapper.deleteCalendarEvent(calEventId);
+            return true; // 삭제 성공 시 true 반환
+        } catch (Exception e) {
+            log.error("Failed to delete calendar event", e);
+            return false; // 삭제 실패 시 false 반환
+        }
     }
 
     // 팀 캘린더 일정 목록
