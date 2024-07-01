@@ -8,14 +8,20 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
   <title>길찾기 결과 지도에 표출하기</title>
   <link rel="stylesheet" href="assets/css/traffic/traffic.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- fontawesome css: https://fontawesome.com -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+
+
+
   <script defer type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=nbpr5wd89w"></script>
   <script defer type="text/javascript" src="assets/js/traffic/traffic.js"></script>
   <script defer type="text/javascript" src="assets/js/traffic/weather.js"></script>
   <script defer type="text/javascript" src="assets/js/traffic/metro.js"></script>
 </head>
 <body>
-  <form>
-    <h1>서울 현재 날씨 정보</h1>
+  <form id="weather-from">
     <div id="weather"></div>
   </form>
 
@@ -58,9 +64,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <div>
           <label>총 역수: <span id="total-stations"></span>역</label>
         </div>
-        <div>
+        <span>
           <label>총 소요시간: <span id="total-MetroTime"></span>분</label>
-        </div>
+        </span>
 
         <h1 class="section-header">도착 예정 정보</h1>
         <div id="infomationMetro"></div>
@@ -71,6 +77,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
 
   <br>
-  <a href="/"><h1>이전으로 돌아가기</h1></a>
+  <a id="back-home" href="/"><h1>이전으로 돌아가기</h1></a>
 </body>
 </html>

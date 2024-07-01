@@ -6,6 +6,7 @@ import com.workwave.dto.lunchBoardDto.LunchBoardFindAllDto;
 import com.workwave.entity.LunchMateBoard;
 import com.workwave.entity.User;
 import com.workwave.service.lunchService.LunchMateBoardService;
+import com.workwave.util.LoginUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

@@ -44,13 +44,12 @@ $departureStation.addEventListener("change", (e) => {
       filterdData.forEach(e => {
         const $infoDiv = document.createElement('div');
         const departureTime = parseInt(e.barvlDt / 60);
-        
+        // <span>출발역: ${e.statnNm}</span> 
+        // <span>열차도착예정시간: ${departureTime}분전</span>
+        // <span>현재 지하철 위치: ${e.arvlMsg3}</span>
         $infoDiv.innerHTML = `
-          <span>열차도착예정시간: ${departureTime}분전</span>
-          <span>출발역: ${e.statnNm}</span>
-          <span>상하행선구분: ${e.updnLine}</span>
-          <span>첫번째도착메세지: ${e.arvlMsg2}</span>
-          <span>현재 지하철 위치: ${e.arvlMsg3}</span>
+          <span>상/하행선: ${e.updnLine}</span>
+          <span>현재 위치: ${e.arvlMsg2}</span>  
         `;
         $info.appendChild($infoDiv);
       });

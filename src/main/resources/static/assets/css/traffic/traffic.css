@@ -1,14 +1,33 @@
+@font-face {
+  font-family: 'NEXON Lv2 Gothic';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
   margin: 0;
-  padding: 0;
+  padding: 20px;
+  background: #f2efeb;
 }
 
 .container {
+  width: 60%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
-  padding: 20px;
+  margin-top: 20px;
+  margin: 10px;
+}
+
+#weather-from{
+  display: flex;
+  justify-content: left;
+  margin: 25px;
+  margin-left: 85px;
 }
 
 .form-container {
@@ -16,7 +35,7 @@ body {
 }
 
 .map-container {
-  width: 60%; /* 지도 컨테이너의 너비 */
+  width: 90%; /* 지도 컨테이너의 너비 */
   height: 610px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -24,7 +43,7 @@ body {
 }
 
 .info-container {
-  width: 20%; /* 정보 폼 컨테이너의 너비 */
+  width: 10%; /* 정보 폼 컨테이너의 너비 */
 }
 
 .info-container form {
@@ -70,4 +89,18 @@ a {
 .section-header {
   border-bottom: 1px solid gray;
   padding-bottom: 5px;
+}
+
+h1 {
+  font-family: 'NEXON Lv2 Gothic OTF', 'Roboto', sans-serif;
+  color: #181A33;
+}
+
+
+.weather-info strong {
+  margin: 10px;
+}
+
+#back-home{
+  margin-left: 85px;
 }
