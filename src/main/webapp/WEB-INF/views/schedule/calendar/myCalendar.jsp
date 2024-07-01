@@ -494,7 +494,7 @@
           calEventDescription: description,
           calEventCreateAt: new Date().toISOString(),
           colorIndexId: colorIndex,
-          userName: 'User'
+          userName: myCalEvents.userName,
         };
 
         // AJAX 요청으로 이벤트 저장

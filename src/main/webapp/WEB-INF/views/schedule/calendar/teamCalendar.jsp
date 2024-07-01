@@ -495,7 +495,9 @@
             calEventDescription: description,
             calEventCreateAt: new Date().toISOString(),
             colorIndexId: colorIndex,
-            userName: 'User'
+            userName: myTeamCalEvents.userName,
+            updateBy: myTeamCalEvents.userName,
+            departmentId: myTeamCalEvents.departmentId,
         };
 
         // AJAX 요청으로 이벤트 저장

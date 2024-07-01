@@ -271,7 +271,7 @@
         #{calEventDescription},
         #{userId},
         #{departmentId},
-        tc.team_calendar_id
+        #{team_calendar_id}
         <if test="colorIndexId != null">
             ,#{colorIndexId}
         </if>
@@ -280,8 +280,6 @@
         </if>
         FROM
         TeamCalendar tc
-        JOIN
-        Users u ON u.department_id = tc.department_id
     </insert>
 
     <!-- 팀 공유 일정 수정 -->

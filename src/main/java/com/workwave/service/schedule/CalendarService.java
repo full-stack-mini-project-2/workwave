@@ -170,9 +170,13 @@ public class CalendarService {
                 .calEventDescription(addEventDto.getCalEventDescription())
                 .calEventCreateAt(LocalDateTime.now())
                 .calEventUpdateAt(LocalDateTime.now())
-                .userId(userId)
-                .userName(userName)
                 .colorIndexId(addEventDto.getColorIndexId())
+                .userId(userId)
+                .teamCalendarId(addEventDto.getTeamCalendarId()) //null 값 허용
+                .departmentId(departmentId)
+                .departmentName(addEventDto.getDepartmentName())
+                .userName(userName)
+                .updateBy(userName)
                 .build();
 
         calendarMapper.insertTeamCalendarEvent(newTeamEvent);
