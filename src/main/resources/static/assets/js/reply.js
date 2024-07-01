@@ -92,6 +92,9 @@ function replyPageClickEvent() {
 
 // 대댓글을 조회하는 요청
 async function fetchSubReplies(rno) {
+  const $replyContainer = document.getElementById("replyContainer");
+  const boardUserId = $replyContainer.dataset.id;
+
   // GET 요청을 보낼 URL
   const url = BASE_URL + `/sub/${rno}`;
 
@@ -120,6 +123,7 @@ async function fetchSubReplies(rno) {
         ({
           subReplyId,
           nickName,
+          userId,
           subReplyCreatedAt,
           subReplyContent,
           subReplyUpdatedAt,
@@ -133,6 +137,9 @@ async function fetchSubReplies(rno) {
                   ? ` | 수정일: ${subReplyUpdatedAt}`
                   : ""
               }
+              <span class="author">${
+                userId === boardUserId ? "글쓴이" : ""
+              }</span>
             </div>
             <div class="content">
               <p>${subReplyContent}</p>

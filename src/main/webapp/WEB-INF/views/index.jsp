@@ -10,6 +10,8 @@
             <title>Work-Wave</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+            <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">
+
             <style>
                 body {
                     font-family: "Noto Sans KR", sans-serif;
@@ -178,14 +180,18 @@
                 <a href="#">
                     <div class="right-box">우빈2</div>
                 </a>
-                <a href="schedule/calendar/calendarList">
+                <a href="/myCalendar/viewMyEvent">
                     <div class="right-box">달력</div>
                 </a>
-                <a href="schedule/todoList/todoList">
-                    <div class="right-box">투두리스트</div>
+                <a href="/myCalendar/viewTeamEvent">
+                    <div class="right-box">팀 달력</div>
                 </a>
-                <a href="schedule/colorIndex/colorList">
-                    <div class="right-box">컬러리스트</div>
+                <a href="/viewTodo/personal">
+                    <div class="right-box">개인 투두리스트</div>
+
+                </a>
+                <a href="/viewTodo/team">
+                    <div class="right-box">팀 투두리스트</div>
                 </a>
                 <a href="#">
                     <div class="right-box">윤종4</div>

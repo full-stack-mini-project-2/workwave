@@ -77,11 +77,12 @@ public class ReplyController {
 
     // 댓글 삭제 요청
     @DeleteMapping
-    public ResponseEntity<?> deleteReply(@RequestBody ReplyDeleteDto dto) {
+    public ResponseEntity<?> deleteReply(@RequestBody ReplyDeleteDto dto,
+                                         HttpSession session) {
 
         log.info("ReplyDeleteDto: {}", dto);
 
-        boolean flag = replyService.delete(dto);
+        boolean flag = replyService.delete(dto,session);
 
         if (flag) {
             return ResponseEntity
@@ -145,11 +146,12 @@ public class ReplyController {
 
     // 대댓글 삭제 요청
     @DeleteMapping("/sub")
-    public ResponseEntity<?> deleteSubReply(@RequestBody SubReplyDeleteDto dto) {
+    public ResponseEntity<?> deleteSubReply(@RequestBody SubReplyDeleteDto dto,
+                                            HttpSession session) {
 
         log.info("SubReplyDeleteDto: {}", dto);
 
-        boolean flag = replyService.deleteSubReply(dto);
+        boolean flag = replyService.deleteSubReply(dto,session);
 
         if (flag) {
             return ResponseEntity

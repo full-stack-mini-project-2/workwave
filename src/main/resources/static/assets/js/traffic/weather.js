@@ -22,11 +22,11 @@ function getWeather() {
         })
         .then(data => {
             const weatherInfo = `
-                <strong>도시:</strong> ${data.name}<br>
-                <strong>기온:</strong> ${(data.main.temp - 273.15).toFixed(2)}°C<br>
-                <strong>현재날씨:</strong> ${data.weather[0].main}<br>
-                <strong>현재습도:</strong> ${data.main.humidity}%<br>
-                <strong>풍속:</strong> ${data.wind.speed} m/s
+                    <strong>도시:</strong> ${data.name} /
+                    <strong>기온:</strong> ${(data.main.temp - 273.15).toFixed(2)}°C /
+                    <strong>현재날씨:</strong> ${data.weather[0].main} /
+                    <strong>현재습도:</strong> ${data.main.humidity}% /
+                    <strong>풍속:</strong> ${data.wind.speed} m/s
             `;
             document.getElementById("weather").innerHTML = weatherInfo;
         })

@@ -1,21 +1,20 @@
 package com.workwave.service.schedule;
 
+import com.workwave.entity.schedule.ColorIndex;
 import com.workwave.mapper.scheduleMapper.ColorIndexMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ColorIndexService {
     private final ColorIndexMapper colorIndexMapper;
 
-    public ColorIndexService(ColorIndexMapper colorIndexMapper) {
-        this.colorIndexMapper = colorIndexMapper;
+    public List<ColorIndex> getAllColorIndexes() {
+        return colorIndexMapper.getAllColorIndexes();
     }
-
-//    public List<ColorIndexDto> getAllColorIndices() {
-//        return colorIndexMapper.getAllColorIndices();
-//    }
 //
 //    public ColorIndexDto getColorIndexById(int color_index_id) {
 //        return colorIndexMapper.getColorIndexById(color_index_id);

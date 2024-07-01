@@ -15,8 +15,13 @@
         </head>
 
         <body>
+            <a href="/" class="logo-link">
+                <div class="logo-container">
+                    <img src="/assets/img/workwave_logo.png" alt="Logo" class="logo">
+                </div>
+            </a>
             <div class="login-container">
-                <h1 class="cl-h1">로그인</h1>
+                <h1 class="cl-h1">ID 로그인</h1>
                 <form action="login" method="post" id="loginForm">
                     <div class="form-group">
                         <label for="username">아이디:</label>

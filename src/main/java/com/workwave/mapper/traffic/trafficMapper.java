@@ -1,4 +1,4 @@
-package com.workwave.mapper;
+package com.workwave.mapper.traffic;
 
 import com.workwave.common.traffic.myInfoPage;
 import com.workwave.dto.traffic.request.totalTrafficInfoDto;
@@ -16,5 +16,8 @@ public interface trafficMapper {
     // 선택한 교통내용 불러오기
     List<totalTrafficInfoDto> findAll(myInfoPage page);
 
-    int count();
+    int count(String userId);
+
+    List<totalTrafficInfoDto> findOne(String userId);
+
 }

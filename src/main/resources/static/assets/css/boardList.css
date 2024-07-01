@@ -1,0 +1,96 @@
+/* 중앙 정렬을 위한 컨테이너 스타일 */
+body {
+  margin: 100px;
+}
+
+a {
+  text-decoration-line: none;
+  color: black;
+}
+
+a:visited,
+a:active {
+  color: black;
+}
+
+.board-list {
+  margin-left: 200px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: initial;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.nickname {
+  color: #7b317c;
+  font-weight: bolder;
+}
+
+table {
+  width: 60%;
+  margin: 20px 0;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 8px;
+  height: 80px;
+  border: 1px solid #ddd;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+.bottom-section {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 페이지네이션 컨테이너 */
+.pagination {
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  padding: 0;
+  list-style: none;
+}
+
+/* 페이지네이션 아이템 */
+.pagination li {
+  margin: 0 5px;
+}
+
+/* 페이지네이션 링크 */
+.pagination li a {
+  color: #007bff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 호버 상태 */
+.pagination li a:hover {
+  background-color: #e9ecef;
+  color: #0056;
+}
