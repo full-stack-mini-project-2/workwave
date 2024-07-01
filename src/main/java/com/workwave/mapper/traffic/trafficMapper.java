@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface TrafficMapper {
+public interface trafficMapper {
 
     // 선택 교통내용 저장
     boolean save(trafficInfoDto trafficInfo);
@@ -17,4 +17,7 @@ public interface TrafficMapper {
     List<totalTrafficInfoDto> findAll(myInfoPage page);
 
     int count(String userId);
+
+    List<totalTrafficInfoDto> findOne(String userId);
+
 }

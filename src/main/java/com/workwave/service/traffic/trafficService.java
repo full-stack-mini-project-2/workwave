@@ -6,8 +6,8 @@ import com.workwave.common.traffic.myInfoPage;
 import com.workwave.dto.traffic.request.totalTrafficInfoDto;
 import com.workwave.dto.traffic.response.StationViewResponseDto;
 import com.workwave.dto.traffic.response.trafficInfoDto;
-import com.workwave.mapper.traffic.TrafficMapper;
-import com.workwave.mapper.trafficMapper.trafficViewMapper;
+import com.workwave.mapper.traffic.trafficMapper;
+import com.workwave.mapper.traffic.trafficViewMapper;
 import com.workwave.util.LoginUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Builder
 public class trafficService {
 
-    private final TrafficMapper trafficMapper;
+    private final trafficMapper trafficMapper;
     private final TrafficViewService trafficViewService;
     private final trafficViewMapper trafficViewMapper;
 
@@ -41,23 +41,27 @@ public class trafficService {
 
         String userId = LoginUtil.getLoggedInUser(session).getUserId();
 
-        List<StationViewResponseDto> result = trafficViewMapper.favoriteFindStation(userId);
+        List<totalTrafficInfoDto> result = trafficMapper.findOne(userId);
+        System.out.println(result);
+//        List<StationViewResponseDto> result = trafficViewMapper.favoriteFindStation(userId);
 
         boolean foundExisting = false;
 
-        for (StationViewResponseDto dto : result) {
+        for (totalTrafficInfoDto dto : result) {
             if (userId.equals(dto.getUserId())) {
-                if (dto.getDeparture().equals(newTraffic.getDeparture()) && dto.getArrival().equals(newTraffic.getArrival())) {
 
-                    trafficViewService.findOne(userId);
-                    System.out.println("기존내역있음");
+                if (dto.getDeparture().equals(newTraffic.getDeparture()) && dto.getArrival().equals(newTraffic.getArrival())) {
+                    trafficViewService.findOneAndUpdateViewCount(userId);
+                    System.out.println("계정이 같은 것이 있고, 기존 경로 있음");
                     foundExisting = true;
                     break;
-                } else {
-                    trafficViewService.save(userId, newTraffic);
-                    System.out.println("기존내역없음");
                 }
             }
+        }
+
+        if (!foundExisting) {
+            trafficViewService.save(userId, newTraffic);
+            System.out.println("기존 기록이 없거나 계정이 다름, 신규 저장");
         }
 
 

@@ -3,7 +3,7 @@ package com.workwave.service.traffic;
 
 import com.workwave.dto.traffic.response.StationViewResponseDto;
 import com.workwave.dto.traffic.response.trafficInfoDto;
-import com.workwave.mapper.trafficMapper.trafficViewMapper;
+import com.workwave.mapper.traffic.trafficViewMapper;
 import com.workwave.util.LoginUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class TrafficViewService {
 
         List<StationViewResponseDto> favoriteFindStation = trafficViewMapper.favoriteFindStation(userId);
 
-        System.out.println(favoriteFindStation);
+
 
         StationViewResponseDto newPerson = StationViewResponseDto.builder()
                 .userId(userId)
@@ -41,18 +41,23 @@ public class TrafficViewService {
                 .viewCount(0)
                 .build();
 
+
+        trafficViewMapper.saveFavoriteStation(newPerson);
+
         return newPerson;
     }
 
-    public List<StationViewResponseDto> findOne(String userId) {
-        List<StationViewResponseDto> dto = trafficViewMapper.findOne(userId);
+    public List<StationViewResponseDto> findOneAndUpdateViewCount(String userId) {
+        List<StationViewResponseDto> dtoList = trafficViewMapper.findOne(userId);
 
-        for (StationViewResponseDto dtoList : dto) {
-            int newViewCount = dtoList.getViewCount() + 1;
-            dtoList.setViewCount(newViewCount);
+        for (StationViewResponseDto dto : dtoList) {
+            int newViewCount = dto.getViewCount() + 1;
+            dto.setViewCount(newViewCount);
         }
 
-        return dto;
+        trafficViewMapper.updateViewCounts(dtoList);
+
+        return dtoList;
     }
 
 }
