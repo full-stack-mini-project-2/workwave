@@ -30,10 +30,6 @@ public interface TodoListMapper {
     void deletePersonalTodo(int todoId);
 
     // 팀 투두리스트 추가
-//    @Insert("INSERT INTO TeamTodoList (team_todo_content, team_todo_status, team_todo_createAt, " +
-//            "team_todo_updateAt, color_index_id, user_id, department_id) " +
-//            "VALUES (#{teamTodoContent}, #{teamTodoStatus}, #{teamTodoCreateAt}, #{teamTodoUpdateAt}, " +
-//            "#{colorIndexId}, #{userId}, #{departmentId})")
     void insertTeamTodo(TeamTodoList teamTodoList);
 
     // 팀 투두리스트 수정

@@ -1,13 +1,18 @@
 package com.workwave.API;
 
+import com.workwave.dto.user.LoginUserInfoDto;
+import com.workwave.dto.user.LoginUserInfoListDto;
 import com.workwave.entity.schedule.TeamTodoList;
 import com.workwave.entity.schedule.TodoList;
 import com.workwave.service.schedule.TodoListService;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -19,36 +24,59 @@ public class TodoListApiController {
 
     private final TodoListService todoListService;
 
-    //개인의 특정 투두리스트 조회
+    // Get user info from AngularJS
+    @GetMapping("/user/info")
+    public ResponseEntity<LoginUserInfoDto> getUserInfo(HttpSession session) {
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        if (userId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        // Retrieve user info
+        LoginUserInfoDto loggedInUser = LoginUtil.getLoggedInUser(session);
+        if (loggedInUser == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        // Return the first user info in the session list
+        return ResponseEntity.ok(loggedInUser);
+    }
+
+    // Get personal todo list
+    @GetMapping("/personal")
+    public List<TodoList> getPersonalTodos(HttpSession session) {
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        if (userId == null) {
+            throw new RuntimeException("User is not logged in");
+        }
+        try {
+            return todoListService.findPersonalTodosByUserId(userId);
+        } catch (Exception e) {
+            log.error("Error fetching events for user: " + userId, e);
+            throw new RuntimeException("Error fetching events");
+        }
+    }
+
+    // Get specific personal todo item
     @GetMapping("/personal/aTodo/{todoId}")
     public ResponseEntity<TodoList> getPersonalOneTodos(@PathVariable int todoId) {
         TodoList myOneTodo = todoListService.findMyTodoById(todoId);
         return ResponseEntity.ok(myOneTodo);
     }
 
-
-    // 개인의 투두리스트 조회
-    @GetMapping("/personal/{userId}")
-    public ResponseEntity<List<TodoList>> getPersonalTodos(@PathVariable String userId) {
-        List<TodoList> personalTodos = todoListService.findPersonalTodosByUserId(userId);
-        return ResponseEntity.ok(personalTodos);
-    }
-
-    // 개인 투두리스트 추가
+    // Add personal todo item
     @PostMapping("/personal")
     public ResponseEntity<TodoList> createPersonalTodo(@RequestBody TodoList todoList) {
         todoListService.insertPersonalTodo(todoList);
-        return ResponseEntity.ok(todoList); // 또는 생성된 TodoList 객체를 반환할 수 있습니다.
+        return ResponseEntity.ok(todoList); // Or return the created TodoList object
     }
 
-
-    // 개인 투두리스트 수정
+    // Update personal todo item
     @PutMapping("/personal/{todoId}")
     public ResponseEntity<TodoList> updatePersonalTodo(
             @PathVariable int todoId,
             @RequestBody TodoList updatedTodoList) {
         TodoList existingTodoList = todoListService.findMyTodoById(todoId);
-
         if (existingTodoList == null) {
             return ResponseEntity.notFound().build();
         }
@@ -60,56 +88,84 @@ public class TodoListApiController {
         // Add more fields as needed
 
         todoListService.updatePersonalTodo(existingTodoList);
-
         return ResponseEntity.ok(existingTodoList);
     }
-//    @PutMapping("/personal/{todoId}")
-//    public ResponseEntity<TodoList> updatePersonalTodo(
-//            @PathVariable int todoId,
-//            @RequestBody TodoList todoList) {
-//        todoListService.updatePersonalTodo(todoList);
-//        return ResponseEntity.ok(todoList);
-//    }
 
-    // 개인 투두리스트 삭제
+    // Delete personal todo item
     @DeleteMapping("/personal/{todoId}")
     public ResponseEntity<Void> deletePersonalTodo(@PathVariable int todoId) {
         todoListService.deletePersonalTodo(todoId);
         return ResponseEntity.noContent().build();
     }
 
-    // 팀 투두리스트 조회
-    @GetMapping("/team/aTeamTodos/{departmentId}")
-    public ResponseEntity<List<TeamTodoList>> findTeamTodosByDepartmentId(@PathVariable String departmentId) {
-        List<TeamTodoList> teamTodos = todoListService.findTeamTodosByDepartmentId(departmentId);
-        return ResponseEntity.ok(teamTodos);
+    // Get team todo list by department ID
+    @GetMapping("/team/aTeamTodos")
+    public ResponseEntity<List<TeamTodoList>> findTeamTodosByDepartmentId(HttpSession session) {
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        if (userId == null) {
+            throw new RuntimeException("User is not logged in");
+        }
+        try {
+            String loggedInUserDept = LoginUtil.getLoggedInUser(session).getDepartmentId();
+            log.info("부서로 로그인 함 : {}",loggedInUserDept);
+            // Fetch todo list by department ID
+            List<TeamTodoList> teamTodos = todoListService.findTeamTodosByDepartmentId(loggedInUserDept);
+            return ResponseEntity.ok(teamTodos);
+        } catch (Exception e) {
+            log.error("Error fetching events for user: " + userId, e);
+            throw new RuntimeException("Error fetching events");
+        }
     }
 
-    // 팀 투두리스트 추가
-    @PostMapping("/team")
-    public ResponseEntity<Void> insertTeamTodo(@RequestBody TeamTodoList teamTodoList) {
+    // Add team todo item
+    @PostMapping("/team/aTeamTodos")
+    public ResponseEntity<TeamTodoList> createTeamTodo(
+            HttpSession session, // HttpSession 객체 주입
+            @RequestBody TeamTodoList teamTodoList
+    ) {
+        // 세션에서 userId 가져오기
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        log.info("전달하려는 객체{}", teamTodoList);
+
+        // userId가 null이 아닌지 로그로 확인
+        if (userId != null) {
+            System.out.println("User ID from session: " + userId);
+        } else {
+            System.out.println("User ID is null in session.");
+        }
+
+        // TodoListService를 사용하여 teamTodoList 저장
         todoListService.insertTeamTodo(teamTodoList);
-        return ResponseEntity.noContent().build();
+        log.info("전달하려는 객체{}", teamTodoList);
+
+        return ResponseEntity.ok(teamTodoList);
     }
 
-    // 팀 투두리스트 수정
+    // Update team todo item
     @PutMapping("/team/{teamTodoId}")
-    public ResponseEntity<Void> updateTeamTodo(
+    public ResponseEntity<TeamTodoList> updateTeamTodo(
             @PathVariable int teamTodoId,
             @RequestBody TeamTodoList teamTodoList) {
+        TeamTodoList existingTeamTodoList = todoListService.findTeamTodoById(teamTodoId);
+        if (existingTeamTodoList == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Update fields based on teamTodoList
+        existingTeamTodoList.setTeamTodoContent(teamTodoList.getTeamTodoContent());
+        existingTeamTodoList.setTeamTodoStatus(teamTodoList.getTeamTodoStatus());
+        existingTeamTodoList.setTeamTodoUpdateAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime());
+        // Add more fields as needed
+
         teamTodoList.setTeamTodoId(teamTodoId);
-        todoListService.updateTeamTodo(teamTodoList);
-        return ResponseEntity.noContent().build();
+        todoListService.updateTeamTodo(existingTeamTodoList);
+        return ResponseEntity.ok(existingTeamTodoList);
     }
 
-    // 팀 투두리스트 삭제
+    // Delete team todo item
     @DeleteMapping("/team/{teamTodoId}")
     public ResponseEntity<Void> deleteTeamTodo(@PathVariable int teamTodoId) {
         todoListService.deleteTeamTodo(teamTodoId);
         return ResponseEntity.noContent().build();
     }
-
 }
-
-
-

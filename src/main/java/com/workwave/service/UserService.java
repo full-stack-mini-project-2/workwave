@@ -116,7 +116,9 @@ public class UserService {
 
     public static void maintainLoginState(HttpSession session, User foundUser) {
         log.info("{}님 로그인 성공", foundUser.getUserName());
-log.info("프로필 사진:",foundUser.getProfileImg());
+        log.info("프로필 사진:",foundUser.getProfileImg());
+        log.info("부서아이디 : {}", foundUser.getDepartmentId());
+        log.info("프로필이미지 : {}", foundUser.getProfileImg());
         // 세션의 수명 : 설정된 시간 OR 브라우저를 닫기 전까지
         int maxInactiveInterval = session.getMaxInactiveInterval();
         session.setMaxInactiveInterval(60 * 60); // 세션 수명 1시간 설정
