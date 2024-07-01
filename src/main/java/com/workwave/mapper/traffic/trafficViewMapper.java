@@ -15,5 +15,5 @@ public interface trafficViewMapper {
 
     List<StationViewResponseDto> findOne(String userId);
 
-    void updateViewCounts(List<StationViewResponseDto> dtoList);
+    boolean updateViewCounts(StationViewResponseDto dto);
 }

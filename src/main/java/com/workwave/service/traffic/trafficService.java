@@ -51,7 +51,7 @@ public class trafficService {
             if (userId.equals(dto.getUserId())) {
 
                 if (dto.getDeparture().equals(newTraffic.getDeparture()) && dto.getArrival().equals(newTraffic.getArrival())) {
-                    trafficViewService.findOneAndUpdateViewCount(userId);
+                    trafficViewService.findOneAndUpdateViewCount(userId,newTraffic);
                     System.out.println("계정이 같은 것이 있고, 기존 경로 있음");
                     foundExisting = true;
                     break;
