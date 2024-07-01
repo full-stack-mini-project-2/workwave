@@ -54,7 +54,6 @@ const fields = [
     errorElement: "userPositionChk",
     valid: false,
   },
-
 ];
 
 // 버튼 상태를 업데이트하는 함수
@@ -80,10 +79,12 @@ const validateField = async (field) => {
   if (isValid.valid) {
     $input.style.borderColor = "skyblue";
     $errorSpan.innerHTML = '<b class="success">[사용가능합니다.]</b>';
+    $errorSpan.style.color = "#228B22";
     field.valid = true;
   } else {
     $input.style.borderColor = "red";
     $errorSpan.innerHTML = `<b class="warning">[${isValid.message}]</b>`;
+    $errorSpan.style.color = "#FF6347";
     field.valid = false;
   }
   updateButtonState();
