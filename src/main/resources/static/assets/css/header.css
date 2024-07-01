@@ -1,18 +1,21 @@
-/* common style */
+/* 공통 스타일 */
 .hide {
   display: none !important;
 }
 
-/* reset */
+/* 리셋 스타일 */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* header style */
+.logo-img {
+  justify-content: left;
+  width: 35px;
+}
 
+/* 헤더 스타일 */
 header {
-  /* background: red; */
   background: #222;
   position: fixed;
   width: 100%;
@@ -27,8 +30,8 @@ header.on {
 }
 
 header .inner-header {
-  /* background: orange; */
-  width: 92%;
+  width: 100%;
+  padding: 0 10px;
   margin: 0 auto;
   height: 50px;
   display: flex;
@@ -40,28 +43,25 @@ header .inner-header {
 
 header .inner-header .logo {
   flex: 1;
-}
-
-header .inner-header .logo a {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* 왼쪽 정렬 */
 }
 
 header .inner-header .logo a img {
   width: 35px;
   height: 35px;
-  /* margin-top: 10px; */
   border-radius: 20%;
+  margin-top: 8px;
 }
 
 header .inner-header .intro-text {
-  /* background: greenyellow; */
   flex: 4;
   text-transform: uppercase;
   margin-left: 40px;
 }
 
 header .inner-header .menu-open {
-  /* background: skyblue; */
   flex: 1;
   font-size: 16px;
   display: flex;
@@ -74,27 +74,27 @@ header .inner-header .menu-open .lnr-menu {
   margin-left: 15px;
 }
 
-/* header gnb style */
+/* 헤더 GNB 스타일 */
 header .gnb {
   background: #000;
   color: #666;
   height: 100vh;
   font-size: 40px;
-  padding: 70px 100px;
+  padding: 70px 70px;
   box-sizing: border-box;
-
+  opacity: 80%;
   position: fixed;
   z-index: 2000;
-  right: -100%;
-  top: 0;
+  top: -100%; /* 초기 위치를 화면 밖 위쪽으로 설정 */
+  right: 0; /* 오른쪽 끝에 고정 */
   transition: 0.6s;
-
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  align-items: flex-end; /* 오른쪽 정렬 */
 }
 
 header .gnb.on {
-  right: 0;
+  top: 0%;
 }
 
 header .gnb .close {
@@ -103,7 +103,7 @@ header .gnb .close {
 }
 
 header .gnb ul {
-  margin-right: 200px;
+  margin-right: 120px;
 }
 
 header .gnb ul li {
@@ -116,7 +116,7 @@ header .gnb ul li.active {
   color: #fff;
 }
 
-/* 프로필 css */
+/* 프로필 CSS */
 header .inner-header .profile-box {
   width: 50px;
   height: 50px;

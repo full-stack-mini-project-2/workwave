@@ -7,16 +7,13 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <link rel="stylesheet" href="/assets/css/boardList.css" />
 
     <title>게시판</title>
-
   </head>
   <body>
 
     <%@ include file="../include/header.jsp" %>
 
-    <!-- 검색 폼 끝 -->
-
-    <h1 class="board-list">게시물 목록</h1>
-
+    <div class="board-main-content">
+   
     <!-- 검색 폼 시작 -->
     <form class="searchBar" method="get" action="/board/list">
       <label for="searchType">검색 : </label>
@@ -27,6 +24,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       <input type="text" name="keyword" placeholder="검색어 입력" />
       <button type="submit">검색</button>
     </form>
+    <!-- 검색 폼 끝 -->
 
     <div class="container">
       <a href="/login">로그인</a>
@@ -47,7 +45,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             <tr>
               <!-- <td>${board.boardId}</td> -->
               <td>
-                <a href="/board/detail?bno=${board.boardId}"
+                <a class="board-link" href="/board/detail?bno=${board.boardId}"
                   >${board.boardTitle}
                   <c:if
                     test="${board.replyCount != null && board.replyCount ne 0}"
@@ -64,7 +62,6 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             </tr>
           </c:forEach>
         </div>
-
       </table>
 
       <div class="bottom-section">
@@ -125,6 +122,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
       <a href="/board/write">새 글 쓰기</a>
     </div>
+  </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -138,5 +136,6 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         });
       });
     </script>
+
   </body>
 </html>

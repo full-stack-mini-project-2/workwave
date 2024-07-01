@@ -5,7 +5,7 @@
         <header>
             <div class="inner-header">
                 <h1 class="logo">
-                    <a href="/">
+                    <a class="logo-img" href="/">
                         <img src="/assets/img/workwave_logo.png" alt="로고이미지" class="logo">
                     </a>
                 </h1>
@@ -24,7 +24,7 @@
                 </div>
                 <h2 class="intro-text">Welcome ${login.nickName}</h2>
                 <a href="#" class="menu-open">
-                    <span class="menu-txt">MENU</span>
+                    <span class="menu-txt"></span>
                     <span class="lnr lnr-menu"></span>
                 </a>
             </div>

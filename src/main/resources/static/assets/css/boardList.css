@@ -1,16 +1,16 @@
 /* 중앙 정렬을 위한 컨테이너 스타일 */
-body {
-  /* margin: 100px; */
-  padding-top: 120px;
+
+.board-main-content {
+  margin-top: 100px; /* 헤더 높이만큼 마진 추가 */
 }
 
-a {
+.board-link {
   text-decoration-line: none;
   color: black;
 }
 
-a:visited,
-a:active {
+.board-link:visited,
+.board-link:active {
   color: black;
 }
 
@@ -35,7 +35,7 @@ a:active {
   flex-direction: initial;
 }
 
-h1 {
+.board-list {
   margin-bottom: 20px;
 }
 

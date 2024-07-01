@@ -5,7 +5,7 @@
         <html>
 
         <head>
-            <title>Work-Wave</title>
+            <title>workwave</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
             <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">
