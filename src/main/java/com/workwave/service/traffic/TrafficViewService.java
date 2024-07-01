@@ -7,7 +7,6 @@ import com.workwave.mapper.traffic.trafficViewMapper;
 import com.workwave.util.LoginUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -47,17 +46,21 @@ public class TrafficViewService {
         return newPerson;
     }
 
-    public List<StationViewResponseDto> findOneAndUpdateViewCount(String userId) {
+    public List<StationViewResponseDto> findOneAndUpdateViewCount(String userId, trafficInfoDto newTraffic) {
         List<StationViewResponseDto> dtoList = trafficViewMapper.findOne(userId);
 
+        System.out.println("dtoList = " + dtoList);
+
         for (StationViewResponseDto dto : dtoList) {
-            int newViewCount = dto.getViewCount() + 1;
-            dto.setViewCount(newViewCount);
+            if(newTraffic.getDeparture().equals(dto.getDeparture()) && newTraffic.getArrival().equals(dto.getArrival())){
+                int newViewCount = dto.getViewCount() + 1;
+                dto.setViewCount(newViewCount);
+                trafficViewMapper.updateViewCounts(dto); // 업데이트 메소드 호출
+            }
         }
-
-        trafficViewMapper.updateViewCounts(dtoList);
-
         return dtoList;
     }
+
+
 
 }
