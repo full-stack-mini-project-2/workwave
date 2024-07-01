@@ -2,6 +2,7 @@ package com.workwave.common.traffic;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
@@ -10,12 +11,15 @@ import lombok.ToString;
 public class myPageMaker {
 
     // 한 화면에 페이지를 몇개씩 배치할 것인가?
-    private static final int PAGE_COUNT = 40;
+    private static final int PAGE_COUNT = 10;
 
     // 페이지 시작번호와 끝번호
     private int begin, end;
 
     private int totalCount;
+
+    @Setter
+    private String userId;
 
     // 현재 페이지 정보
     private myInfoPage pageInfo;

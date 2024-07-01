@@ -1,0 +1,73 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.form-container {
+  width: 810px;
+}
+
+.map-container {
+  width: 60%; /* 지도 컨테이너의 너비 */
+  height: 610px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px; /* 오른쪽 마진 추가 */
+}
+
+.info-container {
+  width: 20%; /* 정보 폼 컨테이너의 너비 */
+}
+
+.info-container form {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.info-container h1 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.info-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.info-container select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+#total-stations,
+#total-MetroTime {
+  font-weight: bold;
+}
+
+#infomationMetro {
+  margin-top: 10px;
+  /* border-top: 1px solid #ddd;  이 줄을 삭제하여 추가된 선 제거 */
+  padding-top: 10px;
+}
+
+a {
+  display: block;
+  margin-top: 20px;
+}
+
+/* 회색 선을 추가하는 클래스 */
+.section-header {
+  border-bottom: 1px solid gray;
+  padding-bottom: 5px;
+}

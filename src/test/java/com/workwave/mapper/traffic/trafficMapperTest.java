@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class trafficMapperTest {
 
     @Autowired
-    private com.workwave.mapper.trafficMapper trafficMapper;
+    private TrafficMapper trafficMapper;
 
 
     @Test
