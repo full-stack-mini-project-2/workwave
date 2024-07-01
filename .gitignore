@@ -1,3 +1,5 @@
+logs/*.gz
+
 logs/spring.log
 
 spring.log
