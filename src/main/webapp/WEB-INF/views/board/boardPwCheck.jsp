@@ -9,10 +9,15 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="icon" href="/assets/img/workwave_logo.png" />
     <link rel="stylesheet" href="/assets/css/boardPwCheck.css" />
+
+    <%@ include file="../include/static-head.jsp" %>
+
   </head>
   <body>
     <div class="container">
       <h2>비밀번호 확인</h2>
+
+      <%@ include file="../include/header.jsp" %>
 
       <% String bno = request.getParameter("bno"); String action =
       request.getParameter("action"); %>

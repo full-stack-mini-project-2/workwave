@@ -7,8 +7,14 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="icon" href="/assets/img/workwave_logo.png" />
     <link rel="stylesheet" href="/assets/css/boardList.css" />
+
+    <%@ include file="../include/static-head.jsp" %>
+
   </head>
   <body>
+
+    <%@ include file="../include/header.jsp" %>
+
     <!-- 검색 폼 끝 -->
 
     <h1 class="board-list">게시물 목록</h1>

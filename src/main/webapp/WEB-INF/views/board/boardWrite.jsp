@@ -8,8 +8,12 @@
     <!-- Turndown 라이브러리 -->
     <script src="https://cdn.jsdelivr.net/npm/turndown/dist/turndown.min.js"></script>
 
+    <%@ include file="../include/static-head.jsp" %>
   </head>
   <body>
+    
+    <%@ include file="../include/header.jsp" %>
+
     <h1>게시물 작성</h1>
     <form action="write" method="post" enctype="multipart/form-data">
       <table>
@@ -28,7 +32,13 @@
         <tr>
           <td>내용:</td>
           <td>
-            <textarea name="boardContent" id="boardContent" rows="10" cols="30" required></textarea>
+            <textarea
+              name="boardContent"
+              id="boardContent"
+              rows="10"
+              cols="30"
+              required
+            ></textarea>
           </td>
         </tr>
         <tr>
@@ -45,9 +55,8 @@
         filebrowserUploadUrl: "/upload", // 업로드 URL 설정
         filebrowserUploadMethod: "form",
         extraPlugins: "uploadimage", // 이미지 업로드 플러그인 추가
-        removeDialogTabs: "link:upload;image:Upload" // 불필요한 탭 제거
+        removeDialogTabs: "link:upload;image:Upload", // 불필요한 탭 제거
       });
     </script>
-
   </body>
 </html>
