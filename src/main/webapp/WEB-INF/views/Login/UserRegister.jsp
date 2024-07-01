@@ -26,9 +26,15 @@
             <div class="card">
               <div class="card-body">
                 <form action="/join" name="join" id="joinForm" method="post" enctype="multipart/form-data">
+                  <a href="/" class="logo-link">
+                    <div class="logo-container">
+                      <img src="/assets/img/workwave_logo.png" alt="Logo" class="logo">
+                    </div>
+                  </a>
+
                   <div class="profile">
                     <div class="thumbnail-box">
-                      <img src="/assets/img/image-add.png" alt="프로필 썸네일" />
+                      <img class="profile-img" src="/assets/img/image-add.png" alt="프로필 썸네일" />
                     </div>
 
                     <label>프로필 이미지 추가</label>
@@ -119,7 +125,8 @@
                     <tr>
                       <td>
                         <i class="fas fa-building"></i>
-                        <select class="signUpInputStyle2" id="departmentId" name="departmentId" required>
+                        <select class="signUpInputStyle2 select_department" id="departmentId" name="departmentId"
+                          required>
                           <option value=""></option>
                           <c:forEach items="${dList}" var="department">
                             <option value="${department.departmentId}">
@@ -182,7 +189,7 @@
       <!-- 프로필 사진 관련 스크립트 -->
       <script>
         // 프로필 사진 동그라미 썸네일 부분
-        const $profile = document.querySelector(".profile");
+        const $profile = document.querySelector(".profile-img");
         // 실제 프로필사진이 첨부될 input
         const $fileInput = document.getElementById("profile-img");
 
@@ -208,8 +215,41 @@
           // 첨부파일이 등록되는 순간 img태그에 이미지를 세팅
           reader.onloadend = (e) => {
             const $img = document.querySelector(".thumbnail-box img");
+            const $profileLabel = document.getElementById("profile-label");
             $img.src = reader.result;
+            $profileLabel.style.display = "none";
           };
+        });
+
+        // 추가 내용
+        document.addEventListener("DOMContentLoaded", function () {
+          const inputs = document.querySelectorAll(
+            ".signUpInputStyle, .signUpInputStyle2"
+          );
+          inputs.forEach((input) => {
+            input.addEventListener("input", function () {
+              if (this.value.trim() !== "") {
+                this.classList.add("valid-input");
+              } else {
+                this.classList.remove("valid-input");
+              }
+            });
+          });
+
+          // const fileInput = document.getElementById("profile-img");
+
+          // const thumbnailImg = document.querySelector(".thumbnail-box img");
+
+          // fileInput.addEventListener("change", function (e) {
+          //   if (this.files && this.files[0]) {
+          //     const reader = new FileReader();
+          //     reader.onload = function (e) {
+          //       thumbnailImg.src = e.target.result;
+          //       profileLabel.style.display = "none";
+          //     };
+          //     reader.readAsDataURL(this.files[0]);
+          //   }
+          // });
         });
       </script>
     </body>

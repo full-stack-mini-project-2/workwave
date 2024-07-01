@@ -25,6 +25,8 @@
         , user_name
         , user_access_level
         , profile_img
+<!--        부서 찾기 추가 -->
+        , department_id
         FROM Users
         WHERE user_id = #{userId}
     </select>
@@ -44,9 +46,10 @@
         SET session_id = #{sessionId}, LIMIT_TIME = #{limitTime}
         WHERE user_id = #{userId}
     </update>
+
     <select id="findMemberBySessionId" resultType="user">
         SELECT
-        user_id, user_NAME, user_EMAIL, User_Access_level, LIMIT_TIME, profile_img
+        user_id, user_NAME, user_EMAIL, User_Access_level, LIMIT_TIME, profile_img, department_id
         FROM Users
         WHERE SESSION_ID = #{sessionId}
     </select>

@@ -6,6 +6,7 @@ import com.workwave.dto.user.JoinDto;
 import com.workwave.dto.user.LoginDto;
 import com.workwave.service.LoginResult;
 import com.workwave.service.UserService;
+import com.workwave.service.schedule.CalendarService;
 import com.workwave.util.FileUtil;
 import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class MainController {
+
     @Value("${project.base.dir}")
     private String rootPath;
     private final UserService userService;
@@ -79,8 +81,10 @@ public class MainController {
             String redirect = (String) session.getAttribute("redirect");
             if (redirect != null) {
                 session.removeAttribute("redirect");
+
                 return "redirect:" + redirect;
             }
+
             return "redirect:/"; // 로그인 성공시
         }
 

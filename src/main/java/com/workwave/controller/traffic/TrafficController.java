@@ -4,10 +4,6 @@ import com.workwave.common.traffic.myInfoPage;
 import com.workwave.common.traffic.myPageMaker;
 import com.workwave.dto.traffic.request.totalTrafficInfoDto;
 import com.workwave.dto.traffic.response.trafficInfoDto;
-import com.workwave.dto.user.JoinDto;
-import com.workwave.dto.user.LoginDto;
-import com.workwave.dto.user.LoginUserInfoDto;
-import com.workwave.entity.User;
 import com.workwave.service.traffic.trafficService;
 import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -33,30 +29,42 @@ public class TrafficController {
     @PostMapping("/traffic-Info")
     public String trafficInformation(@RequestBody trafficInfoDto trafficInfo, HttpSession session){
 
-        System.out.println("isLoggedIn: " + LoginUtil.isLoggedIn(session));
-        System.out.println("getLoggedIN: " + LoginUtil.getLoggedInUser(session));
         String userId = LoginUtil.getLoggedInUser(session).getUserId();
 
         trafficInfo.setUserId(userId);
-        System.out.println("trafficInfo = " + trafficInfo);
-        trafficService.save(trafficInfo);
+
+        trafficService.save(trafficInfo,session);
 
 
         return "traffic/Traffic";
     }
 
     @GetMapping("/traffic-myInfo")
-    public String findTrafficInfo(Model model, myInfoPage page){
+    public String findTrafficInfo(Model model, myInfoPage page, HttpSession session, @RequestParam(value = "sort", required = false) String sort) {
 
-        System.out.println(page);
-        List<totalTrafficInfoDto> totalTraffic = trafficService.findAll(page);
-        myPageMaker maker = new myPageMaker(page,trafficService.getCount());
-        System.out.println(maker);
-        model.addAttribute("maker",maker);
-        model.addAttribute("totalTraffic",totalTraffic);
+        List<totalTrafficInfoDto> totalTraffic = trafficService.findAll(page, session, sort);
+        myPageMaker maker = new myPageMaker(page, trafficService.getCount(session));
+
+        String userId = LoginUtil.getLoggedInUser(session).getUserId();
+        maker.setUserId(userId);
+
+        model.addAttribute("maker", maker);
+        model.addAttribute("totalTraffic", totalTraffic);
 
         return "traffic/myTrafficInfo";
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

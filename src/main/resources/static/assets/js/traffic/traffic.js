@@ -205,8 +205,5 @@ function trafficInfomation(totalStation, totalTime) {
     })
   }, 5000);  // 500ms 지연 시간
 
-   
-
-
 }
 

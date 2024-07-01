@@ -1,12 +1,15 @@
 package com.workwave.util;
 
 import com.workwave.dto.user.LoginUserInfoDto;
+import com.workwave.dto.user.LoginUserInfoListDto;
 import com.workwave.entity.AccessLevel;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginUtil {
     public static final String LOGIN = "login";
@@ -17,10 +20,18 @@ public class LoginUtil {
         return session.getAttribute(LOGIN) != null;
     }
 
-    // 로그인한 회원의 계정명 얻기
+  //로그인한 회원의 계정명 얻기
     public static String getLoggedInUserAccount(HttpSession session) {
         LoginUserInfoDto loggedInUser = getLoggedInUser(session);
         return loggedInUser != null ? loggedInUser.getUserId() : null;
+    }
+
+    //♦︎ - 신윤종 추가
+    // 세션에서 department 가져오기
+    //로그인한 회원의 부서명 얻기
+    public static String getLoggedInDepartmentId(HttpSession session) {
+        LoginUserInfoDto loggedInUser = getLoggedInUser(session);
+        return loggedInUser != null ? loggedInUser.getDepartmentId() : null;
     }
 
     public static LoginUserInfoDto getLoggedInUser(HttpSession session) {
@@ -44,4 +55,5 @@ public class LoginUtil {
         Cookie autoLoginCookie = WebUtils.getCookie(request, AUTO_LOGIN_COOKIE);
         return autoLoginCookie != null;   // 널이 아니면 자동로그인 상태
     }
+
 }

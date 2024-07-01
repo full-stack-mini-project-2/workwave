@@ -22,10 +22,10 @@ public class LoginUserInfoDto {
     //생성자
     public LoginUserInfoDto(User user){
         this.userId = user.getUserId();
-        this.email = user.getUserEmail();
         this.nickName = user.getUserName();
+        this.email = user.getUserEmail();
         this.userAccessLevel = user.getUserAccessLevel().name();  //.name() 쓰면 enum에서 대문자만 뜯어온다~!
         this.profile=user.getProfileImg();
-        this.departmentId = getDepartmentId();
+        this.departmentId = user.getDepartmentId(); //♦︎ - 신윤종 user 단어 추가. ㅠ
     }
 }

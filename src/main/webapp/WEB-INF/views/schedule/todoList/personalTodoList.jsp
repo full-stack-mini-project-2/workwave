@@ -51,7 +51,7 @@
         <tbody>
         <tr ng-repeat="personalTask in personalTasks track by $index" ng-class="{'table-success': personalTask.todoStatus === 'true', 'table-light': personalTask.todoStatus === 'false'}">
             <td>{{$index + 1}}</td>
-            <td>
+            <td ng-click="editPersonalTask(personalTask)">
                 <!-- 동그라미 표시 -->
 <%--                <span class="color-dot" ng-style="{'background-color': personalColorIndexMap[personalTask.colorIndexId]}"></span>--%>
                 <span ng-show="!personalTask.editing" ng-class="{'complete': personalTask.todoStatus === 'true'}">{{personalTask.todoContent}}</span>
@@ -73,32 +73,41 @@
     var appPersonal = angular.module("myAppPersonal", []);
 
     appPersonal.controller("myPersonalController", function($scope, $http) {
-        // 초기화 함수: 서버에서 개인 투두리스트 가져오기
+        // 초기화 함수
         function initPersonal() {
-            var userId = '<%= request.getAttribute("userId") %>'; // userId 가져오기
+            $http.get('/api/todos/user/info')
+                .then(function(response) {
+                    var userInfo = response.data;
+                    $scope.userId = userInfo.userId;
+                    fetchPersonalTasks();
+                })
+                .catch(function(error) {
+                    console.error('Error fetching user info:', error);
+                });
+        }
 
-            $http.get('/api/todos/personal/' + userId)
+        // 개인 투두리스트 가져오기
+        function fetchPersonalTasks() {
+            $http.get('/api/todos/personal')
                 .then(function(response) {
                     $scope.personalTasks = response.data;
-                    //문자열 true false 불린값으로 반환하기
-                    $scope.personalTasks.forEach(task => {
-                        task.todoStatus = task.todoStatus === 'true' ? 'true' : 'false';
-                    });
-
                 })
                 .catch(function(error) {
                     console.error('Error fetching personal tasks:', error);
                 });
         }
 
-        initPersonal(); // 페이지 로딩 시 초기화 함수 호출
+        // 초기화 함수 호출
+        initPersonal();
+
+
 
         // 투두리스트 저장 함수
         $scope.savePersonalTask = function() {
             var newPersonalTask = {
                 todoContent: $scope.yourPersonalTask,
-                todoStatus: 'false', //문자열로 받아야함
-                userId: '<%= request.getAttribute("userId") %>'
+                todoStatus: 'false', // 문자열로 받아야 함
+                userId: $scope.userId
             };
 
             $http.post('/api/todos/personal', newPersonalTask)
@@ -115,9 +124,10 @@
                 .catch(function(error) {
                     console.error('Error saving personal task:', error);
                 });
+            initPersonal();
         };
 
-        // 투두리스트 삭제 함수
+        //투두리스트 삭제
         $scope.deletePersonalTask = function(index) {
             var personalTodoId = $scope.personalTasks[index].todoId;
 
@@ -137,25 +147,14 @@
 
         // 업데이트 함수
         $scope.updatePersonalTask = function(personalTask) {
-            if(!personalTask.todoId) return; // 아이디 없을 때 업데이트 방지
+            if (!personalTask.todoId) return; // 아이디 없을 때 업데이트 방지
 
             var updatedMyTask = angular.copy(personalTask);
             updatedMyTask.todoStatus = personalTask.todoStatus.toString();
 
             $http.put('/api/todos/personal/' + personalTask.todoId, updatedMyTask)
                 .then(function(response) {
-
                     personalTask.editing = false; // 수정 상태 초기화
-
-                    // var updatedPersonalTask = response.data;
-                    // 클라이언트에서 personalTasks 배열을 업데이트
-                    // for (var i = 0; i < $scope.personalTasks.length; i++) {
-                    //     if ($scope.personalTasks[i].todoId === updatedPersonalTask.todoId) {
-                    //         $scope.personalTasks[i] = updatedPersonalTask;
-                    //         break;
-                    //     }
-                    // }
-                    // personalTask.editing = false; // 수정 상태 초기화
                 })
                 .catch(function(error) {
                     console.error('Error updating personal task:', error);
