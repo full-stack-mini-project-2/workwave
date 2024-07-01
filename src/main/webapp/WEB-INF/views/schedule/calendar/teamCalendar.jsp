@@ -495,8 +495,8 @@
             calEventDescription: description,
             calEventCreateAt: new Date().toISOString(),
             colorIndexId: colorIndex,
-            userName: myTeamCalEvents.userName,
-            updateBy: myTeamCalEvents.userName,
+            userName: myTeamCalEvents.userName, // 안뜸
+            updateBy: myTeamCalEvents.userName, // 안뜸
             departmentId: myTeamCalEvents.departmentId,
         };
 
