@@ -4,6 +4,7 @@ import com.workwave.dto.schedule_dto.request.AllMyTeamTodoListDto;
 import com.workwave.entity.schedule.TeamTodoList;
 import com.workwave.entity.schedule.TodoList;
 import com.workwave.mapper.scheduleMapper.TodoListMapper;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -73,6 +74,7 @@ public class TodoListService {
 
     // 팀 투두 수정
     public void updateTeamTodo(TeamTodoList teamTodoList) {
+        teamTodoList.setTeamTodoUpdateAt(LocalDateTime.now()); // 업데이트일 설정
         todoListMapper.updateTeamTodo(teamTodoList);
     }
 

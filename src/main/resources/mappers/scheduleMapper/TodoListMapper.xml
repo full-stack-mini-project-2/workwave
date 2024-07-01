@@ -108,17 +108,15 @@
             user_id,
             department_id
         )
-        SELECT
-            #{teamTodoContent},
-            #{teamTodoStatus},
-            #{teamTodoCreateAt},
-            #{teamTodoUpdateAt},
-            #{colorIndexId},
-            #{userId},
-            D.department_id
-        FROM Users U
-                 INNER JOIN Department D ON U.department_id = D.department_id
-        WHERE U.user_id = #{userId}
+        VALUES (
+                   #{teamTodoContent},
+                   #{teamTodoStatus},
+                   #{teamTodoCreateAt},
+                   #{teamTodoUpdateAt},
+                   #{colorIndexId},
+                   #{userId},
+                   #{departmentId}
+               )
     </insert>
 
 

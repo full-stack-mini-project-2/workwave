@@ -118,9 +118,36 @@ public class TodoListApiController {
     }
 
     // Add team todo item
-    @PostMapping("/team")
-    public ResponseEntity<TeamTodoList> insertTeamTodo(@RequestBody TeamTodoList teamTodoList) {
+//    @PostMapping("/team/aTeamTodos")
+//    public ResponseEntity<TeamTodoList> createTeamTodo(
+//            @RequestParam String userId,
+//            @RequestBody TeamTodoList teamTodoList
+//    ) {
+//        todoListService.insertTeamTodo(teamTodoList, userId);
+//        return ResponseEntity.ok(teamTodoList);
+//    }
+
+    // Add team todo item
+    @PostMapping("/team/aTeamTodos")
+    public ResponseEntity<TeamTodoList> createTeamTodo(
+            HttpSession session, // HttpSession 객체 주입
+            @RequestBody TeamTodoList teamTodoList
+    ) {
+        // 세션에서 userId 가져오기
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        log.info("전달하려는 객체{}", teamTodoList);
+
+        // userId가 null이 아닌지 로그로 확인
+        if (userId != null) {
+            System.out.println("User ID from session: " + userId);
+        } else {
+            System.out.println("User ID is null in session.");
+        }
+
+        // TodoListService를 사용하여 teamTodoList 저장
         todoListService.insertTeamTodo(teamTodoList);
+        log.info("전달하려는 객체{}", teamTodoList);
+
         return ResponseEntity.ok(teamTodoList);
     }
 
@@ -140,6 +167,7 @@ public class TodoListApiController {
         existingTeamTodoList.setTeamTodoUpdateAt(new Timestamp(System.currentTimeMillis()).toLocalDateTime());
         // Add more fields as needed
 
+        teamTodoList.setTeamTodoId(teamTodoId);
         todoListService.updateTeamTodo(existingTeamTodoList);
         return ResponseEntity.ok(existingTeamTodoList);
     }

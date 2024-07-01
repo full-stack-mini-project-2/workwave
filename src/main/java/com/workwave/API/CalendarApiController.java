@@ -125,10 +125,8 @@ public class CalendarApiController {
                 LocalDateTime updatedAt = LocalDateTime.parse(myCalendarEventDto.getCalEventUpdateAt().toString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
                 myCalendarEventDto.setCalEventUpdateAt(updatedAt);
             }
-
             // Update the event with additional fields
             myCalendarEventDto.setUserId(userId);
-
 //        try {
 //             ISO-8601 형식으로 전송된 updateAt 문자열을 파싱하여 LocalDateTime 객체로 변환
 //            LocalDateTime updatedAt = LocalDateTime.parse(myCalendarEventDto.getCalEventUpdateAt().toString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);

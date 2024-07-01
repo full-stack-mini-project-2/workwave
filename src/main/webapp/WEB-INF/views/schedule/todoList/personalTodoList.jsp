@@ -127,6 +127,7 @@
             initPersonal();
         };
 
+        //투두리스트 삭제
         $scope.deletePersonalTask = function(index) {
             var personalTodoId = $scope.personalTasks[index].todoId;
 

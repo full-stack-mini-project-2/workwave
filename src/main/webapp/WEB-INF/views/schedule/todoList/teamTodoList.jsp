@@ -64,25 +64,29 @@
         </tbody>
     </table>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+<script>
+    <%--var sessionUserId = '<%= session.getAttribute("userId") %>';--%>
+</script><script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
 <script>
     var appTeam = angular.module("myAppTeam", []);
 
     appTeam.controller("myTeamController", function($scope, $http) {
-        // 초기화 함수: 서버에서 팀 투두리스트 가져오기
+
+        // 초기화 함수: 서버에서 팀 정보 및 투두리스트 가져오기
         function initTeam() {
             $http.get('/api/todos/user/info')
                 .then(function(response) {
-                    var teamInfo = response.data;
-                    $scope.departmentId = teamInfo.departmentId;
-                    fetchTeamTasks();
+                    var userInfo = response.data;
+                    $scope.userId = userInfo.userId;
+                    $scope.departmentId = userInfo.departmentId;
+                    fetchTeamTasks(); // 투두리스트 가져오기 호출
                 })
                 .catch(function(error) {
                     console.error('Error fetching team info:', error);
                 });
         }
 
+        // 팀 투두리스트 가져오기
         function fetchTeamTasks() {
             $http.get('/api/todos/team/aTeamTodos')
                 .then(function(response) {
@@ -93,17 +97,21 @@
                 });
         }
 
-        initTeam(); // 페이지 로딩 시 초기화 함수 호출
+        // 페이지 로딩 시 초기화 함수 호출
+        initTeam();
 
         // 투두리스트 저장 함수
         $scope.saveTeamTask = function() {
             var newTeamTask = {
                 teamTodoContent: $scope.yourTeamTask,
                 teamTodoStatus: 'false', // 기본값을 문자열 'false'로 설정
-                departmentId: $scope.departmentId
+                departmentId: $scope.departmentId,
+                userId: $scope.userId
             };
 
-            $http.post('/api/todos/team', newTeamTask)
+            console.log('Saving Team Task:', newTeamTask); // 로그 추가
+
+            $http.post('/api/todos/team/aTeamTodos', newTeamTask)
                 .then(function(response) {
                     var savedTask = response.data;
                     if (savedTask && savedTask.teamTodoId) {
@@ -115,7 +123,7 @@
                     $scope.yourTeamTask = ''; // 입력 필드 초기화
                 })
                 .catch(function(error) {
-                    console.error('Error saving team task:', error);
+                    console.error('팀 투두를 저장하는 중 오류 발생:', error);
                 });
         };
 
@@ -155,7 +163,7 @@
 
         // Enter 키를 눌렀을 때 업데이트 수행
         $scope.handleKeyPressTeamTask = function(event, teamTask) {
-            if (event.keyCode === 13) { // Enter 키 코드는 13입니다.
+            if (event.keyCode === 13) { // Enter 키 코드는 13
                 $scope.updateTeamTask(teamTask);
             }
         };

@@ -124,7 +124,9 @@ public class TodoListViewController {
 
     // 팀 투두리스트 추가 처리
     @PostMapping("/team/add")
-    public String addTeamTodo(@ModelAttribute TeamTodoList teamTodoList) {
+    public String addTeamTodo(
+            @RequestBody TeamTodoList teamTodoList
+    ) {
         todoListService.insertTeamTodo(teamTodoList);
         return "redirect:/todos/team?departmentId=" + teamTodoList.getDepartmentId();
     }
