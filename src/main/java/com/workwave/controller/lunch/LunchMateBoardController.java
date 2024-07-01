@@ -1,17 +1,19 @@
 package com.workwave.controller.lunch;
 
+import com.workwave.common.lunchpage.LunchPage;
+import com.workwave.common.lunchpage.LunchPageMaker;
 import com.workwave.dto.lunchBoardDto.LunchBoardFindAllDto;
 import com.workwave.entity.LunchMateBoard;
+import com.workwave.entity.User;
 import com.workwave.service.lunchService.LunchMateBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,6 +49,7 @@ public class LunchMateBoardController {
         model.addAttribute("boards", boardDTOs);
         return "lunch/lunchboard"; // src/main/webapp/WEB-INF/views/lunch/lunchboard.jsp
     }
+
     // 글 작성 페이지 이동
     @GetMapping("/new")
     public String createForm(Model model) {
@@ -54,15 +57,29 @@ public class LunchMateBoardController {
         return "lunch/createLunchBoard"; // src/main/webapp/WEB-INF/views/lunch/createLunchBoard.jsp
     }
 
-
     // 글 작성 처리
     @PostMapping("/new")
-    public String create(@ModelAttribute("board") LunchMateBoard board) {
-        // 현재 시간을 작성 시간으로 설정
-        board.setLunchDate(LocalDateTime.now());
-        lunchMateBoardService.save(board);
-        return "redirect:/lunchMateBoard/list"; // 다시 목록 페이지로 리다이렉트
+    public String create(@ModelAttribute("board") LunchMateBoard board, HttpSession session) {
+        User currentUser = (User) session.getAttribute("loggedInUser");
+        if (currentUser != null) {
+            board.setUserId(currentUser.getUserId());  // 현재 로그인한 사용자의 userId를 설정
+            lunchMateBoardService.save(board, currentUser);
+            return "redirect:/lunchMateBoard/list"; // 다시 목록 페이지로 리다이렉트
+        } else {
+            return "redirect:/login"; // 로그인되어 있지 않은 경우 로그인 페이지로 리다이렉트
+        }
     }
+
+//    // 글 작성 처리
+//    @PostMapping("/new")
+//    public String create(@ModelAttribute("board") LunchMateBoard board) {
+//        // 현재 시간을 작성 시간으로 설정
+//        board.setLunchDate(LocalDateTime.now());
+//        board.setProgressStatus("준비");
+//        board.setEatTime(LocalDateTime.now().toString());
+//        lunchMateBoardService.save(board);
+//        return "redirect:/lunchMateBoard/list"; // 다시 목록 페이지로 리다이렉트
+//    } 20240629 수정
 
 //    // 글 작성 처리
 //    @PostMapping("/new")
