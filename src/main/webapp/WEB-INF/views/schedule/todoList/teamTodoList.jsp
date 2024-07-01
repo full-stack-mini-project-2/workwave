@@ -125,6 +125,8 @@
                 .catch(function(error) {
                     console.error('팀 투두를 저장하는 중 오류 발생:', error);
                 });
+            fetchTeamTasks();
+            initTeam();
         };
 
         // 투두리스트 삭제 함수
@@ -138,6 +140,8 @@
                 .catch(function(error) {
                     console.error('Error deleting team task:', error);
                 });
+            fetchTeamTasks();
+            initTeam();
         };
 
         // 수정 상태로 전환하는 함수
@@ -163,6 +167,7 @@
 
         // Enter 키를 눌렀을 때 업데이트 수행
         $scope.handleKeyPressTeamTask = function(event, teamTask) {
+
             if (event.keyCode === 13) { // Enter 키 코드는 13
                 $scope.updateTeamTask(teamTask);
             }

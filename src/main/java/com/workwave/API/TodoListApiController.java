@@ -118,16 +118,6 @@ public class TodoListApiController {
     }
 
     // Add team todo item
-//    @PostMapping("/team/aTeamTodos")
-//    public ResponseEntity<TeamTodoList> createTeamTodo(
-//            @RequestParam String userId,
-//            @RequestBody TeamTodoList teamTodoList
-//    ) {
-//        todoListService.insertTeamTodo(teamTodoList, userId);
-//        return ResponseEntity.ok(teamTodoList);
-//    }
-
-    // Add team todo item
     @PostMapping("/team/aTeamTodos")
     public ResponseEntity<TeamTodoList> createTeamTodo(
             HttpSession session, // HttpSession 객체 주입
