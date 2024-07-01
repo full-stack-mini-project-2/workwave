@@ -49,7 +49,7 @@ header .inner-header .logo a {
 header .inner-header .logo a img {
   width: 35px;
   height: 35px;
-  margin-top: 20px;
+  /* margin-top: 10px; */
   border-radius: 20%;
 }
 
