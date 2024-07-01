@@ -1,3 +1,4 @@
+git rm --cached logs/*.gz
 
 src/main/resources/application.properties
 
