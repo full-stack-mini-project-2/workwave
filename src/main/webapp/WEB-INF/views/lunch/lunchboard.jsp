@@ -99,7 +99,7 @@
                     <tr>
                         <th>작성자</th>
                         <th>제목</th>
-                        <th>작성일자</th>
+
                         <th>식사일정</th>
                         <th>식당</th>
                         <th>메뉴</th>
@@ -112,14 +112,14 @@
                     <tr>
                         <td>${board.userId}</td>
                         <td>${board.lunchPostTitle}</td>
-                        <td>${board.lunchDate}</td>
+
                         <td>${board.eatTime}</td>
                         <td>${board.lunchLocation}</td>
                         <td>${board.lunchMenuName}</td>
                         <td>${board.lunchAttendees}</td>
                         <td>${board.progressStatus}</td>
                         <td class="join-button">
- <a href="#" class="join-link" data-lunch-post-number="${board.lunchPostNumber}">참가하기</a>
+<a href="#" class="join-link" data-max-attendees="${board.lunchAttendees}">참가하기</a>
                         </td>
                     </tr>
                 </tbody>
@@ -142,7 +142,7 @@
                     <input type="text" id="lunchPostTitle" name="lunchPostTitle" required><br>
 
                     <label for="eatTime">식사 일정:</label>
-                    <input type="text" id="eatTime" name="eatTime"><br>
+                    <input type="date" id="eatTime" name="eatTime" required><br>
 
                     <label for="lunchLocation">식당 위치:</label>
                     <input type="text" id="lunchLocation" name="lunchLocation" required><br>
@@ -152,6 +152,7 @@
 
                     <label for="lunchAttendees">인원:</label>
                     <input type="number" id="lunchAttendees" name="lunchAttendees" required><br>
+
 
                     <button type="submit">등록</button>
                 </form>

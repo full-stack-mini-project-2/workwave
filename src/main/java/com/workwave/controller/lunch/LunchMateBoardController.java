@@ -6,6 +6,7 @@ import com.workwave.dto.lunchBoardDto.LunchBoardFindAllDto;
 import com.workwave.entity.LunchMateBoard;
 import com.workwave.entity.User;
 import com.workwave.service.lunchService.LunchMateBoardService;
+import com.workwave.util.LoginUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -50,24 +51,32 @@ public class LunchMateBoardController {
         return "lunch/lunchboard"; // src/main/webapp/WEB-INF/views/lunch/lunchboard.jsp
     }
 
-    // 글 작성 페이지 이동
     @GetMapping("/new")
-    public String createForm(Model model) {
-        model.addAttribute("board", new LunchMateBoard());
-        return "lunch/createLunchBoard"; // src/main/webapp/WEB-INF/views/lunch/createLunchBoard.jsp
+    public String createForm(Model model, HttpSession session) {
+        User currentUser = (User) session.getAttribute("loggedInUser");
+        if (currentUser != null) {
+            model.addAttribute("board", new LunchMateBoard());
+            model.addAttribute("loggedInUser", currentUser); // 현재 로그인된 사용자 정보 추가
+            return "lunch/createLunchBoard"; // src/main/webapp/WEB-INF/views/lunch/createLunchBoard.jsp
+        } else {
+            return "redirect:/login"; // 로그인되어 있지 않은 경우 로그인 페이지로 리다이렉트
+        }
     }
-
     // 글 작성 처리
     @PostMapping("/new")
     public String create(@ModelAttribute("board") LunchMateBoard board, HttpSession session) {
         User currentUser = (User) session.getAttribute("loggedInUser");
-        if (currentUser != null) {
-            board.setUserId(currentUser.getUserId());  // 현재 로그인한 사용자의 userId를 설정
-            lunchMateBoardService.save(board, currentUser);
+        String userId = LoginUtil.getLoggedInUser(session).getUserId();
+        boolean loggedIn = LoginUtil.isLoggedIn(session);
+        System.out.println(loggedIn);
+        if (loggedIn) {
+            board.setUserId(userId);  // 현재 로그인한 사용자의 userId를 설정
+            lunchMateBoardService.save(board, userId);
             return "redirect:/lunchMateBoard/list"; // 다시 목록 페이지로 리다이렉트
         } else {
             return "redirect:/login"; // 로그인되어 있지 않은 경우 로그인 페이지로 리다이렉트
         }
+
     }
 
 //    // 글 작성 처리

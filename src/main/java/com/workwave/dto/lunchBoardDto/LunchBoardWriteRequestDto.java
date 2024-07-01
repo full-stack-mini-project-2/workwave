@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class LunchBoardWriteRequestDto {
 
-
+    private String userId; //유저 아이디
     private String lunchPostTitle; // 글 제목
     private String eatTime; // 식사 일정
     private String lunchLocation; // 식당 위치 (식당명)
@@ -23,6 +23,7 @@ public class LunchBoardWriteRequestDto {
 
     public LunchMateBoard toEntity() {
         LunchMateBoard lmb = new LunchMateBoard();
+        lmb.setUserId(this.userId);
         lmb.setLunchPostTitle(this.lunchPostTitle);
         lmb.setEatTime(this.eatTime);
         lmb.setLunchLocation(this.lunchLocation);
