@@ -4,6 +4,7 @@ import com.workwave.dto.schedule_dto.request.AllMyTeamTodoListDto;
 import com.workwave.entity.schedule.TeamTodoList;
 import com.workwave.entity.schedule.TodoList;
 import com.workwave.mapper.scheduleMapper.TodoListMapper;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,19 +21,22 @@ public class TodoListService {
         return todoListMapper.findByTodoId(todoId);
     }
 
+
     // 특정 사용자의 개인 투두리스트 조회
     public List<TodoList> findPersonalTodosByUserId(String userId) {
         return todoListMapper.findByUserId(userId);
     }
 
+
     // 개인 투두리스트 추가
     public void insertPersonalTodo(TodoList todoList) {
-        todoList.setTodoStatus("inprogress"); // 기본 상태 설정
+        todoList.setTodoStatus("false"); // 기본 상태 설정
         todoList.setTodoCreateAt(LocalDateTime.now()); // 생성일 설정
         todoList.setTodoUpdateAt(LocalDateTime.now()); // 업데이트일 설정
         todoList.setColorIndexId(1); // 기본 색상 인덱스 설정
         todoListMapper.insertPersonalTodo(todoList);
     }
+
 
     // 개인 투두리스트 수정
     public void updatePersonalTodo(TodoList todoList) {
@@ -40,29 +44,26 @@ public class TodoListService {
         todoListMapper.updatePersonalTodo(todoList);
     }
 
-    // 개인 투두리스트 삭제
+
+    // 개인 투두 삭제
     public void deletePersonalTodo(int todoId) {
         todoListMapper.deletePersonalTodo(todoId);
     }
 
 
-//    // 모든 팀 투두리스트 조회
-//    public List<TeamTodoList> findAllTeamTodos() {
-//        return todoListMapper.findAllTeamTodos();
-//    }
-
-
-    // 부서별 팀 투두리스트 조회
+    // 부서별 팀 투두 목록 조회
     public List<TeamTodoList> findTeamTodosByDepartmentId(String departmentId) {
         return todoListMapper.findTeamTodosByDepartmentId(departmentId);
     }
 
-    // 특정 팀 투두리스트 하나 조회
+
+    // 특정 팀 투두 조회
     public TeamTodoList findTeamTodoById(int teamTodoId) {
         return todoListMapper.findTeamTodoById(teamTodoId);
     }
 
-    // 팀 투두리스트 추가
+
+    // 팀 투두 추가
     public void insertTeamTodo(TeamTodoList teamTodoList) {
         teamTodoList.setTeamTodoStatus("false");
         teamTodoList.setTeamTodoCreateAt(LocalDateTime.now()); // 생성일 설정
@@ -71,12 +72,13 @@ public class TodoListService {
         todoListMapper.insertTeamTodo(teamTodoList);
     }
 
-    // 팀 투두리스트 수정
+    // 팀 투두 수정
     public void updateTeamTodo(TeamTodoList teamTodoList) {
+        teamTodoList.setTeamTodoUpdateAt(LocalDateTime.now()); // 업데이트일 설정
         todoListMapper.updateTeamTodo(teamTodoList);
     }
 
-    // 팀 투두리스트 삭제
+    // 팀 투두 삭제
     public void deleteTeamTodo(int teamTodoId) {
         todoListMapper.deleteTeamTodo(teamTodoId);
     }
@@ -85,6 +87,13 @@ public class TodoListService {
 }
 
 /*
+
+//    // 모든 팀 투두리스트 조회
+//    public List<TeamTodoList> findAllTeamTodos() {
+//        return todoListMapper.findAllTeamTodos();
+//    }
+
+
     //개인 투두리스트 모든 유저 모든 목록 전체 조회
     public List<TodoList> findAll() {
         return todoListMapper.findAll();
