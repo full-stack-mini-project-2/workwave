@@ -1,4 +1,4 @@
-echo "logs/*.gz"
+logs/*.gz
 
 src/main/resources/application.properties
 
