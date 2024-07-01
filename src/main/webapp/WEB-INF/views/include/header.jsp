@@ -1,11 +1,12 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
         <!-- header -->
         <header>
             <div class="inner-header">
                 <h1 class="logo">
-                    <a href="/board/list">
-                        <img src="/assets/img/logo.png" alt="로고이미지">
+                    <a href="/">
+                        <img src="/assets/img/workwave_logo.png" alt="로고이미지" class="logo">
                     </a>
                 </h1>
                 <div class="profile-box">
@@ -15,7 +16,7 @@
                             <img src="${login.profile}" alt="profile image">
                         </c:when>
                         <c:otherwise>
-                            <img src="/assets/img/anonymous.jpg" alt="profile image">
+                            <img src="/assets/img/anonymous.png" alt="profile image">
                         </c:otherwise>
                     </c:choose>
 
@@ -52,4 +53,4 @@
             </nav>
 
         </header>
-        <!-- <!— //header —> -->
+        <!--//header-->

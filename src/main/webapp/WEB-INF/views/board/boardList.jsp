@@ -2,13 +2,11 @@
 uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
   <head>
-    <title>게시판</title>
-    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"/>
-    <link rel="stylesheet" href="/assets/css/main.css" />
+    <%@ include file="../include/static-head.jsp" %>
     <link rel="icon" href="/assets/img/workwave_logo.png" />
     <link rel="stylesheet" href="/assets/css/boardList.css" />
 
-    <%@ include file="../include/static-head.jsp" %>
+    <title>게시판</title>
 
   </head>
   <body>
