@@ -262,9 +262,10 @@ public class CalendarApiController {
                 teamCalendarEventDto.setCalEventUpdateAt(updatedAt);
             }
             teamCalendarEventDto.setUserId(userId);
+            teamCalendarEventDto.setUpdateBy(userName);
 
             // 팀 캘린더의 이벤트 업데이트 시도
-            boolean success = calendarService.updateTeamCalEvent(teamCalendarEventDto, userName);
+            boolean success = calendarService.updateTeamCalEvent(teamCalendarEventDto);
             if (success) {
                 return ResponseEntity.ok(Map.of("success", true, "message", "Event updated successfully"));
             } else {

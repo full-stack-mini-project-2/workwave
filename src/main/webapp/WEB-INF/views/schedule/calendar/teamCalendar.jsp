@@ -30,11 +30,11 @@
             cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능한 상태로 만듦 */
         }
 
-        .event-lightblue { background-color: lightblue; }
-        .event-lightgreen { background-color: lightgreen; }
-        .event-lightcoral { background-color: lightcoral; }
-        .event-lightsalmon {background-color: lightsalmon; }
-        .event-lightseagreen { background-color: lightseagreen; }
+        .event-lightsteelblue { background-color: lightsteelblue; }
+        .event-darkslateblue { background-color: darkslateblue; }
+        .event-steelblue { background-color: steelblue; }
+        .event-lightyellow { background-color: lightyellow; }
+        .event-lightpink { background-color: lightpink; }
         .event-lightgray { background-color: lightgray; }
 
         /* 모달 스타일 */
@@ -83,11 +83,11 @@
             cursor: pointer;
         }
 
-        .color-red { background-color: lightsteelblue; }
-        .color-green { background-color: darkslateblue; }
-        .color-blue { background-color: steelblue; }
-        .color-yellow { background-color: lightyellow; }
-        .color-magenta { background-color: lightpink; }
+        .color-lightsteelblue { background-color: lightsteelblue; }
+        .color-darkslateblue { background-color: darkslateblue; }
+        .color-steelblue { background-color: steelblue; }
+        .color-lightyellow { background-color: lightyellow; }
+        .color-lightpink { background-color: lightpink; }
         .calendar th, .calendar td {
             border: 1px solid #ddd;
             padding: 10px;
@@ -118,6 +118,9 @@
         }
         .fa-add {
             float: right;
+        }
+        .color-picker div.selected {
+            border: 3.5px solid #141640;
         }
     </style>
 </head>
@@ -160,11 +163,11 @@
 
             <label for="calColorIndex">색상:</label>
             <div class="color-picker">
-                <div class="color-red" data-color-index="1"></div>
-                <div class="color-green" data-color-index="2"></div>
-                <div class="color-blue" data-color-index="3"></div>
-                <div class="color-yellow" data-color-index="4"></div>
-                <div class="color-magenta" data-color-index="5"></div>
+                <div class="color-lightsteelblue" data-color-index="1"></div>
+                <div class="color-darkslateblue" data-color-index="2"></div>
+                <div class="color-steelblue" data-color-index="3"></div>
+                <div class="color-lightyellow" data-color-index="4"></div>
+                <div class="color-lightpink" data-color-index="5"></div>
             </div>
             <input type="hidden" id="calColorIndex" name="calColorIndex" value=""><br>
 
@@ -309,36 +312,42 @@
         }
     });
 
-    // 일정 추가 모달 (addEventModal) 개선
-    document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
-        const addEventModal = document.getElementById('addEventModal');
-        addEventModal.style.display = 'block';
-
-        // 닫기 버튼 클릭 시 모달 닫기
-        const closeBtn = addEventModal.querySelector('.close');
-        closeBtn.onclick = function () {
-            addEventModal.style.display = 'none';
-        };
-
-        // 초기화 로직 추가 (모달이 열릴 때 입력 필드 초기화)
-        document.getElementById('calEventTitle').value = '';
-        document.getElementById('calEventDate').value = '';
-        document.getElementById('calEventDescription').value = '';
-        document.getElementById('calColorIndex').value = '';
-    });
-
     // 일정 추가 모달 열기
     document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
         const addEventModal = document.getElementById('addEventModal');
         addEventModal.style.display = 'block';
 
-        // 원하는 형광 색상 선택
+        // 초기화 로직 추가 (모달이 열릴 때 입력 필드 초기화)
+        document.getElementById('calEventTitle').value = '';
+        document.getElementById('calEventDate').value = '';
+        document.getElementById('calEventDescription').value = '';
+        document.getElementById('calColorIndex').value = ''; // 초기화
+
+        // 색상 선택 기능
         document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
             colorDiv.addEventListener('click', function () {
                 document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+                updateColorPreview(this.getAttribute('data-color-index'));
             });
         });
+
+        const closeBtn = addEventModal.querySelector('.close');
+        closeBtn.onclick = function () {
+            addEventModal.style.display = 'none';
+        };
     });
+
+    // 색상 미리보기 업데이트 함수
+    function updateColorPreview(index) {
+        const colorDivs = document.querySelectorAll('.color-picker div');
+        colorDivs.forEach(function (colorDiv) {
+            colorDiv.classList.remove('selected');
+            if (colorDiv.getAttribute('data-color-index') === index) {
+                colorDiv.classList.add('selected');
+            }
+        });
+    }
+
 
     // 이벤트 상세보기
     function openModal(eventId) {
@@ -350,7 +359,8 @@
         const modal = document.getElementById('eventModal');
         const modalContent = modal.querySelector('.modal-content');
         const eventDetails = modal.querySelector('#eventDetails');
-
+        // 수정자 표시
+        let updateByMessage = selectedEvent.updateBy ? selectedEvent.updateBy : "아직 아무도 수정하지 않았어요!";
 
         //수정하고 난 뒤에만 수정자 표시
         eventDetails.innerHTML = `
@@ -358,7 +368,7 @@
         <li><strong>이벤트 내용:</strong> \${selectedEvent.calEventDescription}</li>
         <li><strong>이벤트 날짜:</strong> \${selectedEvent.calEventDate}</li>
         <li><strong>작성자:</strong> \${selectedEvent.userName}</li>
-        <li><strong>수정자:</strong> \${selectedEvent.updateBy}</li>
+        <li><strong>수정자:</strong> \${updateByMessage}</li>
       `;
 
         const editButton = modal.querySelector('#editEvent');
@@ -393,7 +403,7 @@
                     updateBy: nowUserNameFromServer,
                 };
 
-                console.log("수정 데이터 ", updateEvent);
+                console.log("수정 데이터 ", updateEvent);updateColorPreview
 
                 //일정 수정
                 fetch('/api/calendar/updateTeamEvent', {
@@ -485,6 +495,7 @@
         document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
             colorDiv.addEventListener('click', function () {
                 document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+                updateColorPreview(this.getAttribute('data-color-index')); // Update color preview
             });
         });
 

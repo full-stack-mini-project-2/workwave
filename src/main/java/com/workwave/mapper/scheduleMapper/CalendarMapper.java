@@ -67,7 +67,7 @@ public interface CalendarMapper {
     void updateMyCalEvent(AllMyCalendarEventDto calendarEvent);
 
     // 팀 캘린더 일정 수정하기
-    void updateMyTeamCalEvent(AllMyTeamCalendarEventDto calendarEvent);
+    void updateTeamCalEvent(AllMyTeamCalendarEventDto calendarEvent);
 
 
 }

@@ -167,7 +167,7 @@ public class CalendarViewController {
             throw new RuntimeException("User is not logged in");
         }
         // 이벤트 수정 호출
-        boolean success = calendarService.updateTeamCalEvent(teamCalendarEventDto, userName);
+        boolean success = calendarService.updateTeamCalEvent(teamCalendarEventDto);
         if (!success) {
             throw new RuntimeException("Failed to update event");
         }

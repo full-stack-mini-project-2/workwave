@@ -198,8 +198,9 @@
         CE.user_id AS userId,
         CE.team_calendar_id AS teamCalendarId,
         CE.department_id AS departmentId,
-        D.department_name AS departmentName
-        U.user_name AS userName
+        CE.update_by AS updateBy, <!-- update_by 필드를 새로 추가한 부분 -->
+        D.department_name AS departmentName,
+        U.user_name AS userName <!-- U.user_name 별칭이 올바른 위치에 위치하도록 수정 -->
         FROM
         CalendarEvent CE
         JOIN
@@ -215,24 +216,8 @@
     <!-- 본인이 속한 팀 캘린더 모든 일정 리스트 조회 -->
     <select id="getMyAllTeamCalendarEvents" resultType="allMyTeamCalendarEventDto">
         SELECT *
-<!--        CE.cal_event_id AS calEventId,-->
-<!--        CE.cal_event_date AS calEventDate,-->
-<!--        CE.cal_event_title AS calEventTitle,-->
-<!--        CE.cal_event_description AS calEventDescription,-->
-<!--        CE.cal_event_createAt AS calEventCreateAt,-->
-<!--        CE.cal_event_updateAt AS calEventUpdateAt,-->
-<!--        CE.color_index_id AS colorIndexId,-->
-<!--        CE.user_id AS userId,-->
-<!--        CE.team_calendar_id AS teamCalendarId,-->
-<!--        CE.department_id AS departmentId,-->
-<!--        D.department_name AS departmentName-->
-<!--        U.user_name AS userName-->
         FROM
         CalendarEvent
-<!--        JOIN-->
-<!--        Users U ON U.user_id = CE.user_id-->
-<!--        JOIN-->
-<!--        Department D ON D.department_id = CE.department_id-->
         WHERE
         department_id = #{departmentId}
         AND calendar_id IS NULL;
@@ -318,7 +303,7 @@
         cal_event_updateAt = #{calEventUpdateAt},
         user_id = #{userId},
         team_calendar_id = #{teamCalendarId},
-        updateBy = #{updateBy}, <!-- 수정자 추가 -->
+        update_by = #{updateBy}, <!-- 수정자 추가 -->
         color_index_id = #{colorIndexId}
         WHERE cal_event_id = #{calEventId}
     </update>

@@ -3,13 +3,11 @@ package com.workwave.service.schedule;
 import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
 import com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto;
 import com.workwave.mapper.scheduleMapper.CalendarMapper;
-import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
@@ -186,24 +184,27 @@ public class CalendarService {
         return newTeamEvent;
     }
 
-    // 팀 캘린더 일정 수정
+//   팀 캘린더 일정 수정
     @Transactional
-    public boolean updateTeamCalEvent(AllMyTeamCalendarEventDto teamCalendarEvent, String userName) {
+    public boolean updateTeamCalEvent(AllMyTeamCalendarEventDto teamCalendarEvent) {
         try {
             // 기존 이벤트를 가져오기
             AllMyTeamCalendarEventDto existingTeamEvent = calendarMapper.findOneTeamCalEvent(teamCalendarEvent.getCalEventId());
 
+            if (existingTeamEvent == null) {
+                // 기존 이벤트가 없을 경우 예외 처리 또는 적절한 로직 추가
+                throw new IllegalArgumentException("Event not found for calEventId: " + teamCalendarEvent.getCalEventId());
+            }
+
             // 업데이트할 필드 설정
             teamCalendarEvent.setCalEventUpdateAt(LocalDateTime.now());
 
-            //입력하지 않았을 경우 service에서 default value 설정
+            // 컬러인덱스 입력하지 않았을 경우 service에서 default value 설정
             if (teamCalendarEvent.getColorIndexId() == null) {
                 teamCalendarEvent.setColorIndexId(existingTeamEvent.getColorIndexId() != null ? existingTeamEvent.getColorIndexId() : getDefaultColorIndex());
             }
 
-            //바로 dto 활용하여 DB 데이터 업데이트
-            teamCalendarEvent.setUpdateBy(userName);
-            calendarMapper.updateMyTeamCalEvent(teamCalendarEvent);
+            calendarMapper.updateTeamCalEvent(teamCalendarEvent);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
