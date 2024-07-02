@@ -49,19 +49,35 @@ $departureStation.addEventListener("change", (e) => {
       });
 
       let matchCount = 0;
+      const informationMetro = document.getElementById("informationMetro");
 
       for (let i = 0; i < filterdData.length; i++) {
-        for (let j = 0; j < trafficMap.length; j++) {
-            if (filterdData[i].arvlMsg3 === trafficMap[j] || trafficMap[j].includes(filterdData[i].arvlMsg3)) {
-                matchCount++;
-                break; 
-            }
-        }
-    }
+        const stationName = filterdData[i].arvlMsg3;
 
-      console.log(trafficMap);
-      console.log(filterdData);
-      console.log(`매치하는 요소의 수: ${matchCount}`);
+        for (let j = 0; j < trafficMap.length; j++) {
+          if (
+            stationName === trafficMap[j] ||
+            trafficMap[j].includes(stationName)
+          ) {
+            matchCount++;
+
+            const circle = document.createElement("div");
+            circle.classList.add("circle");
+
+            const stationSpans =
+              document.querySelectorAll(".station-name span");
+            const positionLeft =
+              stationSpans[j].offsetLeft + stationSpans[j].offsetWidth / 2;
+
+            circle.style.left = `${positionLeft}px`;
+            circle.style.top = "-10px";
+
+            informationMetro.appendChild(circle);
+
+            break;
+          }
+        }
+      }
 
       filterdData.forEach((e) => {
         const $infoDiv = document.createElement("div");

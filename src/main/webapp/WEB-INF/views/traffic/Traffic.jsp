@@ -94,8 +94,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <div id="informationMetro" class="station-name"></div>
         </form>
         <a href="http://localhost:8383/traffic-myInfo"
-        ><h1>이전 조회 내역</h1></a
-      >
+          ><h1>이전 조회 내역</h1></a
+        >
       </div>
     </div>
 
@@ -146,25 +146,20 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           // 결과를 저장할 객체
           const result = {};
 
-       
           stationInfoArray.forEach((station) => {
             if (
               dataStation === station.stationName &&
               dataLine === station.line
             ) {
-              
               let currentId = station.stationId;
 
-         
               relativeIds.forEach((relativeId) => {
                 let targetId = currentId + relativeId;
 
-            
                 let targetStation = stationInfoArray.find(
                   (station) => station.stationId === targetId
                 );
                 if (targetStation) {
-              
                   result[targetId] = targetStation.stationName;
                 }
               });
@@ -177,14 +172,18 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
               const stationSpan = document.createElement("span");
               stationSpan.textContent = stationName;
+              
+              if (stationName === targetStation) {
+                stationSpan.style.fontWeight = "bold";
+                stationSpan.style.color ="black";
+                stationSpan.style.fontSize = "15px";
+              }
 
               informationMetro.appendChild(stationSpan);
             }
           }
         });
       };
-
-
 
       infoStation();
     </script>

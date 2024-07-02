@@ -119,9 +119,29 @@ h1 {
   align-items: center;
   gap: 8px; /* 역 이름 사이의 간격 설정 */
   border-top: 2px solid black; 
-  padding-top: 15px;
+  padding-top: 30px;
   padding-bottom: 15px; 
-  font-size: 13px;
+  font-size: 15px;
   
 }
 
+
+.station-name {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  margin-top: 25px;
+  font-size: 16px; /* Example font size */
+  font-family: Arial, sans-serif; /* Example font family */
+  text-align: center; /* Center align text */
+}
+
+.circle {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  margin-top: 5px;
+  background-color: blue;
+  border-radius: 50%;
+  transform: translateX(-50%); /* Center the circle horizontally */
+}
