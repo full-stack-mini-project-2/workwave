@@ -31,7 +31,7 @@ header.on {
 
 header .inner-header {
   width: 100%;
-  padding: 0 10px;
+  padding: 0 15px;
   margin: 0 auto;
   height: 50px;
   display: flex;
@@ -121,11 +121,11 @@ header .gnb ul li.active {
 
 /* 프로필 CSS */
 header .inner-header .profile-box {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   overflow: hidden;
-  margin-left: auto; /* 오른쪽 끝으로 이동 */
+  margin-right: auto; /* 오른쪽 끝으로 이동 */
 }
 
 header .inner-header .profile-box img {

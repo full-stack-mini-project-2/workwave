@@ -20,7 +20,7 @@
                 </c:otherwise>
             </c:choose>
         </div>
-        <h2 class="intro-text">Welcome ${login.nickName}</h2>
+        <!-- <h2 class="intro-text">Welcome ${login.nickName}</h2> -->
     </div>
 
     <nav class="gnb">
