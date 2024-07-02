@@ -14,7 +14,7 @@
 
                 <style>
                     body {
-                        font-family: "Noto Sans KR", sans-serif;
+                        font-family: 'Spoqa Han Sans Neo', sans-serif;
                         margin: 0;
                         padding: 0;
                         display: flex;

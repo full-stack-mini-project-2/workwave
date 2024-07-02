@@ -1,4 +1,10 @@
+@import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+
 /* 중앙 정렬을 위한 컨테이너 스타일 */
+
+body {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+}
 
 .board-main-content {
   margin-top: 100px; /* 헤더 높이만큼 마진 추가 */
