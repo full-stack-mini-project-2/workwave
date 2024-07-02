@@ -187,6 +187,9 @@
     // JSON 형식의 문자열을 자바스크립트 객체로 반환하기
     const nowUserNameFromServer = "${userName}";
     const nowDepartmentIdFromServer = "${departmentId}";
+    const nowTeamIdFromServer = "${teamCalendarId}";
+
+    console.log("userName, departmentId >>>>",nowUserNameFromServer, nowDepartmentIdFromServer);
 
     let myTeamCalEvents = []; // API에서 받은 데이터를 저장할 배열
 
@@ -390,6 +393,8 @@
                     updateBy: nowUserNameFromServer,
                 };
 
+                console.log("수정 데이터 ", updateEvent);
+
                 //일정 수정
                 fetch('/api/calendar/updateTeamEvent', {
                     method: 'POST',
@@ -505,15 +510,17 @@
             calEventCreateAt: new Date().toISOString(),
             colorIndexId: colorIndex,
             userName: nowUserNameFromServer,
-            updateBy: nowUserNameFromServer,
+            updateBy: "아직 아무도 수정하지 않았어요!",
             departmentId: nowDepartmentIdFromServer,
+            teamCalendarId: nowTeamIdFromServer,
+
         };
 
         // 클라이언트 로그 추가
         console.log("Event to be saved:", newEvent);
 
         // AJAX 요청으로 이벤트 저장
-        fetch('/api/calendar/addEvent', {
+        fetch('/api/calendar/addTeamEvent', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

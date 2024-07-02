@@ -3,11 +3,13 @@ package com.workwave.service.schedule;
 import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
 import com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto;
 import com.workwave.mapper.scheduleMapper.CalendarMapper;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Calendar;
@@ -159,6 +161,7 @@ public class CalendarService {
         return calendarMapper.getTeamCalendarEventsForPeriod(departmentId, startDate, endDate);
     }
 
+
     //팀 캘린더 일정 추가
     @Transactional
     public AllMyTeamCalendarEventDto addTeamEvent(AllMyTeamCalendarEventDto addEventDto, String userId, String userName, String departmentId) {
@@ -172,7 +175,7 @@ public class CalendarService {
                 .calEventUpdateAt(LocalDateTime.now())
                 .colorIndexId(addEventDto.getColorIndexId())
                 .userId(userId)
-                .teamCalendarId(addEventDto.getTeamCalendarId()) //null 값 허용
+                .teamCalendarId(calendarMapper.findMyTeamCalendarId(departmentId))
                 .departmentId(departmentId)
                 .departmentName(addEventDto.getDepartmentName())
                 .userName(userName)

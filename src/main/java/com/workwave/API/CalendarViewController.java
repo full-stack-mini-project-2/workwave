@@ -135,6 +135,7 @@ public class CalendarViewController {
             String userName = LoginUtil.getLoggedInUser(session).getNickName();
             model.addAttribute("userName", userName);
 
+
         } catch (Exception e) {
             log.error("Error converting events to JSON", e);
         }

@@ -202,7 +202,7 @@ public class CalendarApiController {
     ) {
         String userName = LoginUtil.getLoggedInUser(session).getNickName();
         String userId = LoginUtil.getLoggedInUserAccount(session);
-        String departmentIdFromSession = LoginUtil.getLoggedInDepartmentId(session);
+        String departmentId = LoginUtil.getLoggedInDepartmentId(session);
 
         if (userId == null) {
             throw new RuntimeException("User is not logged in");
@@ -222,14 +222,14 @@ public class CalendarApiController {
                     .calEventUpdateAt(LocalDateTime.now())
                     .colorIndexId(addEventDto.getColorIndexId())
                     .userId(userId)
-                    .departmentId(departmentIdFromSession)
-//                    .departmentName()
+//                    .teamCalendarId(teamCalId)
+                    .departmentId(departmentId)
+//                    .departmentName(addEventDto.getDepartmentName())
                     .userName(userName)
                     .updateBy(userName)
                     .build();
 
             // 사용자의 부서 ID를 이용해 해당 부서의 팀 캘린더에 이벤트 추가
-            String departmentId = LoginUtil.getLoggedInDepartmentId(session);
             newTeamEvent = calendarService.addTeamEvent(newTeamEvent, userId, userName, departmentId);
             isSuccess = newTeamEvent != null;
             message = isSuccess ? "Event created successfully" : message;

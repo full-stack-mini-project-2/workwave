@@ -238,6 +238,43 @@
         AND calendar_id IS NULL;
     </select>
 
+
+<!--업데이트 사항 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>-->
+
+<!--    개인 캘린더 회원가입 시 부여하기 -->
+    <insert id="saveNewMyCalendar">
+        INSERT INTO Calendar
+        (userId)
+        VALUES
+        (#{userId})
+    </insert>
+
+<!--    개인 캘린더 아이디 찾기-->
+    <select id="findMyCalendarId" resultType="int">
+        SELECT
+        calendar_id
+        FROM
+        Calendar
+        WHERE user_id = #{userId}
+    </select>
+
+    <!-- 팀 캘린더 아이디 찾기 또는 삽입 -->
+    <insert id="findAndSaveTeamCalendarId" parameterType="String">
+        INSERT IGNORE INTO TeamCalendar (department_id)
+        VALUES (#{departmentId})
+    </insert>
+
+    <select id="findMyTeamCalendarId" resultType="int">
+        SELECT
+        team_calendar_id
+        FROM
+        TeamCalendar
+        WHERE department_id = #{departmentId}
+    </select>
+
+
+    <!--    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+
     <!-- 팀 캘린더에 캘린더 공유 일정 저장 -->
     <insert id="insertTeamCalendarEvent" parameterType="allMyTeamCalendarEventDto">
         INSERT INTO CalendarEvent (
@@ -254,21 +291,21 @@
             ,notice_id
         </if>
         )
-        SELECT
+        VALUES (
         #{calEventDate},
         #{calEventTitle},
         #{calEventDescription},
         #{userId},
         #{departmentId},
-        #{team_calendar_id}
+        #{teamCalendarId}
         <if test="colorIndexId != null">
             ,#{colorIndexId}
         </if>
         <if test="noticeId != null">
             ,#{noticeId}
         </if>
-        FROM
-        TeamCalendar tc
+        );
+
     </insert>
 
     <!-- 팀 공유 일정 수정 -->

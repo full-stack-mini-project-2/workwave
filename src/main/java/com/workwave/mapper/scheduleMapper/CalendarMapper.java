@@ -2,7 +2,6 @@ package com.workwave.mapper.scheduleMapper;
 
 import com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto;
 import com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto;
-import com.workwave.entity.schedule.TeamCalendar;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -36,6 +35,9 @@ public interface CalendarMapper {
     void deleteCalendarEvent(int calEventId);
 
     // 개인, 팀 관련 개별 메서드 ========================================================
+
+    //팀 캘린더 아이디 찾기
+    int findMyTeamCalendarId(String departmentId);
 
     // 이번 달 개인 캘린더의 일정 가져오기
     List<AllMyCalendarEventDto> getCalendarEventsForPeriod(@Param("userId") String userId, @Param("startDate") String startDate, @Param("endDate") String endDate);
