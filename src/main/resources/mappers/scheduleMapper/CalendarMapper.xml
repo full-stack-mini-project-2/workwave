@@ -169,31 +169,20 @@
 
     <!--달 별 팀 공유 일정 조회, 공지사항 있을 경우 추후 추가해서 로직 수정하기  -->
     <select id="getTeamCalendarEventsForPeriod" parameterType="map" resultType="allMyTeamCalendarEventDto">
-        SELECT *
-<!--        CE.cal_event_id AS calEventId,-->
-<!--        CE.cal_event_date AS calEventDate,-->
-<!--        CE.cal_event_title AS calEventTitle,-->
-<!--        CE.cal_event_description AS calEventDescription,-->
-<!--        CE.cal_event_createAt AS calEventCreateAt,-->
-<!--        CE.cal_event_updateAt AS calEventUpdateAt,-->
-<!--        CE.color_index_id AS colorIndexId,-->
-<!--        CE.user_id AS userId,-->
-<!--        CE.team_calendar_id AS teamCalendarId,-->
-<!--        CE.department_id AS departmentId,-->
-<!--        D.department_name AS departmentName-->
-<!--        U.user_name AS userName-->
+        SELECT
+        CE.*, U.user_name
         FROM
-        CalendarEvent
-<!--        JOIN-->
-<!--        Users U ON U.user_id = CE.user_id-->
-<!--        JOIN-->
-<!--        Department D ON D.department_id = CE.department_id-->
+        CalendarEvent CE
+        JOIN
+        Users U ON U.user_id = CE.user_id
+        JOIN
+        Department D ON D.department_id = CE.department_id
         WHERE
-        department_id = #{departmentId}
+        CE.department_id = #{departmentId}
         AND
-        cal_event_date BETWEEN #{startDate} AND #{endDate}
+        CE.cal_event_date BETWEEN #{startDate} AND #{endDate}
         AND
-        calendar_id IS NULL;
+        CE.calendar_id IS NULL;
     </select>
 
     <!--    팀 일정 하나 조회 -->

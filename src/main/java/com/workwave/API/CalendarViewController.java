@@ -18,6 +18,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * 주 기능 : 세션에 저장된 정보를 JSP에 전달
+ *
+ */
 @Controller
 @Slf4j
 @RequiredArgsConstructor
@@ -61,7 +65,7 @@ public class CalendarViewController {
     public String addMyEvent(@ModelAttribute AllMyCalendarEventDto myCalendarEventDto, HttpSession session) {
         // 세션에서 userId userName 가져오기
         String userId = LoginUtil.getLoggedInUserAccount(session);
-        String userName = (String) session.getAttribute("userName");
+        String userName = LoginUtil.getLoggedInUser(session).getNickName();
         if (userId == null || userName == null) {
             throw new RuntimeException("User is not logged in");
         }
@@ -114,13 +118,21 @@ public class CalendarViewController {
             String departmentId = LoginUtil.getLoggedInDepartmentId(session);
             List<AllMyTeamCalendarEventDto> teamCalEvents = calendarService.getAllTeamEvents(departmentId);
 
-            String teamCalEventsForMonthJson = objectMapper.writeValueAsString(teamCalEvents);
-            model.addAttribute("teamCalEvents", teamCalEventsForMonthJson.replace("'", "\\'"));
+            // model에 필요한 데이터 추가
+            model.addAttribute("departmentId", departmentId);
+
+//            // teamCalEvents를 JSON 문자열로 변환하여 model에 추가
+//            String teamCalEventsForMonthJson = objectMapper.writeValueAsString(teamCalEvents);
+//            log.info("teamCalEvents JSON 제대로 나오니 >>>?????? {}",teamCalEventsForMonthJson);
+
+//            model.addAttribute("teamCalEvents", teamCalEventsForMonthJson);
+
             // formattedDate 설정
             String formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             model.addAttribute("formattedDate", formattedDate);
-            // 유저 이름 설정
-            String userName = teamCalEvents.isEmpty() ? "Unknown User" : teamCalEvents.get(0).getUserName();
+
+            //현재 유저 이름 설정 : 수정을 위한 세션값
+            String userName = LoginUtil.getLoggedInUser(session).getNickName();
             model.addAttribute("userName", userName);
 
         } catch (Exception e) {
@@ -135,7 +147,7 @@ public class CalendarViewController {
         // 세션에서 userId userName 가져오기
         String userId = LoginUtil.getLoggedInUserAccount(session);
         String departmentId = LoginUtil.getLoggedInDepartmentId(session);
-        String userName = (String) session.getAttribute("userName");
+        String userName = LoginUtil.getLoggedInUser(session).getNickName();
         if (userId == null || userName == null) {
             throw new RuntimeException("User is not logged in");
         }
@@ -149,11 +161,12 @@ public class CalendarViewController {
         // 세션에서 userId 가져오기
         String userId = LoginUtil.getLoggedInUserAccount(session);
         String departmentId = LoginUtil.getLoggedInDepartmentId(session);
+        String userName = LoginUtil.getLoggedInUser(session).getNickName();
         if (userId == null) {
             throw new RuntimeException("User is not logged in");
         }
         // 이벤트 수정 호출
-        boolean success = calendarService.updateTeamCalEvent(teamCalendarEventDto);
+        boolean success = calendarService.updateTeamCalEvent(teamCalendarEventDto, userName);
         if (!success) {
             throw new RuntimeException("Failed to update event");
         }

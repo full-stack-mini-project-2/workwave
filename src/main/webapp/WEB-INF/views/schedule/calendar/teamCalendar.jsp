@@ -83,11 +83,11 @@
             cursor: pointer;
         }
 
-        .color-red { background-color: red; }
-        .color-green { background-color: green; }
-        .color-blue { background-color: blue; }
-        .color-yellow { background-color: yellow; }
-        .color-magenta { background-color: magenta; }
+        .color-red { background-color: lightsteelblue; }
+        .color-green { background-color: darkslateblue; }
+        .color-blue { background-color: steelblue; }
+        .color-yellow { background-color: lightyellow; }
+        .color-magenta { background-color: lightpink; }
         .calendar th, .calendar td {
             border: 1px solid #ddd;
             padding: 10px;
@@ -185,7 +185,11 @@
 
 <script>
     // JSON 형식의 문자열을 자바스크립트 객체로 반환하기
-    const myTeamCalEvents = JSON.parse('<c:out value="${teamCalEvents}" escapeXml="false" />');
+    const nowUserNameFromServer = "${userName}";
+    const nowDepartmentIdFromServer = "${departmentId}";
+
+    let myTeamCalEvents = []; // API에서 받은 데이터를 저장할 배열
+
 
     const userId = myTeamCalEvents.length > 0 ? myTeamCalEvents[0].userId : "";
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -197,13 +201,17 @@
 
     function fetchEvents(year, month) {
         const xhr = new XMLHttpRequest();
+        // http://localhost:8181/api/calendar/myTeamEvents?year=2024&month=7
         xhr.open('GET', `/api/calendar/myTeamEvents?year=\${year}&month=\${month + 1}`, true);
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    const data = JSON.parse(xhr.responseText);
-                    renderCalendar(data, year, month);
+                    const data = JSON.parse(xhr.responseText); // JSON 데이터를 파싱하여 객체로 변환
+
+                    myTeamCalEvents = data; // 받은 데이터를 전역 변수에 저장
+
+                    renderCalendar(myTeamCalEvents, year, month);
                 } else {
                     console.error('Failed to fetch calendar events:', xhr.status, xhr.statusText);
                 }
@@ -276,21 +284,21 @@
     function getColorByIndex(index) {
         switch (index) {
             case 1:
-                return 'lightblue';
+                return 'lightsteelblue';
             case 2:
-                return 'lightgreen';
+                return 'darkslateblue';
             case 3:
-                return 'lightcoral';
+                return 'steelblue';
             case 4:
-                return 'lightsalmon';
+                return 'lightyellow';
             case 5:
-                return 'lightseagreen';
+                return 'lightpink';
             default:
                 return 'lightgray';
         }
     }
 
-    // Event Modal 닫기 로직 수정
+    // Event Modal 닫기
     document.addEventListener('click', function (event) {
         const modal = document.getElementById('eventModal');
         if (event.target === modal) {
@@ -365,7 +373,7 @@
             saveChangesButton.style.display = 'block';
         };
 
-        // Save edited event
+        // 일정 수정 정보 저장하기
         saveChangesButton.onclick = function () {
             const updatedTitle = document.getElementById('edit-title').value;
             const updatedDate = document.getElementById('edit-date').value;
@@ -379,6 +387,7 @@
                     calEventDate: updatedDate,
                     calEventDescription: updatedDescription,
                     calColorIndex: selectedEvent.calColorIndex,
+                    updateBy: nowUserNameFromServer,
                 };
 
                 //일정 수정
@@ -396,7 +405,7 @@
                             selectedEvent.calEventTitle = updatedTitle;
                             selectedEvent.calEventDate = updatedDate;
                             selectedEvent.calEventDescription = updatedDescription;
-                            selectedEvent.updateBy = selectedEvent.userName; // 수정자 데이터 추가
+                            selectedEvent.updateBy = nowUserNameFromServer; // 수정자 데이터 추가
 
                             // Close modal and re-render calendar
                             modal.style.display = 'none';
@@ -495,10 +504,13 @@
             calEventDescription: description,
             calEventCreateAt: new Date().toISOString(),
             colorIndexId: colorIndex,
-            userName: myTeamCalEvents.userName, // 안뜸
-            updateBy: myTeamCalEvents.userName, // 안뜸
-            departmentId: myTeamCalEvents.departmentId,
+            userName: nowUserNameFromServer,
+            updateBy: nowUserNameFromServer,
+            departmentId: nowDepartmentIdFromServer,
         };
+
+        // 클라이언트 로그 추가
+        console.log("Event to be saved:", newEvent);
 
         // AJAX 요청으로 이벤트 저장
         fetch('/api/calendar/addEvent', {

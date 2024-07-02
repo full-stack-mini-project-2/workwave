@@ -185,7 +185,7 @@ public class CalendarService {
 
     // 팀 캘린더 일정 수정
     @Transactional
-    public boolean updateTeamCalEvent(AllMyTeamCalendarEventDto teamCalendarEvent) {
+    public boolean updateTeamCalEvent(AllMyTeamCalendarEventDto teamCalendarEvent, String userName) {
         try {
             // 기존 이벤트를 가져오기
             AllMyTeamCalendarEventDto existingTeamEvent = calendarMapper.findOneTeamCalEvent(teamCalendarEvent.getCalEventId());
@@ -198,6 +198,8 @@ public class CalendarService {
                 teamCalendarEvent.setColorIndexId(existingTeamEvent.getColorIndexId() != null ? existingTeamEvent.getColorIndexId() : getDefaultColorIndex());
             }
 
+            //바로 dto 활용하여 DB 데이터 업데이트
+            teamCalendarEvent.setUpdateBy(userName);
             calendarMapper.updateMyTeamCalEvent(teamCalendarEvent);
             return true;
         } catch (Exception e) {
