@@ -6,7 +6,6 @@
 }
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
-
 body {
   font-family: 'Spoqa Han Sans Neo', 'sans-serif';
   margin: 0;
@@ -23,11 +22,14 @@ body {
   margin: 10px;
 }
 
-#weather-from{
+#weather-from {
   display: flex;
-  justify-content: left;
-  margin: 25px;
-  margin-left: 85px;
+  justify-content: center;
+  width:70%;
+  /* margin-left: */
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-size: 20px;
 }
 
 .form-container {
@@ -35,7 +37,7 @@ body {
 }
 
 .map-container {
-  width: 90%; /* 지도 컨테이너의 너비 */
+  width: 80%; /* 지도 컨테이너의 너비 */
   height: 610px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -43,7 +45,7 @@ body {
 }
 
 .info-container {
-  width: 10%; /* 정보 폼 컨테이너의 너비 */
+  width: 20%; /* 정보 폼 컨테이너의 너비 */
 }
 
 .info-container form {
@@ -96,11 +98,30 @@ h1 {
   color: #181A33;
 }
 
-
 .weather-info strong {
   margin: 10px;
 }
 
-#back-home{
-  margin-left: 85px;
+#arrival-info{
+  margin-bottom: 15px;
 }
+
+#back-home {
+  display: flex; /* 중앙 정렬을 위해 flexbox 사용 */
+  justify-content: center; /* 가운데 정렬 */
+  width: 100%; /* 너비를 100%로 설정 */
+  margin: 20px 0; /* 상하 여백 설정 */
+}
+
+#informationMetro {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 8px; /* 역 이름 사이의 간격 설정 */
+  border-top: 2px solid black; 
+  padding-top: 15px;
+  padding-bottom: 15px; 
+  font-size: 13px;
+  
+}
+

@@ -1,5 +1,3 @@
-
-
 var mapOptions = {
   center: new naver.maps.LatLng(37.5563, 126.9461), // 이대역 좌표
   zoom: 18,

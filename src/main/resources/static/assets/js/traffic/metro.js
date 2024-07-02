@@ -26,41 +26,58 @@ $departureStation.addEventListener("change", (e) => {
       }
       return response.json();
     })
-    .then(data => { 
-      filterdData = data.realtimeArrivalList.map(e => ({
+    .then((data) => {
+      filterdData = data.realtimeArrivalList.map((e) => ({
         barvlDt: e.barvlDt, // 열차도착예정시간(초)
         statnNm: e.statnNm, // 기차역이름
         updnLine: e.updnLine, // 상하행선구분
         arvlMsg2: e.arvlMsg2, // 첫번째도착메세지(도착, 출발, 진입 등)
-        arvlMsg3: e.arvlMsg3 // 현재 지하철 위치
+        arvlMsg3: e.arvlMsg3, // 현재 지하철 위치
       }));
-      // console.log(filterdData);
 
       // Update the DOM with the filtered data
-      const $info = document.getElementById('infomationMetro');
+      const $info = document.getElementById("arrival-info");
       const total = filterdData.length;
-      $info.innerHTML = `<h2>도착예정수: `+ total + `건</h2>` 
+      $info.innerHTML = `<h2>도착예정수: ` + total + `건</h2>`;
 
-      filterdData.forEach(e => {
-        const $infoDiv = document.createElement('div');
+      const trafficMap = [];
+
+      const arrivalInfo = document.getElementById("informationMetro");
+      const childElements = arrivalInfo.querySelectorAll("*");
+      childElements.forEach((element) => {
+        trafficMap.push(element.textContent);
+      });
+
+      let matchCount = 0;
+
+      for (let i = 0; i < filterdData.length; i++) {
+        for (let j = 0; j < trafficMap.length; j++) {
+            if (filterdData[i].arvlMsg3 === trafficMap[j] || trafficMap[j].includes(filterdData[i].arvlMsg3)) {
+                matchCount++;
+                break; 
+            }
+        }
+    }
+
+      console.log(trafficMap);
+      console.log(filterdData);
+      console.log(`매치하는 요소의 수: ${matchCount}`);
+
+      filterdData.forEach((e) => {
+        const $infoDiv = document.createElement("div");
         const departureTime = parseInt(e.barvlDt / 60);
-        // <span>출발역: ${e.statnNm}</span> 
+        // <span>출발역: ${e.statnNm}</span>
         // <span>열차도착예정시간: ${departureTime}분전</span>
         // <span>현재 지하철 위치: ${e.arvlMsg3}</span>
         $infoDiv.innerHTML = `
-          <span>상/하행선: ${e.updnLine}</span>
-          <span>현재 위치: ${e.arvlMsg2}</span>  
-        `;
+            <span>상/하행선: ${e.updnLine}</span>
+            <span>현재 위치: ${e.arvlMsg2}</span>  
+          `;
         $info.appendChild($infoDiv);
       });
       return filterdData;
     })
-    .catch(error => {
-      console.error('Error fetching data:', error);
+    .catch((error) => {
+      console.error("Error fetching data:", error);
     });
 });
-
-
-
-
-
