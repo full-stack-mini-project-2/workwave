@@ -9,6 +9,7 @@
         select
         board_id,
         board_title,
+        board_content,
         user_id,
         board_nickName,
         board_created_at,

@@ -16,7 +16,7 @@
                     <img src="${login.profile}" alt="profile image">
                 </c:when>
                 <c:otherwise>
-                    <img src="/assets/img/anonymous.png" alt="profile image">
+                    <img src="/assets/img/anonymous2.png" alt="profile image">
                 </c:otherwise>
             </c:choose>
         </div>
