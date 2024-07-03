@@ -265,7 +265,7 @@ async function fetchSaveSubReply(
     const data = await response.json();
     console.log(data);
 
-    fetchReplies(replyId); // bno 대신 replyId 사용
+    fetchReplies(bno);
 
     // 입력창 초기화
     subNickName.value = "";
