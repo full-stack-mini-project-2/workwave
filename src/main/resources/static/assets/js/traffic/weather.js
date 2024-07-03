@@ -12,7 +12,6 @@ function getWeather() {
     const city = "Seoul";
     const urlString = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
-
     fetch(urlString)
         .then(response => {
             if (!response.ok) {
@@ -21,14 +20,23 @@ function getWeather() {
             return response.json();
         })
         .then(data => {
+            const cityName = data.name;
+            const temp = (data.main.temp - 273.15).toFixed(2) + '°C';
+            const weather = data.weather[0].main;
+            const humidity = data.main.humidity + '%';
+            const windSpeed = data.wind.speed + ' m/s';
+
             const weatherInfo = `
-                    <strong>도시:</strong> ${data.name} /
-                    <strong>기온:</strong> ${(data.main.temp - 273.15).toFixed(2)}°C /
-                    <strong>현재날씨:</strong> ${data.weather[0].main} /
-                    <strong>현재습도:</strong> ${data.main.humidity}% /
-                    <strong>풍속:</strong> ${data.wind.speed} m/s
+                <div class="weather-info">
+                    <strong><i class="fas fa-map-marked-alt"></i></strong> ${cityName} 
+                    <strong><i class="fas fa-temperature-low"></i></strong> ${temp} 
+                    <strong><i class="fas fa-cloud-sun-rain"></i></strong> ${weather} 
+                    <strong><i class="fas fa-tint"></i></strong> ${humidity} 
+                    <strong><i class="fas fa-wind"></i></strong> ${windSpeed}
+                </div>     
             `;
             document.getElementById("weather").innerHTML = weatherInfo;
+
         })
         .catch(error => {
             document.getElementById("weather").innerHTML = `Error: ${error}`;
@@ -36,12 +44,5 @@ function getWeather() {
 }
 
 
-// 날씨API 실행
+// 날씨 API 실행
 getWeather();
-
-
-function weatherInfo (){
-    const weatherInfo = document.getElementById('weather');
-
-}
-

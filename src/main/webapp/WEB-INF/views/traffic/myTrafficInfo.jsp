@@ -30,9 +30,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
         <c:set var="isFirst" value="false" />
       </c:if>
       <div class="traffic-info">
+        <div class="regDate" data-reg-date="${traffic.regDateTime}">등록 일시: ${traffic.regDateTime}</div>
         <span>출발역: ${traffic.departure}</span>
         <span>도착역: ${traffic.arrival}</span>
-        <span class="regDate" data-reg-date="${traffic.regDateTime}">등록 일시: ${traffic.regDateTime}</span>
       </div>
     </c:forEach>
 
