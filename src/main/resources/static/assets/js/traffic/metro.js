@@ -1,3 +1,5 @@
+
+
 let dataLine = 0;
 let dataStation = "";
 let targetStation = "";
@@ -45,7 +47,7 @@ $departureStation.addEventListener("change", (e) => {
       });
 
       let matchCount = 0;
-      const informationMetro = document.getElementById("informationMetro");
+    
 
       for (let i = 0; i < filterdData.length; i++) {
         const stationName = filterdData[i].arvlMsg3;
@@ -64,7 +66,7 @@ $departureStation.addEventListener("change", (e) => {
             stationIcon.style.color = "black";
 
             const stationSpans = document.querySelectorAll(".station-name span");
-            const positionLeft = stationSpans[j].offsetLeft + stationSpans[j].offsetWidth / 2 - 5; // 왼쪽으로 5픽셀 이동
+            const positionLeft = stationSpans[j].offsetLeft + stationSpans[j].offsetWidth / 2 - 5; 
 
             stationIcon.style.left = `${positionLeft}px`;
             stationIcon.style.top = "-20px"; // 아이콘을 역 이름 위에 배치

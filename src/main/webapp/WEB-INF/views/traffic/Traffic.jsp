@@ -188,7 +188,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           const $metroLine = document.getElementById('informationMetro');
           
           let metroLineColor = getSubwayLineColor(parseInt(dataLine));
-          
+          $metroLine.style.borderTop = "2px solid";
           $metroLine.style.borderColor = metroLineColor;
         });
       };

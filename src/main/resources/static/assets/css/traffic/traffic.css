@@ -110,7 +110,7 @@ h1 {
   justify-content: space-around; /* 역 이름 간격을 맞추기 위한 설정 */
   align-items: center;
   gap: 8px; /* 역 이름 사이의 간격 설정 */
-  border-top: 2px solid black; 
+  /* border-top: 2px solid black;  */
   padding-top: 30px;
   padding-bottom: 15px; 
   font-size: 15px;
