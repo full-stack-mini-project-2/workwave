@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%@ include file="../include/static-head.jsp" %>
+    <%@ include file="../include/header.jsp" %>
     <meta charset="UTF-8" />
     <title>Favorite Traffic</title>
     <script defer type="text/javascript" src="assets/js/traffic/myTrafficInfo.js"></script>

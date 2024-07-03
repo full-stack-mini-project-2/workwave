@@ -9,7 +9,6 @@
 body {
   font-family: 'Spoqa Han Sans Neo', 'sans-serif';
   margin: 0;
-  padding: 20px;
   background: #f2efeb;
 }
 
@@ -27,7 +26,7 @@ body {
   justify-content: center;
   width:70%;
   /* margin-left: */
-  margin-top: 25px;
+  margin-top: 100px;
   margin-bottom: 25px;
   font-size: 20px;
 }
@@ -82,10 +81,6 @@ body {
   padding-top: 10px;
 }
 
-a {
-  display: block;
-  margin-top: 20px;
-}
 
 /* 회색 선을 추가하는 클래스 */
 .section-header {

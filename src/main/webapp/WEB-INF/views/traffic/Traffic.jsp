@@ -4,6 +4,8 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
+    <%@ include file="../include/static-head.jsp" %>
+    <%@ include file="../include/header.jsp" %>
     <meta charset="UTF-8" />
     <meta
       name="viewport"

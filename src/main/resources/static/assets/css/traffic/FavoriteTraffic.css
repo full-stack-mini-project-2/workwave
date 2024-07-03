@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center; /* 페이지 전체를 가운데 정렬 */
+    margin-top: 100px;
 }
 
 .pagination {
