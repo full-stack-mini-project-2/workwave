@@ -5,49 +5,61 @@
 
         <head>
             <meta charset="UTF-8" />
-            <title>workwave:로그인</title>
-            <!-- reset -->
+            <title>workwave:login</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" />
-            <!-- 외부 스타일시트 링크 추가 -->
             <link rel="stylesheet" href="/assets/css/login.css" />
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+                integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+                crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+                crossorigin="anonymous" />
+
+            <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
             <link rel="icon" href="/assets/img/workwave_logo.png" />
-            <link href="https://fonts.google.com/specimen/Source+Sans+Pro" rel="stylesheet" />
         </head>
 
         <body>
-            <a href="/" class="logo-link">
-                <div class="logo-container">
-                    <img src="/assets/img/workwave_logo.png" alt="Logo" class="logo">
-                </div>
-            </a>
+            <div class="stars"></div>
             <div class="login-container">
-                <h1 class="cl-h1">ID 로그인</h1>
+                <h1 id="login-title">WORKWAVE</h1>
+                <br />
                 <form action="login" method="post" id="loginForm">
                     <div class="form-group">
-                        <label for="username">아이디:</label>
-                        <input type="text" id="userId" name="userId" required />
+                        <input type="text" id="userId" name="userId" placeholder="USER ID" required />
                     </div>
                     <div class="form-group">
-                        <label for="password">비밀번호:</label>
-                        <input type="password" id="password" name="password" required />
+                        <input type="password" id="password" name="password" placeholder="PASSWORD" required />
                     </div>
+                    <br />
                     <div class="form-group">
-                        <label for="auto-login" class="auto-login">
-                            <span><i class="fas fa-sign-in-alt"></i> 자동 로그인</span>
-                            <input type="checkbox" id="auto-login" name="autoLogin" />
-                        </label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                                name="autoLogin" />
+                            <label class="form-check-label" for="flexSwitchCheckDefault" id="auto-login">auto
+                                login</label>
+                        </div>
                     </div>
 
-                    <button type="submit" class="login-button">로그인</button>
-                    <br /><br />
-                    <a href="/join">
-                        <button type="button" class="join-button">회원가입</button>
-                    </a>
+                    <button type="submit" class="login-button">
+                        LOGIN
+                    </button>
                 </form>
                 <div id="error-message" class="error-message"></div>
+                <br />
+                <div class="forgot-password">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <br />
+                <div class="join-button-container">
+                    <a href="/join">
+                        Sign Up
+                    </a>
+                </div>
+
             </div>
             <script>
-                //서버에서 전송된
                 const result = "${result}";
                 console.log("result " + result);
 
