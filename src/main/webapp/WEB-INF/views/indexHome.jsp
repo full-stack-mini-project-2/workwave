@@ -8,7 +8,6 @@
     <title>Work-Wave</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
     <style>
         body {
             font-family: "Noto Sans KR", sans-serif;
@@ -24,7 +23,7 @@
 
         .clock-container {
             position: absolute;
-            top: 50%;
+            top: 58%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 999; /* 화면에서 최상위로 표시 */
@@ -52,7 +51,7 @@
         .right-bottom {
             position: absolute;
             bottom: 20px;
-            left: 20px;
+            right: 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
@@ -69,7 +68,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             color: #fff;
-            background-color: rgba(0, 0, 0, 0.7);
+            /*background-color: rgba(0, 0, 0, 0.7);*/
             text-decoration: none;
             transition: transform 0.3s ease;
         }
@@ -77,6 +76,44 @@
         .right-box:hover {
             transform: translateY(-5px);
         }
+
+        .left-top {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .left-bottom {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+
+        .login {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-info {
+            font-size: 1.1rem;
+            color: #F2EFEB;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+        }
+
         button {
             font: inherit;
             background-color: #f0f0f0;
@@ -93,13 +130,16 @@
             transition: 0.15s ease;
             cursor: pointer;
         }
+
         button:active {
             translate: 0 0.225em;
             box-shadow: inset 0 0.03em 0 0 #f4f4f4, 0 0.03em 0 0 #efefef,
             0 0.0625em 0 0 #ececec, 0 0.125em 0 0 #e0e0e0, 0 0.125em 0 0 #dedede,
             0 0.2em 0 0 #dcdcdc, 0 0.225em 0 0 #cacaca, 0 0.225em 0.375em 0 #cecece;
         }
+
     </style>
+
     <link rel="icon" href="/assets/img/workwave_logo.png" />
 </head>
 <body>
@@ -113,21 +153,39 @@
     <a href="/myCalendar/viewMyEvent" class="right-box">PERSONAL CALENDAR</a>
 </div>
 
-<div class="left-bottom">
+<div class="right-bottom">
     <a href="/viewTodo/personal" class="right-box">PERSONAL TODOLIST</a>
     <a href="/viewTodo/team" class="right-box">TEAM TODOLIST</a>
 </div>
 
-<div class="right-bottom">
+<div class="left-top">
     <a href="/traffic-map" class="right-box">TRAFFIC INFO</a>
+</div>
+
+<div class="left-bottom">
     <a href="/board/list" class="right-box">ANONYMOUS BOARD</a>
     <a href="/lunchMateBoard" class="right-box">LUNCH MENU</a>
 </div>
 
+
+
 <div class="login">
-    <button onclick="location.href='/login'">Login</button>
-    <button onclick="location.href='/member/logout'" class="button-box">LOGOUT</button>
+    <c:choose>
+<%--        부서이름 어떻게 갖고오지?--%>
+        <c:when test="${not empty dlist.departmentName}">
+            <div class="user-info">TEAM_${login.departmentName}</div>
+        </c:when>
+        <c:when test="${not empty login.nickName}">
+            <div class="user-info">${login.nickName}님 환영해요!</div>
+            <button onclick="location.href='/member/logout'">LOGOUT</button>
+        </c:when>
+        <c:otherwise>
+            <div class="user-info">로그인이 필요한 서비스입니다.</div>
+            <button onclick="location.href='/login'">Login</button>
+        </c:otherwise>
+    </c:choose>
 </div>
+
 <script>
     function updateClock() {
         const now = new Date();
@@ -142,3 +200,4 @@
 
 </body>
 </html>
+
