@@ -1,21 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+pageEncoding="UTF-8"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>게시물 상세보기</title>
-    <style>
-
-    </style>
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="icon" href="/assets/img/workwave_logo.png" />
     <link rel="stylesheet" href="/assets/css/boardDetail.css" />
+
+    <%@ include file="../include/static-head.jsp" %>
   </head>
   <script type="module" src="/assets/js/reply.js"></script>
   <script type="module" src="/assets/js/board.js"></script>
   <body>
+    <%@ include file="../include/header.jsp" %>
+
     <div id="reply-container" data-bno="${board.boardId}">
       <h1>${board.boardTitle}</h1>
       <div class="meta">

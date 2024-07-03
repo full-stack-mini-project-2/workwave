@@ -20,6 +20,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,17 +53,23 @@ public class BoardService {
 
         // Board 객체를 BoardListDto 객체로 변환
         return boards.stream()
-                .map(board -> BoardListDto.builder()
-                        .boardId(board.getBoardId())
-                        .boardTitle(board.getBoardTitle())
-                        .userId(board.getUserId())
-                        .boardNickname(board.getBoardNickname())
-                        .boardCreatedAt(board.getBoardCreatedAt())
-                        .replyCount(board.getReplyCount())
-                        .viewCount(board.getViewCount())
-                        .likes(board.getLikes())
-                        .dislikes(board.getDislikes())
-                        .build())
+                .map(board -> {
+                    // 첫 번째 이미지 태그 추출
+                    String firstImageTag = getFirstImageTag(board.getBoardContent());
+
+                    return BoardListDto.builder()
+                            .boardId(board.getBoardId())
+                            .boardTitle(board.getBoardTitle())
+                            .boardContent(firstImageTag) // 첫 번째 이미지 태그로 설정
+                            .userId(board.getUserId())
+                            .boardNickname(board.getBoardNickname())
+                            .boardCreatedAt(board.getBoardCreatedAt())
+                            .replyCount(board.getReplyCount())
+                            .viewCount(board.getViewCount())
+                            .likes(board.getLikes())
+                            .dislikes(board.getDislikes())
+                            .build();
+                })
                 .collect(Collectors.toList());
     }
 
@@ -177,5 +185,24 @@ public class BoardService {
 
         return downDislikeCount;
 
+    }
+
+    private String getFirstImageTag(String content) {
+        if (content == null || content.isEmpty()) {
+            return "";
+        }
+
+        // 첫 번째 <img> 태그를 찾기 위한 정규 표현식 (style 속성 제외)
+        Pattern pattern = Pattern.compile("<img[^>]*src=[\"']([^\"']+)[\"'][^>]*>");
+        Matcher matcher = pattern.matcher(content);
+
+        if (matcher.find()) {
+            String imgTag = matcher.group(0);
+            // style 속성을 제거하기 위한 정규 표현식
+            imgTag = imgTag.replaceAll("\\s*style=[\"'][^\"']*[\"']", "");
+            return imgTag;
+        }
+
+        return ""; // 이미지 태그가 없으면 빈 문자열 반환
     }
 }

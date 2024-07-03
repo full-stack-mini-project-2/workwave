@@ -10,8 +10,14 @@ prefix="c" %>
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="icon" href="/assets/img/workwave_logo.png" />
     <link rel="stylesheet" href="/assets/css/boardUpdate.css" />
+
+    <%@ include file="../include/static-head.jsp" %>
+    
   </head>
   <body>
+
+    <%@ include file="../include/header.jsp" %>
+
     <div class="container">
       <h1>게시물 수정</h1>
       <form

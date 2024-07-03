@@ -15,7 +15,11 @@
             <%@ include file="include/header.jsp" %>
         <head>
 
+            <title>workwave</title>
+
+
             <title>Work-Wave</title>
+
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
             <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">
@@ -24,7 +28,7 @@
 
                 <style>
                     body {
-                        font-family: "Noto Sans KR", sans-serif;
+                        font-family: 'Spoqa Han Sans Neo', sans-serif;
                         margin: 0;
                         padding: 0;
                         display: flex;

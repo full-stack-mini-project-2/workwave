@@ -1,29 +1,43 @@
+@import url("https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css");
+
 /* 중앙 정렬을 위한 컨테이너 스타일 */
 body {
-  margin: 100px;
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f2efeb;
 }
 
-a {
-  text-decoration-line: none;
+.board-main-content {
+  margin-top: 100px; /* 헤더 높이만큼 마진 추가 */
+}
+
+.board-link {
+  text-decoration: none;
+  font-size: 22px;
   color: black;
 }
 
-a:visited,
-a:active {
+.board-link:visited,
+.board-link:active {
   color: black;
 }
 
 .board-list {
   margin-left: 200px;
+  margin-bottom: 20px;
 }
 
 .container {
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   text-align: center;
+  margin: 0 auto; /* 수평 중앙 정렬 */
 }
 
 .searchBar {
@@ -31,27 +45,86 @@ a:active {
   align-items: center;
   justify-content: center;
   flex-direction: initial;
-}
-
-h1 {
   margin-bottom: 20px;
 }
 
 .nickname {
   color: #7b317c;
   font-weight: bolder;
+  margin: 20px 0;
 }
 
 table {
-  width: 60%;
+  width: 100%;
   margin: 20px 0;
   border-collapse: collapse;
 }
 
-td {
-  padding: 8px;
+.one-board {
+  border-bottom: 1.2px solid #d2d2d2;
   height: 80px;
-  border: 1px solid #ddd;
+}
+
+.board-info {
+  width: 60%;
+  padding: 24px 30px;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.created-at {
+  float: right;
+  text-align: right;
+  align-content: end;
+  padding-top: 4px;
+}
+
+/* 이미지 박스 스타일 */
+.board-image {
+  width: 14%;
+  position: relative;
+  overflow: hidden; /* 이미지가 박스를 넘지 않도록 */
+}
+
+.board-image > img {
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: fill;
+}
+
+.board-image::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50px;
+  height: 120px;
+  width: 1.1px;
+  background-color: #d2d2d2;
+}
+
+i {
+  font-size: 12px;
+  color: #9c9d9f;
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+.view,
+.likes,
+.dislikes,
+.created-at {
+  color: #9c9d9f;
+  font-size: 12px;
+  margin-right: 5px;
+}
+
+.fa-user-secret {
+  font-size: 20px;
+  color: black;
 }
 
 form {
@@ -92,5 +165,5 @@ form {
 /* 호버 상태 */
 .pagination li a:hover {
   background-color: #e9ecef;
-  color: #0056;
+  color: #0056b3;
 }

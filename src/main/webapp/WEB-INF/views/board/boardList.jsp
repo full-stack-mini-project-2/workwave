@@ -1,125 +1,126 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %> <%@ taglib
-uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
   <head>
-    <title>게시판</title>
-    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"/>
-    <link rel="stylesheet" href="/assets/css/main.css" />
+    <%@ include file="../include/static-head.jsp" %>
     <link rel="icon" href="/assets/img/workwave_logo.png" />
     <link rel="stylesheet" href="/assets/css/boardList.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>게시판</title>
   </head>
   <body>
-    <!-- 검색 폼 끝 -->
+    <%@ include file="../include/header.jsp" %>
 
-    <h1 class="board-list">게시물 목록</h1>
+    <div class="board-main-content">
+      <!-- 검색 폼 시작 -->
+      <form class="searchBar" method="get" action="/board/list">
+        <label for="searchType">검색 : </label>
+        <select id="searchType" name="type">
+          <option value="tc">제목+내용</option>
+          <option value="id">내가 쓴 글</option>
+        </select>
+        <input type="text" name="keyword" placeholder="검색어 입력" />
+        <button type="submit">검색</button>
+      </form>
+      <!-- 검색 폼 끝 -->
 
-    <!-- 검색 폼 시작 -->
-    <form class="searchBar" method="get" action="/board/list">
-      <label for="searchType">검색 : </label>
-      <select id="searchType" name="type">
-        <option value="tc">제목+내용</option>
-        <option value="id">내가 쓴 글</option>
-      </select>
-      <input type="text" name="keyword" placeholder="검색어 입력" />
-      <button type="submit">검색</button>
-    </form>
+      <div class="container">
 
-    <div class="container">
-      <a href="/login">로그인</a>
-
-      <table>
-        <tr class="board-menu">
-          <!-- <th>번호</th> -->
-          <th>제목</th>
-          <th>작성자</th>
-          <th>작성일</th>
-          <th>조회수</th>
-          <th>추천</th>
-          <th>비추천</th>
-        </tr>
-
-        <div class="board-box">
+        <table>
           <c:forEach var="board" items="${boards}">
-            <tr>
-              <!-- <td>${board.boardId}</td> -->
-              <td>
-                <a href="/board/detail?bno=${board.boardId}"
+            <tr class="one-board">
+              <td class="board-info">
+                <a
+                  class="board-link"
+                  href="/board/detail?bno=${board.boardId}"
                   >${board.boardTitle}
-                  <c:if
-                    test="${board.replyCount != null && board.replyCount ne 0}"
-                  >
+                  <c:if test="${board.replyCount != null && board.replyCount != 0}">
                     <span>(${board.replyCount})</span>
                   </c:if>
                 </a>
+                <div class="nickname">
+                  <i class="fas fa-user-secret"></i>${board.boardNickname}
+                </div>
+                <div class="board-icon">
+                  <i class="fas fa-eye"></i><span class="view">${board.viewCount}</span>
+                  <i class="far fa-thumbs-up"></i><span class="likes">${board.likes}</span>
+                  <i class="far fa-thumbs-down"></i><span class="dislikes">${board.dislikes}</span>
+                  <span class="created-at">${board.formattedBoardCreatedAt}</span>
+                </div>
               </td>
-              <td class="nickname">${board.boardNickname}</td>
-              <td>${board.formattedBoardCreatedAt}</td>
-              <td style="text-align: center">${board.viewCount}</td>
-              <td style="text-align: center">${board.likes}</td>
-              <td style="text-align: center">${board.dislikes}</td>
+              <td class="board-image" style="line-height:0">
+                <c:choose>
+                  <c:when test="${empty board.boardContent}">
+                    <img src="https://cdn-icons-png.flaticon.com/512/85/85488.png" alt="대체 이미지">
+                  </c:when>
+                  <c:otherwise>
+                    ${board.boardContent}
+                  </c:otherwise>
+                </c:choose>
+              </td>
             </tr>
           </c:forEach>
+        </table>
+
+        <div class="bottom-section">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-lg pagination-custom">
+              <c:if test="${maker.pageInfo.pageNo != 1}">
+                <li class="page-item">
+                  <a
+                    class="page-link"
+                    href="/board/list?pageNo=1&type=${s.type}&keyword=${s.keyword}"
+                    >&lt;&lt;</a>
+                </li>
+              </c:if>
+
+              <c:if test="${maker.prev}">
+                <li class="page-item">
+                  <a
+                    class="page-link"
+                    href="/board/list?pageNo=${maker.begin - 1}&type=${s.type}&keyword=${s.keyword}"
+                    >prev</a>
+                </li>
+              </c:if>
+
+              <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
+                <li data-page-num="${i}" class="page-item">
+                  <a
+                    class="page-link ${i == currentPage ? 'active' : ''}"
+                    href="/board/list?pageNo=${i}&type=${s.type}&keyword=${s.keyword}"
+                    >${i}</a>
+                </li>
+              </c:forEach>
+
+              <c:if test="${maker.next}">
+                <li class="page-item">
+                  <a
+                    class="page-link"
+                    href="/board/list?pageNo=${maker.end + 1}&type=${s.type}&keyword=${s.keyword}"
+                    >next</a>
+                </li>
+              </c:if>
+
+              <c:if test="${maker.pageInfo.pageNo != maker.finalPage}">
+                <li class="page-item">
+                  <a
+                    class="page-link"
+                    href="/board/list?pageNo=${maker.finalPage}&type=${s.type}&keyword=${s.keyword}"
+                    >&gt;&gt;</a>
+                </li>
+              </c:if>
+            </ul>
+          </nav>
         </div>
 
-      </table>
-
-      <div class="bottom-section">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination pagination-lg pagination-custom">
-            <c:if test="${maker.pageInfo.pageNo != 1}">
-              <li class="page-item">
-                <a
-                  class="page-link"
-                  href="/board/list?pageNo=1&type=${s.type}&keyword=${s.keyword}"
-                  >&lt;&lt;</a
-                >
-              </li>
-            </c:if>
-
-            <c:if test="${maker.prev}">
-              <li class="page-item">
-                <a
-                  class="page-link"
-                  href="/board/list?pageNo=${maker.begin - 1}&type=${s.type}&keyword=${s.keyword}"
-                  >prev</a
-                >
-              </li>
-            </c:if>
-
-            <c:forEach var="i" begin="${maker.begin}" end="${maker.end}">
-              <li data-page-num="${i}" class="page-item">
-                <a
-                  class="page-link ${i == currentPage ? 'active' : ''}"
-                  href="/board/list?pageNo=${i}&type=${s.type}&keyword=${s.keyword}"
-                  >${i}</a
-                >
-              </li>
-            </c:forEach>
-
-            <c:if test="${maker.next}">
-              <li class="page-item">
-                <a
-                  class="page-link"
-                  href="/board/list?pageNo=${maker.end + 1}&type=${s.type}&keyword=${s.keyword}"
-                  >next</a
-                >
-              </li>
-            </c:if>
-
-            <c:if test="${maker.pageInfo.pageNo != maker.finalPage}">
-              <li class="page-item">
-                <a
-                  class="page-link"
-                  href="/board/list?pageNo=${maker.finalPage}&type=${s.type}&keyword=${s.keyword}"
-                  >&gt;&gt;</a
-                >
-              </li>
-            </c:if>
-          </ul>
-        </nav>
+        <a href="/board/write">새 글 쓰기</a>
       </div>
-
-      <a href="/board/write">새 글 쓰기</a>
     </div>
 
     <script>

@@ -4,6 +4,10 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Getter
 @AllArgsConstructor
@@ -15,6 +19,7 @@ public class BoardListDto {
 
     private int boardId;
     private String boardTitle;
+    private String boardContent;
     private String userId;
     private String boardNickname;
     private LocalDateTime boardCreatedAt;
@@ -32,4 +37,5 @@ public class BoardListDto {
             return "";
         }
     }
+
 }
