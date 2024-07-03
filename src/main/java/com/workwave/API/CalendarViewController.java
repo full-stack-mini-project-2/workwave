@@ -57,7 +57,7 @@ public class CalendarViewController {
         } catch (Exception e) {
             log.error("Error converting events to JSON", e);
         }
-        return "schedule/calendar/myCalendar";
+        return "schedule/myCalendar";
     }
 
     //개인 일정 추가 화면처리
@@ -139,7 +139,7 @@ public class CalendarViewController {
         } catch (Exception e) {
             log.error("Error converting events to JSON", e);
         }
-        return "schedule/calendar/teamCalendar";
+        return "schedule/teamCalendar";
     }
 
     //일정 추가 화면처리

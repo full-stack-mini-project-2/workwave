@@ -12,12 +12,20 @@
   <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">
   <!-- JavaScript 파일 포함 -->
   <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
+<%--  <%@ include file="../include/header.jsp" %>--%>
   <style>
     .calendar {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 20px;
     }
+    #calendar {
+      height: 550px;
+      width: 800px;
+      border-radius: 7px;
+      background-color: ghostwhite;
+    }
+
     .calendar th, .calendar td {
       border: 1px solid #ddd;
       padding: 10px;
@@ -96,13 +104,15 @@
     }
 
     .calendar-container {
-      border: 1px solid #ddd;
+      margin: 100px auto; /* Adjust margins as per your design */
+      border-radius: 10px;
+      width: 1200px; /* Set the desired width */
+      height: 600px; /* Set the desired height */
+      border: 1px solid black; /* Optional: Border for visualization */
       padding: 10px;
-      max-width: 800px;
-      margin: 0 auto;
-      width: 500px;
-      height: 400px;
+      max-width: 800px; /* Ensure the calendar is responsive up to a maximum width */
     }
+
     .calendar-header {
       display: flex;
       justify-content: space-between;
@@ -119,6 +129,17 @@
     .fa-add {
       float: right;
     }
+
+    .calendar td {
+      padding: 10px; /* Adjust padding to your preference */
+      border: 1px solid #ddd;
+      text-align: center;
+      width: 14.28%; /* Ensure each day cell takes equal width */
+      max-height: 80px; /* Adjust the max-height as needed */
+      overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+    }
+
+
   </style>
 </head>
 <body>

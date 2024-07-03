@@ -61,7 +61,7 @@ public class TodoListViewController {
 
         model.addAttribute("colorIndexMap", colorIndexMap);
 
-        return "schedule/todoList/personalTodoList";
+        return "schedule/personalTodoList";
 
     }
 
@@ -118,7 +118,7 @@ public class TodoListViewController {
             throw new RuntimeException("Error fetching events");
         }
 
-        return "schedule/todoList/teamTodoList";
+        return "schedule/teamTodoList";
     }
 
 
