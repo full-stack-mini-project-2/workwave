@@ -8,11 +8,9 @@
 
 <head>
 
-<%@ include file="include/static-head.jsp" %>
+
 
         <body>
-
-            <%@ include file="include/header.jsp" %>
         <head>
 
             <title>workwave</title>

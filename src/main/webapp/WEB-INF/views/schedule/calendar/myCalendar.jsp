@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Calendar</title>
+  <title>MyCalendar</title>
   <%--  css--%>
   <%--  <link rel="stylesheet" href="<c:url value='/assets/css/calendar.css' />">--%>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">
   <!-- JavaScript 파일 포함 -->
   <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
+
+  <%--    헤드 최상단으로 두기 --%>
+<%--  <%@ include file="./include/static-head.jsp" %>--%>
   <style>
     .calendar {
       width: 100%;
