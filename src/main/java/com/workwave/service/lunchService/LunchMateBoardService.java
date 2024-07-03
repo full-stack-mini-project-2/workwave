@@ -1,11 +1,7 @@
 package com.workwave.service.lunchService;
 
-import com.workwave.common.boardpage.Search;
-import com.workwave.common.lunchpage.LunchPage;
 import com.workwave.entity.LunchMateBoard;
-import com.workwave.entity.User;
 import com.workwave.mapper.LunchMateBoardMapper;
-import com.workwave.mapper.scheduleMapper.TodoListMapper;
 import com.workwave.repository.LunchMateBoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +27,8 @@ public class LunchMateBoardService {
 
 
     // 게시물 등록
-    public boolean save(LunchMateBoard lunchMateBoard, User currentUser) {
-        lunchMateBoard.setUserId(currentUser.getUserId());  // 작성자를 현재 로그인한 사용자의 userId로 설정
+    public boolean save(LunchMateBoard lunchMateBoard, String userId) {
+        lunchMateBoard.setUserId(userId);  // 작성자를 현재 로그인한 사용자의 userId로 설정
         return lunchMateBoardMapper.save(lunchMateBoard);
     }
 
