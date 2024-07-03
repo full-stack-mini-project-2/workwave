@@ -1,34 +1,53 @@
 @font-face {
-    font-family: 'NEXON Lv2 Gothic';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON%20Lv2%20Gothic.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
-
-body {
-    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
-    text-align: center; /* 페이지 전체를 가운데 정렬 */
-    margin-top: 100px;
-    width: 80%;
+  font-family: 'NEXON Lv2 Gothic';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON%20Lv2%20Gothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+body {
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  text-align: center; /* 페이지 전체를 가운데 정렬 */
+  margin-top: 100px;
+  width: 80%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .traffic-info {
-    width: 100%;
-    display: flex;
-    font-weight: bold;
-    align-items: center;
-    color: white;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    border: 2px solid black;
-    background: #515373;
-    max-width: 800px;
-  }
+  width: 100%;
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 2px solid black;
+  background: #515373;
+  max-width: 800px;
+}
+
+.traffic-info span {
+  flex: 1;
+  text-align: center;
+  padding: 5px;
+}
 
 h2 {
-    font-family: 'NEXON Lv2 Gothic', 'Roboto', sans-serif;
-    text-align: center;
-  }
+  font-family: 'NEXON Lv2 Gothic', 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.return-link {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  margin-top: 20px;
+}
