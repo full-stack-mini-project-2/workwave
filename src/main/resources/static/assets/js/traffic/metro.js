@@ -1,6 +1,3 @@
-// // 6d6861446c6e796f34344c78697966 지하철역주변
-// // 6d6861446c6e796f34344c78697966 지하철
-
 let dataLine = 0;
 let dataStation = "";
 let targetStation = "";
@@ -16,7 +13,6 @@ $departureStation.addEventListener("change", (e) => {
 
   // API 키와 엔드포인트 설정
   const apiKey = "72554875536e796f313230734550786b";
-  // console.log("targetStation: ", targetStation);
   const endpoint = `http://swopenapi.seoul.go.kr/api/subway/${apiKey}/json/realtimeStationArrival/0/5/${targetStation}`;
 
   fetch(endpoint)
@@ -43,7 +39,7 @@ $departureStation.addEventListener("change", (e) => {
       const trafficMap = [];
 
       const arrivalInfo = document.getElementById("informationMetro");
-      const childElements = arrivalInfo.querySelectorAll("*");
+      const childElements = arrivalInfo.querySelectorAll(".station-name span");
       childElements.forEach((element) => {
         trafficMap.push(element.textContent);
       });
@@ -61,18 +57,19 @@ $departureStation.addEventListener("change", (e) => {
           ) {
             matchCount++;
 
-            const circle = document.createElement("div");
-            circle.classList.add("circle");
+            const stationIcon = document.createElement("i");
+            stationIcon.className = "fas fa-subway";
+            stationIcon.style.position = "absolute";
+            stationIcon.style.fontSize = "20px";
+            stationIcon.style.color = "black";
 
-            const stationSpans =
-              document.querySelectorAll(".station-name span");
-            const positionLeft =
-              stationSpans[j].offsetLeft + stationSpans[j].offsetWidth / 2;
+            const stationSpans = document.querySelectorAll(".station-name span");
+            const positionLeft = stationSpans[j].offsetLeft + stationSpans[j].offsetWidth / 2 - 5; // 왼쪽으로 5픽셀 이동
 
-            circle.style.left = `${positionLeft}px`;
-            circle.style.top = "-10px";
+            stationIcon.style.left = `${positionLeft}px`;
+            stationIcon.style.top = "-20px"; // 아이콘을 역 이름 위에 배치
 
-            informationMetro.appendChild(circle);
+            stationSpans[j].parentNode.appendChild(stationIcon);
 
             break;
           }
@@ -82,9 +79,6 @@ $departureStation.addEventListener("change", (e) => {
       filterdData.forEach((e) => {
         const $infoDiv = document.createElement("div");
         const departureTime = parseInt(e.barvlDt / 60);
-        // <span>출발역: ${e.statnNm}</span>
-        // <span>열차도착예정시간: ${departureTime}분전</span>
-        // <span>현재 지하철 위치: ${e.arvlMsg3}</span>
         $infoDiv.innerHTML = `
             <span>상/하행선: ${e.updnLine}</span>
             <span>현재 위치: ${e.arvlMsg2}</span>  
