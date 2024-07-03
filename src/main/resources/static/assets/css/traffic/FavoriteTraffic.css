@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'NEXON Lv2 Gothic';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON%20Lv2%20Gothic.woff') format('woff');
     font-weight: normal;
     font-style: normal;
   }
@@ -10,40 +10,25 @@ body {
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
     text-align: center; /* 페이지 전체를 가운데 정렬 */
     margin-top: 100px;
+    width: 80%;
 }
 
-.pagination {
-    display: flex;
-    justify-content: center; /* 페이지 번호들을 가운데 정렬 */
-    list-style-type: none;
-    padding: 0;
-    margin-top: 20px; /* 간격 조정을 위한 마진 */
-}
-
-.pagination li {
-    margin: 0 5px;
-}
-
-.pagination a {
-    text-decoration: none;
-    color: #007BFF;
-    padding: 5px 10px;
-    border: 1px solid #007BFF;
-    border-radius: 3px;
-}
-
-.pagination a:hover {
-    background-color: #007BFF;
-    color: white;
-}
 
 .traffic-info {
     width: 100%;
-    max-width: 600px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 0 auto 20px; /* 가운데 정렬 및 아래 여백 설정 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px solid black;
+    background: #515373;
+    max-width: 800px;
+  }
+
+h2 {
+    font-family: 'NEXON Lv2 Gothic', 'Roboto', sans-serif;
+    text-align: center;
+  }
