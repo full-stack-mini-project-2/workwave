@@ -38,6 +38,7 @@ body {
   min-height: 100vh;
   text-align: center;
   margin: 0 auto; /* 수평 중앙 정렬 */
+  position: relative; /* 상대 위치 설정 */
 }
 
 .search-bar {
@@ -45,14 +46,13 @@ body {
   justify-content: flex-start;
   width: 80%; /* 너비를 최대화 */
   margin-left: 0; /* 왼쪽 끝으로 밀기 */
-
 }
 
-.board-table{
-  margin-top: 40px;
+.board-table {
+  margin-top: 20px;
 }
 
-.search-input{
+.search-input {
   width: 80%;
   padding-left: 15px;
   background-color: #f2efeb;
@@ -64,7 +64,7 @@ body {
 }
 
 .search-input::placeholder {
-  color: #c7c6c6; 
+  color: #c7c6c6;
 }
 
 .search-input:focus {
@@ -106,12 +106,28 @@ body {
   color: black;
 }
 
-/* .search-btn:hover {
+.new-board {
+  align-self: flex-end; /* 부모 컨테이너의 오른쪽 끝으로 정렬 */
+  margin-top: 20px; /* 버튼과 검색창 사이의 간격 */
+  margin-right: 40px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #3e489f;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
 
+/* .new-board:hover {
+  background-color: rgb(0, 68, 140);
 } */
 
 .nickname {
-  color: #7b317c;
+  color: #973554;
   font-weight: bolder;
   margin: 20px 0;
 }
@@ -150,9 +166,8 @@ table {
 
 .board-image > img {
   position: absolute;
-  margin-top: 6px;
-  width: 75%;
-  height: 70%;
+  width: 60%;
+  height: 60%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -179,7 +194,8 @@ i {
 .view,
 .likes,
 .dislikes,
-.created-at {
+.created-at,
+.reply-count {
   color: #9c9d9f;
   font-size: 12px;
   margin-right: 5px;
@@ -191,7 +207,7 @@ i {
 }
 
 form {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .bottom-section {
@@ -203,6 +219,7 @@ form {
 
 /* 페이지네이션 컨테이너 */
 .pagination {
+  margin: 80px 0;
   display: flex;
   justify-content: center; /* 수평 중앙 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
@@ -215,18 +232,28 @@ form {
   margin: 0 5px;
 }
 
+.page-link {
+  padding: 0;
+  background-color: transparent;
+}
+
 /* 페이지네이션 링크 */
 .pagination li a {
-  color: #007bff;
-  text-decoration: none;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  transition: background-color 0.3s, color 0.3s;
+  color: #000; /* 기본 텍스트 색상 */
+  text-decoration: none; /* 기본적으로 밑줄 없음 */
+  padding: 0; /* 패딩 제거 */
+  border: none; /* 테두리 제거 */
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+/* 현재 페이지 링크 스타일 */
+.pagination li a.active {
+  text-decoration: underline; /* 호버 시 밑줄 추가 */
+  color: #7b317c; /* 호버 시 텍스트 색상 변경 */
 }
 
 /* 호버 상태 */
 .pagination li a:hover {
-  background-color: #e9ecef;
-  color: #0056b3;
+  text-decoration: underline; /* 호버 시 밑줄 추가 */
+  color: #7b317c; /* 호버 시 텍스트 색상 변경 */
 }

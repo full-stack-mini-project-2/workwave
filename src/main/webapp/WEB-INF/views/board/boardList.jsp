@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %> <%@ taglib
+uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
   <head>
     <%@ include file="../include/static-head.jsp" %>
@@ -15,56 +15,58 @@
     <title>게시판</title>
   </head>
   <body>
-    
     <%@ include file="../include/header.jsp" %>
 
     <div class="board-main-content">
-     
-
       <div class="container">
+        <form class="search-bar" method="get" action="/board/list">
+          <select class="search-type" name="type">
+            <option value="tc">제목+내용</option>
+            <option value="id">내가 쓴 글</option>
+          </select>
+          <input
+            class="search-input"
+            type="text"
+            name="keyword"
+            placeholder="검색어 입력"
+          />
+          <button class="search-btn" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
 
- <form class="search-bar" method="get" action="/board/list">
-
-  <select class="search-type" name="type">
-    <option value="tc">제목+내용</option>
-    <option value="id">내가 쓴 글</option>
-  </select>
-  <input class="search-input" type="text" name="keyword" placeholder="검색어 입력" />
-  <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
-</form>
-
-        <!-- <a href="/board/write">새 글 쓰기</a> -->
+        <button class="new-board" onclick="location.href='/board/write'">글 쓰기</button>
 
         <table class="board-table">
           <c:forEach var="board" items="${boards}">
             <tr class="one-board">
               <td class="board-info">
-                <a
-                  class="board-link"
-                  href="/board/detail?bno=${board.boardId}"
+                <a class="board-link" href="/board/detail?bno=${board.boardId}"
                   >${board.boardTitle}
-                  <c:if test="${board.replyCount != null && board.replyCount != 0}">
-                    <span>(${board.replyCount})</span>
-                  </c:if>
                 </a>
                 <div class="nickname">
                   <i class="fas fa-user-secret"></i>${board.boardNickname}
                 </div>
                 <div class="board-icon">
-                  <i class="fas fa-eye"></i><span class="view">${board.viewCount}</span>
-                  <i class="far fa-thumbs-up"></i><span class="likes">${board.likes}</span>
-                  <i class="far fa-thumbs-down"></i><span class="dislikes">${board.dislikes}</span>
-                  <span class="created-at">${board.formattedBoardCreatedAt}</span>
+                  <i class="fas fa-eye"></i
+                  ><span class="view">${board.viewCount}</span>
+                  <i class="far fa-comment"></i
+                  ><span class="reply-count">${board.replyCount}</span>
+                  <i class="far fa-thumbs-up"></i
+                  ><span class="likes">${board.likes}</span>
+                  <i class="far fa-thumbs-down"></i
+                  ><span class="dislikes">${board.dislikes}</span>
+                  <span class="created-at"
+                    >${board.formattedBoardCreatedAt}</span
+                  >
                 </div>
               </td>
-              <td class="board-image" style="line-height:0">
+              <td class="board-image" style="line-height: 0">
                 <c:choose>
                   <c:when test="${empty board.boardContent}">
-                    <img src="/assets/img/no-img2.png" alt="대체 이미지">
+                    <!-- <img src="" alt="대체 이미지"> -->
                   </c:when>
-                  <c:otherwise>
-                    ${board.boardContent}
-                  </c:otherwise>
+                  <c:otherwise> ${board.boardContent} </c:otherwise>
                 </c:choose>
               </td>
             </tr>
@@ -79,7 +81,8 @@
                   <a
                     class="page-link"
                     href="/board/list?pageNo=1&type=${s.type}&keyword=${s.keyword}"
-                    >&lt;&lt;</a>
+                    >&lt;&lt;</a
+                  >
                 </li>
               </c:if>
 
@@ -88,7 +91,8 @@
                   <a
                     class="page-link"
                     href="/board/list?pageNo=${maker.begin - 1}&type=${s.type}&keyword=${s.keyword}"
-                    >prev</a>
+                    >prev</a
+                  >
                 </li>
               </c:if>
 
@@ -97,7 +101,8 @@
                   <a
                     class="page-link ${i == currentPage ? 'active' : ''}"
                     href="/board/list?pageNo=${i}&type=${s.type}&keyword=${s.keyword}"
-                    >${i}</a>
+                    >${i}</a
+                  >
                 </li>
               </c:forEach>
 
@@ -106,7 +111,8 @@
                   <a
                     class="page-link"
                     href="/board/list?pageNo=${maker.end + 1}&type=${s.type}&keyword=${s.keyword}"
-                    >next</a>
+                    >&gt;</a
+                  >
                 </li>
               </c:if>
 
@@ -115,15 +121,13 @@
                   <a
                     class="page-link"
                     href="/board/list?pageNo=${maker.finalPage}&type=${s.type}&keyword=${s.keyword}"
-                    >&gt;&gt;</a>
+                    >&gt;&gt;</a
+                  >
                 </li>
               </c:if>
             </ul>
           </nav>
         </div>
-
-        <a href="/board/write">새 글 쓰기</a>
-
       </div>
     </div>
 
