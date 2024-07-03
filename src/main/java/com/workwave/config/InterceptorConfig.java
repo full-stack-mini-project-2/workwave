@@ -55,7 +55,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         //스케줄 인터셉터 등록
         registry
                 .addInterceptor(scheduleInterceptor)
-                .addPathPatterns("/schedule/*"); // 전체 거부
+                .addPathPatterns( "/myCalendar/*", "/viewTodo/*"); // 전체 거부
         ;
     }
 }
