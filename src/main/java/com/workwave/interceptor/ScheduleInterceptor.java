@@ -28,15 +28,20 @@ public class ScheduleInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
         log.debug("You are trying to access someone else's schedule!!");
-        if(!LoginUtil.isLoggedIn(request.getSession())) {        //로그인이 되어있으면 못들어가게
-            log.info("로그인이 필요합니다.:{}",request.getRequestURI());
-            response.sendRedirect("/login");  //리다이렉트로 로그인으로 보냄
-            return false;   //true일 경우, 컨트롤러 진입 허용 / false는 진입 차단
+        if(!LoginUtil.isLoggedIn(request.getSession())) {
+            log.info("로그인이 필요합니다.:{}", request.getRequestURI());
+
+            // JavaScript를 통해 알림창을 띄우고 리다이렉트
+            response.setContentType("text/html; charset=UTF-8");
+            response.getWriter().write("<script>alert('로그인이 필요합니다!'); location.href='/login';</script>");
+            response.getWriter().flush();
+
+            return false;
         }
         return true;
     }
+}
 
     /*
         // 수정과 삭제 권한 config
@@ -74,4 +79,4 @@ public class ScheduleInterceptor implements HandlerInterceptor {
      */
 
 
-}
+
