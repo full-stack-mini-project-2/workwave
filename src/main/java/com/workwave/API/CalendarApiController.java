@@ -8,7 +8,6 @@ import com.workwave.service.schedule.CalendarService;
 import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 주 기능 : 데이터베이스 정보를 api에 전달
+ */
 @RestController
 @Slf4j
 @RequiredArgsConstructor
@@ -38,7 +40,6 @@ public class CalendarApiController {
         }
         return calendarService.getMyAllEvents(userId);
     }
-
 
     // 개인의 캘린더 목록 달에 따라서 조회하기 (세션 사용)
     @GetMapping("/myEvents")
@@ -182,7 +183,11 @@ public class CalendarApiController {
         String departmentId = LoginUtil.getLoggedInDepartmentId(session);
         log.info("부서아이디 조회해봅시다 api 확인 ~ : {}", departmentId);
         try {
-            return calendarService.getMyTeamEventsForMonth(departmentId, year, month);
+
+            List<AllMyTeamCalendarEventDto> teamEventsForMonth = calendarService.getMyTeamEventsForMonth(departmentId, year, month);
+            log.info("api에서 전달하는 json : {}",teamEventsForMonth);
+            return teamEventsForMonth;
+
         } catch (Exception e) {
             log.error("Error fetching events for user: " + userId, e);
             throw new RuntimeException("Error fetching events");
@@ -197,7 +202,7 @@ public class CalendarApiController {
     ) {
         String userName = LoginUtil.getLoggedInUser(session).getNickName();
         String userId = LoginUtil.getLoggedInUserAccount(session);
-        String departmentIdFromSession = LoginUtil.getLoggedInDepartmentId(session);
+        String departmentId = LoginUtil.getLoggedInDepartmentId(session);
 
         if (userId == null) {
             throw new RuntimeException("User is not logged in");
@@ -217,14 +222,14 @@ public class CalendarApiController {
                     .calEventUpdateAt(LocalDateTime.now())
                     .colorIndexId(addEventDto.getColorIndexId())
                     .userId(userId)
-                    .departmentId(departmentIdFromSession)
-//                    .departmentName()
+//                    .teamCalendarId(teamCalId)
+                    .departmentId(departmentId)
+//                    .departmentName(addEventDto.getDepartmentName())
                     .userName(userName)
                     .updateBy(userName)
                     .build();
 
             // 사용자의 부서 ID를 이용해 해당 부서의 팀 캘린더에 이벤트 추가
-            String departmentId = LoginUtil.getLoggedInDepartmentId(session);
             newTeamEvent = calendarService.addTeamEvent(newTeamEvent, userId, userName, departmentId);
             isSuccess = newTeamEvent != null;
             message = isSuccess ? "Event created successfully" : message;
@@ -243,6 +248,7 @@ public class CalendarApiController {
     @PostMapping("/updateTeamEvent")
     public ResponseEntity<Map<String, Object>> editTeamEvent(@RequestBody AllMyTeamCalendarEventDto teamCalendarEventDto, HttpSession session) {
         String userId = LoginUtil.getLoggedInUserAccount(session);
+        String userName = LoginUtil.getLoggedInUser(session).getNickName();
         if (userId == null) {
             return ResponseEntity.status(401).body(Map.of("message", "User is not logged in"));
         }
@@ -256,6 +262,7 @@ public class CalendarApiController {
                 teamCalendarEventDto.setCalEventUpdateAt(updatedAt);
             }
             teamCalendarEventDto.setUserId(userId);
+            teamCalendarEventDto.setUpdateBy(userName);
 
             // 팀 캘린더의 이벤트 업데이트 시도
             boolean success = calendarService.updateTeamCalEvent(teamCalendarEventDto);
