@@ -1,23 +1,101 @@
+@font-face {
+  font-family: 'NEXON Lv2 Gothic';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
 body {
-    width: 60%;
-    font-family: Arial, sans-serif;
-    margin-top: 100px;
-    text-align: center; /* 페이지 전체를 가운데 정렬 */
-  }
+  width: 60%;
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  margin-top: 150px;
+}
 
-  .pagination {
-    display: flex;
-    justify-content: center; /* 페이지 번호들을 가운데 정렬 */
-    list-style-type: none;
-    padding: 0;
-    margin-top: 20px; /* 간격 조정을 위한 마진 */
-  }
+.form-container {
+  margin-bottom: 20px;
+}
 
-  .traffic-info{
-    width: 100%;
-    border: 2px solid #000;
-  }
+.sort-container{
+  display: flex;
+  text-align: right;
+}
 
-  .pagination li {
-    margin: 0 5px;
-  }
+.form-select {
+  width: 10%;
+}
+
+h1{
+  font-family: 'NEXON Lv2 Gothic OTF', 'Roboto', sans-serif;
+}
+
+.traffic-info {
+  width: 50%;
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  border: 2px solid black;
+  background : peachpuff;
+}
+
+.regDate {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  text-align: left;
+}
+
+.pagination {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination li a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.pagination li.active a {
+  background-color: #333;
+  color: #fff;
+}
+
+
+.departure-location,
+.arrival-location {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.departure-location span,
+.arrival-location span {
+  order: 2;
+  margin-top: 5px;
+}
+
+.fas.fa-subway {
+  font-size: 30px;
+  color: #333;
+  order: 1;
+}
+
+.fa-long-arrow-alt-right {
+  font-size: 40px;
+  transform: scale(2, 1);
+}

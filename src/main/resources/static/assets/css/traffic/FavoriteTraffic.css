@@ -1,5 +1,13 @@
+@font-face {
+    font-family: 'NEXON Lv2 Gothic';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
     text-align: center; /* 페이지 전체를 가운데 정렬 */
     margin-top: 100px;
 }

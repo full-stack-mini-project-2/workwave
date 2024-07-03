@@ -30,6 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
           month: 'long',
           day: 'numeric'
       });
-      element.textContent = `등록 일시: ${formattedDate}`;
+      element.textContent = `${formattedDate}`;
   });
 });
