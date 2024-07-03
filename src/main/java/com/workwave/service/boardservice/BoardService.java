@@ -155,7 +155,6 @@ public class BoardService {
 
     public Boolean upLikeCount(int boardId) {
 
-//        String userId = LoginUtil.getLoggedInUserAccount(session);
 
         boolean upLikeCount = boardMapper.upLikeCount(boardId);
 
@@ -164,7 +163,6 @@ public class BoardService {
 
     public Boolean downLikeCount(int boardId) {
 
-//        String userId = LoginUtil.getLoggedInUserAccount(session);
 
         boolean downLikeCount = boardMapper.downLikeCount(boardId);
 

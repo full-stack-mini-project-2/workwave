@@ -200,24 +200,33 @@ async function fetchSaveReply(bno, nickName, replyContent, replyPassword) {
 
   console.log(payload);
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = '/login';
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
+    console.log(data);
 
-  fetchReplies(bno);
+    fetchReplies(bno);
 
-  // 입력창 초기화
-  nickName.value = "";
-  replyContent.value = "";
-  replyPassword.value = "";
+    // 입력창 초기화
+    nickName.value = "";
+    replyContent.value = "";
+    replyPassword.value = "";
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
 // 대댓글을 작성하는 비동기 요청
@@ -238,24 +247,33 @@ async function fetchSaveSubReply(
 
   console.log(payload);
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = '/login';
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
+    console.log(data);
 
-  fetchReplies(bno);
+    fetchReplies(replyId); // bno 대신 replyId 사용
 
-  // 입력창 초기화
-  subNickName.value = "";
-  subReplyContent.value = "";
-  subReplyPassword.value = "";
+    // 입력창 초기화
+    subNickName.value = "";
+    subReplyContent.value = "";
+    subReplyPassword.value = "";
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
 // 댓글을 수정하는 비동기 요청
@@ -276,23 +294,33 @@ async function fetchUpdateReply(
 
   console.log(payload);
 
-  const response = await fetch(url, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = '/login';
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
 
-  fetchReplies(bno);
+    console.log(data);
 
-  // 입력창 초기화
-  editReplyPassword.value = "";
-  editReplyContent.value = "";
+    fetchReplies(bno);
+
+    // 입력창 초기화
+    editReplyPassword.value = "";
+    editReplyContent.value = "";
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
 // 답글 수정하는 비동기 요청
@@ -311,23 +339,33 @@ async function fetchUpdateSubReply(
     editSubReplyPassword: editSubReplyPassword.value,
   };
 
-  const response = await fetch(url, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = '/login';
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
 
-  fetchReplies(bno);
+    console.log(data);
 
-  // 입력창 초기화
-  editSubReplyPassword.value = "";
-  editSubReplyContent.value = "";
+    fetchReplies(bno);
+
+    // 입력창 초기화
+    editSubReplyPassword.value = "";
+    editSubReplyContent.value = "";
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
 // 댓글을 삭제하는 비동기 요청
@@ -342,21 +380,31 @@ async function fetchDeleteReply(bno, replyId, replyDeletePassword) {
 
   console.log(payload);
 
-  const response = await fetch(url, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = '/login';
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
 
-  fetchReplies(bno);
+    console.log(data);
 
-  replyDeletePassword.value = "";
+    fetchReplies(bno);
+
+    replyDeletePassword.value = "";
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
 // 대댓글을 삭제하는 비동기 요청
@@ -371,21 +419,31 @@ async function fetchDeleteSubReply(bno, subReplyId, subReplyDeletePassword) {
 
   console.log(payload);
 
-  const response = await fetch(url, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = '/login';
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
 
-  fetchReplies(bno);
+    console.log(data);
 
-  subReplyDeletePassword.value = "";
+    fetchReplies(bno);
+
+    subReplyDeletePassword.value = "";
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
 // 댓글 목록을 HTML에 표시하는 요청
@@ -445,8 +503,6 @@ function displayReplies(replies, pageInfo) {
         // 대댓글 목록 렌더링
         fetchSubReplies(replyId);
 
-        // 댓글 수 렌더링
-        // document.getElementById("replyCnt").value = pageInfo.totalCount;
       }
     );
   } else {
