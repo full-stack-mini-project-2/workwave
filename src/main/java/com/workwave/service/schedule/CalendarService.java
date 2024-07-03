@@ -159,6 +159,7 @@ public class CalendarService {
         return calendarMapper.getTeamCalendarEventsForPeriod(departmentId, startDate, endDate);
     }
 
+
     //팀 캘린더 일정 추가
     @Transactional
     public AllMyTeamCalendarEventDto addTeamEvent(AllMyTeamCalendarEventDto addEventDto, String userId, String userName, String departmentId) {
@@ -172,7 +173,7 @@ public class CalendarService {
                 .calEventUpdateAt(LocalDateTime.now())
                 .colorIndexId(addEventDto.getColorIndexId())
                 .userId(userId)
-                .teamCalendarId(addEventDto.getTeamCalendarId()) //null 값 허용
+                .teamCalendarId(calendarMapper.findMyTeamCalendarId(departmentId))
                 .departmentId(departmentId)
                 .departmentName(addEventDto.getDepartmentName())
                 .userName(userName)
@@ -183,22 +184,27 @@ public class CalendarService {
         return newTeamEvent;
     }
 
-    // 팀 캘린더 일정 수정
+//   팀 캘린더 일정 수정
     @Transactional
     public boolean updateTeamCalEvent(AllMyTeamCalendarEventDto teamCalendarEvent) {
         try {
             // 기존 이벤트를 가져오기
             AllMyTeamCalendarEventDto existingTeamEvent = calendarMapper.findOneTeamCalEvent(teamCalendarEvent.getCalEventId());
 
+            if (existingTeamEvent == null) {
+                // 기존 이벤트가 없을 경우 예외 처리 또는 적절한 로직 추가
+                throw new IllegalArgumentException("Event not found for calEventId: " + teamCalendarEvent.getCalEventId());
+            }
+
             // 업데이트할 필드 설정
             teamCalendarEvent.setCalEventUpdateAt(LocalDateTime.now());
 
-            //입력하지 않았을 경우 service에서 default value 설정
+            // 컬러인덱스 입력하지 않았을 경우 service에서 default value 설정
             if (teamCalendarEvent.getColorIndexId() == null) {
                 teamCalendarEvent.setColorIndexId(existingTeamEvent.getColorIndexId() != null ? existingTeamEvent.getColorIndexId() : getDefaultColorIndex());
             }
 
-            calendarMapper.updateMyTeamCalEvent(teamCalendarEvent);
+            calendarMapper.updateTeamCalEvent(teamCalendarEvent);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

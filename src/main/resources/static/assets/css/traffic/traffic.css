@@ -1,14 +1,35 @@
+@font-face {
+  font-family: 'NEXON Lv2 Gothic';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
   margin: 0;
-  padding: 0;
+  padding: 20px;
+  background: #f2efeb;
 }
 
 .container {
+  width: 60%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
-  padding: 20px;
+  margin-top: 20px;
+  margin: 10px;
+}
+
+#weather-from {
+  display: flex;
+  justify-content: center;
+  width:70%;
+  /* margin-left: */
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-size: 20px;
 }
 
 .form-container {
@@ -16,7 +37,7 @@ body {
 }
 
 .map-container {
-  width: 60%; /* 지도 컨테이너의 너비 */
+  width: 80%; /* 지도 컨테이너의 너비 */
   height: 610px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -70,4 +91,57 @@ a {
 .section-header {
   border-bottom: 1px solid gray;
   padding-bottom: 5px;
+}
+
+h1 {
+  font-family: 'NEXON Lv2 Gothic OTF', 'Roboto', sans-serif;
+  color: #181A33;
+}
+
+.weather-info strong {
+  margin: 10px;
+}
+
+#arrival-info{
+  margin-bottom: 15px;
+}
+
+#back-home {
+  display: flex; /* 중앙 정렬을 위해 flexbox 사용 */
+  justify-content: center; /* 가운데 정렬 */
+  width: 100%; /* 너비를 100%로 설정 */
+  margin: 20px 0; /* 상하 여백 설정 */
+}
+
+#informationMetro {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 8px; /* 역 이름 사이의 간격 설정 */
+  border-top: 2px solid black; 
+  padding-top: 30px;
+  padding-bottom: 15px; 
+  font-size: 15px;
+  
+}
+
+
+.station-name {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  margin-top: 25px;
+  font-size: 16px; 
+  font-family: Arial, sans-serif; 
+  text-align: center; 
+}
+
+.circle {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  margin-top: 5px;
+  background-color: black;
+  border-radius: 50%;
+  transform: translateX(-50%); 
 }

@@ -30,11 +30,11 @@
             cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능한 상태로 만듦 */
         }
 
-        .event-lightblue { background-color: lightblue; }
-        .event-lightgreen { background-color: lightgreen; }
-        .event-lightcoral { background-color: lightcoral; }
-        .event-lightsalmon {background-color: lightsalmon; }
-        .event-lightseagreen { background-color: lightseagreen; }
+        .event-lightsteelblue { background-color: lightsteelblue; }
+        .event-darkslateblue { background-color: darkslateblue; }
+        .event-steelblue { background-color: steelblue; }
+        .event-lightyellow { background-color: lightyellow; }
+        .event-lightpink { background-color: lightpink; }
         .event-lightgray { background-color: lightgray; }
 
         /* 모달 스타일 */
@@ -83,11 +83,11 @@
             cursor: pointer;
         }
 
-        .color-red { background-color: red; }
-        .color-green { background-color: green; }
-        .color-blue { background-color: blue; }
-        .color-yellow { background-color: yellow; }
-        .color-magenta { background-color: magenta; }
+        .color-lightsteelblue { background-color: lightsteelblue; }
+        .color-darkslateblue { background-color: darkslateblue; }
+        .color-steelblue { background-color: steelblue; }
+        .color-lightyellow { background-color: lightyellow; }
+        .color-lightpink { background-color: lightpink; }
         .calendar th, .calendar td {
             border: 1px solid #ddd;
             padding: 10px;
@@ -118,6 +118,9 @@
         }
         .fa-add {
             float: right;
+        }
+        .color-picker div.selected {
+            border: 3.5px solid #141640;
         }
     </style>
 </head>
@@ -160,11 +163,11 @@
 
             <label for="calColorIndex">색상:</label>
             <div class="color-picker">
-                <div class="color-red" data-color-index="1"></div>
-                <div class="color-green" data-color-index="2"></div>
-                <div class="color-blue" data-color-index="3"></div>
-                <div class="color-yellow" data-color-index="4"></div>
-                <div class="color-magenta" data-color-index="5"></div>
+                <div class="color-lightsteelblue" data-color-index="1"></div>
+                <div class="color-darkslateblue" data-color-index="2"></div>
+                <div class="color-steelblue" data-color-index="3"></div>
+                <div class="color-lightyellow" data-color-index="4"></div>
+                <div class="color-lightpink" data-color-index="5"></div>
             </div>
             <input type="hidden" id="calColorIndex" name="calColorIndex" value=""><br>
 
@@ -185,7 +188,14 @@
 
 <script>
     // JSON 형식의 문자열을 자바스크립트 객체로 반환하기
-    const myTeamCalEvents = JSON.parse('<c:out value="${teamCalEvents}" escapeXml="false" />');
+    const nowUserNameFromServer = "${userName}";
+    const nowDepartmentIdFromServer = "${departmentId}";
+    const nowTeamIdFromServer = "${teamCalendarId}";
+
+    console.log("userName, departmentId >>>>",nowUserNameFromServer, nowDepartmentIdFromServer);
+
+    let myTeamCalEvents = []; // API에서 받은 데이터를 저장할 배열
+
 
     const userId = myTeamCalEvents.length > 0 ? myTeamCalEvents[0].userId : "";
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -197,13 +207,17 @@
 
     function fetchEvents(year, month) {
         const xhr = new XMLHttpRequest();
+        // http://localhost:8181/api/calendar/myTeamEvents?year=2024&month=7
         xhr.open('GET', `/api/calendar/myTeamEvents?year=\${year}&month=\${month + 1}`, true);
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    const data = JSON.parse(xhr.responseText);
-                    renderCalendar(data, year, month);
+                    const data = JSON.parse(xhr.responseText); // JSON 데이터를 파싱하여 객체로 변환
+
+                    myTeamCalEvents = data; // 받은 데이터를 전역 변수에 저장
+
+                    renderCalendar(myTeamCalEvents, year, month);
                 } else {
                     console.error('Failed to fetch calendar events:', xhr.status, xhr.statusText);
                 }
@@ -276,21 +290,21 @@
     function getColorByIndex(index) {
         switch (index) {
             case 1:
-                return 'lightblue';
+                return 'lightsteelblue';
             case 2:
-                return 'lightgreen';
+                return 'darkslateblue';
             case 3:
-                return 'lightcoral';
+                return 'steelblue';
             case 4:
-                return 'lightsalmon';
+                return 'lightyellow';
             case 5:
-                return 'lightseagreen';
+                return 'lightpink';
             default:
                 return 'lightgray';
         }
     }
 
-    // Event Modal 닫기 로직 수정
+    // Event Modal 닫기
     document.addEventListener('click', function (event) {
         const modal = document.getElementById('eventModal');
         if (event.target === modal) {
@@ -298,36 +312,42 @@
         }
     });
 
-    // 일정 추가 모달 (addEventModal) 개선
-    document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
-        const addEventModal = document.getElementById('addEventModal');
-        addEventModal.style.display = 'block';
-
-        // 닫기 버튼 클릭 시 모달 닫기
-        const closeBtn = addEventModal.querySelector('.close');
-        closeBtn.onclick = function () {
-            addEventModal.style.display = 'none';
-        };
-
-        // 초기화 로직 추가 (모달이 열릴 때 입력 필드 초기화)
-        document.getElementById('calEventTitle').value = '';
-        document.getElementById('calEventDate').value = '';
-        document.getElementById('calEventDescription').value = '';
-        document.getElementById('calColorIndex').value = '';
-    });
-
     // 일정 추가 모달 열기
     document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
         const addEventModal = document.getElementById('addEventModal');
         addEventModal.style.display = 'block';
 
-        // 원하는 형광 색상 선택
+        // 초기화 로직 추가 (모달이 열릴 때 입력 필드 초기화)
+        document.getElementById('calEventTitle').value = '';
+        document.getElementById('calEventDate').value = '';
+        document.getElementById('calEventDescription').value = '';
+        document.getElementById('calColorIndex').value = ''; // 초기화
+
+        // 색상 선택 기능
         document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
             colorDiv.addEventListener('click', function () {
                 document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+                updateColorPreview(this.getAttribute('data-color-index'));
             });
         });
+
+        const closeBtn = addEventModal.querySelector('.close');
+        closeBtn.onclick = function () {
+            addEventModal.style.display = 'none';
+        };
     });
+
+    // 색상 미리보기 업데이트 함수
+    function updateColorPreview(index) {
+        const colorDivs = document.querySelectorAll('.color-picker div');
+        colorDivs.forEach(function (colorDiv) {
+            colorDiv.classList.remove('selected');
+            if (colorDiv.getAttribute('data-color-index') === index) {
+                colorDiv.classList.add('selected');
+            }
+        });
+    }
+
 
     // 이벤트 상세보기
     function openModal(eventId) {
@@ -339,7 +359,8 @@
         const modal = document.getElementById('eventModal');
         const modalContent = modal.querySelector('.modal-content');
         const eventDetails = modal.querySelector('#eventDetails');
-
+        // 수정자 표시
+        let updateByMessage = selectedEvent.updateBy ? selectedEvent.updateBy : "아직 아무도 수정하지 않았어요!";
 
         //수정하고 난 뒤에만 수정자 표시
         eventDetails.innerHTML = `
@@ -347,7 +368,7 @@
         <li><strong>이벤트 내용:</strong> \${selectedEvent.calEventDescription}</li>
         <li><strong>이벤트 날짜:</strong> \${selectedEvent.calEventDate}</li>
         <li><strong>작성자:</strong> \${selectedEvent.userName}</li>
-        <li><strong>수정자:</strong> \${selectedEvent.updateBy}</li>
+        <li><strong>수정자:</strong> \${updateByMessage}</li>
       `;
 
         const editButton = modal.querySelector('#editEvent');
@@ -365,7 +386,7 @@
             saveChangesButton.style.display = 'block';
         };
 
-        // Save edited event
+        // 일정 수정 정보 저장하기
         saveChangesButton.onclick = function () {
             const updatedTitle = document.getElementById('edit-title').value;
             const updatedDate = document.getElementById('edit-date').value;
@@ -379,7 +400,10 @@
                     calEventDate: updatedDate,
                     calEventDescription: updatedDescription,
                     calColorIndex: selectedEvent.calColorIndex,
+                    updateBy: nowUserNameFromServer,
                 };
+
+                console.log("수정 데이터 ", updateEvent);updateColorPreview
 
                 //일정 수정
                 fetch('/api/calendar/updateTeamEvent', {
@@ -396,7 +420,7 @@
                             selectedEvent.calEventTitle = updatedTitle;
                             selectedEvent.calEventDate = updatedDate;
                             selectedEvent.calEventDescription = updatedDescription;
-                            selectedEvent.updateBy = selectedEvent.userName; // 수정자 데이터 추가
+                            selectedEvent.updateBy = nowUserNameFromServer; // 수정자 데이터 추가
 
                             // Close modal and re-render calendar
                             modal.style.display = 'none';
@@ -471,6 +495,7 @@
         document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
             colorDiv.addEventListener('click', function () {
                 document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+                updateColorPreview(this.getAttribute('data-color-index')); // Update color preview
             });
         });
 
@@ -495,13 +520,18 @@
             calEventDescription: description,
             calEventCreateAt: new Date().toISOString(),
             colorIndexId: colorIndex,
-            userName: myTeamCalEvents.userName, // 안뜸
-            updateBy: myTeamCalEvents.userName, // 안뜸
-            departmentId: myTeamCalEvents.departmentId,
+            userName: nowUserNameFromServer,
+            updateBy: "아직 아무도 수정하지 않았어요!",
+            departmentId: nowDepartmentIdFromServer,
+            teamCalendarId: nowTeamIdFromServer,
+
         };
 
+        // 클라이언트 로그 추가
+        console.log("Event to be saved:", newEvent);
+
         // AJAX 요청으로 이벤트 저장
-        fetch('/api/calendar/addEvent', {
+        fetch('/api/calendar/addTeamEvent', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

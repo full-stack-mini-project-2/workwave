@@ -42,7 +42,7 @@ public class MainController {
     @GetMapping("/")
 
     public String list() {
-        return "index";
+        return "indexHome";
     }
 
     //로그인 페이지 이동  Get

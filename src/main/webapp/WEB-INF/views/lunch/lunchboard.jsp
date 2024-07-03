@@ -99,7 +99,7 @@
                     <tr>
                         <th>작성자</th>
                         <th>제목</th>
-                        <th>작성일자</th>
+
                         <th>식사일정</th>
                         <th>식당</th>
                         <th>메뉴</th>
@@ -112,14 +112,14 @@
                     <tr>
                         <td>${board.userId}</td>
                         <td>${board.lunchPostTitle}</td>
-                        <td>${board.lunchDate}</td>
+
                         <td>${board.eatTime}</td>
                         <td>${board.lunchLocation}</td>
                         <td>${board.lunchMenuName}</td>
-                        <td>${board.lunchAttendees}</td>
-                        <td>${board.progressStatus}</td>
+                        <td>${board.lunchAttendees}명</td>
+                        <td data-status="1">1</td> <!-- 초기 상태 설정 -->
                         <td class="join-button">
- <a href="#" class="join-link" data-lunch-post-number="${board.lunchPostNumber}">참가하기</a>
+                            <a href="#" class="join-link" data-max-attendees="${board.lunchAttendees}" data-id="${loop.index}">참가하기</a>
                         </td>
                     </tr>
                 </tbody>
@@ -142,7 +142,7 @@
                     <input type="text" id="lunchPostTitle" name="lunchPostTitle" required><br>
 
                     <label for="eatTime">식사 일정:</label>
-                    <input type="text" id="eatTime" name="eatTime"><br>
+                    <input type="date" id="eatTime" name="eatTime" required><br>
 
                     <label for="lunchLocation">식당 위치:</label>
                     <input type="text" id="lunchLocation" name="lunchLocation" required><br>
@@ -152,6 +152,7 @@
 
                     <label for="lunchAttendees">인원:</label>
                     <input type="number" id="lunchAttendees" name="lunchAttendees" required><br>
+
 
                     <button type="submit">등록</button>
                 </form>
@@ -181,6 +182,8 @@
         function closeModal() {
             var modal = document.getElementById('myModal');
             modal.style.display = 'none';
+
+
         }
 
         // 모달 외부 클릭 시 닫기
@@ -190,7 +193,31 @@
                 modal.style.display = 'none';
             }
         }
+            // 참가하기 버튼 클릭 시 상태 증가 및 비활성화 체크
+            document.querySelectorAll('.join-link').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
 
+            var maxAttendees = parseInt(this.getAttribute('data-max-attendees'));
+            var boardIndex = parseInt(this.getAttribute('data-id'));
+            var statusElement = document.querySelector(`[data-status="${boardIndex + 1}"]`);
+
+            var currentStatus = parseInt(statusElement.textContent);
+            var currentAttendees = parseInt(statusElement.previousElementSibling.textContent);
+
+            if (currentStatus < currentAttendees) {
+                statusElement.textContent = currentStatus + 1;
+
+                // 상태가 인원 수와 같아지면 버튼 비활성화
+                if (currentStatus + 1 === currentAttendees) {
+                    this.classList.add('disabled');
+                    this.removeEventListener('click', arguments.callee);
+                }
+            } else {
+                alert('이미 모집이 완료되었습니다.');
+            }
+        });
+    });
     </script>
 </body>
 </html>

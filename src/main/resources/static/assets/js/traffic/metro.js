@@ -26,42 +26,74 @@ $departureStation.addEventListener("change", (e) => {
       }
       return response.json();
     })
-    .then(data => { 
-      filterdData = data.realtimeArrivalList.map(e => ({
+    .then((data) => {
+      filterdData = data.realtimeArrivalList.map((e) => ({
         barvlDt: e.barvlDt, // 열차도착예정시간(초)
         statnNm: e.statnNm, // 기차역이름
         updnLine: e.updnLine, // 상하행선구분
         arvlMsg2: e.arvlMsg2, // 첫번째도착메세지(도착, 출발, 진입 등)
-        arvlMsg3: e.arvlMsg3 // 현재 지하철 위치
+        arvlMsg3: e.arvlMsg3, // 현재 지하철 위치
       }));
-      // console.log(filterdData);
 
       // Update the DOM with the filtered data
-      const $info = document.getElementById('infomationMetro');
+      const $info = document.getElementById("arrival-info");
       const total = filterdData.length;
-      $info.innerHTML = `<h2>도착예정수: `+ total + `건</h2>` 
+      $info.innerHTML = `<h2>도착예정수: ` + total + `건</h2>`;
 
-      filterdData.forEach(e => {
-        const $infoDiv = document.createElement('div');
+      const trafficMap = [];
+
+      const arrivalInfo = document.getElementById("informationMetro");
+      const childElements = arrivalInfo.querySelectorAll("*");
+      childElements.forEach((element) => {
+        trafficMap.push(element.textContent);
+      });
+
+      let matchCount = 0;
+      const informationMetro = document.getElementById("informationMetro");
+
+      for (let i = 0; i < filterdData.length; i++) {
+        const stationName = filterdData[i].arvlMsg3;
+
+        for (let j = 0; j < trafficMap.length; j++) {
+          if (
+            stationName === trafficMap[j] ||
+            trafficMap[j].includes(stationName)
+          ) {
+            matchCount++;
+
+            const circle = document.createElement("div");
+            circle.classList.add("circle");
+
+            const stationSpans =
+              document.querySelectorAll(".station-name span");
+            const positionLeft =
+              stationSpans[j].offsetLeft + stationSpans[j].offsetWidth / 2;
+
+            circle.style.left = `${positionLeft}px`;
+            circle.style.top = "-10px";
+
+            informationMetro.appendChild(circle);
+
+            break;
+          }
+        }
+      }
+
+      filterdData.forEach((e) => {
+        const $infoDiv = document.createElement("div");
         const departureTime = parseInt(e.barvlDt / 60);
-        
+        // <span>출발역: ${e.statnNm}</span>
+        // <span>열차도착예정시간: ${departureTime}분전</span>
+        // <span>현재 지하철 위치: ${e.arvlMsg3}</span>
         $infoDiv.innerHTML = `
-          <span>열차도착예정시간: ${departureTime}분전</span>
-          <span>출발역: ${e.statnNm}</span>
-          <span>상하행선구분: ${e.updnLine}</span>
-          <span>첫번째도착메세지: ${e.arvlMsg2}</span>
-          <span>현재 지하철 위치: ${e.arvlMsg3}</span>
-        `;
+            <span>상/하행선: ${e.updnLine}</span>
+            <span>현재 위치: ${e.arvlMsg2}</span>  
+          `;
         $info.appendChild($infoDiv);
       });
       return filterdData;
     })
-    .catch(error => {
-      console.error('Error fetching data:', error);
+    .catch((error) => {
+      console.error("Error fetching data:", error);
     });
 });
-
-
-
-
-

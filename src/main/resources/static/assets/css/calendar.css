@@ -70,11 +70,11 @@
     cursor: pointer;
 }
 
-.color-red { background-color: red; }
-.color-green { background-color: green; }
-.color-blue { background-color: blue; }
-.color-yellow { background-color: yellow; }
-.color-magenta { background-color: magenta; }
+.color-lightsteelblue { background-color: red; }
+.color-darkslateblue { background-color: green; }
+.color-steelblue { background-color: blue; }
+.color-lightyellow { background-color: yellow; }
+.color-lightpink { background-color: magenta; }
 .calendar th, .calendar td {
     border: 1px solid #ddd;
     padding: 10px;
