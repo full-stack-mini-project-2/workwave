@@ -8,136 +8,43 @@
     <title>Work-Wave</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/indexHome.css">
+
     <style>
-        body {
-            font-family: "Noto Sans KR", sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100vh;
-            background-image: url('<c:url value="/assets/img/0.jpg" />');
-            background-size: cover;
+        /* 추가적인 스타일이 필요하다면 여기에 추가하세요 */
+        .calendar-container {
+            position: relative;
+            width: 100%;
+            height: 16.6%;
+            overflow: hidden;
         }
-
-        .clock-container {
+        .calendar {
             position: absolute;
-            top: 58%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 999; /* 화면에서 최상위로 표시 */
-            text-align: center;
-            margin-right: 80px; /* 시계 오른쪽 여백 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccc;
+            display: block; /* 초기에는 보이도록 설정 */
         }
-
-        .clock {
-            font-size: 10rem;
-            font-weight: bold;
-            color: #F2EFEB;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+        .calendar.minimized {
+            display: none; /* 최소화 상태일 때는 숨김 */
         }
-
-        .right-top {
+        .toggle-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 10px;
-        }
-
-        .right-bottom {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .right-box {
-            width: 150px;
-            height: 50px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fff;
-            /*background-color: rgba(0, 0, 0, 0.7);*/
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .right-box:hover {
-            transform: translateY(-5px);
-        }
-
-        .left-top {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 10px;
-        }
-
-        .left-bottom {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-
-        .login {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .user-info {
-            font-size: 1.1rem;
-            color: #F2EFEB;
-            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
-        }
-
-        button {
-            font: inherit;
-            background-color: #f0f0f0;
-            border: 0;
-            color: #242424;
-            border-radius: 0.5em;
-            font-size: 1.35rem;
-            padding: 0.375em 1em;
-            font-weight: 600;
-            text-shadow: 0 0.0625em 0 #fff;
-            box-shadow: inset 0 0.0625em 0 0 #f4f4f4, 0 0.0625em 0 0 #efefef,
-            0 0.125em 0 0 #ececec, 0 0.25em 0 0 #e0e0e0, 0 0.3125em 0 0 #dedede,
-            0 0.375em 0 0 #dcdcdc, 0 0.425em 0 0 #cacaca, 0 0.425em 0.5em 0 #cecece;
-            transition: 0.15s ease;
+            top: 5px;
+            right: 5px;
             cursor: pointer;
         }
-
-        button:active {
-            translate: 0 0.225em;
-            box-shadow: inset 0 0.03em 0 0 #f4f4f4, 0 0.03em 0 0 #efefef,
-            0 0.0625em 0 0 #ececec, 0 0.125em 0 0 #e0e0e0, 0 0.125em 0 0 #dedede,
-            0 0.2em 0 0 #dcdcdc, 0 0.225em 0 0 #cacaca, 0 0.225em 0.375em 0 #cecece;
+        .calendar-icon {
+            position: fixed;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            z-index: 1000; /* 다른 요소 위에 표시될 수 있도록 높은 z-index 설정 */
+            display: none; /* 초기에는 숨김 */
         }
-
     </style>
 
     <link rel="icon" href="/assets/img/workwave_logo.png" />
@@ -186,6 +93,21 @@
     </c:choose>
 </div>
 
+<!-- 달력 컨테이너 -->
+<div class="calendar-container">
+    <div class="calendar" id="personalCalendar">
+        <iframe src="/myCalendar/viewMyEvent" style="width:100%; height:100%; border:none;"></iframe>
+        <i class="fas fa-window-minimize toggle-btn" onclick="toggleCalendar('personalCalendar')"></i>
+    </div>
+    <div class="calendar" id="teamCalendar">
+        <iframe src="/myCalendar/viewTeamEvent" style="width:100%; height:100%; border:none;"></iframe>
+        <i class="fas fa-window-minimize toggle-btn" onclick="minimizeCalendar('teamCalendar')"></i>
+    </div>
+</div>
+
+<!-- 최소화된 상태에서 복구할 달력 아이콘 -->
+<i class="fas fa-calendar calendar-icon" onclick="restoreMinimizedCalendars()"></i>
+
 <script>
     function updateClock() {
         const now = new Date();
@@ -194,9 +116,51 @@
         document.getElementById('clock').textContent = `\${hours}:\${minutes}`;
     }
 
-    setInterval(updateClock, 1000);
-    updateClock(); // 페이지 로드 후 최초 시간 업데이트를 위해 호출
+    function toggleCalendar(calendarId) {
+        // 모든 달력을 보이지 않는 상태로 설정
+        const calendars = document.querySelectorAll('.calendar');
+        calendars.forEach(calendar => {
+            calendar.style.display = 'none';
+        });
+
+        // 선택한 달력만 보이도록 설정
+        const selectedCalendar = document.getElementById(calendarId);
+        selectedCalendar.style.display = 'block';
+
+        // 최소화된 상태의 달력 아이콘 보이기
+        const calendarIcon = document.querySelector('.calendar-icon');
+        calendarIcon.style.display = 'block';
+    }
+
+    function minimizeCalendar(calendarId) {
+        const calendar = document.getElementById(calendarId);
+        calendar.classList.add('minimized');
+    }
+
+    function restoreMinimizedCalendars() {
+        // 모든 최소화된 달력을 복구
+        const minimizedCalendars = document.querySelectorAll('.calendar.minimized');
+        minimizedCalendars.forEach(calendar => {
+            calendar.classList.remove('minimized');
+        });
+
+        // 최소화된 상태의 달력 아이콘 숨기기
+        const calendarIcon = document.querySelector('.calendar-icon');
+        calendarIcon.style.display = 'none';
+    }
+
+    // 페이지 로드 후 실행되는 함수
+    window.onload = function() {
+        // 초기에 개인 캘린더를 보이도록 설정
+        toggleCalendar('personalCalendar');
+
+        // 시계 업데이트 함수를 1초마다 실행하여 시간을 표시
+        setInterval(updateClock, 1000);
+        updateClock(); // 페이지 로드 후 최초 시간 업데이트를 위해 호출
+    };
 </script>
+
+
 
 </body>
 </html>
