@@ -10,7 +10,7 @@ body {
 }
 
 .board-main-content {
-  margin-top: 100px; /* 헤더 높이만큼 마진 추가 */
+  margin-top: 130px; /* 헤더 높이만큼 마진 추가 */
 }
 
 .board-link {
@@ -40,13 +40,75 @@ body {
   margin: 0 auto; /* 수평 중앙 정렬 */
 }
 
-.searchBar {
+.search-bar {
+  display: flex;
+  justify-content: flex-start;
+  width: 80%; /* 너비를 최대화 */
+  margin-left: 0; /* 왼쪽 끝으로 밀기 */
+
+}
+
+.board-table{
+  margin-top: 40px;
+}
+
+.search-input{
+  width: 80%;
+  padding-left: 15px;
+  background-color: #f2efeb;
+  font-size: 32px; /* 글자 크기 설정 */
+  border: none; /* 기본 보더 제거 */
+  border-bottom: 1px solid #000000; /* 아래 보더라인 설정 */
+  outline: none; /* 포커스 시 아웃라인 제거 */
+  transition: border-color 0.3s ease; /* 보더 색상 전환 효과 */
+}
+
+.search-input::placeholder {
+  color: #c7c6c6; 
+}
+
+.search-input:focus {
+  border-bottom: 1px solid #7b317c;
+}
+
+.search-type {
+  width: 12%; /* 원하는 너비로 설정 */
+  margin-right: 2%;
+  border-bottom: 1px solid #000000; /* 아래 보더라인 설정 */
+  padding: 10px 0; /* 패딩 설정 */
+  font-size: 16px; /* 글자 크기 설정 */
+  border: none; /* 기본 보더 제거 */
+  outline: none; /* 포커스 시 아웃라인 제거 */
+  background: none; /* 기본 배경 제거 */
+  transition: border-color 0.3s ease; /* 보더 색상 전환 효과 */
+  cursor: pointer; /* 커서 스타일 변경 */
+}
+
+.search-type option {
+  color: black; /* 옵션 텍스트 색상 설정 */
+}
+
+.search-btn {
+  background-color: none;
+  border: none;
+  margin-left: 2%;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: initial;
-  margin-bottom: 20px;
 }
+
+.search-btn i {
+  font-size: 32px;
+  color: black;
+}
+
+/* .search-btn:hover {
+
+} */
 
 .nickname {
   color: #7b317c;
@@ -88,8 +150,9 @@ table {
 
 .board-image > img {
   position: absolute;
+  margin-top: 6px;
   width: 75%;
-  height: 75%;
+  height: 70%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -100,7 +163,7 @@ table {
   content: "";
   position: absolute;
   left: 0;
-  top: 50px;
+  top: 70px;
   height: 120px;
   width: 1.1px;
   background-color: #d2d2d2;

@@ -15,24 +15,27 @@
     <title>게시판</title>
   </head>
   <body>
+    
     <%@ include file="../include/header.jsp" %>
 
     <div class="board-main-content">
-      <!-- 검색 폼 시작 -->
-      <form class="searchBar" method="get" action="/board/list">
-        <label for="searchType">검색 : </label>
-        <select id="searchType" name="type">
-          <option value="tc">제목+내용</option>
-          <option value="id">내가 쓴 글</option>
-        </select>
-        <input type="text" name="keyword" placeholder="검색어 입력" />
-        <button type="submit">검색</button>
-      </form>
-      <!-- 검색 폼 끝 -->
+     
 
       <div class="container">
 
-        <table>
+ <form class="search-bar" method="get" action="/board/list">
+
+  <select class="search-type" name="type">
+    <option value="tc">제목+내용</option>
+    <option value="id">내가 쓴 글</option>
+  </select>
+  <input class="search-input" type="text" name="keyword" placeholder="검색어 입력" />
+  <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+</form>
+
+        <!-- <a href="/board/write">새 글 쓰기</a> -->
+
+        <table class="board-table">
           <c:forEach var="board" items="${boards}">
             <tr class="one-board">
               <td class="board-info">
@@ -57,7 +60,7 @@
               <td class="board-image" style="line-height:0">
                 <c:choose>
                   <c:when test="${empty board.boardContent}">
-                    <img src="https://cdn-icons-png.flaticon.com/512/85/85488.png" alt="대체 이미지">
+                    <img src="/assets/img/no-img2.png" alt="대체 이미지">
                   </c:when>
                   <c:otherwise>
                     ${board.boardContent}
@@ -120,6 +123,7 @@
         </div>
 
         <a href="/board/write">새 글 쓰기</a>
+
       </div>
     </div>
 
