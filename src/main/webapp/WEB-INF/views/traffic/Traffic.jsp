@@ -184,6 +184,12 @@ uri="http://java.sun.com/jsp/jstl/core" %>
               informationMetro.appendChild(stationSpan);
             }
           }
+
+          const $metroLine = document.getElementById('informationMetro');
+          
+          let metroLineColor = getSubwayLineColor(parseInt(dataLine));
+          
+          $metroLine.style.borderColor = metroLineColor;
         });
       };
 
