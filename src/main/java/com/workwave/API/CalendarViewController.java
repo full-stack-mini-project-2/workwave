@@ -111,8 +111,8 @@ public class CalendarViewController {
         // 세션에서 userId 가져오기
         String userId = LoginUtil.getLoggedInUserAccount(session);
         if (userId == null) {
-            log.info("userId 가 없습니다. {}", session.getAttribute("userId"));
-            throw new RuntimeException("User is not logged in");
+//            log.info("userId 가 없습니다. {}", session.getAttribute("userId"));
+//            throw new RuntimeException("User is not logged in");
         }
         try {
             String departmentId = LoginUtil.getLoggedInDepartmentId(session);
