@@ -13,12 +13,15 @@
   <!-- JavaScript 파일 포함 -->
   <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
 <%--  <%@ include file="../include/header.jsp" %>--%>
+  <%@ include file="../include/header.jsp" %>
   <style>
+
     .calendar {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 20px;
     }
+
     #calendar {
       height: 550px;
       width: 800px;
@@ -28,14 +31,23 @@
 
     .calendar th, .calendar td {
       border: 1px solid #ddd;
-      padding: 10px;
       text-align: center;
+      width: 14.28%;
+      height: 100px; /* Set a fixed height for the table cells */
+      overflow: hidden;
+      vertical-align: top;
+      position: relative; /* Ensure positioning context for absolute */
     }
+
+
     .event {
       margin-top: 5px;
       padding: 3px;
       border-radius: 3px;
-      cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능한 상태로 만듦 */
+      cursor: pointer;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
     .event-lightsteelblue { background-color: lightsteelblue; }
@@ -137,6 +149,17 @@
       width: 14.28%; /* Ensure each day cell takes equal width */
       max-height: 80px; /* Adjust the max-height as needed */
       overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+    }
+
+    .event-container {
+      max-height: 90px; /* Slightly less than the td height to avoid overlap with border */
+      overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+      padding: 2px; /* Optional padding for aesthetics */
+    }
+
+    .
+    .tbody {
+
     }
 
 
@@ -268,7 +291,7 @@
 
       const fullDateStr = `\${yearStr}-\${monthStr}-\${dateStr}`;
 
-      calendarHtml += `<td><div>\${date}</div>`;
+      calendarHtml += `<td><div>\${date}</div><div class="event-container">`;
 
       // 해당 날짜에 해당하는 이벤트 필터링
       const filteredEvents = events.filter(event => event.calEventDate.startsWith(fullDateStr));
@@ -280,21 +303,20 @@
         });
       }
 
-      calendarHtml += '</td>';
+      calendarHtml += '</div></td>';
     }
 
     calendarHtml += '</tr></table>';
-
     document.getElementById('calendar').innerHTML = calendarHtml;
     updateCurrentMonth(year, month);
   }
 
-  // 현재 날짜 업데이트 함수
+  // Current date update function
   function updateCurrentMonth(year, month) {
     document.getElementById('current-month').textContent = `\${monthNames[month]} \${year}`;
   }
 
-  // colorindex에 따라 색 부여하기
+  // Color index to class name mapping
   function getColorByIndex(index) {
     switch (index) {
       case 1:
