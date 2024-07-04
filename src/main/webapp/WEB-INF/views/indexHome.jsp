@@ -16,6 +16,8 @@
             width: 100%;
             height: 16.6%;
             overflow: hidden;
+            top: 30px;
+            align-content: center;
         }
         .calendar {
             position: absolute;
@@ -44,10 +46,6 @@
             z-index: 1000; /* 다른 요소 위에 표시될 수 있도록 높은 z-index 설정 */
             display: none; /* 초기에는 숨김 */
         }
-        .app-container {
-            height: 100vh;
-            width: 100%;
-        }
         .complete {
             text-decoration: line-through;
             color: gray;
@@ -58,6 +56,26 @@
             height: 10px;
             border-radius: 50%;
             margin-right: 5px;
+        }
+        .personal-todolist-Box {
+            width: 150px;
+            max-height: 300px;
+            border-radius: 10px;
+            border: black;
+            bottom: 5%;
+            left: 75%;
+            position: absolute;
+        }
+
+        .team-todolist-Box {
+            width: 150px;
+            max-height: 300px;
+            border-radius: 10px;
+            border: black;
+            bottom: 5%;
+            left: 50%;
+            position: absolute;
+
         }
     </style>
 </head>
@@ -88,7 +106,7 @@
 </div>
 
 <%-- 개인 투두리스트 --%>
-<div ng-controller="myPersonalController" class="app-container d-flex align-items-center justify-content-center flex-column">
+<div ng-controller="myPersonalController" class="personal-todolist-Box app-container d-flex align-items-center justify-content-center flex-column">
     <h3 class="mb-4">Personal Todo List</h3>
     <div class="input-group mb-3">
         <input ng-model="yourPersonalTask" type="text" class="form-control" placeholder="Enter a task here">
@@ -127,7 +145,7 @@
 </div>
 
 <%-- 팀 투두리스트 --%>
-<div ng-controller="myTeamController" class="app-container d-flex align-items-center justify-content-center flex-column">
+<div ng-controller="myTeamController" class="team-todolist-Box app-container d-flex align-items-center justify-content-center flex-column">
     <h3 class="mb-4">Team Todo List</h3>
     <div class="input-group mb-3">
         <input ng-model="yourTeamTask" type="text" class="form-control" placeholder="Enter a task here">
