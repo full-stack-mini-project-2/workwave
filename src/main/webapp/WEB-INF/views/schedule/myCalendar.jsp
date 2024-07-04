@@ -9,11 +9,10 @@
   <%--  <link rel="stylesheet" href="<c:url value='/assets/css/calendar.css' />">--%>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
   <%--  http://localhost:8181/assets/css/main.css--%>
-  <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">
+<%--  <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">--%>
   <!-- JavaScript 파일 포함 -->
   <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
 <%--  <%@ include file="../include/header.jsp" %>--%>
-  <%@ include file="../include/header.jsp" %>
   <style>
 
     .calendar {
