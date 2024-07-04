@@ -10,60 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/indexHome.css">
     <link rel="icon" href="/assets/img/workwave_logo.png" />
-    <style>
-
-        .calendar-content.minimized {
-            display: none; /* 최소화 상태일 때는 숨김 */
-        }
-        .toggle-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            cursor: pointer;
-        }
-        .calendar-icon {
-            position: fixed;
-            top: 350px;
-            left: 98%;
-            transform: translateX(-50%);
-            cursor: pointer;
-            z-index: 1000; /* 다른 요소 위에 표시될 수 있도록 높은 z-index 설정 */
-            display: none; /* 초기에는 숨김 */
-        }
-        .complete {
-            text-decoration: line-through;
-            color: gray;
-        }
-        .color-dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
-        .personal-todolist-Box {
-            width: 150px;
-            max-height: 300px;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.5);
-            bottom: 5%;
-            left: 75%;
-            position: absolute;
-        }
-
-        .team-todolist-Box {
-            width: 150px;
-            max-height: 300px;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.5);
-            bottom: 5%;
-            left: 50%;
-            position: absolute;
-        }
-        .clock {
-
-        }
-    </style>
 </head>
 
 <body>
@@ -185,7 +131,7 @@
     </c:choose>
 </div>
 
-<%-- 달력 컨테이너 --%>
+<%-- 달력 컨테이너 jsp include--%>
 <div class="calendar-at-home">
     <div class="calendar-at-modal" id="personalCalendar">
         <%@page import="java.util.List"%>
@@ -196,6 +142,8 @@
         <i class="fas fa-calendar-alt"></i>
     </div>
 </div>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>

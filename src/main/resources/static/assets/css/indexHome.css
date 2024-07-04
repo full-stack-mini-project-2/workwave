@@ -18,12 +18,19 @@ a {
     color: #F2EFEB;
 }
 
+.fa-calendar-alt {
+    color: #F2EFEB;
+}
+
+.fa-calendar-alt:hover {
+    transform: translateY(-5px);
+}
+
 .clock-container {
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 999; /* 화면에서 최상위로 표시 */
     text-align: center;
     margin-right: 80px; /* 시계 오른쪽 여백 */
 }
@@ -65,8 +72,6 @@ a {
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
-    /*color: #fff;*/
-    /*background-color: rgba(0, 0, 0, 0.7);*/
     text-decoration: none;
     transition: transform 0.3s ease;
 }
@@ -135,4 +140,64 @@ button:active {
     0 0.0625em 0 0 #ececec, 0 0.125em 0 0 #e0e0e0, 0 0.125em 0 0 #dedede,
     0 0.2em 0 0 #dcdcdc, 0 0.225em 0 0 #cacaca, 0 0.225em 0.375em 0 #cecece;
 }
+.calendar-at-modal {
+    position: absolute;
+    top: 60px;
+    right: 30px;
+}
+
+.calendar-at-modal.minimized {
+    display: none; /* 최소화 상태일 때는 숨김 */
+}
+
+.toggle-btn {
+    position: absolute;
+    top: -50px;
+    right: 1px;
+    cursor: pointer;
+}
+
+.calendar-icon {
+    position: fixed;
+    top: 20px;
+    left: 98%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 1000; /* 다른 요소 위에 표시될 수 있도록 높은 z-index 설정 */
+    display: none; /* 초기에는 숨김 */
+}
+
+.complete {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.color-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.personal-todolist-Box {
+    width: 150px;
+    max-height: 300px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    bottom: 5%;
+    left: 75%;
+    position: absolute;
+}
+
+.team-todolist-Box {
+    width: 150px;
+    max-height: 300px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    bottom: 5%;
+    left: 50%;
+    position: absolute;
+}
+
 

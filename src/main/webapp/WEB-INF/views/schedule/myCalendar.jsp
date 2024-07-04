@@ -36,6 +36,7 @@
       border: 1px solid black; /* Optional: Border for visualization */
       padding: 10px;
       max-width: 800px; /* Ensure the calendar is responsive up to a maximum width */
+      background: rgba(242, 239, 245, 0.92);
     }
 
     #current-month {
@@ -205,6 +206,7 @@
     }
 
     #saveChangesButton {
+      display: none; /* 초기에는 숨김 */
       float: right;
       margin-top: -10px;
       margin-right: -5px;
@@ -227,6 +229,7 @@
     <i class="fa-solid fa-pencil" style="color: #444444;" id="editEvent"></i>
     <ul id="eventDetails">
     </ul>
+<%--    수정버튼을 눌러야 버튼이 보여짐--%>
     <button id="saveChangesButton" style="display:none;">Save Changes</button>
   </div>
 </div>
@@ -291,7 +294,7 @@
   let currentYear = new Date().getFullYear();
   let currentMonth = new Date().getMonth();
 
-  // 초기 데이터 로드, 콜백함수로 비동기 요청
+  // 초기 데이터 로드, 콜백함수로 비동기 렌더링
   fetchEvents(currentYear, currentMonth, function () {
     userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
     renderCalendar(myCalEvents, currentYear, currentMonth);
@@ -398,18 +401,32 @@
     }
   }
 
-  // Event Modal 닫기 로직 수정
+  // Event Modal 닫기
   document.addEventListener('click', function (event) {
     const modal = document.getElementById('eventModal');
-    if (event.target === modal) {
+    const closeButton = modal.querySelector('.close');
+    if (event.target === modal || event.target === closeButton) {
       modal.style.display = 'none';
     }
   });
 
-  // 일정 추가 모달 (addEventModal) 개선
+  // 일정 추가 모달 열기
   document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
     const addEventModal = document.getElementById('addEventModal');
     addEventModal.style.display = 'block';
+
+    // 초기화 로직 추가 (모달이 열릴 때 입력 필드 초기화)
+    document.getElementById('calEventTitle').value = '';
+    document.getElementById('calEventDate').value = '';
+    document.getElementById('calEventDescription').value = '';
+    document.getElementById('calColorIndex').value = '';
+
+    // 색상 선택 기능
+    document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
+      colorDiv.addEventListener('click', function () {
+        document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+      });
+    });
 
     // 닫기 버튼 클릭 시 모달 닫기
     const closeBtn = addEventModal.querySelector('.close');
@@ -417,26 +434,14 @@
       addEventModal.style.display = 'none';
     };
 
-    // 초기화 로직 추가 (모달이 열릴 때 입력 필드 초기화)
-    document.getElementById('calEventTitle').value = '';
-    document.getElementById('calEventDate').value = '';
-    document.getElementById('calEventDescription').value = '';
-    document.getElementById('calColorIndex').value = '';
-  });
-
-
-  // 일정 추가 모달 열기
-  document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
-    const addEventModal = document.getElementById('addEventModal');
-    addEventModal.style.display = 'block';
-
-    // 원하는 형광 색상 선택
-    document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
-      colorDiv.addEventListener('click', function () {
-        document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
-      });
+    // 모달 바깥을 클릭하여도 닫히도록 설정
+    addEventModal.addEventListener('click', function (event) {
+      if (event.target === addEventModal || event.target.closest('.close')) {
+        addEventModal.style.display = 'none';
+      }
     });
   });
+
 
   // 이벤트 상세보기
   function openModal(eventId) {
@@ -469,22 +474,23 @@
       descriptionSpan.innerHTML = `<input type="text" id="edit-description" value="\${selectedEvent.calEventDescription}">`;
       dateSpan.innerHTML = `<input type="date" id="edit-date" value="\${selectedEvent.calEventDate}">`;
 
+      // 수정 버튼 클릭 시 Save Changes 버튼 보이기
       saveChangesButton.style.display = 'block';
     };
 
-    // Save edited event
+    // 수정된 일정 저장하기
     saveChangesButton.onclick = function () {
       const updatedTitle = document.getElementById('edit-title').value;
       const updatedDate = document.getElementById('edit-date').value;
       const updatedDescription = document.getElementById('edit-description').value;
 
-      // Validate inputs
+      // 입력값 받기, 수정 없어도 저장 됨
       if (updatedTitle && updatedDate) {
         const updateEvent = {
           calEventId: selectedEvent.calEventId,
-          calEventTitle: updatedTitle,
-          calEventDate: updatedDate,
-          calEventDescription: updatedDescription,
+          calEventTitle: updatedTitle || selectedEvent.calEventTitle,
+          calEventDate: updatedDate || selectedEvent.calEventDate,
+          calEventDescription: updatedDescription || selectedEvent.description,
           calColorIndex: selectedEvent.calColorIndex
         };
 
@@ -524,10 +530,14 @@
     // 모달 보이기
     modal.style.display = 'block';
 
+    // 저장 후 Save Changes 버튼 다시 숨기기
+    saveChangesButton.style.display = 'none';
+
     // 모달 외부를 클릭하면 닫기
     window.onclick = function (event) {
       if (event.target === modal) {
         modal.style.display = 'none';
+        saveChangesButton.style.display = 'none';
       }
     };
 
