@@ -1,6 +1,6 @@
 body {
     font-family: 'NEXON Lv1 Gothic OTF', 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #000428, #004e92, #007551);
+    background: linear-gradient(135deg, #000428, #8e33be, #007551);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
     height: 100vh;
