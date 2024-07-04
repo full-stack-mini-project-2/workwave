@@ -21,6 +21,7 @@
     <select id="findOne" resultType="user">
         SELECT
         user_id
+        ,employee_id
         , password
         , user_name
         , user_access_level

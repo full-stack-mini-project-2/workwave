@@ -1,12 +1,13 @@
-package com.workwave.controller;
+package com.workwave.controller.user;
 
 import com.workwave.dto.DepartmentNameDto;
 
 import com.workwave.dto.user.JoinDto;
 import com.workwave.dto.user.LoginDto;
+import com.workwave.dto.user.findUserDto;
+import com.workwave.entity.User;
 import com.workwave.service.LoginResult;
 import com.workwave.service.UserService;
-import com.workwave.service.schedule.CalendarService;
 import com.workwave.util.FileUtil;
 import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +35,7 @@ import java.util.List;
 @RequestMapping("/")
 @Slf4j
 @RequiredArgsConstructor
-public class MainController {
+public class UserController {
 
     @Value("${project.base.dir}")
     private String rootPath;
@@ -161,6 +163,51 @@ public class MainController {
         return "redirect:/";
 
     }
+
+    //비밀번호 찾기! 🧤
+    @GetMapping("/forgot-password")
+        public String forgotPassword(){
+
+        return "/Login/forgotPassword";
+        }
+
+    @PostMapping("/forgot-password")
+    public String checkIdExists(findUserDto dto,
+                                RedirectAttributes ra                   //리다이렉트 할때 쓰는 전송 객체
+                                ){
+                log.info("welcome~ /join POST ");
+        System.out.println("🧤dto = " + dto);
+        //검색 !
+        User resultUser = userService.findOneUser(dto);
+        System.out.println("🧤resultUser = " + resultUser);
+
+        //리다이렉트 할때 쓰는 전송 객체⭐️
+        //ㄴ 리다이렉트 객체를 써야 리다이렉트 페이지 까지 전송된다.~!
+        ra.addFlashAttribute("resultUser", resultUser);
+        System.out.println("resultUser = " + resultUser);
+        //유저 조회 성공!
+        if (resultUser != null)
+        {
+            System.out.println("🏆 resultUser = " + resultUser);
+            //리다이렉트가 있는지 확인해본다.
+//            String redirect = (String) session.getAttribute("redirect");
+//            if (redirect != null) {
+////                session.removeAttribute("redirect");
+////
+////                return "redirect:" + redirect;
+//            }
+
+            return "redirect:/forgotPassword2"; // 로그인 성공시
+        }
+
+        return "redirect:/forgot-password";
+    }
+
+        @GetMapping("/forgotPassword2")
+        public String forgotpassword2(RedirectAttributes ra){
+            // ra 객체를 사용하여 데이터 전달
+            return "/Login/forgotPasswordStep2";
+        }
 
 
 } //end MainControllerß
