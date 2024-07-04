@@ -109,9 +109,9 @@ body {
 .new-board {
   align-self: flex-end; /* 부모 컨테이너의 오른쪽 끝으로 정렬 */
   margin-top: 20px; /* 버튼과 검색창 사이의 간격 */
-  margin-right: 40px;
+  margin-right: 50px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   color: white;
   background-color: #3e489f;
