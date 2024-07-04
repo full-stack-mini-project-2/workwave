@@ -49,7 +49,7 @@
                 <div id="error-message" class="error-message"></div>
                 <br />
                 <div class="forgot-password">
-                    <a href="#">Forgot Password?</a>
+                    <a href="/forgot-password">Forgot Password?</a>
                 </div>
                 <br />
                 <div class="join-button-container">

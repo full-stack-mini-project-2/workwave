@@ -2,18 +2,21 @@
 <html>
   <head>
     <title>게시물 작성</title>
+    <%@ include file="../include/static-head.jsp" %>
+
+    <link rel="stylesheet" href="/assets/css/boardWrite.css" />
 
     <!-- CKEditor 라이브러리 -->
     <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     <!-- Turndown 라이브러리 -->
     <script src="https://cdn.jsdelivr.net/npm/turndown/dist/turndown.min.js"></script>
 
-    <%@ include file="../include/static-head.jsp" %>
+    
   </head>
   <body>
     
     <%@ include file="../include/header.jsp" %>
-
+<div class="board-write-content">
     <h1>게시물 작성</h1>
     <form action="write" method="post" enctype="multipart/form-data">
       <table>
@@ -49,6 +52,7 @@
       </table>
     </form>
     <a href="list">목록으로</a>
+  </div>
 
     <script>
       CKEDITOR.replace("boardContent", {
@@ -58,5 +62,6 @@
         removeDialogTabs: "link:upload;image:Upload", // 불필요한 탭 제거
       });
     </script>
+
   </body>
 </html>

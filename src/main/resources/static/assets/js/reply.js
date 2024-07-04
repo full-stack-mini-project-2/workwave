@@ -131,14 +131,16 @@ async function fetchSubReplies(rno) {
           tag += `
           <div class="sub-reply">
             <div class="meta">
-              작성자: ${nickName} | 작성일: ${subReplyCreatedAt}
+              <i class="fas fa-level-up-alt rotated-icon"></i> 작성자: ${nickName} | 작성일: ${subReplyCreatedAt}
               ${
                 subReplyCreatedAt !== subReplyUpdatedAt
                   ? ` | 수정일: ${subReplyUpdatedAt}`
                   : ""
               }
               <span class="author">${
-                userId === boardUserId ? "글쓴이" : ""
+                userId === boardUserId
+                  ? '<i class="fas fa-user-secret"></i>'
+                  : ""
               }</span>
             </div>
             <div class="content">
@@ -148,11 +150,10 @@ async function fetchSubReplies(rno) {
               <button class="subReplyModify" type="button" data-rno=${subReplyId}>수정</button>
               <button class="subReplyDelete" type="button" data-rno=${subReplyId}>삭제</button>
             </div>
-
-          </div>
-          <div id="editSubReplyForm-${subReplyId}" class="reply-form" style="display: none" data-rno=${subReplyId}>
+            <div id="editSubReplyForm-${subReplyId}" class="reply-form" style="display: none" data-rno=${subReplyId}>
           </div>
           <div id="DeleteSubReplyForm-${subReplyId}" class="reply-form" style="display: none" data-rno=${subReplyId}>
+          </div>
           </div>
           `;
         }
@@ -200,24 +201,33 @@ async function fetchSaveReply(bno, nickName, replyContent, replyPassword) {
 
   console.log(payload);
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = "/login";
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
+    console.log(data);
 
-  fetchReplies(bno);
+    fetchReplies(bno);
 
-  // 입력창 초기화
-  nickName.value = "";
-  replyContent.value = "";
-  replyPassword.value = "";
+    // 입력창 초기화
+    nickName.value = "";
+    replyContent.value = "";
+    replyPassword.value = "";
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 
 // 대댓글을 작성하는 비동기 요청
@@ -238,24 +248,33 @@ async function fetchSaveSubReply(
 
   console.log(payload);
 
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = "/login";
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
+    console.log(data);
 
-  fetchReplies(bno);
+    fetchReplies(bno);
 
-  // 입력창 초기화
-  subNickName.value = "";
-  subReplyContent.value = "";
-  subReplyPassword.value = "";
+    // 입력창 초기화
+    subNickName.value = "";
+    subReplyContent.value = "";
+    subReplyPassword.value = "";
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 
 // 댓글을 수정하는 비동기 요청
@@ -276,23 +295,33 @@ async function fetchUpdateReply(
 
   console.log(payload);
 
-  const response = await fetch(url, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = "/login";
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
 
-  fetchReplies(bno);
+    console.log(data);
 
-  // 입력창 초기화
-  editReplyPassword.value = "";
-  editReplyContent.value = "";
+    fetchReplies(bno);
+
+    // 입력창 초기화
+    editReplyPassword.value = "";
+    editReplyContent.value = "";
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 
 // 답글 수정하는 비동기 요청
@@ -311,23 +340,33 @@ async function fetchUpdateSubReply(
     editSubReplyPassword: editSubReplyPassword.value,
   };
 
-  const response = await fetch(url, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = "/login";
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
 
-  fetchReplies(bno);
+    console.log(data);
 
-  // 입력창 초기화
-  editSubReplyPassword.value = "";
-  editSubReplyContent.value = "";
+    fetchReplies(bno);
+
+    // 입력창 초기화
+    editSubReplyPassword.value = "";
+    editSubReplyContent.value = "";
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 
 // 댓글을 삭제하는 비동기 요청
@@ -342,21 +381,31 @@ async function fetchDeleteReply(bno, replyId, replyDeletePassword) {
 
   console.log(payload);
 
-  const response = await fetch(url, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = "/login";
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
 
-  fetchReplies(bno);
+    console.log(data);
 
-  replyDeletePassword.value = "";
+    fetchReplies(bno);
+
+    replyDeletePassword.value = "";
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 
 // 대댓글을 삭제하는 비동기 요청
@@ -371,21 +420,31 @@ async function fetchDeleteSubReply(bno, subReplyId, subReplyDeletePassword) {
 
   console.log(payload);
 
-  const response = await fetch(url, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
 
-  const data = await response.json();
+    if (response.status === 403) {
+      // 403 에러 발생 시 로그인 페이지로 이동
+      window.location.href = "/login";
+      return;
+    }
 
-  console.log(data);
+    const data = await response.json();
 
-  fetchReplies(bno);
+    console.log(data);
 
-  subReplyDeletePassword.value = "";
+    fetchReplies(bno);
+
+    subReplyDeletePassword.value = "";
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 
 // 댓글 목록을 HTML에 표시하는 요청
@@ -398,7 +457,7 @@ function displayReplies(replies, pageInfo) {
   // 댓글 목록 렌더링
   let tag = "";
   if (replies && replies.length > 0) {
-    tag = `<h2>댓글(${pageInfo.totalCount})</h2>`;
+    tag = `<h2 class="reply-title"><i class="far fa-comment"></i> (${pageInfo.totalCount})</h2>`;
     replies.forEach(
       ({
         replyId,
@@ -418,7 +477,7 @@ function displayReplies(replies, pageInfo) {
                 : ""
             }
             <span class="author">${
-              userId === boardUserId ? "글쓴이" : ""
+              userId === boardUserId ? '<i class="fas fa-user-secret"></i>' : ""
             }</span>
           </div>
           <div class="content">
@@ -429,24 +488,22 @@ function displayReplies(replies, pageInfo) {
             <button class="replyDelete" type="button" data-rno=${replyId}>삭제</button>
             <button class="subReply" type="button" data-rno=${replyId}>답글</button>
           </div>
-          <div id="subRepliesContainer-${replyId}" style="display: none">
-          </div>
-        </div>
-        <div id="SubReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
+          <div id="SubReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
         </div>
         <div id="editReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
         </div>
         <div id="DeleteReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
         </div>
+          <div id="subRepliesContainer-${replyId}" style="display: none">
+          </div>
+        </div>
+        
         `;
 
         renderPage(pageInfo);
 
         // 대댓글 목록 렌더링
         fetchSubReplies(replyId);
-
-        // 댓글 수 렌더링
-        // document.getElementById("replyCnt").value = pageInfo.totalCount;
       }
     );
   } else {
@@ -485,10 +542,10 @@ function displayReplies(replies, pageInfo) {
 function showEditSubReplyForm(replyId) {
   const editSubReplyForm = document.getElementById(`SubReplyForm-${replyId}`);
 
-  if (editSubReplyForm.style.display === "block") {
+  if (editSubReplyForm.style.display === "flex") {
     editSubReplyForm.style.display = "none";
   } else {
-    editSubReplyForm.style.display = "block";
+    editSubReplyForm.style.display = "flex";
     editSubReplyForm.innerHTML = `
        <div class="subReply-form">
         <h2>답글 작성</h2>
@@ -528,10 +585,10 @@ function showEditSubReplyForm(replyId) {
 function showEditForm(replyId) {
   const editForm = document.getElementById(`editReplyForm-${replyId}`);
 
-  if (editForm.style.display === "block") {
+  if (editForm.style.display === "flex") {
     editForm.style.display = "none";
   } else {
-    editForm.style.display = "block";
+    editForm.style.display = "flex";
     editForm.innerHTML = `
       <h2>댓글 수정</h2>
         <input type="hidden" data-rno=${replyId}/>
@@ -566,10 +623,10 @@ function showEditForm(replyId) {
 function showSubEditForm(subReplyId) {
   const editSubform = document.getElementById(`editSubReplyForm-${subReplyId}`);
 
-  if (editSubform.style.display === "block") {
+  if (editSubform.style.display === "flex") {
     editSubform.style.display = "none";
   } else {
-    editSubform.style.display = "block";
+    editSubform.style.display = "flex";
     editSubform.innerHTML = `
       <h2>답글 수정</h2>
         <input type="hidden" data-rno=${subReplyId} />
@@ -611,10 +668,10 @@ function showSubEditForm(subReplyId) {
 function showDeleteForm(replyId) {
   const deleteForm = document.getElementById(`DeleteReplyForm-${replyId}`);
 
-  if (deleteForm.style.display === "block") {
+  if (deleteForm.style.display === "flex") {
     deleteForm.style.display = "none";
   } else {
-    deleteForm.style.display = "block";
+    deleteForm.style.display = "flex";
     deleteForm.innerHTML = `
       <h2>댓글 삭제</h2>
         <input
@@ -644,10 +701,10 @@ function showSubDeleteForm(subReplyId) {
     `DeleteSubReplyForm-${subReplyId}`
   );
 
-  if (DeleteSubReplyForm.style.display === "block") {
+  if (DeleteSubReplyForm.style.display === "flex") {
     DeleteSubReplyForm.style.display = "none";
   } else {
-    DeleteSubReplyForm.style.display = "block";
+    DeleteSubReplyForm.style.display = "flex";
     DeleteSubReplyForm.innerHTML = `
       <h2>댓글 삭제</h2>
         <input

@@ -6,7 +6,7 @@
 
     <head>
       <meta charset="UTF-8" />
-      <title>workwave:회원가입</title>
+      <title>workwave:sign-up</title>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@4.0.1/reset.min.css" />
       <link href="https://fonts.google.com/specimen/Roboto" rel="stylesheet" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
