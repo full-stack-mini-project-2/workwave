@@ -11,23 +11,7 @@
     <link rel="stylesheet" href="/assets/css/indexHome.css">
     <link rel="icon" href="/assets/img/workwave_logo.png" />
     <style>
-        /*.calendar-container {*/
-        /*    position: relative;*/
-        /*    width: 100%;*/
-        /*    height: 16.6%;*/
-        /*    overflow: hidden;*/
-        /*    top: 30px;*/
-        /*    align-content: center;*/
-        /*}*/
-        /*.calendar {*/
-        /*    position: absolute;*/
-        /*    top: 0;*/
-        /*    left: 0;*/
-        /*    width: 100%;*/
-        /*    height: 100%;*/
-        /*    border: 1px solid #ccc;*/
-        /*    display: block; !* 초기에는 보이도록 설정 *!*/
-        /*}*/
+
         .calendar-content.minimized {
             display: none; /* 최소화 상태일 때는 숨김 */
         }
@@ -202,8 +186,9 @@
 </div>
 
 <%-- 달력 컨테이너 --%>
-<div class="calendar-container">
-    <div class="calendar-content" id="personalCalendar">
+<div class="calendar-at-home">
+    <div class="calendar-at-modal" id="personalCalendar">
+        <%@page import="java.util.List"%>
         <%@ include file="./schedule/myCalendar.jsp" %>
         <button class="toggle-btn" id="toggleBtn"><i class="fas fa-chevron-up"></i></button>
     </div>
@@ -417,6 +402,9 @@
     }]);
 
     // 팀 투두리스트 함수 끝
+
+
+    // 토글 열고닫기 함수
     $(document).ready(function() {
         $('#toggleBtn').click(function() {
             $('#personalCalendar').toggleClass('minimized');

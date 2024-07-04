@@ -30,6 +30,20 @@
       scrollbar-width: none;
     }
 
+    .calendar-container {
+      border-radius: 10px;
+      height: 560px; /* Set the desired height */
+      border: 1px solid black; /* Optional: Border for visualization */
+      padding: 10px;
+      max-width: 800px; /* Ensure the calendar is responsive up to a maximum width */
+    }
+
+    #current-month {
+      width: 270px;
+      display: inline-block;
+      margin-left: 100px;
+    }
+
     .calendar-header {
       display: flex;
       justify-content: space-between;
@@ -162,22 +176,6 @@
     .color-lightyellow { background-color: lightyellow; }
     .color-lightpink { background-color: lightpink; }
 
-    .calendar-container {
-      margin: 100px auto; /* Adjust margins as per your design */
-      border-radius: 10px;
-      width: 1200px; /* Set the desired width */
-      height: 560px; /* Set the desired height */
-      border: 1px solid black; /* Optional: Border for visualization */
-      padding: 10px;
-      max-width: 800px; /* Ensure the calendar is responsive up to a maximum width */
-    }
-
-    #current-month {
-      width: 270px;
-      display: inline-block;
-      margin-left: 100px;
-    }
-
     .fa-add {
       float: right;
       margin-top: 200px;
@@ -237,7 +235,7 @@
 <div id="addEventModal" class="modal">
   <div class="modal-content">
     <span class="close"><i class="fa-solid fa-x"></i></span>
-    <button class="fa-add" type="button" id="saveEventButton">추가</button>
+    <button class="fa-add" type="button" id="saveEventButton">Add</button>
     <h2>New Event</h2>
     <form id="addEventForm">
       <label for="calEventTitle">Title</label>
@@ -282,18 +280,24 @@
 
 <script>
   // JSON 형식의 문자열을 자바스크립트 객체로 반환하기
-  const myCalEvents = JSON.parse('<c:out value="${mycalEvents}" escapeXml="false" />'); // 전역변수로 놓고 렌더링
-  console.log("mycalevents", myCalEvents);
+  <%--const myCalEvents = JSON.parse(`<c:out value="\${data}" escapeXml="false"/>`);--%>
+  <%--console.log("mycalevents", myCalEvents);--%>
+  // const userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
 
-  const userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
+  let myCalEvents = [];
+  let userId = "";
+  console.log(userId);
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let currentYear = new Date().getFullYear();
   let currentMonth = new Date().getMonth();
 
-  // 초기 데이터 로드
-  fetchEvents(currentYear, currentMonth);
+  // 초기 데이터 로드, 콜백함수로 비동기 요청
+  fetchEvents(currentYear, currentMonth, function () {
+    userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
+    renderCalendar(myCalEvents, currentYear, currentMonth);
+  });
 
-  function fetchEvents(year, month) {
+  function fetchEvents(year, month, callback) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', `/api/calendar/myEvents?year=\${year}&month=\${month + 1}`, true);
 
@@ -301,6 +305,13 @@
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           const data = JSON.parse(xhr.responseText);
+
+          console.log("맨처음 불러오는 json 달력 data:", data)
+
+          myCalEvents = data;
+
+          callback();
+
           renderCalendar(data, year, month);
         } else {
           console.error('Failed to fetch calendar events:', xhr.status, xhr.statusText);
@@ -629,7 +640,7 @@
       } else {
         currentMonth--;
       }
-      fetchEvents(currentYear, currentMonth);
+      fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
     });
 
     //다음달로 넘어가기
@@ -640,9 +651,9 @@
       } else {
         currentMonth++;
       }
-      fetchEvents(currentYear, currentMonth);
+      fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
     });
-    renderCalendar();
+    fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
   });
 
 </script>
