@@ -213,8 +213,7 @@ public class BoardController {
             return "error";
         }
     }
-
-
+    
     @PostMapping("/upLike")
     @ResponseBody
     public ResponseEntity<?> upLikeCount(@RequestParam(value = "bno") Integer boardId,

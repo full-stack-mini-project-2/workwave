@@ -3,6 +3,7 @@ package com.workwave.interceptor;
 import com.workwave.util.LoginUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +15,12 @@ public class ReplyInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        String requestURI = request.getRequestURI();
+
         log.debug("after login interceptor execute!");
         if (!LoginUtil.isLoggedIn(request.getSession())) {
-            log.info("로그인이 필요합니다.:{}", request.getRequestURI());
+            log.info("로그인이 필요합니다.:{}", requestURI);
             response.sendError(403);
             return false;   //true일 경우, 컨트롤러 진입 허용 / false는 진입 차단
         }
