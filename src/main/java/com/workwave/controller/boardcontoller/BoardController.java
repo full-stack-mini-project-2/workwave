@@ -132,6 +132,7 @@ public class BoardController {
     public String PasswordCheck(HttpSession session,
                                 @RequestParam("action") String action,
                                 @RequestParam("bno") int boardId) {
+        
         try {
 
             if (LoginUtil.isAdmin(session) && "delete".equals(action)) {

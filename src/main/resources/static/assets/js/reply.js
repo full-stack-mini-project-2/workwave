@@ -542,10 +542,10 @@ function displayReplies(replies, pageInfo) {
 function showEditSubReplyForm(replyId) {
   const editSubReplyForm = document.getElementById(`SubReplyForm-${replyId}`);
 
-  if (editSubReplyForm.style.display === "block") {
+  if (editSubReplyForm.style.display === "flex") {
     editSubReplyForm.style.display = "none";
   } else {
-    editSubReplyForm.style.display = "block";
+    editSubReplyForm.style.display = "flex";
     editSubReplyForm.innerHTML = `
        <div class="subReply-form">
         <h2>답글 작성</h2>
@@ -585,10 +585,10 @@ function showEditSubReplyForm(replyId) {
 function showEditForm(replyId) {
   const editForm = document.getElementById(`editReplyForm-${replyId}`);
 
-  if (editForm.style.display === "block") {
+  if (editForm.style.display === "flex") {
     editForm.style.display = "none";
   } else {
-    editForm.style.display = "block";
+    editForm.style.display = "flex";
     editForm.innerHTML = `
       <h2>댓글 수정</h2>
         <input type="hidden" data-rno=${replyId}/>
@@ -623,10 +623,10 @@ function showEditForm(replyId) {
 function showSubEditForm(subReplyId) {
   const editSubform = document.getElementById(`editSubReplyForm-${subReplyId}`);
 
-  if (editSubform.style.display === "block") {
+  if (editSubform.style.display === "flex") {
     editSubform.style.display = "none";
   } else {
-    editSubform.style.display = "block";
+    editSubform.style.display = "flex";
     editSubform.innerHTML = `
       <h2>답글 수정</h2>
         <input type="hidden" data-rno=${subReplyId} />
@@ -668,10 +668,10 @@ function showSubEditForm(subReplyId) {
 function showDeleteForm(replyId) {
   const deleteForm = document.getElementById(`DeleteReplyForm-${replyId}`);
 
-  if (deleteForm.style.display === "block") {
+  if (deleteForm.style.display === "flex") {
     deleteForm.style.display = "none";
   } else {
-    deleteForm.style.display = "block";
+    deleteForm.style.display = "flex";
     deleteForm.innerHTML = `
       <h2>댓글 삭제</h2>
         <input
@@ -701,10 +701,10 @@ function showSubDeleteForm(subReplyId) {
     `DeleteSubReplyForm-${subReplyId}`
   );
 
-  if (DeleteSubReplyForm.style.display === "block") {
+  if (DeleteSubReplyForm.style.display === "flex") {
     DeleteSubReplyForm.style.display = "none";
   } else {
-    DeleteSubReplyForm.style.display = "block";
+    DeleteSubReplyForm.style.display = "flex";
     DeleteSubReplyForm.innerHTML = `
       <h2>댓글 삭제</h2>
         <input

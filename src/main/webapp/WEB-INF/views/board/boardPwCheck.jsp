@@ -11,20 +11,16 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/assets/css/boardPwCheck.css" />
 
     <%@ include file="../include/static-head.jsp" %>
-
   </head>
   <body>
-    <div class="container">
+    <%@ include file="../include/header.jsp" %> <% String bno =
+    request.getParameter("bno"); String action = request.getParameter("action");
+    %>
+    <div class="pw-content">
       <h2>비밀번호 확인</h2>
-
-      <%@ include file="../include/header.jsp" %>
-
-      <% String bno = request.getParameter("bno"); String action =
-      request.getParameter("action"); %>
-
       <form action="pwcheck?bno=<%= bno %>&action=<%= action %>" method="post">
         <div class="form-group">
-          <label for="boardPassword">비밀번호</label>
+          <!-- <label for="boardPassword"></label> -->
           <input
             type="password"
             id="boardPassword"
@@ -33,7 +29,7 @@ pageEncoding="UTF-8"%>
             required
           />
         </div>
-        <div class="form-group">
+        <div class="form-btn-group">
           <button type="submit">확인</button>
           <button
             type="button"

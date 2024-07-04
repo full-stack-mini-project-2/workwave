@@ -17,7 +17,7 @@ body {
 .container {
   max-width: 800px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #f2efeb;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center; /* 텍스트 중앙 정렬 */
@@ -50,12 +50,11 @@ body {
   margin-top: 20px;
   display: flex;
   justify-content: flex-end; /* 오른쪽 끝으로 정렬 */
-  color: #181a33;
 }
 
 .actions a {
   margin-right: 10px;
-  color: #181a33;
+  color: #3e489f;
   text-decoration: none;
 }
 
@@ -106,8 +105,9 @@ body {
   align-items: flex-start;
   color: #181a33;
   margin-top: 40px;
+  margin-bottom: 20px;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #f2efeb;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -133,16 +133,16 @@ body {
   padding: 10px 20px;
   font-size: 14px;
   color: #fff;
-  background-color: #007bff;
+  background-color: #3e489f;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   align-self: flex-end;
 }
 
-.reply-form button:hover {
-  background-color: #0056b3;
-}
+/* .reply-form button:hover {
+  background-color: #3e489f;
+} */
 
 .replyModify {
   cursor: pointer;
@@ -219,8 +219,10 @@ body {
 
 .sub-reply {
   margin-bottom: 15px;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 14px;
+  /* border: 1px solid #ccc; */
   border-radius: 5px;
   background-color: #fff;
 }
