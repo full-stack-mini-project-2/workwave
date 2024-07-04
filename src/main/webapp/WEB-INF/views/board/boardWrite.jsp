@@ -21,19 +21,15 @@
     <form action="write" method="post" enctype="multipart/form-data">
       <table>
         <tr>
-          <td>제목:</td>
-          <td><input type="text" name="boardTitle" required /></td>
+          <td><input type="text" name="boardTitle" placeholder="제목" required /></td>
         </tr>
         <tr>
-          <td>닉네임:</td>
-          <td><input type="text" name="boardNickname" required /></td>
+          <td><input type="text" name="boardNickname" placeholder="닉네임" required /></td>
         </tr>
         <tr>
-          <td>비밀번호:</td>
-          <td><input type="password" name="boardPassword" required /></td>
+          <td><input type="password" name="boardPassword" placeholder="비밀번호" required /></td>
         </tr>
         <tr>
-          <td>내용:</td>
           <td>
             <textarea
               name="boardContent"

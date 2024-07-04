@@ -57,7 +57,7 @@ function renderPage({ begin, end, pageInfo, prev, next }) {
   if (prev)
     tag += `<li class='page-item'><a class='page-link page-active' href='${
       begin - 1
-    }'>이전</a></li>`;
+    }'>&lt;</a></li>`;
 
   // 페이지 번호 태그 만들기
   for (let i = begin; i <= end; i++) {
@@ -74,7 +74,7 @@ function renderPage({ begin, end, pageInfo, prev, next }) {
   if (next)
     tag += `<li class='page-item'><a class='page-link page-active' href='${
       end + 1
-    }'>다음</a></li>`;
+    }'>&gt;</a></li>`;
 
   // 페이지 태그 ul에 붙이기
   const $pageUl = document.querySelector(".pagination");
@@ -85,8 +85,10 @@ function renderPage({ begin, end, pageInfo, prev, next }) {
 function replyPageClickEvent() {
   document.querySelector(".pagination").addEventListener("click", (e) => {
     e.preventDefault();
-
-    fetchReplies(bno, e.target.getAttribute("href"));
+    const pageItem = e.target.closest(".page-item");
+    if (pageItem) {
+      fetchReplies(bno, pageItem.querySelector("a").getAttribute("href"));
+    }
   });
 }
 
@@ -542,10 +544,10 @@ function displayReplies(replies, pageInfo) {
 function showEditSubReplyForm(replyId) {
   const editSubReplyForm = document.getElementById(`SubReplyForm-${replyId}`);
 
-  if (editSubReplyForm.style.display === "flex") {
+  if (editSubReplyForm.style.display === "block") {
     editSubReplyForm.style.display = "none";
   } else {
-    editSubReplyForm.style.display = "flex";
+    editSubReplyForm.style.display = "block";
     editSubReplyForm.innerHTML = `
        <div class="subReply-form">
         <h2>답글 작성</h2>
@@ -585,10 +587,10 @@ function showEditSubReplyForm(replyId) {
 function showEditForm(replyId) {
   const editForm = document.getElementById(`editReplyForm-${replyId}`);
 
-  if (editForm.style.display === "flex") {
+  if (editForm.style.display === "block") {
     editForm.style.display = "none";
   } else {
-    editForm.style.display = "flex";
+    editForm.style.display = "block";
     editForm.innerHTML = `
       <h2>댓글 수정</h2>
         <input type="hidden" data-rno=${replyId}/>
@@ -623,10 +625,10 @@ function showEditForm(replyId) {
 function showSubEditForm(subReplyId) {
   const editSubform = document.getElementById(`editSubReplyForm-${subReplyId}`);
 
-  if (editSubform.style.display === "flex") {
+  if (editSubform.style.display === "block") {
     editSubform.style.display = "none";
   } else {
-    editSubform.style.display = "flex";
+    editSubform.style.display = "block";
     editSubform.innerHTML = `
       <h2>답글 수정</h2>
         <input type="hidden" data-rno=${subReplyId} />
@@ -668,10 +670,10 @@ function showSubEditForm(subReplyId) {
 function showDeleteForm(replyId) {
   const deleteForm = document.getElementById(`DeleteReplyForm-${replyId}`);
 
-  if (deleteForm.style.display === "flex") {
+  if (deleteForm.style.display === "block") {
     deleteForm.style.display = "none";
   } else {
-    deleteForm.style.display = "flex";
+    deleteForm.style.display = "block";
     deleteForm.innerHTML = `
       <h2>댓글 삭제</h2>
         <input
@@ -701,10 +703,10 @@ function showSubDeleteForm(subReplyId) {
     `DeleteSubReplyForm-${subReplyId}`
   );
 
-  if (DeleteSubReplyForm.style.display === "flex") {
+  if (DeleteSubReplyForm.style.display === "block") {
     DeleteSubReplyForm.style.display = "none";
   } else {
-    DeleteSubReplyForm.style.display = "flex";
+    DeleteSubReplyForm.style.display = "block";
     DeleteSubReplyForm.innerHTML = `
       <h2>댓글 삭제</h2>
         <input

@@ -7,7 +7,6 @@ prefix="c" %>
     <meta charset="UTF-8" />
     <title>게시물 수정</title>
     <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
-    <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="icon" href="/assets/img/workwave_logo.png" />
     <link rel="stylesheet" href="/assets/css/boardUpdate.css" />
 

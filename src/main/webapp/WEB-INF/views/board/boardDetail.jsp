@@ -9,8 +9,7 @@ prefix="c" %>
     <%@ include file="../include/static-head.jsp" %>
 
     <title>게시물 상세보기</title>
-
-    <link rel="stylesheet" href="/assets/css/main.css" />
+    
     <link rel="icon" href="/assets/img/workwave_logo.png" />
     <link rel="stylesheet" href="/assets/css/boardDetail.css" />
   </head>

@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %> <%@ taglib
-uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
+prefix="c" %>
 <html>
   <head>
     <%@ include file="../include/static-head.jsp" %>
@@ -91,7 +92,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                   <a
                     class="page-link"
                     href="/board/list?pageNo=${maker.begin - 1}&type=${s.type}&keyword=${s.keyword}"
-                    >prev</a
+                    >&lt;</a
                   >
                 </li>
               </c:if>

@@ -5,12 +5,10 @@ pageEncoding="UTF-8"%>
   <head>
     <meta charset="UTF-8" />
     <title>비밀번호 확인</title>
-
-    <link rel="stylesheet" href="/assets/css/main.css" />
+    <%@ include file="../include/static-head.jsp" %>
     <link rel="icon" href="/assets/img/workwave_logo.png" />
     <link rel="stylesheet" href="/assets/css/boardPwCheck.css" />
 
-    <%@ include file="../include/static-head.jsp" %>
   </head>
   <body>
     <%@ include file="../include/header.jsp" %> <% String bno =
