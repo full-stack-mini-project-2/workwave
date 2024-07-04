@@ -15,10 +15,10 @@ public class BoardInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         log.debug("after login interceptor execute!");
-        if(!LoginUtil.isLoggedIn(request.getSession())) {        //로그인이 되어있으면 못들어가게
-            log.info("로그인이 필요합니다.:{}",request.getRequestURI());
-            response.sendRedirect("/login");  //리다이렉트로 홈으로 보냄
-//            response.sendError(403);
+        if (!LoginUtil.isLoggedIn(request.getSession())) {
+            String redirect = request.getRequestURI();
+            log.info("로그인이 필요합니다.:{}", redirect);
+            response.sendRedirect("/login");  //리다이렉트로 로그인 페이지로 보냄
             return false;   //true일 경우, 컨트롤러 진입 허용 / false는 진입 차단
         }
         return true;

@@ -50,9 +50,15 @@ public class ReplyController {
         // flag를 통하여 에러 검사
         boolean flag = replyService.save(dto, session);
 
-        return ResponseEntity
-                .ok()
-                .body(replyService.getReplies(dto.getBoardId(), new Page(1, 10)));
+        if (flag) {
+            return ResponseEntity
+                    .ok()
+                    .body(replyService.getReplies(dto.getBoardId(), new Page(1, 10)));
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("댓글 생성에 실패했습니다.");
+        }
     }
 
     // 댓글 수정 요청
@@ -119,9 +125,15 @@ public class ReplyController {
         // flag를 통하여 에러 검사
         boolean flag = replyService.saveSubReply(dto, session);
 
-        return ResponseEntity
-                .ok()
-                .body(replyService.getReplies(dto.getReplyId(), new Page(1, 10)));
+        if (flag) {
+            return ResponseEntity
+                    .ok()
+                    .body(replyService.getReplies(dto.getReplyId(), new Page(1, 10)));
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("대댓글 생성에 실패했습니다.");
+        }
     }
 
     // 댓글 수정 요청

@@ -70,6 +70,9 @@
             WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
             OR board_content LIKE CONCAT('%', #{keyword}, '%')
         </if>
+        <if test="type == 'id'">
+            WHERE user_id = #{keyword}
+        </if>
     </select>
 
     <!--게시물 수정, 삭제 시 비밀번호, 관리자 확인 후 처리해야함-->
