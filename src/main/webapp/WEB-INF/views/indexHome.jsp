@@ -107,6 +107,7 @@
             </tr>
             </thead>
             <tbody>
+
             <tr ng-repeat="personalTask in personalTasks track by $index" ng-class="{'table-success': personalTask.todoStatus === 'true', 'table-light': personalTask.todoStatus === 'false'}">
                 <td>{{$index + 1}}</td>
                 <td ng-click="editPersonalTask(personalTask)">
@@ -194,7 +195,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     var app = angular.module('myTodo', []);
-    app.controller('myPersonalController', ['$scope', function($scope) {
+
+    app.controller('myPersonalController', ['$scope', '$http', function($scope, $http) {
         $scope.personalTasks = [];
         $scope.yourPersonalTask = '';
 
@@ -291,7 +293,7 @@
         };
     }]);
 
-    app.controller('myTeamController', ['$scope', function($scope) {
+    app.controller('myTeamController', ['$scope', '$http', function($scope, $http) {
         $scope.teamTasks = [];
         $scope.yourTeamTask = '';
 
