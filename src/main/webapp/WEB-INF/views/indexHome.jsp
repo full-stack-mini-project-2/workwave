@@ -298,6 +298,7 @@
         };
     }]);
 
+
     app.controller('myTeamController', ['$scope', '$http', function($scope, $http) {
         $scope.teamTasks = [];
         $scope.yourTeamTask = '';
