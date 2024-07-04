@@ -300,18 +300,4 @@ public class CalendarApiController {
 }
 
 
-// 팀의 캘린더 목록 전체 조회하기 (세션 사용)
-//    @GetMapping("/myTeamEvents/All")
-//    public List<AllMyTeamCalendarEventDto> getMyAllTeamEvents(HttpSession session) {
-//        // 현재 로그인된 사용자의 계정을 통해 사용자의 부서 ID를 가져옴
-//        String userId = LoginUtil.getLoggedInUserAccount(session);
-//        if (userId == null) {
-//            throw new RuntimeException("User is not logged in");
-//        }
-//        // 사용자의 부서 ID를 이용해 해당 부서의 팀 캘린더 일정 목록을 조회함
-//        String departmentId = LoginUtil.getLoggedInDepartmentId(session);
-//        return calendarService.getMyAllTeamEvents(departmentId);
-//    }
-
-
 

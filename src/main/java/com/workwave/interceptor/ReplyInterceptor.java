@@ -26,5 +26,4 @@ public class ReplyInterceptor implements HandlerInterceptor {
         }
         return true;
     }
-
 }
