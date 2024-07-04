@@ -222,14 +222,23 @@ button:hover {
   margin-top: 20px;
 }
 
-.modal-body tr.traffic-info{
-  width: 518px;
-  
+.modal-body .traffic-table{
+  width: 100%;
+}
+
+.modal-body .trafficTable-info{
+  width: 100%;
+  height: 20px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background: #fff;
 }
 
 
-.modal-body th {
-  width: 33%;
+.modal-body tr th{
+  width: 33.3%;
   padding: 12px;
   border-bottom: 1px solid #ddd;
 }

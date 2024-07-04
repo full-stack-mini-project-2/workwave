@@ -14,7 +14,7 @@
                 </thead>
                 <tbody>
                     <c:forEach var="traffic" items="${favoriteView}">
-                        <tr class="traffic-info">
+                        <tr class="trafficTable-info">
                             <td>${traffic.departure}</td>
                             <td>${traffic.arrival}</td>
                             <td>${traffic.viewCount}</td>
