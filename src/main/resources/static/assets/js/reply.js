@@ -131,14 +131,16 @@ async function fetchSubReplies(rno) {
           tag += `
           <div class="sub-reply">
             <div class="meta">
-              작성자: ${nickName} | 작성일: ${subReplyCreatedAt}
+              <i class="fas fa-level-up-alt rotated-icon"></i> 작성자: ${nickName} | 작성일: ${subReplyCreatedAt}
               ${
                 subReplyCreatedAt !== subReplyUpdatedAt
                   ? ` | 수정일: ${subReplyUpdatedAt}`
                   : ""
               }
               <span class="author">${
-                userId === boardUserId ? "글쓴이" : ""
+                userId === boardUserId
+                  ? '<i class="fas fa-user-secret"></i>'
+                  : ""
               }</span>
             </div>
             <div class="content">
@@ -148,11 +150,10 @@ async function fetchSubReplies(rno) {
               <button class="subReplyModify" type="button" data-rno=${subReplyId}>수정</button>
               <button class="subReplyDelete" type="button" data-rno=${subReplyId}>삭제</button>
             </div>
-
-          </div>
-          <div id="editSubReplyForm-${subReplyId}" class="reply-form" style="display: none" data-rno=${subReplyId}>
+            <div id="editSubReplyForm-${subReplyId}" class="reply-form" style="display: none" data-rno=${subReplyId}>
           </div>
           <div id="DeleteSubReplyForm-${subReplyId}" class="reply-form" style="display: none" data-rno=${subReplyId}>
+          </div>
           </div>
           `;
         }
@@ -211,7 +212,7 @@ async function fetchSaveReply(bno, nickName, replyContent, replyPassword) {
 
     if (response.status === 403) {
       // 403 에러 발생 시 로그인 페이지로 이동
-      window.location.href = '/login';
+      window.location.href = "/login";
       return;
     }
 
@@ -225,7 +226,7 @@ async function fetchSaveReply(bno, nickName, replyContent, replyPassword) {
     replyContent.value = "";
     replyPassword.value = "";
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 }
 
@@ -258,7 +259,7 @@ async function fetchSaveSubReply(
 
     if (response.status === 403) {
       // 403 에러 발생 시 로그인 페이지로 이동
-      window.location.href = '/login';
+      window.location.href = "/login";
       return;
     }
 
@@ -272,7 +273,7 @@ async function fetchSaveSubReply(
     subReplyContent.value = "";
     subReplyPassword.value = "";
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 }
 
@@ -305,7 +306,7 @@ async function fetchUpdateReply(
 
     if (response.status === 403) {
       // 403 에러 발생 시 로그인 페이지로 이동
-      window.location.href = '/login';
+      window.location.href = "/login";
       return;
     }
 
@@ -319,7 +320,7 @@ async function fetchUpdateReply(
     editReplyPassword.value = "";
     editReplyContent.value = "";
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 }
 
@@ -350,7 +351,7 @@ async function fetchUpdateSubReply(
 
     if (response.status === 403) {
       // 403 에러 발생 시 로그인 페이지로 이동
-      window.location.href = '/login';
+      window.location.href = "/login";
       return;
     }
 
@@ -364,7 +365,7 @@ async function fetchUpdateSubReply(
     editSubReplyPassword.value = "";
     editSubReplyContent.value = "";
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 }
 
@@ -391,7 +392,7 @@ async function fetchDeleteReply(bno, replyId, replyDeletePassword) {
 
     if (response.status === 403) {
       // 403 에러 발생 시 로그인 페이지로 이동
-      window.location.href = '/login';
+      window.location.href = "/login";
       return;
     }
 
@@ -403,7 +404,7 @@ async function fetchDeleteReply(bno, replyId, replyDeletePassword) {
 
     replyDeletePassword.value = "";
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 }
 
@@ -430,7 +431,7 @@ async function fetchDeleteSubReply(bno, subReplyId, subReplyDeletePassword) {
 
     if (response.status === 403) {
       // 403 에러 발생 시 로그인 페이지로 이동
-      window.location.href = '/login';
+      window.location.href = "/login";
       return;
     }
 
@@ -442,7 +443,7 @@ async function fetchDeleteSubReply(bno, subReplyId, subReplyDeletePassword) {
 
     subReplyDeletePassword.value = "";
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 }
 
@@ -456,7 +457,7 @@ function displayReplies(replies, pageInfo) {
   // 댓글 목록 렌더링
   let tag = "";
   if (replies && replies.length > 0) {
-    tag = `<h2 class="reply-title">댓글(${pageInfo.totalCount})</h2>`;
+    tag = `<h2 class="reply-title"><i class="far fa-comment"></i> (${pageInfo.totalCount})</h2>`;
     replies.forEach(
       ({
         replyId,
@@ -476,7 +477,7 @@ function displayReplies(replies, pageInfo) {
                 : ""
             }
             <span class="author">${
-              userId === boardUserId ? "글쓴이" : ""
+              userId === boardUserId ? '<i class="fas fa-user-secret"></i>' : ""
             }</span>
           </div>
           <div class="content">
@@ -487,22 +488,22 @@ function displayReplies(replies, pageInfo) {
             <button class="replyDelete" type="button" data-rno=${replyId}>삭제</button>
             <button class="subReply" type="button" data-rno=${replyId}>답글</button>
           </div>
-          <div id="subRepliesContainer-${replyId}" style="display: none">
-          </div>
-        </div>
-        <div id="SubReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
+          <div id="SubReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
         </div>
         <div id="editReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
         </div>
         <div id="DeleteReplyForm-${replyId}" class="reply-form" style="display: none" data-rno=${replyId}>
         </div>
+          <div id="subRepliesContainer-${replyId}" style="display: none">
+          </div>
+        </div>
+        
         `;
 
         renderPage(pageInfo);
 
         // 대댓글 목록 렌더링
         fetchSubReplies(replyId);
-
       }
     );
   } else {

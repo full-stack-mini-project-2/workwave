@@ -39,21 +39,22 @@ prefix="c" %>
           <!-- 추천/비추천 버튼 영역 -->
           <div class="like-dislike-buttons">
             <button id="likeButton" class="like-button">
-              좋아요 (<span id="likeCount" data-id="${id}">${board.likes}</span
-              >)
+              <i class="fas fa-thumbs-up"></i>
+              <span id="likeCount" data-id="${id}">${board.likes}</span> 
             </button>
+           
             <button id="dislikeButton" class="dislike-button">
-              싫어요 (<span id="dislikeCount" data-id="${id}"
-                >${board.dislikes}</span
-              >)
+              <i class="fas fa-thumbs-down"></i>
+              <span id="dislikeCount" data-id="${id}">${board.dislikes}</span>
             </button>
+            
           </div>
 
           <div class="actions">
             <a href="/board/pwcheck?bno=${board.boardId}&action=update">수정</a>
             <a href="/board/pwcheck?bno=${board.boardId}&action=delete">삭제</a>
             <a id="backLink" href="${sessionScope.referer}"
-              >목록으로 돌아가기</a
+              >목록으로</a
             >
           </div>
         </div>

@@ -3,7 +3,7 @@ body {
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
-  background-color: #f4f4f4;
+  background-color: #f2efeb;
 }
 
 .board-detail-content {
@@ -31,7 +31,7 @@ body {
 .meta {
   font-size: 14px;
   color: #777;
-  margin-bottom: 40px
+  margin-bottom: 40px;
 }
 
 .board-content {
@@ -41,18 +41,21 @@ body {
   line-height: 1.6;
 }
 
-.one-board-detail{
+.one-board-detail {
   padding-bottom: 40px;
   border-bottom: 1px solid #cccccc;
 }
 
 .actions {
   margin-top: 20px;
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 끝으로 정렬 */
+  color: #181a33;
 }
 
 .actions a {
   margin-right: 10px;
-  color: #007bff;
+  color: #181a33;
   text-decoration: none;
 }
 
@@ -65,7 +68,7 @@ body {
 }
 
 .reply-title {
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .replies {
@@ -75,6 +78,10 @@ body {
 .replies h2 {
   font-size: 20px;
   margin-bottom: 20px;
+}
+
+.fa-comment {
+  font-size: 32px;
 }
 
 .reply {
@@ -89,11 +96,15 @@ body {
 }
 
 .reply .content {
-  font-size: 14px;
+  font-size: 18px;
   margin-top: 5px;
 }
 
 .reply-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #181a33;
   margin-top: 40px;
   padding: 20px;
   background-color: #f9f9f9;
@@ -126,6 +137,7 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  align-self: flex-end;
 }
 
 .reply-form button:hover {
@@ -133,12 +145,10 @@ body {
 }
 
 .replyModify {
-  background: white;
   cursor: pointer;
 }
 
 .replyDelete {
-  background: white;
   cursor: pointer;
 }
 
@@ -147,41 +157,50 @@ body {
   justify-content: flex-end;
   gap: 5px;
   margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 /* 좋아요/싫어요 버튼 스타일 */
 .like-dislike-buttons {
-  margin-top: 20px;
+  margin: 20px 0;
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.like-dislike-buttons span {
+  font-size: 20px;
+  color: #141640;
 }
 
 .like-button,
 .dislike-button {
-  padding: 10px 20px;
-  font-size: 14px;
+  font-size: 24px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.like-button {
-  background-color: #4caf50;
-  color: white;
+.fa-thumbs-up {
+  color: #141640;
+  margin-right: 3px;
+  font-size: 24px;
+}
+
+.fa-thumbs-down {
+  color: #141640;
+  margin-right: 3px;
+  font-size: 24px;
 }
 
 .like-button:hover {
-  background-color: #45a049;
-}
-
-.dislike-button {
-  background-color: #f44336;
-  color: white;
+  background-color: #973554;
 }
 
 .dislike-button:hover {
-  background-color: #da190b;
+  background-color: #3e489f;
 }
 
 .subReply {
@@ -206,6 +225,11 @@ body {
   background-color: #fff;
 }
 
+.fa-level-up-alt {
+  transform: rotate(90deg);
+  margin-right: 2px;
+}
+
 .sub-reply .meta {
   font-size: 0.9em;
   color: #777;
@@ -214,6 +238,7 @@ body {
 
 .sub-reply .content {
   margin-bottom: 10px;
+  padding: 15px;
 }
 
 .sub-reply .button-group {
@@ -221,7 +246,8 @@ body {
 }
 
 .sub-reply .button-group button {
-  padding: 5px 10px;
+  font-size: 0.9em;
+  padding: 3px 8px;
   border-radius: 3px;
   cursor: pointer;
 }
@@ -234,16 +260,9 @@ body {
   background: white;
 }
 
-.reply-form {
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f1f1f1;
-}
-
 .author {
-  color: red;
+  color: #973554;
+  margin-left: 5px;
   font-weight: bold;
 }
 
