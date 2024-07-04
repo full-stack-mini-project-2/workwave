@@ -456,7 +456,7 @@ function displayReplies(replies, pageInfo) {
   // 댓글 목록 렌더링
   let tag = "";
   if (replies && replies.length > 0) {
-    tag = `<h2>댓글(${pageInfo.totalCount})</h2>`;
+    tag = `<h2 class="reply-title">댓글(${pageInfo.totalCount})</h2>`;
     replies.forEach(
       ({
         replyId,

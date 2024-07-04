@@ -23,20 +23,27 @@ body {
   text-align: center; /* 텍스트 중앙 정렬 */
 }
 
-h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
+.board-title {
+  font-size: 36px;
+  margin-bottom: 30px;
 }
 
 .meta {
   font-size: 14px;
   color: #777;
-  margin-bottom: 20px;
+  margin-bottom: 40px
 }
 
-.content {
+.board-content {
+  border-top: 1px solid #cccccc;
+  padding-top: 20px;
   font-size: 16px;
   line-height: 1.6;
+}
+
+.one-board-detail{
+  padding-bottom: 40px;
+  border-bottom: 1px solid #cccccc;
 }
 
 .actions {
@@ -51,6 +58,14 @@ h1 {
 
 .actions a:hover {
   text-decoration: underline;
+}
+
+#replyContainer {
+  margin-top: 60px;
+}
+
+.reply-title {
+  font-size: 24px;
 }
 
 .replies {
@@ -69,7 +84,7 @@ h1 {
 }
 
 .reply .meta {
-  font-size: 12px;
+  font-size: 16px;
   color: #555;
 }
 

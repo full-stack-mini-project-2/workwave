@@ -21,37 +21,42 @@ prefix="c" %>
     <%@ include file="../include/header.jsp" %>
     <div class="board-detail-content">
       <div id="reply-container" data-bno="${board.boardId}">
-        <h1>${board.boardTitle}</h1>
-        <div class="meta">
-          작성자: ${board.boardNickname} | 작성일:
-          ${board.formattedBoardCreatedAt}
-          <c:if
-            test="${board.formattedBoardCreatedAt != board.formattedBoardUpdateAt}"
-            >| 수정일: ${board.formattedBoardUpdateAt}
-          </c:if>
-          | 조회수: ${board.viewCount}
-        </div>
-        <div class="content">
-          <p>${board.boardContent}</p>
-        </div>
-        <div class="actions">
-          <a href="/board/pwcheck?bno=${board.boardId}&action=update">수정</a>
-          <a href="/board/pwcheck?bno=${board.boardId}&action=delete">삭제</a>
-          <a id="backLink" href="${sessionScope.referer}">목록으로 돌아가기</a>
-        </div>
+        <div class="one-board-detail">
+          <h1 class="board-title">${board.boardTitle}</h1>
+          <div class="meta">
+            작성자: ${board.boardNickname} | 작성일:
+            ${board.formattedBoardCreatedAt}
+            <c:if
+              test="${board.formattedBoardCreatedAt != board.formattedBoardUpdateAt}"
+              >| 수정일: ${board.formattedBoardUpdateAt}
+            </c:if>
+            | 조회수: ${board.viewCount}
+          </div>
+          <div class="board-content">
+            <p>${board.boardContent}</p>
+          </div>
 
-        <!-- 추천/비추천 버튼 영역 -->
-        <div class="like-dislike-buttons">
-          <button id="likeButton" class="like-button">
-            좋아요 (<span id="likeCount" data-id="${id}">${board.likes}</span>)
-          </button>
-          <button id="dislikeButton" class="dislike-button">
-            싫어요 (<span id="dislikeCount" data-id="${id}"
-              >${board.dislikes}</span
-            >)
-          </button>
-        </div>
+          <!-- 추천/비추천 버튼 영역 -->
+          <div class="like-dislike-buttons">
+            <button id="likeButton" class="like-button">
+              좋아요 (<span id="likeCount" data-id="${id}">${board.likes}</span
+              >)
+            </button>
+            <button id="dislikeButton" class="dislike-button">
+              싫어요 (<span id="dislikeCount" data-id="${id}"
+                >${board.dislikes}</span
+              >)
+            </button>
+          </div>
 
+          <div class="actions">
+            <a href="/board/pwcheck?bno=${board.boardId}&action=update">수정</a>
+            <a href="/board/pwcheck?bno=${board.boardId}&action=delete">삭제</a>
+            <a id="backLink" href="${sessionScope.referer}"
+              >목록으로 돌아가기</a
+            >
+          </div>
+        </div>
         <!-- 댓글 영역 -->
 
         <div id="replyContainer" data-id="${board.userId}">
