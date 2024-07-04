@@ -4,12 +4,15 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
+    <%@ include file="../include/static-head.jsp" %> <%@ include
+    file="../include/header.jsp" %>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
     />
     <title>길찾기 결과 지도에 표출하기</title>
+    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/traffic/traffic.css" />
     <link
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -50,7 +53,11 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       <div class="map-container" id="map"></div>
       <div class="form-container">
         <form action="/traffic-Info" method="POST">
-          <h1 class="section-header">지하철</h1>
+          <h1 class="section-header">지하철<span id="before-find">
+              <a href="http://localhost:8383/traffic-myInfo"><i class="far fa-clipboard"></i></a>
+            </span>
+          </h1>
+
           <label for="departure-station">출발역</label>
           <select id="departure-station">
             <option disabled selected>출발역 선택</option>
@@ -93,14 +100,13 @@ uri="http://java.sun.com/jsp/jstl/core" %>
           <div id="arrival-info" class="subway-map"></div>
           <div id="informationMetro" class="station-name"></div>
         </form>
-        <a href="http://localhost:8383/traffic-myInfo"
-          ><h1>이전 조회 내역</h1></a
-        >
       </div>
     </div>
 
-    <br />
+    
+    <br/>
     <a id="back-home" href="/"><h1>이전으로 돌아가기</h1></a>
+
 
     <script>
       let stationInfo = `${stationInfo}`;
@@ -172,16 +178,22 @@ uri="http://java.sun.com/jsp/jstl/core" %>
 
               const stationSpan = document.createElement("span");
               stationSpan.textContent = stationName;
-              
+
               if (stationName === targetStation) {
                 stationSpan.style.fontWeight = "bold";
-                stationSpan.style.color ="black";
+                stationSpan.style.color = "black";
                 stationSpan.style.fontSize = "15px";
               }
 
               informationMetro.appendChild(stationSpan);
             }
           }
+
+          const $metroLine = document.getElementById("informationMetro");
+
+          let metroLineColor = getSubwayLineColor(parseInt(dataLine));
+          $metroLine.style.borderTop = "2px solid";
+          $metroLine.style.borderColor = metroLineColor;
         });
       };
 
