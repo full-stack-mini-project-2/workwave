@@ -22,22 +22,77 @@
     }
 
     #calendar {
-      height: 550px;
+      height: 500px;
       width: 800px;
       border-radius: 7px;
-      background-color: ghostwhite;
+      overflow: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .calendar-header h3 {
+      margin: 0;
+    }
+
+    .calendar-header i {
+      cursor: pointer;
+      font-size: 1.5em;
     }
 
     .calendar th, .calendar td {
-      border: 1px solid #ddd;
-      text-align: center;
       width: 14.28%;
-      height: 100px; /* Set a fixed height for the table cells */
       overflow: hidden;
       vertical-align: top;
-      position: relative; /* Ensure positioning context for absolute */
+      position: relative;
     }
 
+    .calendar th {
+      text-align: center;
+      height: 10px;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: black 1px double;
+    }
+
+    .calendar td {
+      padding: 10px;
+      /*border: 1px solid #ddd;*/
+      text-align: justify;
+      width: 90px;
+      height: 60px;
+      overflow-y: auto;
+    }
+
+    .calendar-add-btn {
+      display: block;
+      width: 20px;
+    }
+
+    .calendar-month {
+      margin-left: 140px;
+    }
+
+    .event-container {
+      height: 50px;
+      overflow-y: auto;
+      width: 70px;
+      padding-left: 20px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
+    }
+
+    .event-container::-webkit-scrollbar, #calendar::-webkit-scrollbar {
+      display: none;
+    }
 
     .event {
       margin-top: 5px;
@@ -47,6 +102,8 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      width: 49px;
+      font-size: 14px;
     }
 
     .event-lightsteelblue { background-color: lightsteelblue; }
@@ -70,24 +127,21 @@
     }
 
     .modal-content {
-      background-color: #fefefe;
+      background-color: rgba(254, 254, 254, 0.9);
       margin: 15% auto;
       padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
+      border: 1.5px solid #888;
+      border-radius: 7px; /* Border radius for modal content */
+      width: 300px;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.2); /* Optional: shadow for better visibility */
     }
 
     .close {
       color: #aaa;
-      float: left;
-      font-size: 28px;
+      float: right; /* Change float to right for better alignment */
+      font-size: 13px;
       font-weight: bold;
     }
-
-    .fa-pencil {
-      float: right;
-    }
-
 
     .color-picker {
       display: flex;
@@ -107,60 +161,59 @@
     .color-steelblue { background-color: steelblue; }
     .color-lightyellow { background-color: lightyellow; }
     .color-lightpink { background-color: lightpink; }
-    .calendar th, .calendar td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: center;
-      width: 14.28%; /* Ensure each day cell takes equal width */
-    }
 
     .calendar-container {
       margin: 100px auto; /* Adjust margins as per your design */
       border-radius: 10px;
       width: 1200px; /* Set the desired width */
-      height: 600px; /* Set the desired height */
+      height: 560px; /* Set the desired height */
       border: 1px solid black; /* Optional: Border for visualization */
       padding: 10px;
       max-width: 800px; /* Ensure the calendar is responsive up to a maximum width */
     }
 
-    .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
+    #current-month {
+      width: 270px;
+      display: inline-block;
+      margin-left: 100px;
     }
-    .calendar-header h3 {
-      margin: 0;
-    }
-    .calendar-header i {
-      cursor: pointer;
-      font-size: 1.5em;
-    }
+
     .fa-add {
       float: right;
+      margin-top: 200px;
+      margin-right: -10px;
+      border: none;
+      background: #beb9b9;
+      border-radius: 3px;
     }
 
-    .calendar td {
-      padding: 10px; /* Adjust padding to your preference */
-      border: 1px solid #ddd;
-      text-align: center;
-      width: 14.28%; /* Ensure each day cell takes equal width */
-      max-height: 80px; /* Adjust the max-height as needed */
-      overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+    .fa-pencil {
+      margin-right: 250px;
+      margin-top: 5px;
     }
 
-    .event-container {
-      max-height: 90px; /* Slightly less than the td height to avoid overlap with border */
-      overflow-y: auto; /* Enable vertical scrollbar when content overflows */
-      padding: 2px; /* Optional padding for aesthetics */
+    .fa-caret-right, .fa-caret-left {
+      font-weight: 900;
+      width: 100px;
     }
 
-    .
-    .tbody {
-
+    .modal-content input[type="text"],
+    .modal-content input[type="date"] {
+      margin-top: 5px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 5px;
+      border-radius: 3px;
     }
 
+    #saveChangesButton {
+      float: right;
+      margin-top: -10px;
+      margin-right: -5px;
+      border: none;
+      background: #beb9b9;
+      border-radius: 3px;
+    }
 
   </style>
 </head>
@@ -171,13 +224,10 @@
 <!-- 이벤트 상세 및 일정 수정 모달 -->
 <div id="eventModal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
-    <%--    수정버튼--%>
-    <i class="fa-solid fa-pencil" style="color: #444444;" id="editEvent"></i>
-    <%--    삭제버튼--%>
+    <span class="close"><i class="fa-solid fa-x"></i></span>
     <i class="fa-regular fa-trash-can" style="color: #929292;" id="deleteEvent"></i>
+    <i class="fa-solid fa-pencil" style="color: #444444;" id="editEvent"></i>
     <ul id="eventDetails">
-      <!-- Event details will be dynamically added here -->
     </ul>
     <button id="saveChangesButton" style="display:none;">Save Changes</button>
   </div>
@@ -186,22 +236,22 @@
 <%-- 일정 추가 모달 --%>
 <div id="addEventModal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span class="close"><i class="fa-solid fa-x"></i></span>
     <button class="fa-add" type="button" id="saveEventButton">추가</button>
-    <h2>일정 추가</h2>
+    <h2>New Event</h2>
     <form id="addEventForm">
-      <label for="calEventTitle">제목:</label>
+      <label for="calEventTitle">Title</label>
       <input type="text" id="calEventTitle" name="calEventTitle" placeholder="Event"><br>
 
-      <label for="calEventDate">날짜:</label>
+      <label for="calEventDate">Event Date</label>
 
 
       <input type="date" id="calEventDate" name="calEventDate" value="\${fn:substring(new java.text.SimpleDateFormat('yyyy-MM-dd').format(new java.util.Date()), 0, 10)}}"><br>
 
-      <label for="calEventDescription">내용:</label>
+      <label for="calEventDescription">Description</label>
       <input type="text" id="calEventDescription" name="calEventDescription" placeholder="None"><br>
 
-      <label for="calColorIndex">색상:</label>
+      <label for="calColorIndex"></label>
       <div class="color-picker">
         <div class="color-lightsteelblue" data-color-index="1"></div>
         <div class="color-darkslateblue" data-color-index="2"></div>
@@ -218,10 +268,14 @@
 <%--달력 화면--%>
 <div class="calendar-container">
   <div class="calendar-header">
+    <div class="calendar-month">
     <i id="prev-month" class="fa-solid fa-caret-left"></i>
     <h3 id="current-month"></h3>
     <i id="next-month" class="fa-solid fa-caret-right"></i>
+    </div>
+    <div class="calendar-add-btn">
     <i class="fa-regular fa-calendar-plus"></i>
+    </div>
   </div>
   <div id="calendar"></div>
 </div>
@@ -386,10 +440,10 @@
 
 
     eventDetails.innerHTML = `
-        <li><strong>제목:</strong> \${selectedEvent.calEventTitle}</li>
-        <li><strong>이벤트 내용:</strong> \${selectedEvent.calEventDescription}</li>
-        <li><strong>이벤트 날짜:</strong> \${selectedEvent.calEventDate}</li>
-        <li><strong>작성자:</strong> \${selectedEvent.userName}</li>
+        <li><strong>Title</strong> \${selectedEvent.calEventTitle}</li>
+        <li><strong>Event</strong> \${selectedEvent.calEventDescription}</li>
+        <li><strong>Event Date</strong> \${selectedEvent.calEventDate}</li>
+        <li><strong>Write By</strong> \${selectedEvent.userName}</li>
       `;
 
     const editButton = modal.querySelector('#editEvent');
