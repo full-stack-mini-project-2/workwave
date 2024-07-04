@@ -10,9 +10,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/indexHome.css">
     <link rel="icon" href="/assets/img/workwave_logo.png" />
-</head>
 
+    <style>
+        .wave-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(20, 22, 64, 0.5); /* 배경색 설정 */
+            background-image: linear-gradient(45deg, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.04) 50%, rgba(0,0,0,0.04) 75%, rgba(0,0,0,0.08) 75%, rgba(0,0,0,0.08) 100%), linear-gradient(-45deg, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.04) 50%, rgba(0,0,0,0.04) 75%, rgba(0,0,0,0.08) 75%, rgba(0,0,0,0.08) 100%);
+            background-size: 200% 200%; /* 배경 크기 설정 */
+            animation: wave-animation 30s infinite linear; /* 애니메이션 적용 */
+            z-index: -1; /* 다른 요소 위에 나타나도록 설정 */
+        }
+
+        @keyframes wave-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+    </style>
+</head>
 <body>
+
+<div class="wave-background"></div>
+
 
 <div class="clock-container">
     <div class="clock" id="clock">00:00</div>
@@ -24,8 +50,8 @@
 </div>
 
 <div class="right-bottom">
-    <a href="/viewTodo/personal" class="right-box">PERSONAL TODOLIST</a>
-    <a href="/viewTodo/team" class="right-box">TEAM TODOLIST</a>
+    <a class="toggle-personal toggle-button" ng-click="toggleTodoList('personal')">PERSONAL TODOLIST</a>
+    <a class="toggle-team toggle-button" ng-click="toggleTodoList('team')">TEAM TODOLIST</a>
 </div>
 
 <div class="left-top">
@@ -38,7 +64,7 @@
 </div>
 
 <%-- 개인 투두리스트 --%>
-<div ng-controller="myPersonalController" class="personal-todolist-Box app-container d-flex align-items-center justify-content-center flex-column">
+<div ng-controller="myPersonalController" class="personal-todolist-Box app-container d-flex align-items-center justify-content-center flex-column active">
     <h3 class="mb-4">Personal Todo List</h3>
     <div class="input-group mb-3">
         <input ng-model="yourPersonalTask" type="text" class="form-control" placeholder="Enter a task here">
@@ -77,7 +103,7 @@
 </div>
 
 <%-- 팀 투두리스트 --%>
-<div ng-controller="myTeamController" class="team-todolist-Box app-container d-flex align-items-center justify-content-center flex-column">
+<div ng-controller="myTeamController" class="team-todolist-Box app-container d-flex align-items-center justify-content-center flex-column hide">
     <h3 class="mb-4">Team Todo List</h3>
     <div class="input-group mb-3">
         <input ng-model="yourTeamTask" type="text" class="form-control" placeholder="Enter a task here">
@@ -150,8 +176,23 @@
     var app = angular.module('myTodo', []);
 
     app.controller('myPersonalController', ['$scope', '$http', function($scope, $http) {
+
         $scope.personalTasks = [];
         $scope.yourPersonalTask = '';
+        $scope.showPersonalTodoList = true; // 초기화 시 개인 투두리스트 표시
+        $scope.showTeamTodoList = false;   // 초기화 시 팀 투두리스트 숨김
+
+        $scope.toggleTodoList = function(listType) {
+            if (listType === 'personal') {
+                $scope.showPersonalTodoList = true;
+                $scope.showTeamTodoList = false;
+            } else if (listType === 'team') {
+                $scope.showPersonalTodoList = false;
+                $scope.showTeamTodoList = true;
+            }
+        };
+
+
 
         // 초기화 함수
         function initPersonal() {
@@ -180,7 +221,15 @@
         // 초기화 함수 호출
         initPersonal();
 
-        $scope.savePersonalTask = function() {
+        // 투두리스트 토글 함수
+        $scope.toggleTodoList = function(listType) {
+            if (listType === 'personal') {
+                $scope.showPersonalTodoList = true;
+            } else if (listType === 'team') {
+                $scope.showPersonalTodoList = false;
+            }
+        };
+    $scope.savePersonalTask = function() {
             if ($scope.yourPersonalTask.trim() !== '') {
                 var newPersonalTask = {
                     todoContent: $scope.yourPersonalTask,
@@ -244,12 +293,25 @@
                     console.error('Error deleting personal task:', error);
                 });
         };
-    }]);
+    }]); // 개인 투두리스트 끝
 
 
     app.controller('myTeamController', ['$scope', '$http', function($scope, $http) {
-        $scope.teamTasks = [];
-        $scope.yourTeamTask = '';
+
+        $scope.personalTasks = [];
+        $scope.yourPersonalTask = '';
+        $scope.showPersonalTodoList = true; // 초기화 시 개인 투두리스트 표시
+        $scope.showTeamTodoList = false;   // 초기화 시 팀 투두리스트 숨김
+
+        $scope.toggleTodoList = function(listType) {
+            if (listType === 'personal') {
+                $scope.showPersonalTodoList = true;
+                $scope.showTeamTodoList = false;
+            } else if (listType === 'team') {
+                $scope.showPersonalTodoList = false;
+                $scope.showTeamTodoList = true;
+            }
+        };
 
         // 초기화 함수: 서버에서 팀 정보 및 투두리스트 가져오기
         function initTeam() {
@@ -278,6 +340,16 @@
 
         // 페이지 로딩 시 초기화 함수 호출
         initTeam();
+
+        // 투두리스트 토글 함수
+        $scope.toggleTodoList = function(listType) {
+            if (listType === 'personal') {
+                $scope.showTeamTodoList = false;
+            } else if (listType === 'team') {
+                $scope.showTeamTodoList = true;
+            }
+        };
+
         $scope.saveTeamTask = function() {
             if ($scope.yourTeamTask.trim() !== '') {
                 var newTeamTask = {
@@ -348,9 +420,7 @@
             fetchTeamTasks();
             initTeam();
         };
-    }]);
-
-    // 팀 투두리스트 함수 끝
+    }]); // 팀 투두리스트 함수 끝
 
 
     // 토글 열고닫기 함수
