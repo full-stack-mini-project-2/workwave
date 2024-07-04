@@ -78,16 +78,12 @@ public class trafficService {
             trafficList = trafficList.stream()
                     .sorted(Comparator.comparing(totalTrafficInfoDto::getDeparture))
                     .collect(Collectors.toList());
-        } else if ("arrival".equals(sort)) {
-            trafficList = trafficList.stream()
-                    .sorted(Comparator.comparing(totalTrafficInfoDto::getArrival))
-                    .collect(Collectors.toList());
-        } else if ("regDate".equals(sort)) {
+        }else if ("regDate".equals(sort)) {
             trafficList = trafficList.stream()
                     .sorted(Comparator.comparing(totalTrafficInfoDto::getRegDateTime))
                     .collect(Collectors.toList());
         }
-
+        System.out.println("trafficList = " + trafficList);
         return trafficList;
     }
 
