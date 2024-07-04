@@ -1,11 +1,17 @@
-.board-detail-content {
-  padding-top: 100px;
+body {
+  font-family: "Spoqa Han Sans Neo", sans-serif;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background-color: #f4f4f4;
+.board-detail-content {
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  padding-top: 100px;
+  margin: 0 auto; /* 컨텐츠 중앙 정렬 */
 }
 
 .container {
@@ -14,6 +20,7 @@ body {
   background-color: #fff;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center; /* 텍스트 중앙 정렬 */
 }
 
 h1 {
@@ -225,69 +232,43 @@ h1 {
   font-weight: bold;
 }
 
-/* 부모 요소 */
-.pagination-container {
-  text-align: center;
-}
-
-/* .pagination 클래스 */
+/* 페이지네이션 컨테이너 */
 .pagination {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  margin: 80px 0;
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
   padding: 0;
   list-style: none;
-  margin: 0 auto; /* 가운데 정렬을 위한 추가 */
 }
 
 /* 페이지네이션 아이템 */
 .pagination li {
-  margin: 20px 5px;
+  margin: 0 5px;
+}
+
+.page-link {
+  padding: 0;
+  background-color: transparent;
 }
 
 /* 페이지네이션 링크 */
 .pagination li a {
-  color: #007bff;
-  text-decoration: none;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  transition: background-color 0.3s, color 0.3s;
+  color: #000; /* 기본 텍스트 색상 */
+  text-decoration: none; /* 기본적으로 밑줄 없음 */
+  padding: 0; /* 패딩 제거 */
+  border: none; /* 테두리 제거 */
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+/* 현재 페이지 링크 스타일 */
+.pagination li a.active {
+  text-decoration: underline; /* 호버 시 밑줄 추가 */
+  color: #7b317c; /* 호버 시 텍스트 색상 변경 */
 }
 
 /* 호버 상태 */
 .pagination li a:hover {
-  background-color: #e9ecef;
-  color: #0056b3;
-}
-
-/* 활성 상태 */
-.pagination li a.active {
-  background-color: #007bff;
-  color: white;
-  border-color: #007bff;
-}
-
-/* 비활성 상태 (필요 시) */
-.pagination li a.disabled {
-  color: #6c757d;
-  pointer-events: none;
-  cursor: default;
-}
-
-/* 큰 페이지네이션 */
-.pagination-lg li a {
-  padding: 12px 18px;
-  font-size: 1.25rem;
-}
-
-/* 커스텀 페이지네이션 스타일 */
-.pagination-custom li a {
-  background-color: #f8f9fa;
-  color: #007bff;
-}
-
-.pagination-custom li a:hover {
-  background-color: #007bff;
-  color: #fff;
+  text-decoration: underline; /* 호버 시 밑줄 추가 */
+  color: #7b317c; /* 호버 시 텍스트 색상 변경 */
 }
