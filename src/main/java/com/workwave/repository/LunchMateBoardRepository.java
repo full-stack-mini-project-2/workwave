@@ -20,4 +20,5 @@ public interface LunchMateBoardRepository {
     boolean delete(int lunchPostNumber);
 
 
+    LunchMateBoard findByLunchPostNumber(int postId);
 }

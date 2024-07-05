@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.servlet.http.HttpSession;
@@ -23,7 +24,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/lunchMateBoard")
 public class LunchMateBoardController {
 
-    private final LunchMateBoardService lunchMateBoardService;
+    @Autowired
+    private LunchMateBoardService lunchMateBoardService;
 
 
     @Autowired
@@ -76,7 +78,13 @@ public class LunchMateBoardController {
         } else {
             return "redirect:/login"; // 로그인되어 있지 않은 경우 로그인 페이지로 리다이렉트
         }
+    }
 
+    @PostMapping("/joinLunch")
+    public String joinLunch(@RequestParam("postId") int postId, RedirectAttributes redirectAttributes) {
+        lunchMateBoardService.incrementProgressStatus(postId);
+        return "redirect:/"; // 실제 JSP 페이지로 리디렉션
+    }
 
     }
 
@@ -107,4 +115,3 @@ public class LunchMateBoardController {
 //        model.addAttribute("board", board);
 //        return "lunch/viewLunchBoard"; // src/main/webapp/WEB-INF/views/lunch/viewLunchBoard.jsp
 //    }
-}

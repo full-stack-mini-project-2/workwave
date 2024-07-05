@@ -5,6 +5,7 @@ import com.workwave.mapper.LunchMateBoardMapper;
 import com.workwave.repository.LunchMateBoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -47,4 +48,14 @@ public class LunchMateBoardService {
         return lunchMateBoardMapper.delete(lunchPostNumber);
     }
 
+    @Transactional
+    public void incrementProgressStatus(int postId) {
+        LunchMateBoard board = lunchMateBoardRepository.findByLunchPostNumber(postId);
+        if (board != null) {
+            board.setProgressStatus(board.getProgressStatus() + 1);
+            lunchMateBoardRepository.save(board);
+        } else {
+            throw new IllegalArgumentException("Invalid board Id:" + postId);
+        }
+    }
 }
