@@ -109,7 +109,7 @@ body {
   align-items: flex-start;
   color: #181a33;
   margin-top: 40px;
-  /* margin-bottom: 20px; */
+  margin-bottom: 20px;
   padding: 20px;
   background-color: #f2efeb;
   border: 1px solid #ddd;
@@ -243,6 +243,7 @@ body {
   padding-top: 12px;
   border-radius: 5px;
   background-color: #ffffff;
+  box-shadow: 0 8px 8px -2px rgba(0, 0, 0, 0.1);
 }
 
 .fa-level-up-alt {
