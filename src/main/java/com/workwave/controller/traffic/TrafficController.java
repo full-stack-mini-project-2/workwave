@@ -50,7 +50,11 @@ public class TrafficController {
         try {
             totalTraffic = trafficService.findAll(page, session, sort);
         } catch (Exception e) {
-            return "error/404";
+            boolean loggedIn = LoginUtil.isLoggedIn(session);
+
+            if(!loggedIn){
+                return "redirect:/login";
+            };
         }
 
         myPageMaker maker = new myPageMaker(page, trafficService.getCount(session));

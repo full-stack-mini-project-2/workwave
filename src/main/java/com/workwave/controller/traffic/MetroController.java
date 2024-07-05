@@ -30,11 +30,11 @@ public class MetroController {
     public String metroInfo(Model model, HttpSession session) throws IOException {
 
 
-//        boolean loggedIn = LoginUtil.isLoggedIn(session);
-//
-//        if(!loggedIn){
-//            return "redirect:/login";
-//        };
+        boolean loggedIn = LoginUtil.isLoggedIn(session);
+
+        if(!loggedIn){
+            return "redirect:/login";
+        };
 
 
         String serviceKey = "xyigcn2H%2B16RENHs6SNbyOXjPjW0t0Tastu%2FePEl3PW6jMKcyrxrFErPO4Rzc%2BGgV2G44DvWYE%2FHGIeUhEIxCw%3D%3D";
