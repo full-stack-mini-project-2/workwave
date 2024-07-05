@@ -46,7 +46,7 @@
 
             input[type="text"],
             input[type="email"] {
-                width: 100%;
+                width: 255px;
                 padding: 10px 10px 10px 35px;
                 border: none;
                 border-radius: 5px;
@@ -93,6 +93,10 @@
         <div class="container">
             <h2>${resultUser}</h2>
             <form action="verifyUser.jsp" method="post">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="userName" placeholder="이름" required>
+                </div>
                 <div class="input-group">
                     <i class="fas fa-user"></i>
                     <input type="text" name="employeeId" placeholder="사번" required>
