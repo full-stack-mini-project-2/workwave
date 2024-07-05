@@ -29,7 +29,6 @@ import java.time.LocalDateTime;
 public class LunchMateBoard {
 
 
-
     private int lunchPostNumber; // 게시글 번호 (안되면 빼기)
     private String userId; //유저 아이디
     private String lunchPostTitle; // 글 제목
@@ -42,6 +41,7 @@ public class LunchMateBoard {
 
     public LunchBoardFindAllDto toDto() {
         return LunchBoardFindAllDto.builder()
+                .lunchPostNumber(this.lunchPostNumber)
                 .userId(this.userId)
                 .lunchPostTitle(this.lunchPostTitle)
                 .lunchDate(this.lunchDate)

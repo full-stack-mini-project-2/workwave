@@ -3,6 +3,7 @@ package com.workwave.controller.lunch;
 import com.workwave.common.lunchpage.LunchPage;
 import com.workwave.common.lunchpage.LunchPageMaker;
 import com.workwave.dto.lunchBoardDto.LunchBoardFindAllDto;
+import com.workwave.dto.lunchBoardDto.LunchMemberDto;
 import com.workwave.entity.LunchMateBoard;
 import com.workwave.entity.User;
 import com.workwave.service.lunchService.LunchMateBoardService;
@@ -49,6 +50,9 @@ public class LunchMateBoardController {
                 .map(LunchMateBoard::toDto)
                 .collect(Collectors.toList());
 
+        System.out.println("boardDTOs = " + boardDTOs);
+        System.out.println("찍");
+        boardDTOs.forEach(System.out::println);
         model.addAttribute("boards", boardDTOs);
         return "lunch/lunchboard"; // src/main/webapp/WEB-INF/views/lunch/lunchboard.jsp
     }
@@ -81,11 +85,17 @@ public class LunchMateBoardController {
     }
 
     @PostMapping("/joinLunch")
-    public String joinLunch(@RequestParam("postId") int postId, RedirectAttributes redirectAttributes) {
-        lunchMateBoardService.incrementProgressStatus(postId);
-        return "redirect:/"; // 실제 JSP 페이지로 리디렉션
-    }
+    public String joinLunch(@RequestBody LunchMemberDto lunchMemberDto) {
+        // boardDto를 이용하여 필요한 비즈니스 로직을 수행합니다
+//
+        System.out.println("lunchMemberDto = " + lunchMemberDto);
 
+        // 예시: 비즈니스 로직 호출
+        // lunchMateBoardService.incrementProgressStatus(boardDto.getPostId());
+
+        // 리디렉션할 URL을 리턴합니다 (예: 루트 경로로 리디렉션)
+        return "redirect:/";
+    }
     }
 
 //    // 글 작성 처리
