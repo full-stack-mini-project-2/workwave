@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="/assets/css/boardWrite.css" />
 
     <!-- CKEditor 라이브러리 -->
-    <script src="https://cdn.ckeditor.com/4.24.0/standard-all/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard-all/ckeditor.js"></script>
 
-    <!-- <script src="/src/main/resources/static/assets/ckeditor/ckeditor.js"></script> -->
   </head>
   <body>
     <%@ include file="../include/header.jsp" %>
