@@ -208,6 +208,13 @@
       border-radius: 3px;
     }
 
+    .user-name {
+      position: absolute;
+      color: gray;
+      bottom: 22px;
+      margin: 4px 10px;
+    }
+
   </style>
 </head>
 <body>
@@ -681,6 +688,6 @@
 
 <%--현재 날짜 --%>
 <%--<div>Formatted Date: <span id="formattedDate"><c:out value="${formattedDate}" /></span></div>--%>
-<div># <span id="formattedDate"><c:out value="${userName}" /></span>'s personal calendar</div>
+<div class="user-name"># <span ><c:out value="${userName}" /></span>'s personal calendar</div>
 </body>
-</html>2
+</html>

@@ -208,6 +208,13 @@
             border-radius: 3px;
         }
 
+        .team-name {
+            position: absolute;
+            color: gray;
+            bottom: 22px;
+            margin: 4px 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -681,6 +688,6 @@
 
 <%--현재 날짜 --%>
 <%--<div>Formatted Date: <span id="formattedDate"><c:out value="${formattedDate}" /></span></div>--%>
-<div># team <span id="formattedDate"><c:out value="${departmentName}" /></span> calendar</div>
+<div class="team-name"># team <span ><c:out value="${departmentName}" /></span> calendar</div>
 </body>
 </html>
