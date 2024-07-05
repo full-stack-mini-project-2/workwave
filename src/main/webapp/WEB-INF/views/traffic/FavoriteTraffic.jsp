@@ -3,7 +3,7 @@
 <body>
     <div class="container">
         <div class="content-box">
-            <h2>즐겨찾는 목록</h2> 
+            <h2>조회리스트 Best5</h2> 
             <table class="traffic-table">
                 <thead>
                     <tr>

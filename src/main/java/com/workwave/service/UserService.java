@@ -1,10 +1,7 @@
 package com.workwave.service;
 
 import com.workwave.dto.DepartmentNameDto;
-import com.workwave.dto.user.AutoLoginDto;
-import com.workwave.dto.user.JoinDto;
-import com.workwave.dto.user.LoginDto;
-import com.workwave.dto.user.LoginUserInfoDto;
+import com.workwave.dto.user.*;
 import com.workwave.entity.User;
 import com.workwave.mapper.userMapper.UserMapper;
 import com.workwave.util.LoginUtil;
@@ -38,7 +35,7 @@ public class UserService {
         return dList;
     }
 
-    public  boolean join(JoinDto dto, String profilePath) {
+    public boolean join(JoinDto dto, String profilePath) {
         User user = dto.toEntity();
         user.setProfileImg(profilePath); // 프로필 사진 경로 엔터티에 설정
         LocalDateTime currentDateTime = LocalDateTime.now();
@@ -65,7 +62,7 @@ public class UserService {
         String userId = dto.getUserId();
         //멤버 조회 db
         User foundMember = usermapper.findOne(userId);
-        log.debug("멤버 조회 found 확인:{}",foundMember);
+        log.debug("멤버 조회 found 확인:{}", foundMember);
 
         if (foundMember == null) {
             log.info("{} - 회원가입이 필요합니다.", userId);
@@ -116,7 +113,7 @@ public class UserService {
 
     public static void maintainLoginState(HttpSession session, User foundUser) {
         log.info("{}님 로그인 성공", foundUser.getUserName());
-        log.info("프로필 사진:",foundUser.getProfileImg());
+        log.info("프로필 사진:", foundUser.getProfileImg());
         log.info("부서아이디 : {}", foundUser.getDepartmentId());
         log.info("프로필이미지 : {}", foundUser.getProfileImg());
         // 세션의 수명 : 설정된 시간 OR 브라우저를 닫기 전까지
@@ -137,7 +134,7 @@ public class UserService {
     public void autoLoginClear(HttpServletRequest request, HttpServletResponse response) {
         // 1. 쿠키 제거하기
         Cookie c = WebUtils.getCookie(request, AUTO_LOGIN_COOKIE);
-        if(c!=null){
+        if (c != null) {
             c.setPath("/");
             c.setMaxAge(0);  //0초로 하면 제거됨.
             response.addCookie(c);
@@ -152,4 +149,16 @@ public class UserService {
         );
     } //auto LoginClear
 
-}//endUserService
+    // 아이디 검증 처리
+    public User findOneUser(findUserDto dto) {
+
+        // 회원가입 여부 확인
+        String userId = dto.getUserId();
+        //멤버 조회 db
+        User foundMember = usermapper.findOne(userId);
+        log.debug("멤버 조회 found 확인:{}", foundMember);
+
+        return  foundMember;
+    }
+
+}/* endUserService */

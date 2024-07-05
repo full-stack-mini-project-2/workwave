@@ -1,10 +1,7 @@
 package com.workwave.config;
 
 
-import com.workwave.interceptor.AfterLoginInterceptor;
-import com.workwave.interceptor.AutoLoginInterceptor;
-import com.workwave.interceptor.BoardInterceptor;
-import com.workwave.interceptor.ReplyInterceptor;
+import com.workwave.interceptor.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -21,6 +18,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
     private final AutoLoginInterceptor autoLoginInterceptor;
     private final BoardInterceptor boardInterceptor;
     private final ReplyInterceptor replyInterceptor;
+
+    private final ScheduleInterceptor scheduleInterceptor;
 
     //설정 메서드
     @Override
@@ -49,12 +48,15 @@ public class InterceptorConfig implements WebMvcConfigurer {
         //REST API 인가 처리 인터셉터 등록
         registry
                 .addInterceptor(replyInterceptor)
-                .addPathPatterns("/reply","/sub")
-                .excludePathPatterns("/reply/*/page/*","/sub/*")  //조회는 허용
+                .addPathPatterns("/reply", "/reply/sub")
+                .excludePathPatterns("/reply/*/page/*", "/reply/sub/*")  //조회는 허용
         ;
 
+        //스케줄 인터셉터 등록
+        registry
+                .addInterceptor(scheduleInterceptor)
+                .addPathPatterns( "/myCalendar/*", "/viewTodo/*"); // 전체 거부
+        ;
     }
-
-
 
 }
