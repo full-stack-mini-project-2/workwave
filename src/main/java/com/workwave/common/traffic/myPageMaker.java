@@ -11,10 +11,12 @@ import lombok.ToString;
 public class myPageMaker {
 
     // 한 화면에 페이지를 몇개씩 배치할 것인가?
-    private static final int PAGE_COUNT = 10;
+    private static final int PAGE_COUNT = 5;
 
     // 페이지 시작번호와 끝번호
-    private int begin, end;
+    private int begin, end, finalPage;
+
+    private boolean prev, next;
 
     private int totalCount;
 
@@ -38,10 +40,14 @@ public class myPageMaker {
 
         this.begin = this.end - PAGE_COUNT + 1;
 
-        int finalPage = (int) Math.ceil((double) totalCount / pageInfo.getAmount());
+        finalPage = (int) Math.ceil((double) totalCount / pageInfo.getAmount());
 
         if (finalPage < this.end) {
             this.end = finalPage;
         }
+
+        this.prev = begin != 1;
+
+        this.next = this.end < finalPage;
     }
 }

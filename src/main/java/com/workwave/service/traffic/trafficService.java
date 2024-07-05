@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,7 +44,6 @@ public class trafficService {
         String userId = LoginUtil.getLoggedInUser(session).getUserId();
 
         List<totalTrafficInfoDto> result = trafficMapper.findOne(userId);
-        System.out.println(result);
 //        List<StationViewResponseDto> result = trafficViewMapper.favoriteFindStation(userId);
 
         boolean foundExisting = false;
@@ -52,7 +53,7 @@ public class trafficService {
 
                 if (dto.getDeparture().equals(newTraffic.getDeparture()) && dto.getArrival().equals(newTraffic.getArrival())) {
                     trafficViewService.findOneAndUpdateViewCount(userId,newTraffic);
-                    System.out.println("계정이 같은 것이 있고, 기존 경로 있음");
+
                     foundExisting = true;
                     break;
                 }
@@ -61,7 +62,7 @@ public class trafficService {
 
         if (!foundExisting) {
             trafficViewService.save(userId, newTraffic);
-            System.out.println("기존 기록이 없거나 계정이 다름, 신규 저장");
+
         }
 
 
@@ -72,19 +73,13 @@ public class trafficService {
         String userId = LoginUtil.getLoggedInUser(session).getUserId();
         page.setUserId(userId);
 
-        List<totalTrafficInfoDto> trafficList = trafficMapper.findAll(page);
+        Map<String, Object> params = new HashMap<>();
+        params.put("userId", userId);
+        params.put("sort", sort);
+        params.put("pageStart", page.getPageStart());
+        params.put("amount", page.getAmount());
 
-        if ("departure".equals(sort)) {
-            trafficList = trafficList.stream()
-                    .sorted(Comparator.comparing(totalTrafficInfoDto::getDeparture))
-                    .collect(Collectors.toList());
-        }else if ("regDate".equals(sort)) {
-            trafficList = trafficList.stream()
-                    .sorted(Comparator.comparing(totalTrafficInfoDto::getRegDateTime))
-                    .collect(Collectors.toList());
-        }
-        System.out.println("trafficList = " + trafficList);
-        return trafficList;
+        return trafficMapper.findAll(params);
     }
 
     public int getCount(HttpSession session) {

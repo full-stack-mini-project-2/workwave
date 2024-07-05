@@ -1,11 +1,11 @@
 package com.workwave.mapper.traffic;
 
-import com.workwave.common.traffic.myInfoPage;
 import com.workwave.dto.traffic.request.totalTrafficInfoDto;
 import com.workwave.dto.traffic.response.trafficInfoDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface trafficMapper {
@@ -14,7 +14,7 @@ public interface trafficMapper {
     boolean save(trafficInfoDto trafficInfo);
 
     // 선택한 교통내용 불러오기
-    List<totalTrafficInfoDto> findAll(myInfoPage page);
+    List<totalTrafficInfoDto> findAll(Map<String, Object> page);
 
 
     int count(String userId);

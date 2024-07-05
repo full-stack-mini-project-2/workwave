@@ -37,17 +37,13 @@ let indexWeatherInfo = '';
                 </div>     
             `;
 
-            document.getElementById("weather").innerHTML = weatherInfo;
+            document.getElementById("index-weather").innerHTML = weatherInfo;
         
         })
         .catch(error => {
-            document.getElementById("weather").innerHTML = `Error: ${error}`;
+            document.getElementById("index-weather").innerHTML = `Error: ${error}`;
         });
 }
 
 
-
-
-
-// 날씨 API 실행
 getWeather();
