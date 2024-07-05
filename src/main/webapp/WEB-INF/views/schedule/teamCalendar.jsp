@@ -8,14 +8,7 @@
     <%--  css--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <%--  http://localhost:8181/assets/css/main.css--%>
-    <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">
-    <!-- JavaScript 파일 포함 -->
-    <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
-
         <style>
-
-
-
         .calendar {
             width: 100%;
             border-collapse: collapse;
@@ -291,14 +284,12 @@
 
     let myTeamCalEvents = []; // API에서 받은 데이터를 저장할 배열
 
-
-    const userId = myTeamCalEvents.length > 0 ? myTeamCalEvents[0].userId : "";
-    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let currentYear = new Date().getFullYear();
-    let currentMonth = new Date().getMonth();
+    const teamMonthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let teamCurrentYear = new Date().getFullYear();
+    let teamCurrentMonth = new Date().getMonth();
 
     // 초기 데이터 로드
-    fetchEvents(currentYear, currentMonth);
+    fetchEvents(teamCurrentYear, teamCurrentMonth);
 
     function fetchEvents(year, month) {
         const xhr = new XMLHttpRequest();
@@ -373,12 +364,12 @@
         calendarHtml += '</tr></table>';
 
         document.getElementById('calendar').innerHTML = calendarHtml;
-        updateCurrentMonth(year, month);
+        updateTeamCurrentMonth(year, month);
     }
 
     // 현재 날짜 업데이트 함수
-    function updateCurrentMonth(year, month) {
-        document.getElementById('current-month').textContent = `\${monthNames[month]} \${year}`;
+    function updateTeamCurrentMonth(year, month) {
+        document.getElementById('current-month').textContent = `\${teamMonthNames[month]} \${year}`;
     }
 
     // colorindex에 따라 색 부여하기
@@ -664,26 +655,26 @@
 
         // 이전 달로 넘어가기
         document.getElementById('prev-month').addEventListener('click', function () {
-            if (currentMonth === 0) {
-                currentYear--;
-                currentMonth = 11;
+            if (teamCurrentMonth === 0) {
+                teamCurrentYear--;
+                teamCurrentMonth = 11;
             } else {
-                currentMonth--;
+                teamCurrentMonth--;
             }
-            fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
+            fetchEvents(teamCurrentYear, teamCurrentMonth, () => renderCalendar(myCalEvents, teamCurrentYear, teamCurrentMonth));
         });
 
         //다음달로 넘어가기
         document.getElementById('next-month').addEventListener('click', function () {
-            if (currentMonth === 11) {
-                currentYear++;
-                currentMonth = 0;
+            if (teamCurrentMonth === 11) {
+                teamCurrentYear++;
+                teamCurrentMonth = 0;
             } else {
-                currentMonth++;
+                teamCurrentMonth++;
             }
-            fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
+            fetchEvents(teamCurrentYear, teamCurrentMonth, () => renderCalendar(myCalEvents, teamCurrentYear, teamCurrentMonth));
         });
-        fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
+        fetchEvents(teamCurrentYear, teamCurrentMonth, () => renderCalendar(myCalEvents, teamCurrentYear, teamCurrentMonth));
     });
 
 </script>

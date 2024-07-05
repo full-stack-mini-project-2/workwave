@@ -404,30 +404,54 @@
     //     });
     // });
 
-
-    // // 토글 열고닫기 함수
     $(document).ready(function() {
+
+        // 페이지 로드 시 초기 설정
+        $('#teamCalendar').addClass('minimized'); // 팀 달력을 최소화 상태로 숨김
+        // $('#teamCalendarIcon').show(); // 팀 달력 열기 버튼 아이콘을 보이도록 설정
+
+        // 개인 달력 최소화 버튼 누르기
         $('#perToggleBtn').click(function() {
+            // 개인 달력 최소화/펼치기
             $('#personalCalendar').toggleClass('minimized');
-            $('#perCalendarIcon').toggle();
+            // 개인 달력이 최소화 상태이면 팀 달력 열기 버튼 보이기, 아니면 숨기기
+            if ($('#personalCalendar').hasClass('minimized')) {
+                $('#teamCalendarIcon').show();
+            } else {
+                $('#teamCalendarIcon').hide();
+            }
         });
 
+        // 개인 달력 열기 버튼 누르기
         $('#perCalendarIcon').click(function() {
-            $('#personalCalendar').toggleClass('minimized');
-            $('#perCalendarIcon').toggle();
+            // 개인 달력 열기
+            $('#personalCalendar').removeClass('minimized');
+            // 팀 달력 닫기
+            $('#teamCalendar').addClass('minimized');
+            // 개인 달력 열기 버튼 숨기기
+            $('#perCalendarIcon').hide();
         });
-    });
 
-    // 토글 열고닫기 함수
-    $(document).ready(function() {
+        // 팀 달력 최소화 버튼 누르기
         $('#teamToggleBtn').click(function() {
+            // 팀 달력 최소화/펼치기
             $('#teamCalendar').toggleClass('minimized');
-            $('#teamCalendarIcon').toggle();
+            // 팀 달력이 최소화 상태이면 개인 달력 열기 버튼 보이기, 아니면 숨기기
+            if ($('#teamCalendar').hasClass('minimized')) {
+                $('#perCalendarIcon').show();
+            } else {
+                $('#perCalendarIcon').hide();
+            }
         });
 
+        // 팀 달력 열기 버튼 누르기
         $('#teamCalendarIcon').click(function() {
-            $('#teamCalendar').toggleClass('minimized');
-            $('#teamCalendarIcon').toggle();
+            // 팀 달력 열기
+            $('#teamCalendar').removeClass('minimized');
+            // 개인 달력 닫기
+            $('#personalCalendar').addClass('minimized');
+            // 팀 달력 열기 버튼 숨기기
+            $('#teamCalendarIcon').hide();
         });
     });
 

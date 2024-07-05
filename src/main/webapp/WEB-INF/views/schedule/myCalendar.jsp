@@ -5,14 +5,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Calendar</title>
-  <%--  css--%>
-  <%--  <link rel="stylesheet" href="<c:url value='/assets/css/calendar.css' />">--%>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <%--  http://localhost:8181/assets/css/main.css--%>
-<%--  <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">--%>
-  <!-- JavaScript 파일 포함 -->
-  <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
-<%--  <%@ include file="../include/header.jsp" %>--%>
+
   <style>
     .calendar {
       width: 100%;
@@ -280,10 +275,7 @@
 </div>
 
 <script>
-  // JSON 형식의 문자열을 자바스크립트 객체로 반환하기
-  <%--const myCalEvents = JSON.parse(`<c:out value="\${data}" escapeXml="false"/>`);--%>
-  <%--console.log("mycalevents", myCalEvents);--%>
-  // const userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
+
 
   let myCalEvents = [];
   let nowUserName = "";
