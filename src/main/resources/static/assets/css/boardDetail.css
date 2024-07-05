@@ -36,13 +36,13 @@ body {
 
 .board-content {
   border-top: 1px solid #cccccc;
-  padding-top: 20px;
+  padding: 20px 0;
   font-size: 16px;
   line-height: 1.6;
 }
 
 .one-board-detail {
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #cccccc;
 }
 
@@ -64,6 +64,9 @@ body {
 
 #replyContainer {
   margin-top: 60px;
+  border-radius: 10px;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  */
+  /* 약간의 그림자 효과 추가, 필요에 따라 제거 가능 */
 }
 
 .reply-title {
@@ -96,7 +99,8 @@ body {
 
 .reply .content {
   font-size: 18px;
-  margin-top: 5px;
+  padding: 0px 5px;
+  margin-bottom: 10px;
 }
 
 .reply-form {
@@ -109,7 +113,7 @@ body {
   padding: 20px;
   background-color: #f2efeb;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
 .reply-form h2 {
@@ -145,19 +149,41 @@ body {
 } */
 
 .replyModify {
+  font-size: 0.9em;
+  background: white;
   cursor: pointer;
 }
 
 .replyDelete {
+  font-size: 0.9em;
+  background: white;
   cursor: pointer;
 }
 
-.button-group {
+.subReply {
+  background: white;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.reply .button-group {
   display: flex;
   justify-content: flex-end;
   gap: 5px;
   margin-top: 10px;
   margin-bottom: 15px;
+  padding-right: 10px;
+  padding-top: 15px;
+}
+
+.reply .sub-reply .sub-button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  margin-top: 10px;
+  margin-bottom: 2px;
+  padding-right: 10px;
+  padding-bottom: 15px;
 }
 
 /* 좋아요/싫어요 버튼 스타일 */
@@ -203,11 +229,6 @@ body {
   background-color: #3e489f;
 }
 
-.subReply {
-  background: white;
-  cursor: pointer;
-}
-
 /* subRepliesContainer 스타일 추가 */
 #subRepliesContainer {
   margin-top: 20px;
@@ -218,13 +239,11 @@ body {
 }
 
 .sub-reply {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 14px;
-  /* border: 1px solid #ccc; */
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #ffffff;
+  box-shadow: 0 8px 8px -2px rgba(0, 0, 0, 0.1);
 }
 
 .fa-level-up-alt {
@@ -234,31 +253,36 @@ body {
 
 .sub-reply .meta {
   font-size: 0.9em;
+  padding-left: 10px;
   color: #777;
-  margin-bottom: 5px;
+  margin-bottom: 40px;
+}
+
+.subReply-form {
+  width: 100%;
 }
 
 .sub-reply .content {
   margin-bottom: 10px;
-  padding: 15px;
+  padding: 0 30px;
 }
 
-.sub-reply .button-group {
+.sub-reply .sub-button-group {
   display: flex;
 }
 
-.sub-reply .button-group button {
-  font-size: 0.9em;
+.sub-reply .sub-button-group button {
+  font-size: 0.8em;
   padding: 3px 8px;
   border-radius: 3px;
   cursor: pointer;
 }
 
-.sub-reply .button-group .subReplyModify {
+.sub-reply .sub-button-group .subReplyModify {
   background: white;
 }
 
-.sub-reply .button-group .subReplyDelete {
+.sub-reply .sub-button-group .subReplyDelete {
   background: white;
 }
 
@@ -268,43 +292,47 @@ body {
   font-weight: bold;
 }
 
-/* 페이지네이션 컨테이너 */
-.pagination {
-  margin: 80px 0;
-  display: flex;
-  justify-content: center; /* 수평 중앙 정렬 */
-  align-items: center; /* 수직 중앙 정렬 */
-  padding: 0;
-  list-style: none;
+.pagination-container {
+  margin-top: 50px;
 }
 
-/* 페이지네이션 아이템 */
-.pagination li {
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+.page-item{
+  text-decoration: none;
+  color: inherit;
   margin: 0 5px;
 }
 
 .page-link {
-  padding: 0;
-  background-color: transparent;
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: black;
+  background-color: #f2efeb;
+  border: none; /* 테두리를 제거 */
+  transition: color 0.3s;
 }
 
-/* 페이지네이션 링크 */
-.pagination li a {
-  color: #000; /* 기본 텍스트 색상 */
-  text-decoration: none; /* 기본적으로 밑줄 없음 */
-  padding: 0; /* 패딩 제거 */
-  border: none; /* 테두리 제거 */
-  transition: color 0.3s, text-decoration 0.3s;
-}
-
-/* 현재 페이지 링크 스타일 */
-.pagination li a.active {
+.page-link:hover {
   text-decoration: underline; /* 호버 시 밑줄 추가 */
   color: #7b317c; /* 호버 시 텍스트 색상 변경 */
 }
 
-/* 호버 상태 */
-.pagination li a:hover {
+.p-active .page-link {
   text-decoration: underline; /* 호버 시 밑줄 추가 */
   color: #7b317c; /* 호버 시 텍스트 색상 변경 */
 }
+
+.page-active {
+  font-weight: bold;
+}
+
+
