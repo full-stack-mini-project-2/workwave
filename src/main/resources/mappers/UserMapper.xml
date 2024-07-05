@@ -57,7 +57,7 @@
 
 <!--    윤종 매퍼 쿼리 추가-->
 <!--    부서이름 부서 아이디로 찾기-->
-    <select id="findOneDepartmentName" resultMap="string">
+    <select id="findOneDepartmentName" resultType="string">
         SELECT
         department_name
         FROM
