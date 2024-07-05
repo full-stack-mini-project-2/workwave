@@ -103,11 +103,6 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       </div>
     </div>
 
-    
-    <br/>
-    <a id="back-home" href="/"><h1>이전으로 돌아가기</h1></a>
-
-
     <script>
       let stationInfo = `${stationInfo}`;
       let regex =
