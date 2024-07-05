@@ -148,7 +148,7 @@ async function fetchSubReplies(rno) {
             <div class="content">
               <p>${subReplyContent}</p>
             </div>
-            <div class="button-group">
+            <div class="sub-button-group">
               <button class="subReplyModify" type="button" data-rno=${subReplyId}>수정</button>
               <button class="subReplyDelete" type="button" data-rno=${subReplyId}>삭제</button>
             </div>
@@ -509,7 +509,7 @@ function displayReplies(replies, pageInfo) {
       }
     );
   } else {
-    tag = `<h2>댓글(0)</h2>
+    tag = `<h2 class="reply-title"><i class="far fa-comment"></i> (${pageInfo.totalCount})</h2>
     <div class="reply">댓글이 없습니다.</div>`;
   }
 

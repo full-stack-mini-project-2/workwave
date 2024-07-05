@@ -96,8 +96,7 @@ body {
 
 .reply .content {
   font-size: 18px;
-  padding: 30px 0;
-  padding-left: 5px;
+  padding: 0px 5px;
   margin-bottom: 10px;
 }
 
@@ -174,12 +173,12 @@ body {
   padding-top: 15px;
 }
 
-.sub-reply .button-group {
+.reply .sub-reply .sub-button-group {
   display: flex;
   justify-content: flex-end;
   gap: 5px;
   margin-top: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 2px;
   padding-right: 10px;
   padding-bottom: 15px;
 }
@@ -237,10 +236,8 @@ body {
 }
 
 .sub-reply {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   padding-top: 12px;
-  /* padding-bottom: 12px; */
-  /* padding-left: 14px; */
   border-radius: 5px;
   background-color: #ffffff;
 }
@@ -254,7 +251,7 @@ body {
   font-size: 0.9em;
   padding-left: 10px;
   color: #777;
-  margin-bottom: 5px;
+  margin-bottom: 40px;
 }
 
 .subReply-form {
@@ -263,25 +260,25 @@ body {
 
 .sub-reply .content {
   margin-bottom: 10px;
-  padding: 30px;
+  padding: 0 30px;
 }
 
-.sub-reply .button-group {
+.sub-reply .sub-button-group {
   display: flex;
 }
 
-.sub-reply .button-group button {
+.sub-reply .sub-button-group button {
   font-size: 0.8em;
   padding: 3px 8px;
   border-radius: 3px;
   cursor: pointer;
 }
 
-.sub-reply .button-group .subReplyModify {
+.sub-reply .sub-button-group .subReplyModify {
   background: white;
 }
 
-.sub-reply .button-group .subReplyDelete {
+.sub-reply .sub-button-group .subReplyDelete {
   background: white;
 }
 
