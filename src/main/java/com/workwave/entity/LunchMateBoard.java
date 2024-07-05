@@ -38,7 +38,7 @@ public class LunchMateBoard {
     private String lunchLocation; // 식당 위치 (식당명)
     private String lunchMenuName; // 메뉴 이름
     private int lunchAttendees; // 최대 모집인원 수
-    private String progressStatus; // 모집 인원 진행 상황
+    private int progressStatus; // 모집 인원 진행 상황
 
     public LunchBoardFindAllDto toDto() {
         return LunchBoardFindAllDto.builder()
@@ -118,11 +118,11 @@ public class LunchMateBoard {
         this.lunchAttendees = lunchAttendees;
     }
 
-    public String getProgressStatus() {
+    public int getProgressStatus() {
         return progressStatus;
     }
 
-    public void setProgressStatus(String progressStatus) {
+    public void setProgressStatus(int progressStatus) {
         this.progressStatus = progressStatus;
     }
 }
