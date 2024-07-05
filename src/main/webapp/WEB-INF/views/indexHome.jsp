@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/indexHome.css">
     <link rel="icon" href="/assets/img/workwave_logo.png" />
+
+    <script defer type="text/javascript" src="assets/js/traffic/indexWeather.js"></script>
+    <link rel="stylesheet" href="assets/css/traffic/indexWeather.css">
+
     <style>
         /*.calendar-container {*/
         /*    position: relative;*/
@@ -79,10 +83,13 @@
         .clock {
 
         }
+
     </style>
 </head>
 
 <body>
+
+<div id="index-weather"></div>
 
 <div class="clock-container">
     <div class="clock" id="clock">00:00</div>
