@@ -49,11 +49,6 @@
 <%--    <a href="/myCalendar/viewMyEvent" class="right-box">PERSONAL CALENDAR</a>--%>
 </div>
 
-<div class="right-bottom">
-    <a class="toggle-personal toggle-button" style="">PERSONAL TODOLIST</a>
-    <a class="toggle-team toggle-button" >TEAM TODOLIST</a>
-</div>
-
 <div class="left-top">
     <a href="/traffic-map" class="right-box">TRAFFIC INFO</a>
 </div>
@@ -65,28 +60,16 @@
 
 <%-- 개인 투두리스트 --%>
 <div ng-controller="myPersonalController" class="personal-todolist-Box app-container d-flex align-items-center justify-content-center flex-column">
-    <h3 class="mb-4">Personal Todo List</h3>
-    <div class="input-group mb-3">
-        <input ng-model="yourPersonalTask" type="text" class="form-control" placeholder="Enter a task here">
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="button" ng-click="savePersonalTask()">Save</button>
-        </div>
-    </div>
+    <h3 class="mb-4"> # ${userName}'s Todo</h3>
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Todo item</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
-
             <tr ng-repeat="personalTask in personalTasks track by $index" ng-class="{'table-success': personalTask.todoStatus === 'true', 'table-light': personalTask.todoStatus === 'false'}">
-                <td>{{$index + 1}}</td>
-                <td ng-click="editPersonalTask(personalTask)">
+                <td id="personal-todo" ng-click="editPersonalTask(personalTask)">
                     <span ng-show="!personalTask.editing" ng-class="{'complete': personalTask.todoStatus === 'true'}">{{personalTask.todoContent}}</span>
                     <input ng-show="personalTask.editing" type="text" ng-model="personalTask.todoContent" ng-blur="updatePersonalTask(personalTask)" ng-keypress="handleKeyPressPersonalTask($event, personalTask)">
                 </td>
@@ -94,37 +77,38 @@
                     <input type="checkbox" ng-model="personalTask.todoStatus" ng-true-value="'true'" ng-false-value="'false'" ng-change="updatePersonalTask(personalTask)">
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm" ng-click="deletePersonalTask($index)">Delete</button>
+                    <button class="btn btn-danger btn-sm delete-btn" ng-click="deletePersonalTask($index)">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
                 </td>
             </tr>
             </tbody>
         </table>
+        <div class="input-group mb-3">
+            <input ng-model="yourPersonalTask" type="text" class="form-control" placeholder="Enter a task here">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" ng-click="savePersonalTask()">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="right-bottom">
+        <a class="toggle-personal toggle-button" style="">PERSONAL TODOLIST</a>
     </div>
 </div>
 
 <%-- 팀 투두리스트 --%>
 <div ng-controller="myTeamController" class="team-todolist-Box app-container d-flex align-items-center justify-content-center flex-column">
-    <h3 class="mb-4">Team Todo List</h3>
-    <div class="input-group mb-3">
-        <input ng-model="yourTeamTask" type="text" class="form-control" placeholder="Enter a task here">
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="button" ng-click="saveTeamTask()">Save</button>
-        </div>
-    </div>
+    <h3 class="mb-4"> # Team ${departmentName} Todo</h3>
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Todo item</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
+
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="teamTask in teamTasks track by $index" ng-class="{'table-success': teamTask.teamTodoStatus === 'true', 'table-light': teamTask.teamTodoStatus === 'false'}">
-                <td>{{$index + 1}}</td>
-                <td ng-click="editTeamTask(teamTask)">
+                <td  id="team-todo" ng-click="editTeamTask(teamTask)">
                     <span ng-show="!teamTask.editing" ng-class="{'complete': teamTask.teamTodoStatus === 'true'}">{{teamTask.teamTodoContent}}</span>
                     <input ng-show="teamTask.editing" type="text" ng-model="teamTask.teamTodoContent" ng-blur="updateTeamTask(teamTask)" ng-keypress="handleKeyPressTeamTask($event, teamTask)">
                 </td>
@@ -132,12 +116,22 @@
                     <input type="checkbox" ng-model="teamTask.teamTodoStatus" ng-true-value="'true'" ng-false-value="'false'" ng-change="updateTeamTask(teamTask)">
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm" ng-click="deleteTeamTask($index)">Delete</button>
+                    <button class="btn btn-danger btn-sm delete-btn" ng-click="deleteTeamTask($index)">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
                 </td>
             </tr>
             </tbody>
         </table>
-    </div>
+        <div class="input-group mb-3">
+            <input ng-model="yourTeamTask" type="text" class="form-control" placeholder="Enter a task here">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" ng-click="saveTeamTask()">Save</button>
+            </div>
+        </div>
+    </div><div class="right-bottom">
+    <a class="toggle-team toggle-button" >TEAM TODOLIST</a>
+</div>
 </div>
 
 <%-- 로그인 섹션 --%>
@@ -407,7 +401,7 @@
     $(document).ready(function() {
 
         // 페이지 로드 시 초기 설정
-        $('#teamCalendar').addClass('minimized'); // 팀 달력을 최소화 상태로 숨김
+        // $('#teamCalendar').addClass('minimized'); // 팀 달력을 최소화 상태로 숨김
         // $('#teamCalendarIcon').show(); // 팀 달력 열기 버튼 아이콘을 보이도록 설정
 
         // 개인 달력 최소화 버튼 누르기
