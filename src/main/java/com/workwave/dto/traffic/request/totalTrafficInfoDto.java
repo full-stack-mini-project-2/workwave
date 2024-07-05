@@ -16,8 +16,7 @@ public class totalTrafficInfoDto {
     private String userId;
     private String arrival;
     private String departure;
-    
-    @JsonFormat(pattern = "yyyy년 MM월 dd일")
+
     private LocalDateTime regDateTime;
 
 }

@@ -4,12 +4,14 @@ package com.workwave.controller.traffic;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.workwave.dto.traffic.request.StationDto;
+import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
+import javax.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,7 +27,14 @@ public class MetroController {
 
     // 지하철 정보 컨트롤러
     @GetMapping("/traffic-map")
-    public String metroInfo(Model model) throws IOException {
+    public String metroInfo(Model model, HttpSession session) throws IOException {
+
+
+//        boolean loggedIn = LoginUtil.isLoggedIn(session);
+//
+//        if(!loggedIn){
+//            return "redirect:/login";
+//        };
 
 
         String serviceKey = "xyigcn2H%2B16RENHs6SNbyOXjPjW0t0Tastu%2FePEl3PW6jMKcyrxrFErPO4Rzc%2BGgV2G44DvWYE%2FHGIeUhEIxCw%3D%3D";

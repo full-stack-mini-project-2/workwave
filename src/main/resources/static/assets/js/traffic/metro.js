@@ -1,5 +1,3 @@
-
-
 let dataLine = 0;
 let dataStation = "";
 let targetStation = "";
@@ -14,7 +12,7 @@ $departureStation.addEventListener("change", (e) => {
   dataLine = selectedOption.dataset.line;
 
   // API 키와 엔드포인트 설정
-  const apiKey = "72554875536e796f313230734550786b";
+  const apiKey = "4f65464c486e796f35377866586c48";
   const endpoint = `http://swopenapi.seoul.go.kr/api/subway/${apiKey}/json/realtimeStationArrival/0/5/${targetStation}`;
 
   fetch(endpoint)
@@ -47,32 +45,61 @@ $departureStation.addEventListener("change", (e) => {
       });
 
       let matchCount = 0;
-    
 
       for (let i = 0; i < filterdData.length; i++) {
         const stationName = filterdData[i].arvlMsg3;
-
+        const stationUpdnLine = filterdData[i].updnLine;
+      
         for (let j = 0; j < trafficMap.length; j++) {
           if (
             stationName === trafficMap[j] ||
             trafficMap[j].includes(stationName)
           ) {
             matchCount++;
-
+      
             const stationIcon = document.createElement("i");
             stationIcon.className = "fas fa-subway";
             stationIcon.style.position = "absolute";
             stationIcon.style.fontSize = "20px";
-            stationIcon.style.color = "black";
-
+      
+            // 색깔 설정
+            if (stationUpdnLine === "상행") {
+              stationIcon.style.color = "red";
+            } else if (stationUpdnLine === "하행") {
+              stationIcon.style.color = "blue";
+            } else if (stationUpdnLine === "외선") {
+              stationIcon.style.color = "green";
+            } else {
+              stationIcon.style.color = "black"; // 기본 색깔
+            }
+      
             const stationSpans = document.querySelectorAll(".station-name span");
-            const positionLeft = stationSpans[j].offsetLeft + stationSpans[j].offsetWidth / 2 - 5; 
-
+            const positionLeft =
+              stationSpans[j].offsetLeft + stationSpans[j].offsetWidth / 2 - 5;
+      
             stationIcon.style.left = `${positionLeft}px`;
             stationIcon.style.top = "-20px"; // 아이콘을 역 이름 위에 배치
-
+      
             stationSpans[j].parentNode.appendChild(stationIcon);
-
+      
+            // 상행, 하행, 외선 텍스트 추가
+            const lineText = document.createElement("div");
+            lineText.className = "line-text";
+            lineText.textContent = stationUpdnLine;
+            lineText.style.color = stationIcon.style.color;
+            lineText.style.fontSize = "10px"; // 글자 크기 설정
+            lineText.style.position = "absolute";
+            lineText.style.left = `${positionLeft}px`;
+            lineText.style.top = "-35px"; // 텍스트를 아이콘 위에 배치
+            lineText.style.marginTop = "5px"; // 여백 추가
+      
+            stationSpans[j].parentNode.appendChild(lineText);
+      
+            // 문단과 마진 추가
+            const paragraph = document.createElement("div");
+            paragraph.style.marginTop = "25px"; // 문단과 아이콘 사이 여백 설정
+            stationSpans[j].parentNode.appendChild(paragraph);
+      
             break;
           }
         }
