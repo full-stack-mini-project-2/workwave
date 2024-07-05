@@ -117,7 +117,7 @@
                         <td>${board.lunchLocation}</td>
                         <td>${board.lunchMenuName}</td>
                         <td>${board.lunchAttendees}명</td>
-                        <td data-status="1">1</td> <!-- 초기 상태 설정 -->
+                        <td>${board.progressStatus}명</td>
                         <td class="join-button">
                             <a href="#" class="join-link" data-max-attendees="${board.lunchAttendees}" data-id="${loop.index}">참가하기</a>
                         </td>
@@ -153,6 +153,7 @@
                     <label for="lunchAttendees">인원:</label>
                     <input type="number" id="lunchAttendees" name="lunchAttendees" required><br>
 
+                      <input type="hidden" id="progressStatus" name="progressStatus" value="1">
 
                     <button type="submit">등록</button>
                 </form>
