@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">
     <!-- JavaScript 파일 포함 -->
     <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
-    <style>
+
         <style>
         .calendar {
             width: 100%;
