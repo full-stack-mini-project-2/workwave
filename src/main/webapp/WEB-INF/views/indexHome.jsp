@@ -45,12 +45,12 @@
 </div>
 
 <div class="right-top">
-    <a href="/myCalendar/viewTeamEvent" class="right-box">TEAM CALENDAR</a>
-    <a href="/myCalendar/viewMyEvent" class="right-box">PERSONAL CALENDAR</a>
+    <a href="/myCalendar/viewTeamEvent" class="right-box team">TEAM CALENDAR</a>
+<%--    <a href="/myCalendar/viewMyEvent" class="right-box">PERSONAL CALENDAR</a>--%>
 </div>
 
 <div class="right-bottom">
-    <a class="toggle-personal toggle-button">PERSONAL TODOLIST</a>
+    <a class="toggle-personal toggle-button" style="">PERSONAL TODOLIST</a>
     <a class="toggle-team toggle-button" >TEAM TODOLIST</a>
 </div>
 
@@ -162,9 +162,21 @@
     <div class="calendar-at-modal" id="personalCalendar">
         <%@page import="java.util.List"%>
         <%@ include file="./schedule/myCalendar.jsp" %>
-        <button class="toggle-btn" id="toggleBtn"><i class="fas fa-chevron-up"></i></button>
+        <button class="toggle-btn" id="perToggleBtn"><i class="fas fa-chevron-up"></i></button>
     </div>
-    <div class="calendar-icon" id="calendarIcon">
+    <div class="calendar-icon" id="perCalendarIcon">
+        <i class="fas fa-calendar-alt"></i>
+    </div>
+</div>
+
+<%-- 팀 달력 컨테이너 jsp include--%>
+<div class="calendar-at-home">
+    <div class="calendar-at-modal" id="teamCalendar">
+        <%@page import="java.util.List"%>
+        <%@ include file="./schedule/teamCalendar.jsp" %>
+        <button class="toggle-btn" id="teamToggleBtn"><i class="fas fa-chevron-up"></i></button>
+    </div>
+    <div class="calendar-icon" id="teamCalendarIcon">
         <i class="fas fa-calendar-alt"></i>
     </div>
 </div>
@@ -378,17 +390,44 @@
 
     // 팀 투두리스트 함수 끝
 
+    // $(document).ready(function() {
+    //     // 개인 달력 토글 열고닫기
+    //     $('#perToggleBtn').click(function() {
+    //         $('#personalCalendar').toggleClass('minimized');
+    //         $('#perCalendarIcon').toggle();
+    //     });
+    //
+    //     // 팀 달력 토글 열고닫기
+    //     $('#teamToggleBtn').click(function() {
+    //         $('#teamCalendar').toggleClass('minimized');
+    //         $('#teamCalendarIcon').toggle();
+    //     });
+    // });
+
+
+    // // 토글 열고닫기 함수
+    $(document).ready(function() {
+        $('#perToggleBtn').click(function() {
+            $('#personalCalendar').toggleClass('minimized');
+            $('#perCalendarIcon').toggle();
+        });
+
+        $('#perCalendarIcon').click(function() {
+            $('#personalCalendar').toggleClass('minimized');
+            $('#perCalendarIcon').toggle();
+        });
+    });
 
     // 토글 열고닫기 함수
     $(document).ready(function() {
-        $('#toggleBtn').click(function() {
-            $('#personalCalendar').toggleClass('minimized');
-            $('#calendarIcon').toggle();
+        $('#teamToggleBtn').click(function() {
+            $('#teamCalendar').toggleClass('minimized');
+            $('#teamCalendarIcon').toggle();
         });
 
-        $('#calendarIcon').click(function() {
-            $('#personalCalendar').toggleClass('minimized');
-            $('#calendarIcon').toggle();
+        $('#teamCalendarIcon').click(function() {
+            $('#teamCalendar').toggleClass('minimized');
+            $('#teamCalendarIcon').toggle();
         });
     });
 

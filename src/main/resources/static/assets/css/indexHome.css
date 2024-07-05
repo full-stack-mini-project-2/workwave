@@ -140,13 +140,14 @@ button:active {
     0 0.0625em 0 0 #ececec, 0 0.125em 0 0 #e0e0e0, 0 0.125em 0 0 #dedede,
     0 0.2em 0 0 #dcdcdc, 0 0.225em 0 0 #cacaca, 0 0.225em 0.375em 0 #cecece;
 }
+
 .calendar-at-modal {
     position: absolute;
     top: 60px;
     right: 30px;
 }
 
-.calendar-at-modal.minimized {
+.minimized {
     display: none; /* 최소화 상태일 때는 숨김 */
 }
 
@@ -157,10 +158,20 @@ button:active {
     cursor: pointer;
 }
 
-.calendar-icon {
+#perCalendarIcon {
     position: fixed;
     top: 20px;
     left: 98%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 1000; /* 다른 요소 위에 표시될 수 있도록 높은 z-index 설정 */
+    display: none; /* 초기에는 숨김 */
+}
+
+#teamCalendarIcon {
+    position: fixed;
+    top: 20px;
+    left: 92%;
     transform: translateX(-50%);
     cursor: pointer;
     z-index: 1000; /* 다른 요소 위에 표시될 수 있도록 높은 z-index 설정 */
@@ -199,7 +210,10 @@ button:active {
     left: 50%;
     position: absolute;
 }
-
+.team {
+    position: absolute;
+    left: -400px;
+}
 
 
 
