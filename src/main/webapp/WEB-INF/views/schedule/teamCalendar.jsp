@@ -235,7 +235,7 @@
 <div id="addEventModal" class="modal">
     <div class="modal-content">
         <span class="close"><i class="fa-solid fa-x"></i></span>
-        <button class="fa-add" type="button" id="saveEventButton">추가</button>
+        <button class="fa-add" type="button" id="saveEventButton">Add</button>
         <h2>New Event</h2>
         <form id="addEventForm">
             <label for="calEventTitle">Title</label>
@@ -249,7 +249,7 @@
             <label for="calEventDescription"></label>
             <input type="text" id="calEventDescription" name="calEventDescription" placeholder="None"><br>
 
-            <label for="calColorIndex">색상:</label>
+            <label for="calColorIndex"></label>
             <div class="color-picker">
                 <div class="color-lightsteelblue" data-color-index="1"></div>
                 <div class="color-darkslateblue" data-color-index="2"></div>
@@ -270,7 +270,6 @@
         <i id="prev-month" class="fa-solid fa-caret-left"></i>
         <h3 id="current-month"></h3>
         <i id="next-month" class="fa-solid fa-caret-right"></i>
-        <i class="fa-regular fa-calendar-plus"></i>
     </div>
         <div class="calendar-add-btn">
             <i class="fa-regular fa-calendar-plus"></i>
@@ -549,6 +548,7 @@
             }
         };
 
+        //일정 삭제하기
         const deleteButton = modal.querySelector('#deleteEvent');
         deleteButton.onclick = function () {
             console.log(selectedEvent.calEventId); // 이벤트 아이디 잘 나옴
@@ -582,6 +582,7 @@
             }
         };
     }
+
     // 일정 추가 모달 열기
     document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
         const addEventModal = document.getElementById('addEventModal');

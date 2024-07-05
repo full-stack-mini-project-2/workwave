@@ -286,8 +286,10 @@
   // const userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
 
   let myCalEvents = [];
-  // let userId = "";
-  // let userName = "";
+  let nowUserName = "";
+  let userId ="";
+
+  console.log("개인 정보 전달 로그 ", myCalEvents, nowUserName, userId);
 
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let currentYear = new Date().getFullYear();
@@ -295,10 +297,6 @@
 
   // 초기 데이터 로드, 콜백함수로 비동기 렌더링
   fetchEvents(currentYear, currentMonth, function () {
-    const userId = "${userId}";
-    console.log("userId가 나오나요",userId);
-    const userName = "${userName}";
-    console.log("userName이 나오나요",userName);
     renderCalendar(myCalEvents, currentYear, currentMonth);
   });
 
@@ -314,6 +312,8 @@
           console.log("맨처음 불러오는 json 달력 data:", data)
 
           myCalEvents = data;
+          nowUserName = "${userName}";
+          userId = "${userId}";
 
           callback();
 
@@ -630,7 +630,7 @@
       calEventDescription: description,
       calEventCreateAt: new Date().toISOString(),
       colorIndexId: colorIndex,
-      userName: myCalEvents.userName,
+      userName:nowUserName,
     };
 
     // AJAX 요청으로 이벤트 저장

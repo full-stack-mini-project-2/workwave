@@ -47,13 +47,15 @@ public class CalendarViewController {
 
             String myCalEventsJson = objectMapper.writeValueAsString(myCalendarEvents);
             model.addAttribute("myCalEvents", myCalEventsJson.replace("'", "\\'"));
-            log.info("jsp로 보내는 json : !!!!!!!!!!!!!!!!!!!!!!!!!!! {}",myCalEventsJson);
-            // formattedDate 설정
             String formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             model.addAttribute("formattedDate", formattedDate);
             // 유저 이름 설정
-            String userName = myCalendarEvents.isEmpty() ? "Unknown User" : myCalendarEvents.get(0).getUserName();
+            String userName = LoginUtil.getLoggedInUser(session).getNickName();
             model.addAttribute("userName", userName);
+            model.addAttribute("userId", userId);
+
+
+
 
         } catch (Exception e) {
             log.error("Error converting events to JSON", e);
