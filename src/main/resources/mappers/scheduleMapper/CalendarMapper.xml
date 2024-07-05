@@ -301,7 +301,6 @@
         cal_event_title = #{calEventTitle},
         cal_event_description = #{calEventDescription},
         cal_event_updateAt = #{calEventUpdateAt},
-        user_id = #{userId},
         team_calendar_id = #{teamCalendarId},
         update_by = #{updateBy}, <!-- 수정자 추가 -->
         color_index_id = #{colorIndexId}

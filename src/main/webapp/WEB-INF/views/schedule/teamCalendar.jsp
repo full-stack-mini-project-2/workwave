@@ -285,7 +285,7 @@
     const nowDepartmentIdFromServer = "${departmentId}";
     const nowTeamIdFromServer =  '<c:out value="${teamCalendarId}" />';
 
-    console.log("userName, departmentId, nowteamcalId >>>>",nowUserNameFromServer, nowDepartmentIdFromServer, nowTeamIdFromServer ? null : "null임");
+    console.log("userName, departmentId, nowteamcalId >>>>",nowUserNameFromServer, nowDepartmentIdFromServer, nowTeamIdFromServer ? nowTeamIdFromServer : "null임");
 
     let myTeamCalEvents = []; // API에서 받은 데이터를 저장할 배열
 
