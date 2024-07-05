@@ -101,7 +101,6 @@
       padding-left: 20px;
       -ms-overflow-style: none;
       scrollbar-width: none;
-
     }
 
     .event-container::-webkit-scrollbar, #calendar::-webkit-scrollbar {
@@ -287,15 +286,19 @@
   // const userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
 
   let myCalEvents = [];
-  let userId = "";
-  console.log(userId);
+  // let userId = "";
+  // let userName = "";
+
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let currentYear = new Date().getFullYear();
   let currentMonth = new Date().getMonth();
 
   // 초기 데이터 로드, 콜백함수로 비동기 렌더링
   fetchEvents(currentYear, currentMonth, function () {
-    userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
+    const userId = "${userId}";
+    console.log("userId가 나오나요",userId);
+    const userName = "${userName}";
+    console.log("userName이 나오나요",userName);
     renderCalendar(myCalEvents, currentYear, currentMonth);
   });
 
@@ -441,6 +444,17 @@
     });
   });
 
+  // 색상 미리보기 업데이트 함수
+  function updateColorPreview(index) {
+    const colorDivs = document.querySelectorAll('.color-picker div');
+    colorDivs.forEach(function (colorDiv) {
+      colorDiv.classList.remove('selected');
+      if (colorDiv.getAttribute('data-color-index') === index) {
+        colorDiv.classList.add('selected');
+      }
+    });
+  }
+
 
   // 이벤트 상세보기
   function openModal(eventId) {
@@ -455,10 +469,10 @@
 
 
     eventDetails.innerHTML = `
-        <li><strong>Title</strong> \${selectedEvent.calEventTitle}</li>
-        <li><strong>Event</strong> \${selectedEvent.calEventDescription}</li>
-        <li><strong>Event Date</strong> \${selectedEvent.calEventDate}</li>
-        <li><strong>Write By</strong> \${selectedEvent.userName}</li>
+        <li><strong>Title :</strong> \${selectedEvent.calEventTitle}</li>
+        <li><strong>Event description :</strong> \${selectedEvent.calEventDescription}</li>
+        <li><strong>Event Date :</strong> \${selectedEvent.calEventDate}</li>
+        <li><strong>Write By :</strong> \${selectedEvent.userName}</li>
       `;
 
     const editButton = modal.querySelector('#editEvent');
@@ -492,6 +506,10 @@
           calEventDescription: updatedDescription || selectedEvent.description,
           calColorIndex: selectedEvent.calColorIndex
         };
+
+        //색상 바로 렌더링
+        updateColorPreview();
+
 
         //일정 수정
         fetch('/api/calendar/updateEvent', {
@@ -570,9 +588,10 @@
                   console.error('Error:', error);
                   alert('Error deleting event');
                 });
-      }
+        }
     };
   }
+
   // 일정 추가 모달 열기
   document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
     const addEventModal = document.getElementById('addEventModal');
@@ -586,6 +605,7 @@
     document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
       colorDiv.addEventListener('click', function () {
         document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+        updateColorPreview(this.getAttribute('data-color-index')); // Update color preview
       });
     });
 

@@ -100,7 +100,6 @@
             padding-left: 20px;
             -ms-overflow-style: none;
             scrollbar-width: none;
-
         }
 
         .event-container::-webkit-scrollbar, #calendar::-webkit-scrollbar {
@@ -226,7 +225,7 @@
         <i class="fa-regular fa-trash-can" style="color: #929292;" id="deleteEvent"></i>
         <i class="fa-solid fa-pencil" style="color: #444444;" id="editEvent"></i>
         <ul id="eventDetails">
-            <!-- Event details will be dynamically added here -->
+            <%--    수정버튼을 눌러야 버튼이 보여짐--%>
         </ul>
         <button id="saveChangesButton" style="display:none;">Save Changes</button>
     </div>
@@ -237,17 +236,17 @@
     <div class="modal-content">
         <span class="close"><i class="fa-solid fa-x"></i></span>
         <button class="fa-add" type="button" id="saveEventButton">추가</button>
-        <h2>공유 일정 추가</h2>
+        <h2>New Event</h2>
         <form id="addEventForm">
-            <label for="calEventTitle">제목:</label>
+            <label for="calEventTitle">Title</label>
             <input type="text" id="calEventTitle" name="calEventTitle" placeholder="Event"><br>
 
-            <label for="calEventDate">날짜:</label>
+            <label for="calEventDate">Event Date</label>
 
 
             <input type="date" id="calEventDate" name="calEventDate" value="\${fn:substring(new java.text.SimpleDateFormat('yyyy-MM-dd').format(new java.util.Date()), 0, 10)}}"><br>
 
-            <label for="calEventDescription">내용:</label>
+            <label for="calEventDescription"></label>
             <input type="text" id="calEventDescription" name="calEventDescription" placeholder="None"><br>
 
             <label for="calColorIndex">색상:</label>
@@ -267,10 +266,15 @@
 <%--달력 화면--%>
 <div class="calendar-container">
     <div class="calendar-header">
+        <div class="calendar-month">
         <i id="prev-month" class="fa-solid fa-caret-left"></i>
         <h3 id="current-month"></h3>
         <i id="next-month" class="fa-solid fa-caret-right"></i>
         <i class="fa-regular fa-calendar-plus"></i>
+    </div>
+        <div class="calendar-add-btn">
+            <i class="fa-regular fa-calendar-plus"></i>
+        </div>
     </div>
     <div id="calendar"></div>
 </div>
@@ -279,9 +283,9 @@
     // JSON 형식의 문자열을 자바스크립트 객체로 반환하기
     const nowUserNameFromServer = "${userName}";
     const nowDepartmentIdFromServer = "${departmentId}";
-    const nowTeamIdFromServer = "${teamCalendarId}";
+    const nowTeamIdFromServer =  '<c:out value="${teamCalendarId}" />';
 
-    console.log("userName, departmentId >>>>",nowUserNameFromServer, nowDepartmentIdFromServer);
+    console.log("userName, departmentId, nowteamcalId >>>>",nowUserNameFromServer, nowDepartmentIdFromServer, nowTeamIdFromServer ? null : "null임");
 
     let myTeamCalEvents = []; // API에서 받은 데이터를 저장할 배열
 
@@ -453,11 +457,11 @@
 
         //수정하고 난 뒤에만 수정자 표시
         eventDetails.innerHTML = `
-        <li><strong>제목:</strong> \${selectedEvent.calEventTitle}</li>
-        <li><strong>이벤트 내용:</strong> \${selectedEvent.calEventDescription}</li>
-        <li><strong>이벤트 날짜:</strong> \${selectedEvent.calEventDate}</li>
-        <li><strong>작성자:</strong> \${selectedEvent.userName}</li>
-        <li><strong>수정자:</strong> \${updateByMessage}</li>
+        <li><strong>Title :</strong> \${selectedEvent.calEventTitle}</li>
+        <li><strong>Event description :</strong> \${selectedEvent.calEventDescription}</li>
+        <li><strong>Event Date :</strong> \${selectedEvent.calEventDate}</li>
+        <li><strong>Write By :</strong> \${selectedEvent.userName}</li>
+        <li><strong>Edited By :</strong> \${updateByMessage}</li>
       `;
 
         const editButton = modal.querySelector('#editEvent');
@@ -481,7 +485,7 @@
             const updatedDate = document.getElementById('edit-date').value;
             const updatedDescription = document.getElementById('edit-description').value;
 
-            // Validate inputs
+            // 입력값 받기, 수정 없어도 저장 됨
             if (updatedTitle && updatedDate) {
                 const updateEvent = {
                     calEventId: selectedEvent.calEventId,
@@ -492,7 +496,10 @@
                     updateBy: nowUserNameFromServer,
                 };
 
-                console.log("수정 데이터 ", updateEvent);updateColorPreview
+                //색상 바로 렌더링
+                updateColorPreview();
+
+                console.log("수정 데이터 ", updateEvent);
 
                 //일정 수정
                 fetch('/api/calendar/updateTeamEvent', {
@@ -505,7 +512,7 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            // Update local data
+                            // 수정 시 작성자도 바뀌는 이유
                             selectedEvent.calEventTitle = updatedTitle;
                             selectedEvent.calEventDate = updatedDate;
                             selectedEvent.calEventDescription = updatedDescription;
@@ -531,10 +538,14 @@
         // 모달 보이기
         modal.style.display = 'block';
 
+        // 저장 후 Save Changes 버튼 다시 숨기기
+        saveChangesButton.style.display = 'none';
+
         // 모달 외부를 클릭하면 닫기
         window.onclick = function (event) {
             if (event.target === modal) {
                 modal.style.display = 'none';
+                saveChangesButton.style.display = 'none';
             }
         };
 
@@ -612,7 +623,7 @@
             userName: nowUserNameFromServer,
             updateBy: "아직 아무도 수정하지 않았어요!",
             departmentId: nowDepartmentIdFromServer,
-            teamCalendarId: nowTeamIdFromServer,
+            teamCalendarId: nowTeamIdFromServer, //만
 
         };
 
@@ -655,7 +666,7 @@
             } else {
                 currentMonth--;
             }
-            fetchEvents(currentYear, currentMonth);
+            fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
         });
 
         //다음달로 넘어가기
@@ -666,9 +677,9 @@
             } else {
                 currentMonth++;
             }
-            fetchEvents(currentYear, currentMonth);
+            fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
         });
-        renderCalendar();
+        fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
     });
 
 </script>
