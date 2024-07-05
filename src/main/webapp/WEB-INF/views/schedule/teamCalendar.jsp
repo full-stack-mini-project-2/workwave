@@ -12,21 +12,111 @@
     <!-- JavaScript 파일 포함 -->
     <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
     <style>
+        <style>
         .calendar {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
         }
-        .calendar th, .calendar td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
+
+        #calendar {
+            height: 500px;
+            width: 800px;
+            border-radius: 7px;
+            overflow: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
+
+        .calendar-container {
+            border-radius: 10px;
+            height: 560px; /* Set the desired height */
+            border: 1px solid black; /* Optional: Border for visualization */
+            padding: 10px;
+            max-width: 800px; /* Ensure the calendar is responsive up to a maximum width */
+            background: rgba(242, 239, 245, 0.92);
+        }
+
+        #current-month {
+            width: 270px;
+            display: inline-block;
+            margin-left: 100px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .calendar-header h3 {
+            margin: 0;
+        }
+
+        .calendar-header i {
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+
+        .calendar th, .calendar td {
+            width: 14.28%;
+            overflow: hidden;
+            vertical-align: top;
+            position: relative;
+        }
+
+        .calendar th {
+            text-align: center;
+            height: 10px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            border-bottom: black 1px double;
+        }
+
+        .calendar td {
+            padding: 10px;
+            /*border: 1px solid #ddd;*/
+            text-align: justify;
+            width: 90px;
+            height: 60px;
+            overflow-y: auto;
+        }
+
+        .calendar-add-btn {
+            display: block;
+            width: 20px;
+        }
+
+        .calendar-month {
+            margin-left: 140px;
+        }
+
+        .event-container {
+            height: 50px;
+            overflow-y: auto;
+            width: 70px;
+            padding-left: 20px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+        }
+
+        .event-container::-webkit-scrollbar, #calendar::-webkit-scrollbar {
+            display: none;
+        }
+
         .event {
             margin-top: 5px;
             padding: 3px;
             border-radius: 3px;
-            cursor: pointer; /* 마우스 커서를 포인터로 변경하여 클릭 가능한 상태로 만듦 */
+            cursor: pointer;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 49px;
+            font-size: 14px;
         }
 
         .event-lightsteelblue { background-color: lightsteelblue; }
@@ -50,24 +140,21 @@
         }
 
         .modal-content {
-            background-color: #fefefe;
+            background-color: rgba(254, 254, 254, 0.9);
             margin: 15% auto;
             padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
+            border: 1.5px solid #888;
+            border-radius: 7px; /* Border radius for modal content */
+            width: 300px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.2); /* Optional: shadow for better visibility */
         }
 
         .close {
             color: #aaa;
-            float: left;
-            font-size: 28px;
+            float: right; /* Change float to right for better alignment */
+            font-size: 13px;
             font-weight: bold;
         }
-
-        .fa-pencil {
-            float: right;
-        }
-
 
         .color-picker {
             display: flex;
@@ -87,40 +174,45 @@
         .color-steelblue { background-color: steelblue; }
         .color-lightyellow { background-color: lightyellow; }
         .color-lightpink { background-color: lightpink; }
-        .calendar th, .calendar td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-            width: 14.28%; /* Ensure each day cell takes equal width */
-        }
 
-        .calendar-container {
-            border: 1px solid #ddd;
-            padding: 10px;
-            max-width: 800px;
-            margin: 0 auto;
-            width: 500px;
-            height: 400px;
-        }
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        .calendar-header h3 {
-            margin: 0;
-        }
-        .calendar-header i {
-            cursor: pointer;
-            font-size: 1.5em;
-        }
         .fa-add {
             float: right;
+            margin-top: 200px;
+            margin-right: -10px;
+            border: none;
+            background: #beb9b9;
+            border-radius: 3px;
         }
-        .color-picker div.selected {
-            border: 3.5px solid #141640;
+
+        .fa-pencil {
+            margin-right: 250px;
+            margin-top: 5px;
         }
+
+        .fa-caret-right, .fa-caret-left {
+            font-weight: 900;
+            width: 100px;
+        }
+
+        .modal-content input[type="text"],
+        .modal-content input[type="date"] {
+            margin-top: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        #saveChangesButton {
+            display: none; /* 초기에는 숨김 */
+            float: right;
+            margin-top: -10px;
+            margin-right: -5px;
+            border: none;
+            background: #beb9b9;
+            border-radius: 3px;
+        }
+
     </style>
 </head>
 <body>
@@ -130,11 +222,9 @@
 <!-- 이벤트 상세 및 일정 수정 모달 -->
 <div id="eventModal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
-        <%--    수정버튼--%>
-        <i class="fa-solid fa-pencil" style="color: #444444;" id="editEvent"></i>
-        <%--    삭제버튼--%>
+        <span class="close"><i class="fa-solid fa-x"></i></span>
         <i class="fa-regular fa-trash-can" style="color: #929292;" id="deleteEvent"></i>
+        <i class="fa-solid fa-pencil" style="color: #444444;" id="editEvent"></i>
         <ul id="eventDetails">
             <!-- Event details will be dynamically added here -->
         </ul>
@@ -145,7 +235,7 @@
 <%-- 일정 추가 모달 --%>
 <div id="addEventModal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="close"><i class="fa-solid fa-x"></i></span>
         <button class="fa-add" type="button" id="saveEventButton">추가</button>
         <h2>공유 일정 추가</h2>
         <form id="addEventForm">

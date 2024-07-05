@@ -14,7 +14,6 @@
   <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
 <%--  <%@ include file="../include/header.jsp" %>--%>
   <style>
-
     .calendar {
       width: 100%;
       border-collapse: collapse;
@@ -671,4 +670,4 @@
 <%--현재 날짜 --%>
 <div>Formatted Date: <span id="formattedDate"><c:out value="${formattedDate}" /></span></div>
 </body>
-</html>
+</html>2
