@@ -23,15 +23,17 @@ prefix="c" %>
       >
         <input type="hidden" name="boardId" value="${board.boardId}" />
         <h1 class="title">${board.boardTitle}</h1>
-        <textarea
-          id="newContent"
-          name="newContent"
-          rows="10"
-          cols="30"
-          required
-        >
+        <div class="content-input">
+          <textarea
+            id="newContent"
+            name="newContent"
+            rows="10"
+            cols="30"
+            required
+          >
 ${board.boardContent}</textarea
-        >
+          >
+        </div>
         <script>
           CKEDITOR.replace("newContent", {
             height: 350,
