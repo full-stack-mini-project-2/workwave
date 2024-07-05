@@ -20,7 +20,7 @@ header {
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 1000;
+  z-index: 2001;
 }
 
 header.on {
@@ -39,6 +39,7 @@ header .inner-header {
   align-items: center;
   font-weight: 700;
   color: #fff;
+  z-index: 20;
 }
 
 header .inner-header .logo {
@@ -60,8 +61,9 @@ header .inner-header .intro-text {
   flex: 4;
   text-transform: uppercase;
   margin-left: 40px;
-  font-family: 'NEXON Lv2 Gothic';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+  font-family: "NEXON Lv2 Gothic";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -74,22 +76,24 @@ header .inner-header .menu-open {
   margin-right: 15px;
 }
 
+header .inner-header .menu-open:hover {
+  color: #fff;
+}
+
 header .inner-header .menu-open .lnr-menu {
   font-size: 33px;
 }
 
 /* 헤더 GNB 스타일 */
 header .gnb {
-  background: #000;
-  color: #666;
+  background: #222;
+  color: white;
   height: 100vh;
-  font-size: 40px;
-  padding: 70px 70px;
+  padding: 20px;
   box-sizing: border-box;
-  opacity: 80%;
   position: fixed;
   z-index: 2000;
-  top: -120%; /* 초기 위치를 화면 밖 위쪽으로 설정 */
+  left: -120%; /* 초기 위치를 화면 밖 위쪽으로 설정 */
   transition: 0.6s;
   display: flex;
   flex-direction: column;
@@ -97,7 +101,7 @@ header .gnb {
 }
 
 header .gnb.on {
-  top: 0%;
+  left: 0%;
 }
 
 header .gnb .close {
@@ -105,18 +109,64 @@ header .gnb .close {
   color: #fff;
 }
 
-header .gnb ul {
-  margin-right: 120px;
+header .gnb .nav-content {
+  margin-right: 70px;
+  padding-left: 1rem;
+  padding-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
 }
 
-header .gnb ul li {
-  font-weight: 700;
-  line-height: 1.7;
+header .gnb .nav-content li {
+  font-size: 20px;
+  font-weight: lighter;
+  line-height: 2.2;
 }
 
-header .gnb ul li:hover,
-header .gnb ul li.active {
+.nav-content {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-content li {
+  display: flex;
+  margin-bottom: 5px;
+  align-items: center; /* 세로로 중앙 정렬 */
+}
+
+.nav-content li i {
+  margin-right: 10px; /* 아이콘과 텍스트 사이의 간격 조정 */
+  width: 20px; /* 고정된 너비 설정 */
+  text-align: center; /* 아이콘 중앙 정렬 */
+}
+
+header .gnb .nav-content li i {
+  font-size: 22px;
+  margin-right: 20px;
+  color: white;
+}
+
+.login-section {
+  margin-top: auto; /* 가능한 아래로 배치 */
+}
+
+header .gnb .nav-content li a {
   color: #fff;
+  border-bottom: 1px solid transparent; /* 기본 보더라인을 투명하게 설정 */
+}
+
+header .gnb .nav-content li a:hover,
+header .gnb .nav-content li a.active {
+  color: #fff;
+  border-bottom: 0.7px solid white; /* 호버할 때 보더라인 색상만 변경 */
+}
+
+header .gnb .nav-content li a:hover,
+header .gnb .nav-content li a.active {
+  color: #fff;
+  border-bottom: 1px solid white;
 }
 
 /* 프로필 CSS */
