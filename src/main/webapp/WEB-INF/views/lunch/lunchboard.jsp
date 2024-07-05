@@ -118,9 +118,12 @@
                         <td>${board.lunchMenuName}</td>
                         <td>${board.lunchAttendees}명</td>
                         <td>${board.progressStatus}명</td>
-                        <td class="join-button">
-                            <a href="#" class="join-link" data-max-attendees="${board.lunchAttendees}" data-id="${loop.index}">참가하기</a>
-                        </td>
+                          <td>
+                        <form action="${pageContext.request.contextPath}/joinLunch" method="post">
+                            <input type="hidden" name="postId" value="${board.lunchPostNumber}">
+                            <button type="submit" class="button">참가하기</button>
+                        </form>
+                          </td>
                     </tr>
                 </tbody>
             </c:forEach>
@@ -194,31 +197,36 @@
                 modal.style.display = 'none';
             }
         }
-            // 참가하기 버튼 클릭 시 상태 증가 및 비활성화 체크
-            document.querySelectorAll('.join-link').forEach(button => {
-                button.addEventListener('click', function(event) {
-                    event.preventDefault();
 
-            var maxAttendees = parseInt(this.getAttribute('data-max-attendees'));
-            var boardIndex = parseInt(this.getAttribute('data-id'));
-            var statusElement = document.querySelector(`[data-status="${boardIndex + 1}"]`);
 
-            var currentStatus = parseInt(statusElement.textContent);
-            var currentAttendees = parseInt(statusElement.previousElementSibling.textContent);
+         // 참가하기 버튼 클릭 이벤트 처리
+         document.querySelectorAll('.join').forEach(button => {
+             button.addEventListener('click', function() {
+                 var lunchPostNumber = this.getAttribute('data-id');
 
-            if (currentStatus < currentAttendees) {
-                statusElement.textContent = currentStatus + 1;
-
-                // 상태가 인원 수와 같아지면 버튼 비활성화
-                if (currentStatus + 1 === currentAttendees) {
-                    this.classList.add('disabled');
-                    this.removeEventListener('click', arguments.callee);
-                }
-            } else {
-                alert('이미 모집이 완료되었습니다.');
-            }
-        });
-    });
+                 fetch(`/lunchMateBoard/join`, {
+                     method: 'POST',
+                     headers: {
+                         'Content-Type': 'application/json'
+                     },
+                     body: JSON.stringify({})
+                 })
+                 .then(response => {
+                     if (response.ok) {
+                         return response.json();
+                     }
+                     throw new Error('서버 응답 오류: ' + response.status);
+                 })
+                 .then(data => {
+                     // 성공적으로 데이터를 받아왔을 때 UI 업데이트
+                     // 예를 들어, 상태 업데이트 등을 처리할 수 있습니다.
+                 })
+                 .catch(error => {
+                     console.error('오류 발생:', error);
+                     alert('서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+                 });
+             });
+         });
     </script>
 </body>
 </html>
