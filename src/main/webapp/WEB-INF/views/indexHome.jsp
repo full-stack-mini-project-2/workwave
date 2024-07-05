@@ -168,17 +168,17 @@
 </div>
 
 <%-- 팀 달력 컨테이너 jsp include--%>
-<div class="calendar-at-home">
-    <div class="calendar-at-modal" id="teamCalendar">
-        <%@page import="java.util.List"%>
-        <%@ include file="./schedule/teamCalendar.jsp" %>
-        <button class="toggle-btn" id="teamToggleBtn"><i class="fas fa-chevron-up"></i></button>
-    </div>
-    <div class="calendar-icon" id="teamCalendarIcon">
-        TEAM
-        <i class="fas fa-calendar-alt"></i>
-    </div>
-</div>
+<%--<div class="calendar-at-home">--%>
+<%--    <div class="calendar-at-modal" id="teamCalendar">--%>
+<%--        <%@page import="java.util.List"%>--%>
+<%--        <%@ include file="./schedule/teamCalendar.jsp" %>--%>
+<%--        <button class="toggle-btn" id="teamToggleBtn"><i class="fas fa-chevron-up"></i></button>--%>
+<%--    </div>--%>
+<%--    <div class="calendar-icon" id="teamCalendarIcon">--%>
+<%--        TEAM--%>
+<%--        <i class="fas fa-calendar-alt"></i>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
@@ -388,7 +388,9 @@
     }]);
 
     $(document).ready(function() {
-
+        // 개인 달력 렌더링
+        $('#personalCalendar').show();
+        $('#teamCalendar').hide();
 
         // 개인 달력 최소화 버튼 누르기
         $('#perToggleBtn').click(function() {
@@ -421,6 +423,8 @@
                 $('#perCalendarIcon').show();
             } else {
                 $('#perCalendarIcon').hide();
+                // 팀 달력 렌더링
+                $('#teamCalendar').show();
             }
         });
 
@@ -434,6 +438,7 @@
             $('#teamCalendarIcon').hide();
         });
     });
+
 
     function updateClock() {
         var now = new Date();

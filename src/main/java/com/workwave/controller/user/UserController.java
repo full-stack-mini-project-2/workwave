@@ -43,7 +43,28 @@ public class UserController {
 
     @GetMapping("/")
 
-    public String list() {
+    public String list(Model model, HttpSession session) {
+        String userId = LoginUtil.getLoggedInUserAccount(session);
+        String userName = LoginUtil.getLoggedInUser(session).getNickName();
+        String departmentId = LoginUtil.getLoggedInDepartmentId(session);
+        String departmentName = userService.findOneDepartmentName(departmentId);
+        if (userId == null) {
+            // 세션에 로그인 정보가 없을 경우, 로그인 페이지로 리다이렉트 또는 홈 화면 표시
+            log.info("userId 가 없습니다. {}", session.getAttribute("userId"));
+            model.addAttribute("userId", null);
+            model.addAttribute("departmentId", null);
+            model.addAttribute("departmentName", null);
+            model.addAttribute("userName", null);
+            return "indexHome";  // indexHome.jsp에서 로그인을 유도하는 기능
+        }
+        try {
+            model.addAttribute("userId", userId);
+            model.addAttribute("departmentId", departmentId);
+            model.addAttribute("departmentName", departmentName);
+            model.addAttribute("userName", userName);
+        } catch (Exception e) {
+            log.error("로그인한 유저 정보를 JSON에서 가져올 수 없습니다. ", e);
+        }
         return "indexHome";
     }
 
