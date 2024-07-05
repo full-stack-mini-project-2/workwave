@@ -151,6 +151,9 @@ button:active {
     right: 1px;
     cursor: pointer;
 }
+.todo-list-contents {
+
+}
 
 #perCalendarIcon {
     position: fixed;
@@ -205,7 +208,7 @@ button:active {
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.5);
     bottom: 4%;
-    left: 80%;
+    left: 85%;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -221,7 +224,7 @@ button:active {
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.5);
     bottom: 4%;
-    left: 63%;
+    left: 70%;
     position: absolute;
 }
 

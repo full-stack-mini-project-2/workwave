@@ -680,6 +680,7 @@
 </script>
 
 <%--현재 날짜 --%>
-<div>Formatted Date: <span id="formattedDate"><c:out value="${formattedDate}" /></span></div>
+<%--<div>Formatted Date: <span id="formattedDate"><c:out value="${formattedDate}" /></span></div>--%>
+<div># <span id="formattedDate"><c:out value="${userName}" /></span>'s personal calendar</div>
 </body>
 </html>2

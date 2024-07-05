@@ -28,6 +28,7 @@ import java.util.List;
 @RequestMapping("/myCalendar")
 public class CalendarViewController {
 
+    private final UserService userService;
     private final CalendarService calendarService;
     private final ObjectMapper objectMapper;
 
@@ -49,13 +50,11 @@ public class CalendarViewController {
             model.addAttribute("myCalEvents", myCalEventsJson.replace("'", "\\'"));
             String formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             model.addAttribute("formattedDate", formattedDate);
-            // 유저 이름 설정
+
             String userName = LoginUtil.getLoggedInUser(session).getNickName();
+
             model.addAttribute("userName", userName);
             model.addAttribute("userId", userId);
-
-
-
 
         } catch (Exception e) {
             log.error("Error converting events to JSON", e);
@@ -115,6 +114,7 @@ public class CalendarViewController {
         String userId = LoginUtil.getLoggedInUserAccount(session);
         String departmentId = LoginUtil.getLoggedInDepartmentId(session);
         Integer teamCalendarId = calendarService.getTeamId(departmentId);
+        String departmentName = userService.findOneDepartmentName(departmentId);
         if (userId == null) {
             // 인터셉터가 처리하지 못한 경우를 대비한 예외 처리
             return "redirect:/login";
@@ -126,6 +126,7 @@ public class CalendarViewController {
             model.addAttribute("departmentId", departmentId);
             model.addAttribute("teamCalendarId", teamCalendarId);
             model.addAttribute("teamCalEvents", teamCalEvents);
+            model.addAttribute("departmentName", departmentName);
 
             // formattedDate 설정
             String formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));

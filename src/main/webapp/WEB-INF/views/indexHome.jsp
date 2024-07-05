@@ -58,6 +58,7 @@
     <a href="/lunchMateBoard" class="right-box">LUNCH MENU</a>
 </div>
 
+<div class="todo-list-contents">
 <%-- 개인 투두리스트 --%>
 <div ng-controller="myPersonalController" class="personal-todolist-Box app-container d-flex align-items-center justify-content-center flex-column">
     <h3 class="mb-4"> # ${userName}'s Todo</h3>
@@ -134,6 +135,8 @@
 </div>
 </div>
 
+</div>
+
 <%-- 로그인 섹션 --%>
 <div class="login">
     <c:choose>
@@ -159,6 +162,7 @@
         <button class="toggle-btn" id="perToggleBtn"><i class="fas fa-chevron-up"></i></button>
     </div>
     <div class="calendar-icon" id="perCalendarIcon">
+        MY
         <i class="fas fa-calendar-alt"></i>
     </div>
 </div>
@@ -171,6 +175,7 @@
         <button class="toggle-btn" id="teamToggleBtn"><i class="fas fa-chevron-up"></i></button>
     </div>
     <div class="calendar-icon" id="teamCalendarIcon">
+        TEAM
         <i class="fas fa-calendar-alt"></i>
     </div>
 </div>
@@ -382,27 +387,8 @@
         };
     }]);
 
-    // 팀 투두리스트 함수 끝
-
-    // $(document).ready(function() {
-    //     // 개인 달력 토글 열고닫기
-    //     $('#perToggleBtn').click(function() {
-    //         $('#personalCalendar').toggleClass('minimized');
-    //         $('#perCalendarIcon').toggle();
-    //     });
-    //
-    //     // 팀 달력 토글 열고닫기
-    //     $('#teamToggleBtn').click(function() {
-    //         $('#teamCalendar').toggleClass('minimized');
-    //         $('#teamCalendarIcon').toggle();
-    //     });
-    // });
-
     $(document).ready(function() {
 
-        // 페이지 로드 시 초기 설정
-        // $('#teamCalendar').addClass('minimized'); // 팀 달력을 최소화 상태로 숨김
-        // $('#teamCalendarIcon').show(); // 팀 달력 열기 버튼 아이콘을 보이도록 설정
 
         // 개인 달력 최소화 버튼 누르기
         $('#perToggleBtn').click(function() {

@@ -54,4 +54,14 @@
         FROM Users
         WHERE SESSION_ID = #{sessionId}
     </select>
+
+<!--    윤종 매퍼 쿼리 추가-->
+<!--    부서이름 부서 아이디로 찾기-->
+    <select id="findOneDepartmentName" resultMap="string">
+        SELECT
+        department_name
+        FROM
+        Department
+        WHERE department_id = #{departmentId};
+    </select>
 </mapper>
