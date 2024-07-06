@@ -44,6 +44,12 @@
         DELETE FROM lunch_posts WHERE lunch_post_number = #{lunchPostNumber}
     </delete>
 
+    <update id="incrementProgressStatus" parameterType="com.workwave.dto.lunchBoardDto.LunchMemberDto">
+        UPDATE lunch_posts
+        SET progress_status = #{progress_status}
+        WHERE lunch_post_number = #{lunchPostNumber}
+    </update>
+
     <!-- 조회수 상승 (필요 시 추가) -->
     <!--
     <update id="upViewCount" parameterType="int">

@@ -292,17 +292,17 @@
                                     }
                                     return response.json();
                                 })
-                                .then(data => {
-                                    // 요청 성공 시 처리할 로직
-                                    console.log('Response:', data);
-                                    alert('참가 신청이 완료되었습니다.');
-                                    window.location.href = '/'; // 예시: 루트 페이지로 이동
-                                })
-                                .catch(error => {
-                                    // 요청 실패 시 처리할 로직
-                                    console.error('Error:', error);
-                                    alert('참가 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
-                                });
+                                // .then(data => {
+                                //     // 요청 성공 시 처리할 로직
+                                //     console.log('Response:', data);
+                                //     alert('참가 신청이 완료되었습니다.');
+                                //     window.location.href = '/'; // 예시: 루트 페이지로 이동
+                                // })
+                                // .catch(error => {
+                                //     // 요청 실패 시 처리할 로직
+                                //     console.error('Error:', error);
+                                //     alert('참가 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+                                // });
                             // 여기에서 선택된 객체를 사용하여 추가 작업을 수행할 수 있습니다.
                         } else {
                             console.log('일치하는 lunchPostNumber를 가진 객체를 찾을 수 없습니다.');

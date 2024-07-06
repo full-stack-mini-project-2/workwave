@@ -17,8 +17,6 @@ package com.workwave.entity;
 import com.workwave.dto.lunchBoardDto.LunchBoardFindAllDto;
 import lombok.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 @Setter @Getter @ToString
@@ -54,75 +52,4 @@ public class LunchMateBoard {
 
     }
 
-    public int getLunchPostNumber() {
-        return lunchPostNumber;
-    }
-
-    public void setLunchPostNumber(int lunchPostNumber) {
-        this.lunchPostNumber = lunchPostNumber;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getLunchPostTitle() {
-        return lunchPostTitle;
-    }
-
-    public void setLunchPostTitle(String lunchPostTitle) {
-        this.lunchPostTitle = lunchPostTitle;
-    }
-
-    public LocalDateTime getLunchDate() {
-        return lunchDate;
-    }
-
-    public void setLunchDate(LocalDateTime lunchDate) {
-        this.lunchDate = lunchDate;
-    }
-
-    public String getEatTime() {
-        return eatTime;
-    }
-
-    public void setEatTime(String eatTime) {
-        this.eatTime = eatTime;
-    }
-
-    public String getLunchLocation() {
-        return lunchLocation;
-    }
-
-    public void setLunchLocation(String lunchLocation) {
-        this.lunchLocation = lunchLocation;
-    }
-
-    public String getLunchMenuName() {
-        return lunchMenuName;
-    }
-
-    public void setLunchMenuName(String lunchMenuName) {
-        this.lunchMenuName = lunchMenuName;
-    }
-
-    public int getLunchAttendees() {
-        return lunchAttendees;
-    }
-
-    public void setLunchAttendees(int lunchAttendees) {
-        this.lunchAttendees = lunchAttendees;
-    }
-
-    public int getProgressStatus() {
-        return progressStatus;
-    }
-
-    public void setProgressStatus(int progressStatus) {
-        this.progressStatus = progressStatus;
-    }
 }

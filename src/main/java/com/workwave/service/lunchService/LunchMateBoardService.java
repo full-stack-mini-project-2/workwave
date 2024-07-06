@@ -3,20 +3,19 @@ package com.workwave.service.lunchService;
 import com.workwave.entity.LunchMateBoard;
 import com.workwave.mapper.LunchMateBoardMapper;
 import com.workwave.repository.LunchMateBoardRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import lombok.*;
 
 import java.util.List;
 
 
 @Service
-@RequiredArgsConstructor
 public class LunchMateBoardService {
 
-    private final LunchMateBoardMapper lunchMateBoardMapper;
-    private LunchMateBoardRepository lunchMateBoardRepository;
+    private  LunchMateBoardMapper lunchMateBoardMapper;
+//    private LunchMateBoardRepository lunchMateBoardRepository;
 
 
 
@@ -24,7 +23,6 @@ public class LunchMateBoardService {
     public List<LunchMateBoard> findAll() {
         return lunchMateBoardMapper.findAll();
     }
-    //
 
 
     // 게시물 등록
@@ -55,23 +53,21 @@ public class LunchMateBoardService {
         LunchMateBoard board = lunchMateBoardMapper.findOne(lunchPostNumber);
         System.out.println("🍕board = " + board);
         if (board != null) {
-            int num = board.getProgressStatus()+1;
-
-
 //            int zz =board.getProgressStatus();
 //            System.out.println("zz = " + zz);
 //            System.out.println("board = " + board);
 //            int progressStatus =zz;
 
             lunchMateBoardMapper.updateLunchPostNumber(lunchPostNumber);
-            
+            lunchMateBoardMapper.incrementProgressStatus(lunchPostNumber);
+
             LunchMateBoard board11 = lunchMateBoardMapper.findOne(lunchPostNumber);
             System.out.println("board11 = " + board11);
+
+
 
         } else {
             throw new IllegalArgumentException("Invalid board Id:" + lunchPostNumber);
         }
     }
-
-
-}// end 메인
+}
