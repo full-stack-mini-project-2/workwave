@@ -244,12 +244,12 @@
     </select>
 
     <!-- 팀 캘린더 아이디 찾기 또는 삽입 -->
-    <insert id="findAndSaveTeamCalendarId" parameterType="String">
-        INSERT IGNORE INTO TeamCalendar (department_id)
-        VALUES (#{departmentId})
-    </insert>
+<!--    <insert id="findAndSaveTeamCalendarId" parameterType="String">-->
+<!--        INSERT IGNORE INTO TeamCalendar (department_id)-->
+<!--        VALUES (#{departmentId})-->
+<!--    </insert>-->
 
-    <select id="findMyTeamCalendarId" resultType="int">
+    <select id="findMyTeamCalendarId"  resultType="java.lang.Integer">
         SELECT
         team_calendar_id
         FROM
@@ -301,7 +301,6 @@
         cal_event_title = #{calEventTitle},
         cal_event_description = #{calEventDescription},
         cal_event_updateAt = #{calEventUpdateAt},
-        user_id = #{userId},
         team_calendar_id = #{teamCalendarId},
         update_by = #{updateBy}, <!-- 수정자 추가 -->
         color_index_id = #{colorIndexId}

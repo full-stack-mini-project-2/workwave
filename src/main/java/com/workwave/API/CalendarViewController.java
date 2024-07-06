@@ -28,6 +28,7 @@ import java.util.List;
 @RequestMapping("/myCalendar")
 public class CalendarViewController {
 
+    private final UserService userService;
     private final CalendarService calendarService;
     private final ObjectMapper objectMapper;
 
@@ -45,14 +46,15 @@ public class CalendarViewController {
         try {
             List<AllMyCalendarEventDto> myCalendarEvents = calendarService.getMyAllEvents(userId);
 
-            String mycalEventsJson = objectMapper.writeValueAsString(myCalendarEvents);
-            model.addAttribute("mycalEvents", mycalEventsJson.replace("'", "\\'"));
-            // formattedDate 설정
+            String myCalEventsJson = objectMapper.writeValueAsString(myCalendarEvents);
+            model.addAttribute("myCalEvents", myCalEventsJson.replace("'", "\\'"));
             String formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             model.addAttribute("formattedDate", formattedDate);
-            // 유저 이름 설정
-            String userName = myCalendarEvents.isEmpty() ? "Unknown User" : myCalendarEvents.get(0).getUserName();
+
+            String userName = LoginUtil.getLoggedInUser(session).getNickName();
+
             model.addAttribute("userName", userName);
+            model.addAttribute("userId", userId);
 
         } catch (Exception e) {
             log.error("Error converting events to JSON", e);
@@ -110,22 +112,21 @@ public class CalendarViewController {
     public String viewTeamCalendar(Model model, HttpSession session) {
         // 세션에서 userId 가져오기
         String userId = LoginUtil.getLoggedInUserAccount(session);
+        String departmentId = LoginUtil.getLoggedInDepartmentId(session);
+        Integer teamCalendarId = calendarService.getTeamId(departmentId);
+        String departmentName = userService.findOneDepartmentName(departmentId);
         if (userId == null) {
             // 인터셉터가 처리하지 못한 경우를 대비한 예외 처리
             return "redirect:/login";
         }
         try {
-            String departmentId = LoginUtil.getLoggedInDepartmentId(session);
             List<AllMyTeamCalendarEventDto> teamCalEvents = calendarService.getAllTeamEvents(departmentId);
 
             // model에 필요한 데이터 추가
             model.addAttribute("departmentId", departmentId);
-
-//            // teamCalEvents를 JSON 문자열로 변환하여 model에 추가
-//            String teamCalEventsForMonthJson = objectMapper.writeValueAsString(teamCalEvents);
-//            log.info("teamCalEvents JSON 제대로 나오니 >>>?????? {}",teamCalEventsForMonthJson);
-
-//            model.addAttribute("teamCalEvents", teamCalEventsForMonthJson);
+            model.addAttribute("teamCalendarId", teamCalendarId);
+            model.addAttribute("teamCalEvents", teamCalEvents);
+            model.addAttribute("departmentName", departmentName);
 
             // formattedDate 설정
             String formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -149,6 +150,7 @@ public class CalendarViewController {
         String userId = LoginUtil.getLoggedInUserAccount(session);
         String departmentId = LoginUtil.getLoggedInDepartmentId(session);
         String userName = LoginUtil.getLoggedInUser(session).getNickName();
+        Integer teamCalendarId = calendarService.getTeamId(departmentId);
         if (userId == null || userName == null) {
             throw new RuntimeException("User is not logged in");
         }

@@ -11,98 +11,56 @@
     <link rel="stylesheet" href="/assets/css/indexHome.css">
     <link rel="icon" href="/assets/img/workwave_logo.png" />
 
+
     <script defer type="text/javascript" src="assets/js/traffic/indexWeather.js"></script>
     <link rel="stylesheet" href="assets/css/traffic/indexWeather.css">
 
+
     <style>
-        /*.calendar-container {*/
-        /*    position: relative;*/
-        /*    width: 100%;*/
-        /*    height: 16.6%;*/
-        /*    overflow: hidden;*/
-        /*    top: 30px;*/
-        /*    align-content: center;*/
-        /*}*/
-        /*.calendar {*/
-        /*    position: absolute;*/
-        /*    top: 0;*/
-        /*    left: 0;*/
-        /*    width: 100%;*/
-        /*    height: 100%;*/
-        /*    border: 1px solid #ccc;*/
-        /*    display: block; !* 초기에는 보이도록 설정 *!*/
-        /*}*/
-        .calendar-content.minimized {
-            display: none; /* 최소화 상태일 때는 숨김 */
-        }
-        .toggle-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            cursor: pointer;
-        }
-        .calendar-icon {
+        .wave-background {
             position: fixed;
-            top: 350px;
-            left: 98%;
-            transform: translateX(-50%);
-            cursor: pointer;
-            z-index: 1000; /* 다른 요소 위에 표시될 수 있도록 높은 z-index 설정 */
-            display: none; /* 초기에는 숨김 */
-        }
-        .complete {
-            text-decoration: line-through;
-            color: gray;
-        }
-        .color-dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
-        .personal-todolist-Box {
-            width: 150px;
-            max-height: 300px;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.5);
-            bottom: 5%;
-            left: 75%;
-            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(20, 22, 64, 0.5); /* 배경색 설정 */
+            background-image: linear-gradient(45deg, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.04) 50%, rgba(0,0,0,0.04) 75%, rgba(0,0,0,0.08) 75%, rgba(0,0,0,0.08) 100%), linear-gradient(-45deg, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.04) 50%, rgba(0,0,0,0.04) 75%, rgba(0,0,0,0.08) 75%, rgba(0,0,0,0.08) 100%);
+            background-size: 200% 200%; /* 배경 크기 설정 */
+            animation: wave-animation 30s infinite linear; /* 애니메이션 적용 */
+            z-index: -1; /* 다른 요소 위에 나타나도록 설정 */
         }
 
-        .team-todolist-Box {
-            width: 150px;
-            max-height: 300px;
-            border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.5);
-            bottom: 5%;
-            left: 50%;
-            position: absolute;
+        @keyframes wave-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
         }
-        .clock {
 
+        #personalCalendar {
+              left: 1px;
         }
 
     </style>
 </head>
-
 <body>
 
+
+<div class="wave-background"></div>
+
+
 <div id="index-weather"></div>
+
 
 <div class="clock-container">
     <div class="clock" id="clock">00:00</div>
 </div>
 
 <div class="right-top">
-    <a href="/myCalendar/viewTeamEvent" class="right-box">TEAM CALENDAR</a>
-    <a href="/myCalendar/viewMyEvent" class="right-box">PERSONAL CALENDAR</a>
-</div>
-
-<div class="right-bottom">
-    <a href="/viewTodo/personal" class="right-box">PERSONAL TODOLIST</a>
-    <a href="/viewTodo/team" class="right-box">TEAM TODOLIST</a>
+    <a href="/myCalendar/viewTeamEvent" class="right-box team">TEAM CALENDAR</a>
+<%--    <a href="/myCalendar/viewMyEvent" class="right-box">PERSONAL CALENDAR</a>--%>
 </div>
 
 <div class="left-top">
@@ -114,30 +72,19 @@
     <a href="/lunchMateBoard" class="right-box">LUNCH MENU</a>
 </div>
 
+<div class="todo-list-contents">
 <%-- 개인 투두리스트 --%>
 <div ng-controller="myPersonalController" class="personal-todolist-Box app-container d-flex align-items-center justify-content-center flex-column">
-    <h3 class="mb-4">Personal Todo List</h3>
-    <div class="input-group mb-3">
-        <input ng-model="yourPersonalTask" type="text" class="form-control" placeholder="Enter a task here">
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="button" ng-click="savePersonalTask()">Save</button>
-        </div>
-    </div>
+    <h3 class="mb-4"> # ${userName}'s Todo</h3>
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Todo item</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
             </tr>
             </thead>
             <tbody>
-
             <tr ng-repeat="personalTask in personalTasks track by $index" ng-class="{'table-success': personalTask.todoStatus === 'true', 'table-light': personalTask.todoStatus === 'false'}">
-                <td>{{$index + 1}}</td>
-                <td ng-click="editPersonalTask(personalTask)">
+                <td id="personal-todo" ng-click="editPersonalTask(personalTask)">
                     <span ng-show="!personalTask.editing" ng-class="{'complete': personalTask.todoStatus === 'true'}">{{personalTask.todoContent}}</span>
                     <input ng-show="personalTask.editing" type="text" ng-model="personalTask.todoContent" ng-blur="updatePersonalTask(personalTask)" ng-keypress="handleKeyPressPersonalTask($event, personalTask)">
                 </td>
@@ -145,37 +92,38 @@
                     <input type="checkbox" ng-model="personalTask.todoStatus" ng-true-value="'true'" ng-false-value="'false'" ng-change="updatePersonalTask(personalTask)">
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm" ng-click="deletePersonalTask($index)">Delete</button>
+                    <button class="btn btn-danger btn-sm delete-btn" ng-click="deletePersonalTask($index)">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
                 </td>
             </tr>
             </tbody>
         </table>
+        <div class="input-group mb-3">
+            <input ng-model="yourPersonalTask" type="text" class="form-control" placeholder="Enter a task here">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" ng-click="savePersonalTask()">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="right-bottom">
+        <a class="toggle-personal toggle-button" style="">PERSONAL TODOLIST</a>
     </div>
 </div>
 
 <%-- 팀 투두리스트 --%>
 <div ng-controller="myTeamController" class="team-todolist-Box app-container d-flex align-items-center justify-content-center flex-column">
-    <h3 class="mb-4">Team Todo List</h3>
-    <div class="input-group mb-3">
-        <input ng-model="yourTeamTask" type="text" class="form-control" placeholder="Enter a task here">
-        <div class="input-group-append">
-            <button class="btn btn-primary" type="button" ng-click="saveTeamTask()">Save</button>
-        </div>
-    </div>
+    <h3 class="mb-4"> # Team ${departmentName} Todo</h3>
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Todo item</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
+
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="teamTask in teamTasks track by $index" ng-class="{'table-success': teamTask.teamTodoStatus === 'true', 'table-light': teamTask.teamTodoStatus === 'false'}">
-                <td>{{$index + 1}}</td>
-                <td ng-click="editTeamTask(teamTask)">
+                <td  id="team-todo" ng-click="editTeamTask(teamTask)">
                     <span ng-show="!teamTask.editing" ng-class="{'complete': teamTask.teamTodoStatus === 'true'}">{{teamTask.teamTodoContent}}</span>
                     <input ng-show="teamTask.editing" type="text" ng-model="teamTask.teamTodoContent" ng-blur="updateTeamTask(teamTask)" ng-keypress="handleKeyPressTeamTask($event, teamTask)">
                 </td>
@@ -183,12 +131,24 @@
                     <input type="checkbox" ng-model="teamTask.teamTodoStatus" ng-true-value="'true'" ng-false-value="'false'" ng-change="updateTeamTask(teamTask)">
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm" ng-click="deleteTeamTask($index)">Delete</button>
+                    <button class="btn btn-danger btn-sm delete-btn" ng-click="deleteTeamTask($index)">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
                 </td>
             </tr>
             </tbody>
         </table>
-    </div>
+        <div class="input-group mb-3">
+            <input ng-model="yourTeamTask" type="text" class="form-control" placeholder="Enter a task here">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" ng-click="saveTeamTask()">Save</button>
+            </div>
+        </div>
+    </div><div class="right-bottom">
+    <a class="toggle-team toggle-button" >TEAM TODOLIST</a>
+</div>
+</div>
+
 </div>
 
 <%-- 로그인 섹션 --%>
@@ -208,16 +168,54 @@
     </c:choose>
 </div>
 
-<%-- 달력 컨테이너 --%>
-<div class="calendar-container">
-    <div class="calendar-content" id="personalCalendar">
+<%-- 달력 컨테이너 jsp include--%>
+<div class="calendar-at-home">
+    <div class="calendar-at-modal" id="personalCalendar">
+        <%@page import="java.util.List"%>
         <%@ include file="./schedule/myCalendar.jsp" %>
-        <button class="toggle-btn" id="toggleBtn"><i class="fas fa-chevron-up"></i></button>
+        <button class="toggle-btn" id="perToggleBtn"><i class="fas fa-chevron-up"></i></button>
     </div>
-    <div class="calendar-icon" id="calendarIcon">
+    <div class="calendar-icon" id="perCalendarIcon">
+        MY
         <i class="fas fa-calendar-alt"></i>
     </div>
 </div>
+
+<%-- 팀 달력 컨테이너 jsp include--%>
+<div class="calendar-at-home">
+    <div class="calendar-at-modal" id="teamCalendar">
+        <%@page import="java.util.List"%>
+        <%@ include file="./schedule/teamCalendar.jsp" %>
+        <button class="toggle-btn" id="teamToggleBtn"><i class="fas fa-chevron-up"></i></button>
+    </div>
+    <div class="calendar-icon" id="teamCalendarIcon">
+        TEAM
+        <i class="fas fa-calendar-alt"></i>
+    </div>
+</div>
+
+<%-- 모달 영역: 로그인 필요 --%>
+<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">로그인이 필요합니다</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                로그인 후 이용해 주세요.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="location.href='/login'">로그인</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
@@ -279,7 +277,7 @@
                 initPersonal();
             };
         };
-            //수정 상태로 전환하는 함수
+        //수정 상태로 전환하는 함수
         $scope.editPersonalTask = function(personalTask) {
             personalTask.editing = true;
         };
@@ -319,6 +317,7 @@
                 });
         };
     }]);
+
 
     app.controller('myTeamController', ['$scope', '$http', function($scope, $http) {
         $scope.teamTasks = [];
@@ -423,18 +422,32 @@
         };
     }]);
 
-    // 팀 투두리스트 함수 끝
-    $(document).ready(function() {
-        $('#toggleBtn').click(function() {
-            $('#personalCalendar').toggleClass('minimized');
-            $('#calendarIcon').toggle();
-        });
+    // $(document).ready(function() {
+    //         // 개인 달력 토글 버튼 클릭 시
+    //         $('#perToggleBtn').click(function() {
+    //             $('#personalCalendar').toggleClass('minimized');
+    //             if ($('#personalCalendar').hasClass('minimized')) {
+    //                 $('#teamCalendarIcon').show();
+    //                 $('#teamCalendar').hide(); // 팀 달력 감추기
+    //             } else {
+    //                 $('#teamCalendarIcon').hide();
+    //                 $('#teamCalendar').show(); // 팀 달력 표시
+    //             }
+    //         });
+    //
+    //         // 팀 달력 토글 버튼 클릭 시
+    //         $('#teamToggleBtn').click(function() {
+    //             $('#teamCalendar').toggleClass('minimized');
+    //             if ($('#teamCalendar').hasClass('minimized')) {
+    //                 $('#perCalendarIcon').show();
+    //                 $('#personalCalendar').hide(); // 개인 달력 감추기
+    //             } else {
+    //                 $('#perCalendarIcon').hide();
+    //                 $('#personalCalendar').show(); // 개인 달력 표시
+    //             }
+    //         });
+    //     });
 
-        $('#calendarIcon').click(function() {
-            $('#personalCalendar').toggleClass('minimized');
-            $('#calendarIcon').toggle();
-        });
-    });
 
     function updateClock() {
         var now = new Date();

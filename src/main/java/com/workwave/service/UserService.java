@@ -161,4 +161,8 @@ public class UserService {
         return  foundMember;
     }
 
+    // ⎏ - 윤종 추가
+    public String findOneDepartmentName(String departmentId) {
+       return usermapper.findOneDepartmentName(departmentId);
+    }
 }/* endUserService */

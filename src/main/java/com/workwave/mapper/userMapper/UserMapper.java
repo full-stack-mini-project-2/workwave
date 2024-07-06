@@ -32,4 +32,7 @@ public interface UserMapper {
     //유저이름 조회하기
     String findUserName (String userId);
 
+    //⎏ 윤종 추가
+    //부서 이름 하나 조회하기
+    String findOneDepartmentName(String departmentId);
 }

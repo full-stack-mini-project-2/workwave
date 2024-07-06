@@ -216,6 +216,11 @@ public class CalendarService {
         return calendarMapper.getMyAllTeamCalendarEvents(departmentId);
     }
 
+    //팀캘린더 조회하기
+    public Integer getTeamId(String departmentId) {
+        return calendarMapper.findMyTeamCalendarId(departmentId);
+    }
+
 
     // 사용자의 부서 ID를 이용해 해당 부서의 특정 연도 및 월의 팀 캘린더 일정 목록을 조회함
 //    public String getDepartmentIdByUserId(String userId) {

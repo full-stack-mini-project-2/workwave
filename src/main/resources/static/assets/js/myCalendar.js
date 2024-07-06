@@ -213,7 +213,8 @@ document.addEventListener('DOMContentLoaded', function () {
             saveChangesButton.style.display = 'block';
         };
 
-// Save edited event
+
+        // 수정사항 저장하기
         saveChangesButton.onclick = function () {
             const updatedTitle = document.getElementById('edit-title').value;
             const updatedDate = document.getElementById('edit-date').value;
@@ -249,12 +250,12 @@ document.addEventListener('DOMContentLoaded', function () {
                             modal.style.display = 'none';
                             renderCalendar();
                         } else {
-                            alert('Error saving event: ' + data.message);
+                            alert('저장 에러' + data.message);
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        alert('Error saving event');
+                        alert('로그인이 필요합니다 !');
                     });
             } else {
                 alert('제목과 날짜를 입력하세요.');
@@ -299,12 +300,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     renderCalendar(myCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
                     document.getElementById('addEventModal').style.display = 'none';
                 } else {
-                    alert('Error saving event: ' + data.message);
+                    alert('로그인이 필요합니다 !' + data.message);
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                alert('Error saving event');
+                console.error('로그인이 필요합니다.:', error);
+                alert('로그인이 필요합니다 ! ');
             });
     });
     renderCalendar();

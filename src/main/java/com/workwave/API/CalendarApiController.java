@@ -181,6 +181,7 @@ public class CalendarApiController {
         }
         // 사용자의 부서 ID를 이용해 해당 부서의 특정 연도 및 월의 팀 캘린더 일정 목록을 조회함
         String departmentId = LoginUtil.getLoggedInDepartmentId(session);
+
         log.info("부서아이디 조회해봅시다 api 확인 ~ : {}", departmentId);
         try {
 
@@ -249,13 +250,14 @@ public class CalendarApiController {
     public ResponseEntity<Map<String, Object>> editTeamEvent(@RequestBody AllMyTeamCalendarEventDto teamCalendarEventDto, HttpSession session) {
         String userId = LoginUtil.getLoggedInUserAccount(session);
         String userName = LoginUtil.getLoggedInUser(session).getNickName();
+        String departmentId = LoginUtil.getLoggedInDepartmentId(session);
+        Integer teamCalendarId = calendarService.getTeamId(departmentId);
         if (userId == null) {
             return ResponseEntity.status(401).body(Map.of("message", "User is not logged in"));
         }
         try {
-            // Ensure calEventUpdateAt is not null before parsing
             if (teamCalendarEventDto.getCalEventUpdateAt() == null) {
-                LocalDateTime updatedAt = LocalDateTime.now(); // Or any default value you prefer
+                LocalDateTime updatedAt = LocalDateTime.now();
                 teamCalendarEventDto.setCalEventUpdateAt(updatedAt);
             } else {
                 LocalDateTime updatedAt = LocalDateTime.parse(teamCalendarEventDto.getCalEventUpdateAt().toString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
@@ -263,6 +265,7 @@ public class CalendarApiController {
             }
             teamCalendarEventDto.setUserId(userId);
             teamCalendarEventDto.setUpdateBy(userName);
+            teamCalendarEventDto.setTeamCalendarId(teamCalendarId);
 
             // 팀 캘린더의 이벤트 업데이트 시도
             boolean success = calendarService.updateTeamCalEvent(teamCalendarEventDto);

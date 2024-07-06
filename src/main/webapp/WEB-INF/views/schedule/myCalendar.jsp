@@ -5,16 +5,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Calendar</title>
-  <%--  css--%>
-  <%--  <link rel="stylesheet" href="<c:url value='/assets/css/calendar.css' />">--%>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-  <%--  http://localhost:8181/assets/css/main.css--%>
-<%--  <link rel="stylesheet" href="<c:url value='../assets/css/main.css' />">--%>
-  <!-- JavaScript 파일 포함 -->
-  <%--  <script type="module" src="<c:url value='/assets/js/myCalendar.js' />' defer></script>--%>
-<%--  <%@ include file="../include/header.jsp" %>--%>
-  <style>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+  <style>
     .calendar {
       width: 100%;
       border-collapse: collapse;
@@ -22,22 +16,91 @@
     }
 
     #calendar {
-      height: 550px;
+      height: 500px;
       width: 800px;
       border-radius: 7px;
-      background-color: ghostwhite;
+      overflow: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .calendar-container {
+      border-radius: 10px;
+      height: 560px; /* Set the desired height */
+      border: 1px solid black; /* Optional: Border for visualization */
+      padding: 10px;
+      max-width: 800px; /* Ensure the calendar is responsive up to a maximum width */
+      background: rgba(242, 239, 245, 0.92);
+    }
+
+    #current-month {
+      width: 270px;
+      display: inline-block;
+      margin-left: 100px;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .calendar-header h3 {
+      margin: 0;
+    }
+
+    .calendar-header i {
+      cursor: pointer;
+      font-size: 1.5em;
     }
 
     .calendar th, .calendar td {
-      border: 1px solid #ddd;
-      text-align: center;
       width: 14.28%;
-      height: 100px; /* Set a fixed height for the table cells */
       overflow: hidden;
       vertical-align: top;
-      position: relative; /* Ensure positioning context for absolute */
+      position: relative;
     }
 
+    .calendar th {
+      text-align: center;
+      height: 10px;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: black 1px double;
+    }
+
+    .calendar td {
+      padding: 10px;
+      /*border: 1px solid #ddd;*/
+      text-align: justify;
+      width: 90px;
+      height: 60px;
+      overflow-y: auto;
+    }
+
+    .calendar-add-btn {
+      display: block;
+      width: 20px;
+    }
+
+    .calendar-month {
+      margin-left: 140px;
+    }
+
+    .event-container {
+      height: 50px;
+      overflow-y: auto;
+      width: 70px;
+      padding-left: 20px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .event-container::-webkit-scrollbar, #calendar::-webkit-scrollbar {
+      display: none;
+    }
 
     .event {
       margin-top: 5px;
@@ -47,6 +110,8 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      width: 49px;
+      font-size: 14px;
     }
 
     .event-lightsteelblue { background-color: lightsteelblue; }
@@ -70,24 +135,21 @@
     }
 
     .modal-content {
-      background-color: #fefefe;
+      background-color: rgba(254, 254, 254, 0.9);
       margin: 15% auto;
       padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
+      border: 1.5px solid #888;
+      border-radius: 7px; /* Border radius for modal content */
+      width: 300px;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.2); /* Optional: shadow for better visibility */
     }
 
     .close {
       color: #aaa;
-      float: left;
-      font-size: 28px;
+      float: right; /* Change float to right for better alignment */
+      font-size: 13px;
       font-weight: bold;
     }
-
-    .fa-pencil {
-      float: right;
-    }
-
 
     .color-picker {
       display: flex;
@@ -107,60 +169,58 @@
     .color-steelblue { background-color: steelblue; }
     .color-lightyellow { background-color: lightyellow; }
     .color-lightpink { background-color: lightpink; }
-    .calendar th, .calendar td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: center;
-      width: 14.28%; /* Ensure each day cell takes equal width */
-    }
 
-    .calendar-container {
-      margin: 100px auto; /* Adjust margins as per your design */
-      border-radius: 10px;
-      width: 1200px; /* Set the desired width */
-      height: 600px; /* Set the desired height */
-      border: 1px solid black; /* Optional: Border for visualization */
-      padding: 10px;
-      max-width: 800px; /* Ensure the calendar is responsive up to a maximum width */
-    }
-
-    .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .calendar-header h3 {
-      margin: 0;
-    }
-    .calendar-header i {
-      cursor: pointer;
-      font-size: 1.5em;
-    }
     .fa-add {
       float: right;
+      margin-top: 200px;
+      margin-right: -10px;
+      border: none;
+      background: #beb9b9;
+      border-radius: 3px;
     }
 
-    .calendar td {
-      padding: 10px; /* Adjust padding to your preference */
-      border: 1px solid #ddd;
+    .fa-pencil {
+      margin-right: 250px;
+      margin-top: 5px;
+    }
+
+    .fa-caret-right, .fa-caret-left {
+      font-weight: 900;
+      width: 100px;
+    }
+
+    .modal-content input[type="text"],
+    .modal-content input[type="date"] {
+      margin-top: 5px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+    #saveChangesButton {
+      display: none; /* 초기에는 숨김 */
+      float: right;
+      margin-top: -10px;
+      margin-right: -5px;
+      border: none;
+      background: #beb9b9;
+      border-radius: 3px;
+    }
+
+    .user-name {
+      position: absolute;
+      color: gray;
+      bottom: 22px;
+      margin: 4px 10px;
+    }
+
+    #login-required-message {
       text-align: center;
-      width: 14.28%; /* Ensure each day cell takes equal width */
-      max-height: 80px; /* Adjust the max-height as needed */
-      overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+      font-size: 18px;
+      color: red; /* Adjust color as per your design */
+      display: none; /* Initially hide the message */
     }
-
-    .event-container {
-      max-height: 90px; /* Slightly less than the td height to avoid overlap with border */
-      overflow-y: auto; /* Enable vertical scrollbar when content overflows */
-      padding: 2px; /* Optional padding for aesthetics */
-    }
-
-    .
-    .tbody {
-
-    }
-
 
   </style>
 </head>
@@ -171,14 +231,12 @@
 <!-- 이벤트 상세 및 일정 수정 모달 -->
 <div id="eventModal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
-    <%--    수정버튼--%>
-    <i class="fa-solid fa-pencil" style="color: #444444;" id="editEvent"></i>
-    <%--    삭제버튼--%>
+    <span class="close"><i class="fa-solid fa-x"></i></span>
     <i class="fa-regular fa-trash-can" style="color: #929292;" id="deleteEvent"></i>
+    <i class="fa-solid fa-pencil" style="color: #444444;" id="editEvent"></i>
     <ul id="eventDetails">
-      <!-- Event details will be dynamically added here -->
     </ul>
+<%--    수정버튼을 눌러야 버튼이 보여짐--%>
     <button id="saveChangesButton" style="display:none;">Save Changes</button>
   </div>
 </div>
@@ -186,22 +244,22 @@
 <%-- 일정 추가 모달 --%>
 <div id="addEventModal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
-    <button class="fa-add" type="button" id="saveEventButton">추가</button>
-    <h2>일정 추가</h2>
+    <span class="close"><i class="fa-solid fa-x"></i></span>
+    <button class="fa-add" type="button" id="saveEventButton">Add</button>
+    <h2>New Event</h2>
     <form id="addEventForm">
-      <label for="calEventTitle">제목:</label>
+      <label for="calEventTitle">Title</label>
       <input type="text" id="calEventTitle" name="calEventTitle" placeholder="Event"><br>
 
-      <label for="calEventDate">날짜:</label>
+      <label for="calEventDate">Event Date</label>
 
 
       <input type="date" id="calEventDate" name="calEventDate" value="\${fn:substring(new java.text.SimpleDateFormat('yyyy-MM-dd').format(new java.util.Date()), 0, 10)}}"><br>
 
-      <label for="calEventDescription">내용:</label>
+      <label for="calEventDescription">Description</label>
       <input type="text" id="calEventDescription" name="calEventDescription" placeholder="None"><br>
 
-      <label for="calColorIndex">색상:</label>
+      <label for="calColorIndex"></label>
       <div class="color-picker">
         <div class="color-lightsteelblue" data-color-index="1"></div>
         <div class="color-darkslateblue" data-color-index="2"></div>
@@ -218,28 +276,50 @@
 <%--달력 화면--%>
 <div class="calendar-container">
   <div class="calendar-header">
+    <div class="calendar-month">
     <i id="prev-month" class="fa-solid fa-caret-left"></i>
     <h3 id="current-month"></h3>
     <i id="next-month" class="fa-solid fa-caret-right"></i>
+    </div>
+    <div class="calendar-add-btn">
     <i class="fa-regular fa-calendar-plus"></i>
+    </div>
   </div>
-  <div id="calendar"></div>
+  <div id="calendar">
+    <div id="calendar-container-placeholder">
+      <p id="login-required-message">로그인이 필요한 서비스 입니다</p>
+    </div>
+
+  </div>
 </div>
 
 <script>
-  // JSON 형식의 문자열을 자바스크립트 객체로 반환하기
-  const myCalEvents = JSON.parse('<c:out value="${mycalEvents}" escapeXml="false" />'); // 전역변수로 놓고 렌더링
-  console.log("mycalevents", myCalEvents);
 
-  const userId = myCalEvents.length > 0 ? myCalEvents[0].userId : "";
+
+  let myCalEvents = [];
+  let nowUserName = "";
+  let userId ="";
+
+  console.log("개인 정보 전달 로그 ", myCalEvents, nowUserName, userId);
+
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let currentYear = new Date().getFullYear();
   let currentMonth = new Date().getMonth();
 
-  // 초기 데이터 로드
-  fetchEvents(currentYear, currentMonth);
+  // 초기 데이터 로드, 콜백함수로 비동기 렌더링
+  fetchEvents(currentYear, currentMonth, function () {
 
-  function fetchEvents(year, month) {
+    if (myCalEvents.length === 0) {
+      document.getElementById('calendar-container-placeholder').style.display = 'block';
+      document.getElementById('calendar').style.display = 'none';
+      return;
+    } else {
+
+      renderCalendar(myCalEvents, currentYear, currentMonth);
+    }
+  });
+
+  function fetchEvents(year, month, callback) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', `/api/calendar/myEvents?year=\${year}&month=\${month + 1}`, true);
 
@@ -247,6 +327,15 @@
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           const data = JSON.parse(xhr.responseText);
+
+          console.log("맨처음 불러오는 json 달력 data:", data)
+
+          myCalEvents = data;
+          nowUserName = "${userName}";
+          userId = "${userId}";
+
+          callback();
+
           renderCalendar(data, year, month);
         } else {
           console.error('Failed to fetch calendar events:', xhr.status, xhr.statusText);
@@ -266,6 +355,7 @@
 
   //화면에 달력 데이터 렌더링
   function renderCalendar(events, year, month) {
+
     const firstDay = new Date(year, month, 1).getDay();
     const lastDate = new Date(year, month + 1, 0).getDate();
 
@@ -312,7 +402,10 @@
 
   // Current date update function
   function updateCurrentMonth(year, month) {
-    document.getElementById('current-month').textContent = `\${monthNames[month]} \${year}`;
+    const currentMonthElement = document.getElementById('current-month');
+
+    // current-month 요소의 textContent가 비어있는지 확인하여 처리
+    currentMonthElement.textContent = currentMonthElement.textContent ? `\${monthNames[month]} \${year}` : " ";
   }
 
   // Color index to class name mapping
@@ -333,18 +426,32 @@
     }
   }
 
-  // Event Modal 닫기 로직 수정
+  // Event Modal 닫기
   document.addEventListener('click', function (event) {
     const modal = document.getElementById('eventModal');
-    if (event.target === modal) {
+    const closeButton = modal.querySelector('.close');
+    if (event.target === modal || event.target === closeButton) {
       modal.style.display = 'none';
     }
   });
 
-  // 일정 추가 모달 (addEventModal) 개선
+  // 일정 추가 모달 열기
   document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
     const addEventModal = document.getElementById('addEventModal');
     addEventModal.style.display = 'block';
+
+    // 초기화 로직 추가 (모달이 열릴 때 입력 필드 초기화)
+    document.getElementById('calEventTitle').value = '';
+    document.getElementById('calEventDate').value = '';
+    document.getElementById('calEventDescription').value = '';
+    document.getElementById('calColorIndex').value = '';
+
+    // 색상 선택 기능
+    document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
+      colorDiv.addEventListener('click', function () {
+        document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+      });
+    });
 
     // 닫기 버튼 클릭 시 모달 닫기
     const closeBtn = addEventModal.querySelector('.close');
@@ -352,26 +459,25 @@
       addEventModal.style.display = 'none';
     };
 
-    // 초기화 로직 추가 (모달이 열릴 때 입력 필드 초기화)
-    document.getElementById('calEventTitle').value = '';
-    document.getElementById('calEventDate').value = '';
-    document.getElementById('calEventDescription').value = '';
-    document.getElementById('calColorIndex').value = '';
-  });
-
-
-  // 일정 추가 모달 열기
-  document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
-    const addEventModal = document.getElementById('addEventModal');
-    addEventModal.style.display = 'block';
-
-    // 원하는 형광 색상 선택
-    document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
-      colorDiv.addEventListener('click', function () {
-        document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
-      });
+    // 모달 바깥을 클릭하여도 닫히도록 설정
+    addEventModal.addEventListener('click', function (event) {
+      if (event.target === addEventModal || event.target.closest('.close')) {
+        addEventModal.style.display = 'none';
+      }
     });
   });
+
+  // 색상 미리보기 업데이트 함수
+  function updateColorPreview(index) {
+    const colorDivs = document.querySelectorAll('.color-picker div');
+    colorDivs.forEach(function (colorDiv) {
+      colorDiv.classList.remove('selected');
+      if (colorDiv.getAttribute('data-color-index') === index) {
+        colorDiv.classList.add('selected');
+      }
+    });
+  }
+
 
   // 이벤트 상세보기
   function openModal(eventId) {
@@ -386,10 +492,10 @@
 
 
     eventDetails.innerHTML = `
-        <li><strong>제목:</strong> \${selectedEvent.calEventTitle}</li>
-        <li><strong>이벤트 내용:</strong> \${selectedEvent.calEventDescription}</li>
-        <li><strong>이벤트 날짜:</strong> \${selectedEvent.calEventDate}</li>
-        <li><strong>작성자:</strong> \${selectedEvent.userName}</li>
+        <li><strong>Title :</strong> \${selectedEvent.calEventTitle}</li>
+        <li><strong>Event description :</strong> \${selectedEvent.calEventDescription}</li>
+        <li><strong>Event Date :</strong> \${selectedEvent.calEventDate}</li>
+        <li><strong>Write By :</strong> \${selectedEvent.userName}</li>
       `;
 
     const editButton = modal.querySelector('#editEvent');
@@ -404,24 +510,29 @@
       descriptionSpan.innerHTML = `<input type="text" id="edit-description" value="\${selectedEvent.calEventDescription}">`;
       dateSpan.innerHTML = `<input type="date" id="edit-date" value="\${selectedEvent.calEventDate}">`;
 
+      // 수정 버튼 클릭 시 Save Changes 버튼 보이기
       saveChangesButton.style.display = 'block';
     };
 
-    // Save edited event
+    // 수정된 일정 저장하기
     saveChangesButton.onclick = function () {
       const updatedTitle = document.getElementById('edit-title').value;
       const updatedDate = document.getElementById('edit-date').value;
       const updatedDescription = document.getElementById('edit-description').value;
 
-      // Validate inputs
+      // 입력값 받기, 수정 없어도 저장 됨
       if (updatedTitle && updatedDate) {
         const updateEvent = {
           calEventId: selectedEvent.calEventId,
-          calEventTitle: updatedTitle,
-          calEventDate: updatedDate,
-          calEventDescription: updatedDescription,
+          calEventTitle: updatedTitle || selectedEvent.calEventTitle,
+          calEventDate: updatedDate || selectedEvent.calEventDate,
+          calEventDescription: updatedDescription || selectedEvent.description,
           calColorIndex: selectedEvent.calColorIndex
         };
+
+        //색상 바로 렌더링
+        updateColorPreview();
+
 
         //일정 수정
         fetch('/api/calendar/updateEvent', {
@@ -459,10 +570,14 @@
     // 모달 보이기
     modal.style.display = 'block';
 
+    // 저장 후 Save Changes 버튼 다시 숨기기
+    saveChangesButton.style.display = 'none';
+
     // 모달 외부를 클릭하면 닫기
     window.onclick = function (event) {
       if (event.target === modal) {
         modal.style.display = 'none';
+        saveChangesButton.style.display = 'none';
       }
     };
 
@@ -496,9 +611,10 @@
                   console.error('Error:', error);
                   alert('Error deleting event');
                 });
-      }
+        }
     };
   }
+
   // 일정 추가 모달 열기
   document.querySelector('.fa-calendar-plus').addEventListener('click', function () {
     const addEventModal = document.getElementById('addEventModal');
@@ -512,6 +628,7 @@
     document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
       colorDiv.addEventListener('click', function () {
         document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+        updateColorPreview(this.getAttribute('data-color-index')); // Update color preview
       });
     });
 
@@ -536,7 +653,7 @@
       calEventDescription: description,
       calEventCreateAt: new Date().toISOString(),
       colorIndexId: colorIndex,
-      userName: myCalEvents.userName,
+      userName:nowUserName,
     };
 
     // AJAX 요청으로 이벤트 저장
@@ -575,7 +692,7 @@
       } else {
         currentMonth--;
       }
-      fetchEvents(currentYear, currentMonth);
+      fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
     });
 
     //다음달로 넘어가기
@@ -586,14 +703,15 @@
       } else {
         currentMonth++;
       }
-      fetchEvents(currentYear, currentMonth);
+      fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
     });
-    renderCalendar();
+    fetchEvents(currentYear, currentMonth, () => renderCalendar(myCalEvents, currentYear, currentMonth));
   });
 
 </script>
 
 <%--현재 날짜 --%>
-<div>Formatted Date: <span id="formattedDate"><c:out value="${formattedDate}" /></span></div>
+<%--<div>Formatted Date: <span id="formattedDate"><c:out value="${formattedDate}" /></span></div>--%>
+<div class="user-name"># <span ><c:out value="${userName}" /></span>'s personal calendar</div>
 </body>
 </html>
