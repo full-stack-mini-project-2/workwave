@@ -3,6 +3,7 @@ package com.workwave.service.lunchService;
 import com.workwave.entity.LunchMateBoard;
 import com.workwave.mapper.LunchMateBoardMapper;
 import com.workwave.repository.LunchMateBoardRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,10 +12,11 @@ import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class LunchMateBoardService {
 
-    private final LunchMateBoardMapper lunchMateBoardMapper;
-    private LunchMateBoardRepository lunchMateBoardRepository;
+    private  LunchMateBoardMapper lunchMateBoardMapper;
+//    private LunchMateBoardRepository lunchMateBoardRepository;
 
     @Autowired
     public LunchMateBoardService(LunchMateBoardMapper lunchMateBoardMapper) {
@@ -48,14 +50,25 @@ public class LunchMateBoardService {
         return lunchMateBoardMapper.delete(lunchPostNumber);
     }
 
+
     @Transactional
-    public void incrementProgressStatus(int postId) {
-        LunchMateBoard board = lunchMateBoardRepository.findByLunchPostNumber(postId);
+    public void incrementProgressStatus(int lunchPostNumber) {
+        System.out.println("🍕🍕🍕🍕🍕🍕🍕");
+        System.out.println("🍔lunchPostNumber = " + lunchPostNumber);
+        LunchMateBoard board = lunchMateBoardMapper.findOne(lunchPostNumber);
+        System.out.println("🍕board = " + board);
+
         if (board != null) {
-            board.setProgressStatus(board.getProgressStatus() + 1);
-            lunchMateBoardRepository.save(board);
+            int num = board.getProgressStatus();
+            num += 1;
+
+            System.out.println("num = " + num);
+            board.setProgressStatus(num);
+            System.out.println("board = " + board);
+
+            lunchMateBoardMapper.incrementProgressStatus(lunchPostNumber);
         } else {
-            throw new IllegalArgumentException("Invalid board Id:" + postId);
+            throw new IllegalArgumentException("Invalid board Id:" + lunchPostNumber);
         }
     }
 }
