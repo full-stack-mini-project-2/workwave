@@ -169,30 +169,30 @@
 </div>
 
 <%-- 달력 컨테이너 jsp include--%>
-<div class="calendar-at-home">
-    <div class="calendar-at-modal" id="personalCalendar">
-        <%@page import="java.util.List"%>
-        <%@ include file="./schedule/myCalendar.jsp" %>
-        <button class="toggle-btn" id="perToggleBtn"><i class="fas fa-chevron-up"></i></button>
-    </div>
-    <div class="calendar-icon" id="perCalendarIcon">
-        MY
-        <i class="fas fa-calendar-alt"></i>
-    </div>
-</div>
-
-<%-- 팀 달력 컨테이너 jsp include--%>
 <%--<div class="calendar-at-home">--%>
-<%--    <div class="calendar-at-modal" id="teamCalendar">--%>
+<%--    <div class="calendar-at-modal" id="personalCalendar">--%>
 <%--        <%@page import="java.util.List"%>--%>
-<%--        <%@ include file="./schedule/teamCalendar.jsp" %>--%>
-<%--        <button class="toggle-btn" id="teamToggleBtn"><i class="fas fa-chevron-up"></i></button>--%>
+<%--        <%@ include file="./schedule/myCalendar.jsp" %>--%>
+<%--        <button class="toggle-btn" id="perToggleBtn"><i class="fas fa-chevron-up"></i></button>--%>
 <%--    </div>--%>
-<%--    <div class="calendar-icon" id="teamCalendarIcon">--%>
-<%--        TEAM--%>
+<%--    <div class="calendar-icon" id="perCalendarIcon">--%>
+<%--        MY--%>
 <%--        <i class="fas fa-calendar-alt"></i>--%>
 <%--    </div>--%>
 <%--</div>--%>
+
+<%-- 팀 달력 컨테이너 jsp include--%>
+<div class="calendar-at-home">
+    <div class="calendar-at-modal" id="teamCalendar">
+        <%@page import="java.util.List"%>
+        <%@ include file="./schedule/teamCalendar.jsp" %>
+        <button class="toggle-btn" id="teamToggleBtn"><i class="fas fa-chevron-up"></i></button>
+    </div>
+    <div class="calendar-icon" id="teamCalendarIcon">
+        TEAM
+        <i class="fas fa-calendar-alt"></i>
+    </div>
+</div>
 
 <%-- 모달 영역: 로그인 필요 --%>
 <div id="loginModal" class="modal fade" tagit adbindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
