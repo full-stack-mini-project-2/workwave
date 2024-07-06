@@ -12,16 +12,9 @@ uri="http://java.sun.com/jsp/jstl/core" %>
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
     />
     <title>길찾기 결과 지도에 표출하기</title>
-    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/traffic/traffic.css" />
-    <link
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
-    />
+
     <script
       defer
       type="text/javascript"

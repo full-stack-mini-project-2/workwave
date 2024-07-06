@@ -1,14 +1,17 @@
+
+
 .container {
-  width: 60%;
+  width: 80%; /* 전체 너비를 사용 */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center; /* 위쪽 정렬 유지 */
   margin-top: 20px;
-  margin: 10px;
+  margin: 0 auto;
 }
 
 .map-container {
-  width: 80%;
+  width: 50%;
+  max-width: 80%; /* 최대 너비 설정 */
   height: 610px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -16,98 +19,79 @@
 }
 
 .form-container {
-  width: 80%;
-  height: 610px; /* map-container와 같은 높이로 설정 */
+  width: 50%;
+  max-width: 80%; /* 최대 너비 설정 */
+  height: 610px;
   border: 1px solid #ccc;
   border-radius: 5px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column; /* 세로로 요소 배치 */
+  justify-content: center; /* 수직 가운데 정렬 */
+  align-items: center; /* 수평 가운데 정렬 */
   padding: 20px;
   box-sizing: border-box;
+  margin-right: 10px; /* 우측 마진 설정 */
 }
 
 .info-box {
-  width: 100%;
+  width: 100%; /* 내부 요소 너비 설정 */
 }
 
-#weather-from {
+.info-box form {
+  width: 100%; /* 폼 너비 100% 설정 */
+}
+
+#informationMetro {
   display: flex;
-  justify-content: center;
-  width: 70%;
-  margin-top: 100px;
-  margin-bottom: 25px;
-  font-size: 20px;
+  justify-content: space-around;
+  align-items: center;
+  gap: 8px;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  font-size: 15px;
+  width: 100%; /* 내부 요소 너비 설정 */
 }
 
-.info-container {
-  width: 20%;
+.station-name {
+  position: relative;
+  width: 100%; /* 내부 요소 너비 설정 */
+  height: 2px;
+  margin-top: 25px;
+  font-size: 10px;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
-
-.info-container form {
-  background-color: #f0f0f0;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.info-container h1 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-
-.info-container label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.info-container select {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
-}
-
-#total-stations,
-#total-MetroTime {
-  font-weight: bold;
-}
-
-#infomationMetro {
-  margin-top: 10px;
-  padding-top: 10px;
-}
-
 
 .section-header {
-  width: 60%;
+  width: 100%; /* 전체 너비 설정 */
+  max-width: 80%; /* 최대 너비 설정 */
   border-bottom: 1px solid gray;
   padding-bottom: 5px;
   font-family: 'NEXON Lv2 Gothic OTF', 'Roboto', sans-serif;
   color: #181A33;
-  font-size: 20px; /* 폰트 크기를 줄입니다 */
-  text-align: left;
+  font-size: 20px;
+  text-align: center; /* 가운데 정렬 설정 */
   background-color: #f0f0f0;
   border-radius: 8px;
-  padding: 10px; /* 패딩을 줄입니다 */
-  margin: 10px 0; /* 마진을 줄입니다 */
+  padding: 10px;
+  margin: 10px 0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid #ddd;
   position: relative;
 }
 
 h1.section-header i.far.fa-clipboard {
-  position: absolute; /* 아이콘 위치를 절대값으로 설정 */
-  top: 50%; /* 아이콘을 수직 중앙에 맞춤 */
-  right: 15px; /* 아이콘을 오른쪽에 배치 */
-  transform: translateY(-50%); /* 수직 중앙 정렬을 위해 변환 */
-  font-size: 20px; /* 아이콘 크기 */
-  color: #000; /* 아이콘 색상 */
-  margin-left: -500px;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #000;
 }
 
 h1.section-header a {
-  color: inherit; /* 링크의 기본 색상 유지 */
-  text-decoration: none; /* 링크의 밑줄 제거 */
+  color: inherit;
+  text-decoration: none;
 }
 
 .weather-box {
@@ -128,7 +112,6 @@ h1.section-header a {
   font-size: 20px;
 }
 
-
 #arrival-info {
   margin-bottom: 15px;
 }
@@ -148,16 +131,6 @@ h1.section-header a {
   padding-top: 30px;
   padding-bottom: 15px;
   font-size: 15px;
-}
-
-.station-name {
-  position: relative;
-  width: 100%;
-  height: 2px;
-  margin-top: 25px;
-  font-size: 10px;
-  font-family: Arial, sans-serif;
-  text-align: center;
 }
 
 .circle {
