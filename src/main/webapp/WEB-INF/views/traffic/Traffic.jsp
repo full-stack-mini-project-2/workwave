@@ -46,60 +46,62 @@ uri="http://java.sun.com/jsp/jstl/core" %>
   </head>
   <body>
     <form id="weather-from">
-      <div id="weather"></div>
+      <div id="weather" class="weather-box"></div>
     </form>
 
     <div class="container">
       <div class="map-container" id="map"></div>
       <div class="form-container">
-        <form action="/traffic-Info" method="POST">
-          <h1 class="section-header">지하철<span id="before-find">
-              <a href="http://localhost:8383/traffic-myInfo"><i class="far fa-clipboard"></i></a>
+        <div class="info-box">
+          <form action="/traffic-Info" method="POST">
+            <h1 class="section-header">경로설정<span id="before-find">
+                <a href="http://localhost:8383/traffic-myInfo"><i class="far fa-clipboard"></i></a>
+              </span>
+            </h1>
+
+            <label for="departure-station">출발역</label>
+            <select id="departure-station">
+              <option disabled selected>출발역 선택</option>
+              <c:forEach var="station" items="${stationInfo}">
+                <option
+                  data-latitude="${station.latitude}"
+                  data-line="${station.line}"
+                  data-station="${station}"
+                  data-longitude="${station.longitude}"
+                  value="${station.stationName}"
+                >
+                  ${station.line}호선 / ${station.stationName}
+                </option>
+              </c:forEach>
+            </select>
+            <br />
+            <label for="arrival-station">도착역</label>
+            <select id="arrival-station">
+              <option disabled selected>도착역 선택</option>
+              <c:forEach var="station" items="${stationInfo}">
+                <option
+                  data-latitude="${station.latitude}"
+                  data-line="${station.line}"
+                  data-longitude="${station.longitude}"
+                  value="${station.stationName}"
+                >
+                  ${station.line}호선 / ${station.stationName}
+                </option>
+              </c:forEach>
+            </select>
+
+            <div>
+              <label>총 역수: <span id="total-stations"></span>역</label>
+            </div>
+            <span>
+              <label>총 소요시간: <span id="total-MetroTime"></span>분</label>
             </span>
-          </h1>
 
-          <label for="departure-station">출발역</label>
-          <select id="departure-station">
-            <option disabled selected>출발역 선택</option>
-            <c:forEach var="station" items="${stationInfo}">
-              <option
-                data-latitude="${station.latitude}"
-                data-line="${station.line}"
-                data-station="${station}"
-                data-longitude="${station.longitude}"
-                value="${station.stationName}"
-              >
-                ${station.line}호선 / ${station.stationName}
-              </option>
-            </c:forEach>
-          </select>
-          <br />
-          <label for="arrival-station">도착역</label>
-          <select id="arrival-station">
-            <option disabled selected>도착역 선택</option>
-            <c:forEach var="station" items="${stationInfo}">
-              <option
-                data-latitude="${station.latitude}"
-                data-line="${station.line}"
-                data-longitude="${station.longitude}"
-                value="${station.stationName}"
-              >
-                ${station.line}호선 / ${station.stationName}
-              </option>
-            </c:forEach>
-          </select>
-
-          <div>
-            <label>총 역수: <span id="total-stations"></span>역</label>
-          </div>
-          <span>
-            <label>총 소요시간: <span id="total-MetroTime"></span>분</label>
-          </span>
-
-          <h1 class="section-header">도착 예정 정보</h1>
-          <div id="arrival-info" class="subway-map"></div>
-          <div id="informationMetro" class="station-name"></div>
-        </form>
+            <h1 class="section-header">도착 예정 정보</h1>
+            <div id="arrival-info" class="subway-map"></div>
+            <div id="informationMetro" class="station-name"></div>
+          </form>
+        </div>
       </div>
     </div>
 
