@@ -101,7 +101,7 @@ public class BoardController {
             if (referer != null && referer.contains("/list")) {
                 request.getSession().setAttribute("referer", referer);
             }
-
+        
             log.info("referer: {}", referer);
             log.info("account: {}", account);
 
