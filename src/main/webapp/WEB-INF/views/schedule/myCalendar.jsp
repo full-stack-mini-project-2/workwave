@@ -215,6 +215,13 @@
       margin: 4px 10px;
     }
 
+    #login-required-message {
+      text-align: center;
+      font-size: 18px;
+      color: red; /* Adjust color as per your design */
+      display: none; /* Initially hide the message */
+    }
+
   </style>
 </head>
 <body>
@@ -278,7 +285,12 @@
     <i class="fa-regular fa-calendar-plus"></i>
     </div>
   </div>
-  <div id="calendar"></div>
+  <div id="calendar">
+    <div id="calendar-container-placeholder">
+      <p id="login-required-message">로그인이 필요한 서비스 입니다</p>
+    </div>
+
+  </div>
 </div>
 
 <script>
@@ -296,7 +308,15 @@
 
   // 초기 데이터 로드, 콜백함수로 비동기 렌더링
   fetchEvents(currentYear, currentMonth, function () {
-    renderCalendar(myCalEvents, currentYear, currentMonth);
+
+    if (myCalEvents.length === 0) {
+      document.getElementById('calendar-container-placeholder').style.display = 'block';
+      document.getElementById('calendar').style.display = 'none';
+      return;
+    } else {
+
+      renderCalendar(myCalEvents, currentYear, currentMonth);
+    }
   });
 
   function fetchEvents(year, month, callback) {
@@ -335,6 +355,7 @@
 
   //화면에 달력 데이터 렌더링
   function renderCalendar(events, year, month) {
+
     const firstDay = new Date(year, month, 1).getDay();
     const lastDate = new Date(year, month + 1, 0).getDate();
 
@@ -381,7 +402,10 @@
 
   // Current date update function
   function updateCurrentMonth(year, month) {
-    document.getElementById('current-month').textContent = `\${monthNames[month]} \${year}`;
+    const currentMonthElement = document.getElementById('current-month');
+
+    // current-month 요소의 textContent가 비어있는지 확인하여 처리
+    currentMonthElement.textContent = currentMonthElement.textContent ? `\${monthNames[month]} \${year}` : " ";
   }
 
   // Color index to class name mapping

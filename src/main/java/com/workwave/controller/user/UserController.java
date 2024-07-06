@@ -45,9 +45,9 @@ public class UserController {
 
     public String list(Model model, HttpSession session) {
         String userId = LoginUtil.getLoggedInUserAccount(session);
-        String userName = LoginUtil.getLoggedInUser(session).getNickName();
-        String departmentId = LoginUtil.getLoggedInDepartmentId(session);
-        String departmentName = userService.findOneDepartmentName(departmentId);
+//        String userName = LoginUtil.getLoggedInUser(session).getNickName();
+//        String departmentId = LoginUtil.getLoggedInDepartmentId(session);
+//        String departmentName = userService.findOneDepartmentName(departmentId);
         if (userId == null) {
             // 세션에 로그인 정보가 없을 경우, 로그인 페이지로 리다이렉트 또는 홈 화면 표시
             log.info("userId 가 없습니다. {}", session.getAttribute("userId"));
@@ -58,6 +58,10 @@ public class UserController {
             return "indexHome";  // indexHome.jsp에서 로그인을 유도하는 기능
         }
         try {
+            String userName = LoginUtil.getLoggedInUser(session).getNickName();
+            String departmentId = LoginUtil.getLoggedInDepartmentId(session);
+            String departmentName = userService.findOneDepartmentName(departmentId);
+
             model.addAttribute("userId", userId);
             model.addAttribute("departmentId", departmentId);
             model.addAttribute("departmentName", departmentName);

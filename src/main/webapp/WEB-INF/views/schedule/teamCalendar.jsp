@@ -523,12 +523,12 @@
                             //입력한 일정으로 달력화면 보여주기
                             renderCalendar(myTeamCalEvents, new Date(updatedDate).getFullYear(), new Date(updatedDate).getMonth());
                         } else {
-                            alert('Error saving event: ' + data.message);
+                            alert('로그인이 필요합니다. ' + data.message);
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        alert('Error saving event');
+                        alert('로그인이 필요합니다.');
                     });
             }
             else {
@@ -647,12 +647,12 @@
                     renderCalendar(myTeamCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
                     document.getElementById('addEventModal').style.display = 'none';
                 } else {
-                    alert('Error saving event: ' + data.message);
+                    alert('로그인이 필요합니다. ' + data.message);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Error saving event');
+                alert('로그인이 필요합니다.');
             });
     });
 
