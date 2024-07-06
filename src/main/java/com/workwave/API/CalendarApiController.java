@@ -29,6 +29,9 @@ public class CalendarApiController {
 
     private final CalendarService calendarService;
 
+    //팀, 개인 함께 조회
+
+
     // 게인 관련 메서드 ==================================================================
 
     // 개인의 캘린더 목록 전체 조회하기 (세션 사용)
