@@ -199,12 +199,6 @@
 
             <!-- JavaScript 코드 -->
             <script>
-                //선언부
-                const BASE_URL = "http://localhost:8383/lunchMateBoard/list";
-
-
-                //구현부 
-
                 // 모달 띄우기 함수
                 function openModal() {
                     var modal = document.getElementById('myModal');
@@ -215,8 +209,6 @@
                 function closeModal() {
                     var modal = document.getElementById('myModal');
                     modal.style.display = 'none';
-
-
                 }
 
                 // 모달 외부 클릭 시 닫기
@@ -227,129 +219,48 @@
                     }
                 }
 
-
-                // This line is incorrect. The correct way to handle click events for elements with the class 'btnJoin' is shown below.
+                // 클릭 이벤트 리스너 등록
                 document.querySelectorAll('.btnJoin').forEach(button => {
                     button.addEventListener('click', async (e) => {
                         e.preventDefault();
 
+                        const boardId = button.getAttribute('data-id');
 
-                        const boardId = button.getAttribute('data-id')
-                        console.log('👽 ' + boardId);
-                        // Add your event handling logic here
-                        //  await clickListSet(boardId);
-
-
-                        //합친 거 아래
-                        const postId = boardId;
-
-                        // 배열 예시
-
-
-                        const data = `${boards}`
-
-                        // 정규표현식을 사용하여 LunchBoardFindAllDto(...) 부분을 추출
-                        const regex = /LunchBoardFindAllDto\(([^)]+)\)/g;
-                        const matches = data.match(regex);
-
-                        // 추출된 데이터를 객체로 변환
-                        const boards = matches.map(match => {
-                            const obj = {};
-                            match.replace(/(\w+)=(\w+)/g, (match, key, value) => {
-                                obj[key.trim()] = value.trim();
-                            });
-                            return obj;
-                        });
-
-                        console.log(boards);
-
-                        // postId와 일치하는 lunchPostNumber를 가진 객체 찾기
-                        let selectedBoard = null;
-                        boards.forEach(board => {
-                            if (board.lunchPostNumber.toString() === postId) {
-                                selectedBoard = board;
-                            }
-                        });
-
-                        if (selectedBoard) {
-                            console.log('선택된 객체:', selectedBoard);
-                            // 객체 생성
-
-                            // newBoard 객체를 JSON 형식으로 변환
-                            const boardJson = JSON.stringify(selectedBoard);
-
-                            // POST 요청 보내기
-                            fetch(`${pageContext.request.contextPath}/lunchMateBoard/joinLunch`, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: boardJson
+                        // POST 요청 보내기
+                        fetch(`${pageContext.request.contextPath}/lunchMateBoard/joinLunch`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ lunchPostNumber: boardId })
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json(); // JSON으로 파싱
                             })
-                                .then(response => {
-                                    if (!response.ok) {
-                                        throw new Error('Network response was not ok');
+                            .then(data => {
+                                console.log('Response:', data);
+                                if (data.status === 'success') {
+                                    const updatedBoard = data.board;
+                                    // 예시: 업데이트된 데이터를 활용하여 웹 페이지에 렌더링
+                                    const boardElement = document.querySelector(`tr[data-post-id="${updatedBoard.lunchPostNumber}"]`);
+                                    if (boardElement) {
+                                        boardElement.querySelector('td:nth-child(7)').textContent = updatedBoard.progressStatus;
                                     }
-                                    return response.json();
-                                })
-                                // .then(data => {
-                                //     // 요청 성공 시 처리할 로직
-                                //     console.log('Response:', data);
-                                //     alert('참가 신청이 완료되었습니다.');
-                                //     window.location.href = '/'; // 예시: 루트 페이지로 이동
-                                // })
-                                // .catch(error => {
-                                //     // 요청 실패 시 처리할 로직
-                                //     console.error('Error:', error);
-                                //     alert('참가 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
-                                // });
-                            // 여기에서 선택된 객체를 사용하여 추가 작업을 수행할 수 있습니다.
-                        } else {
-                            console.log('일치하는 lunchPostNumber를 가진 객체를 찾을 수 없습니다.');
-                        }
-
-                        // 이후 필요한 로직은 여기에 추가합니다.
-
-
-
+                                    alert('Successfully joined lunch!');
+                                    location.reload(); // 페이지 새로고침
+                                } else {
+                                    alert('Failed to join lunch: ' + data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('An error occurred while joining lunch. Please try again.');
+                            });
                     });
                 });
-
-
-
-
-
-                // 참가하기 버튼 클릭 이벤트 처리
-                // document.querySelectorAll('.btnJoin').forEach(button => {
-                //     button.addEventListener('click', function (e) {
-                //         e.preventDefault();
-
-                //
-
-                //         // fetch(`http://localhost:8383/lunchMateBoard/joinLunch`, {
-                //         //     method: 'POST',
-                //         //     headers: {
-                //         //         'Content-Type': 'application/json'
-                //         //     },
-                //         //     body: JSON.stringify({})
-                //         // })
-                //         //     .then(response => {
-                //         //         if (response.ok) {
-                //         //             console.log('☘️');
-                //         //             return response.json();
-                //         //         }
-                //         //         throw new Error('서버 응답 오류: ' + response.status);
-                //         //     })
-                //         //     .then(data => {
-                //         //         // 성공적으로 데이터를 받아왔을 때 UI 업데이트
-                //         //         // 예를 들어, 상태 업데이트 등을 처리할 수 있습니다.
-                //         //     })
-                //         //     .catch(error => {
-                //         //         console.error('오류 발생:', error);
-                //         //         alert('서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
-                //         //     });
-                //     });
-                // });
             </script>
         </body>
 

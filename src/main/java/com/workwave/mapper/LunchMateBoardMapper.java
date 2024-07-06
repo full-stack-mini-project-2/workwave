@@ -24,7 +24,7 @@ public interface LunchMateBoardMapper {
     boolean delete(int lunchPostNumber);
 
     // 점심게시판 인원 참가 상태
-    void incrementProgressStatus(int lunchPostNumber);
+    void incrementProgressStatus(String lunchPostNumber);
 
 
     // 조회수 상승 (예제에서는 사용되지 않지만 필요 시 추가)

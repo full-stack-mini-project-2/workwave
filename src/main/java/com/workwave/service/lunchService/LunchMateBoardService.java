@@ -28,6 +28,10 @@ public class LunchMateBoardService {
         return lunchMateBoardMapper.findAll();
     }
 
+    public LunchMateBoard findOne(int LunchPostNumber){
+        return lunchMateBoardMapper.findOne(LunchPostNumber);
+    }
+
 
     // 게시물 등록
     public boolean save(LunchMateBoard lunchMateBoard, String userId) {
@@ -66,7 +70,7 @@ public class LunchMateBoardService {
             board.setProgressStatus(num);
             System.out.println("board = " + board);
 
-            lunchMateBoardMapper.incrementProgressStatus(lunchPostNumber);
+            lunchMateBoardMapper.incrementProgressStatus(String.valueOf(lunchPostNumber));
         } else {
             throw new IllegalArgumentException("Invalid board Id:" + lunchPostNumber);
         }

@@ -239,12 +239,12 @@ public class UserController {
         @PostMapping("/forgotPassword2")
         public String forgotPassword2After(RedirectAttributes ra, Model model){
             System.out.println("👽ra = " + ra);
-            System.out.println("🛠️model = " + model);
+//            System.out.println("🛠️model = " + model);
 
             // 모달창을 띄우기 위해 모달 관련 데이터를 모델에 추가
-            model.addAttribute("showModal", true);
-            model.addAttribute("modalMessage", "Form submitted successfully!");
-
+//            model.addAttribute("showModal", true);
+//            model.addAttribute("modalMessage", "Form submitted successfully!");
+//
         return "/";
         }
 
