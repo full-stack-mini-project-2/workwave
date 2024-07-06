@@ -46,7 +46,7 @@ public class UserService {
         // 형식화된 문자열로 출력
         String formattedDateTime = currentDateTime.format(formatter);
         System.out.println("Current Date and Time: " + formattedDateTime);
-        user.setUserCreateAt(formattedDateTime);
+        user.setUserCreatedAt(formattedDateTime);
 
         String encodedPassword = encoder.encode(dto.getPassword());
         user.setPassword(encodedPassword);

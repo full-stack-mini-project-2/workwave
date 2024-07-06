@@ -31,9 +31,13 @@ public class TrafficController {
 
         String userId = LoginUtil.getLoggedInUser(session).getUserId();
 
-        trafficInfo.setUserId(userId);
+        try {
+            trafficInfo.setUserId(userId);
+            trafficService.save(trafficInfo,session);
+        } catch (Exception e) {
+            return "error/404";
 
-        trafficService.save(trafficInfo,session);
+        }
 
 
         return "traffic/Traffic";
@@ -42,7 +46,17 @@ public class TrafficController {
     @GetMapping("/traffic-myInfo")
     public String findTrafficInfo(Model model, myInfoPage page, HttpSession session, @RequestParam(value = "sort", required = false) String sort) {
 
-        List<totalTrafficInfoDto> totalTraffic = trafficService.findAll(page, session, sort);
+        List<totalTrafficInfoDto> totalTraffic = null;
+        try {
+            totalTraffic = trafficService.findAll(page, session, sort);
+        } catch (Exception e) {
+            boolean loggedIn = LoginUtil.isLoggedIn(session);
+
+            if(!loggedIn){
+                return "redirect:/login";
+            };
+        }
+
         myPageMaker maker = new myPageMaker(page, trafficService.getCount(session));
 
         String userId = LoginUtil.getLoggedInUser(session).getUserId();

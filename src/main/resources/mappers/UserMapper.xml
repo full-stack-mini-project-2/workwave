@@ -10,7 +10,7 @@
         user_email, user_access_level,profile_img,user_created_at,department_id)
         Values
         (#{userId},#{employeeId},#{userPosition},#{password},#{userName},
-        #{userEmail},"USER",#{profileImg},#{userCreateAt},#{departmentId})
+        #{userEmail},"USER",#{profileImg},#{userCreatedAt},#{departmentId})
     </insert>
     <select id="findDepartmentAll" resultType="com.workwave.dto.DepartmentNameDto">
         SELECT * FROM Department;
@@ -20,16 +20,22 @@
 -->
     <select id="findOne" resultType="user">
         SELECT
-        user_id
-        ,employee_id
-        , password
-        , user_name
-        , user_access_level
-        , profile_img
-<!--        부서 찾기 추가 -->
-        , department_id
-        FROM Users
-        WHERE user_id = #{userId}
+        u.user_id
+        ,u.employee_id
+        , u.password
+        , u.user_name
+        ,u.user_position
+        ,u.user_email
+        ,u.user_created_at
+        , u.user_access_level
+        , u.department_id
+        , u.profile_img,
+        u.session_id,
+        u.limit_time,
+        d.department_name
+        FROM Users u
+        inner join Department d on u.department_id=d.department_id
+        WHERE u.user_id = #{userId}
     </select>
 
     <select id="existsById" resultType="boolean">

@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="/assets/css/indexHome.css">
     <link rel="icon" href="/assets/img/workwave_logo.png" />
 
+
+    <script defer type="text/javascript" src="assets/js/traffic/indexWeather.js"></script>
+    <link rel="stylesheet" href="assets/css/traffic/indexWeather.css">
+
+
     <style>
         .wave-background {
             position: fixed;
@@ -38,12 +43,15 @@
               left: 1px;
         }
 
-
     </style>
 </head>
 <body>
 
+
 <div class="wave-background"></div>
+
+
+<div id="index-weather"></div>
 
 
 <div class="clock-container">

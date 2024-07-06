@@ -27,6 +27,7 @@ public class User {
     @Setter
     private String profileImg;
     @Setter
-    private String userCreateAt;
+    private String userCreatedAt;
+    private String departmentName;
 }
 

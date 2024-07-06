@@ -29,7 +29,6 @@ import java.time.LocalDateTime;
 public class LunchMateBoard {
 
 
-
     private int lunchPostNumber; // 게시글 번호 (안되면 빼기)
     private String userId; //유저 아이디
     private String lunchPostTitle; // 글 제목
@@ -38,10 +37,11 @@ public class LunchMateBoard {
     private String lunchLocation; // 식당 위치 (식당명)
     private String lunchMenuName; // 메뉴 이름
     private int lunchAttendees; // 최대 모집인원 수
-    private String progressStatus; // 모집 인원 진행 상황
+    private int progressStatus; // 모집 인원 진행 상황
 
     public LunchBoardFindAllDto toDto() {
         return LunchBoardFindAllDto.builder()
+                .lunchPostNumber(this.lunchPostNumber)
                 .userId(this.userId)
                 .lunchPostTitle(this.lunchPostTitle)
                 .lunchDate(this.lunchDate)
@@ -118,11 +118,11 @@ public class LunchMateBoard {
         this.lunchAttendees = lunchAttendees;
     }
 
-    public String getProgressStatus() {
+    public int getProgressStatus() {
         return progressStatus;
     }
 
-    public void setProgressStatus(String progressStatus) {
+    public void setProgressStatus(int progressStatus) {
         this.progressStatus = progressStatus;
     }
 }

@@ -229,9 +229,23 @@ public class UserController {
     }
 
         @GetMapping("/forgotPassword2")
-        public String forgotpassword2(RedirectAttributes ra){
+        public String forgotPassword2(RedirectAttributes ra){
             // ra 객체를 사용하여 데이터 전달
+            System.out.println("rarara = " + ra); //공백임
+//            ra.addFlashAttribute("resultUser", ra);
+            //일단은 resultUser 데이터가 전달된다.!
             return "/Login/forgotPasswordStep2";
+        }
+        @PostMapping("/forgotPassword2")
+        public String forgotPassword2After(RedirectAttributes ra, Model model){
+            System.out.println("👽ra = " + ra);
+            System.out.println("🛠️model = " + model);
+
+            // 모달창을 띄우기 위해 모달 관련 데이터를 모델에 추가
+            model.addAttribute("showModal", true);
+            model.addAttribute("modalMessage", "Form submitted successfully!");
+
+        return "/";
         }
 
 

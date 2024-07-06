@@ -11,11 +11,18 @@
         (#{userId}, #{arrival}, #{departure}, #{station}, #{needTime} , #{regDateTime})
     </insert>
 
-    <select id="findAll" resultType="com.workwave.dto.traffic.request.totalTrafficInfoDto">
+    <select id="findAll" parameterType="map" resultType="com.workwave.dto.traffic.request.totalTrafficInfoDto">
         SELECT * FROM traffic
-        WHERE user_id=#{userId}
-        ORDER BY regDateTime desc
-        LIMIT #{pageStart} , #{amount}
+        WHERE user_id = #{userId}
+        <choose>
+            <when test="sort == 'departure'">
+                ORDER BY departure ASC
+            </when>
+            <when test="sort == 'regDate'">
+                ORDER BY regDateTime DESC
+            </when>
+        </choose>
+        LIMIT #{pageStart}, #{amount}
     </select>
 
     <select id="count" resultType="int">

@@ -3,6 +3,7 @@ package com.workwave.controller.lunch;
 import com.workwave.common.lunchpage.LunchPage;
 import com.workwave.common.lunchpage.LunchPageMaker;
 import com.workwave.dto.lunchBoardDto.LunchBoardFindAllDto;
+import com.workwave.dto.lunchBoardDto.LunchMemberDto;
 import com.workwave.entity.LunchMateBoard;
 import com.workwave.entity.User;
 import com.workwave.service.lunchService.LunchMateBoardService;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.servlet.http.HttpSession;
@@ -23,7 +25,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/lunchMateBoard")
 public class LunchMateBoardController {
 
-    private final LunchMateBoardService lunchMateBoardService;
+    @Autowired
+    private LunchMateBoardService lunchMateBoardService;
 
 
     @Autowired
@@ -47,6 +50,9 @@ public class LunchMateBoardController {
                 .map(LunchMateBoard::toDto)
                 .collect(Collectors.toList());
 
+        System.out.println("boardDTOs = " + boardDTOs);
+        System.out.println("찍");
+        boardDTOs.forEach(System.out::println);
         model.addAttribute("boards", boardDTOs);
         return "lunch/lunchboard"; // src/main/webapp/WEB-INF/views/lunch/lunchboard.jsp
     }
@@ -76,8 +82,20 @@ public class LunchMateBoardController {
         } else {
             return "redirect:/login"; // 로그인되어 있지 않은 경우 로그인 페이지로 리다이렉트
         }
+    }
 
+    @PostMapping("/joinLunch")
+    public String joinLunch(@RequestBody LunchMemberDto lunchMemberDto) {
+        // boardDto를 이용하여 필요한 비즈니스 로직을 수행합니다
+//
+        System.out.println("lunchMemberDto = " + lunchMemberDto);
 
+        // 예시: 비즈니스 로직 호출
+        // lunchMateBoardService.incrementProgressStatus(boardDto.getPostId());
+
+        // 리디렉션할 URL을 리턴합니다 (예: 루트 경로로 리디렉션)
+        return "redirect:/";
+    }
     }
 
 //    // 글 작성 처리
@@ -107,4 +125,3 @@ public class LunchMateBoardController {
 //        model.addAttribute("board", board);
 //        return "lunch/viewLunchBoard"; // src/main/webapp/WEB-INF/views/lunch/viewLunchBoard.jsp
 //    }
-}

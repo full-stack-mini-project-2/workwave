@@ -32,7 +32,6 @@ public class TrafficViewService {
         List<StationViewResponseDto> favoriteFindStation = trafficViewMapper.favoriteFindStation(userId);
 
 
-
         StationViewResponseDto newPerson = StationViewResponseDto.builder()
                 .userId(userId)
                 .arrival(trafficInfoDto.getArrival())
@@ -49,7 +48,6 @@ public class TrafficViewService {
     public List<StationViewResponseDto> findOneAndUpdateViewCount(String userId, trafficInfoDto newTraffic) {
         List<StationViewResponseDto> dtoList = trafficViewMapper.findOne(userId);
 
-        System.out.println("dtoList = " + dtoList);
 
         for (StationViewResponseDto dto : dtoList) {
             if(newTraffic.getDeparture().equals(dto.getDeparture()) && newTraffic.getArrival().equals(dto.getArrival())){
