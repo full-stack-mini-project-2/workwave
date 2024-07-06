@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 public class LunchMemberDto {
     private String userId;
-    private String lunchPostNumber;
+    private int lunchPostNumber;
     private String lunchPostTitle;
 
 }

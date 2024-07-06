@@ -3,6 +3,7 @@ package com.workwave.service.lunchService;
 import com.workwave.entity.LunchMateBoard;
 import com.workwave.mapper.LunchMateBoardMapper;
 import com.workwave.repository.LunchMateBoardRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,20 +12,19 @@ import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class LunchMateBoardService {
 
     private final LunchMateBoardMapper lunchMateBoardMapper;
     private LunchMateBoardRepository lunchMateBoardRepository;
 
-    @Autowired
-    public LunchMateBoardService(LunchMateBoardMapper lunchMateBoardMapper) {
-        this.lunchMateBoardMapper = lunchMateBoardMapper;
-    }
+
 
     // 게시물 목록 조회
     public List<LunchMateBoard> findAll() {
         return lunchMateBoardMapper.findAll();
     }
+    //
 
 
     // 게시물 등록
@@ -48,14 +48,30 @@ public class LunchMateBoardService {
         return lunchMateBoardMapper.delete(lunchPostNumber);
     }
 
-    @Transactional
-    public void incrementProgressStatus(int postId) {
-        LunchMateBoard board = lunchMateBoardRepository.findByLunchPostNumber(postId);
+    //게시물 상태 증가
+    public void incrementProgressStatus(int lunchPostNumber) {
+        System.out.println("🍕🍕🍕🍕🍕🍕🍕");
+        System.out.println("🍔lunchPostNumber = " + lunchPostNumber);
+        LunchMateBoard board = lunchMateBoardMapper.findOne(lunchPostNumber);
+        System.out.println("🍕board = " + board);
         if (board != null) {
-            board.setProgressStatus(board.getProgressStatus() + 1);
-            lunchMateBoardRepository.save(board);
+            int num = board.getProgressStatus()+1;
+
+
+//            int zz =board.getProgressStatus();
+//            System.out.println("zz = " + zz);
+//            System.out.println("board = " + board);
+//            int progressStatus =zz;
+
+            lunchMateBoardMapper.updateLunchPostNumber(lunchPostNumber);
+            
+            LunchMateBoard board11 = lunchMateBoardMapper.findOne(lunchPostNumber);
+            System.out.println("board11 = " + board11);
+
         } else {
-            throw new IllegalArgumentException("Invalid board Id:" + postId);
+            throw new IllegalArgumentException("Invalid board Id:" + lunchPostNumber);
         }
     }
-}
+
+
+}// end 메인

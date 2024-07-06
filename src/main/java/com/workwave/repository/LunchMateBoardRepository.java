@@ -21,4 +21,6 @@ public interface LunchMateBoardRepository {
 
 
     LunchMateBoard findByLunchPostNumber(int postId);
+
+    LunchMateBoard findOne(int lunchPostNumber);
 }

@@ -21,6 +21,12 @@ public interface LunchMateBoardMapper {
     // 게시물 삭제
     boolean delete(int lunchPostNumber);
 
+
+
     // 조회수 상승 (예제에서는 사용되지 않지만 필요 시 추가)
     // void upViewCount(int lunchPostNumber);
+
+    LunchMateBoard updateLunchPostNumber(int lunchPostNumber);
+    //게시물 1개 조회
+    LunchMateBoard findOne(int lunchPostNumber);
 }

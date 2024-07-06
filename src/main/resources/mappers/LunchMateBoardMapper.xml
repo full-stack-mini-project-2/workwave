@@ -11,12 +11,22 @@
         SELECT * FROM lunch_posts
     </select>
 
+    <select id="findOne" resultType="com.workwave.entity.LunchMateBoard">
+        SELECT * FROM lunch_posts
+        WHERE lunch_post_number = #{lunchPostNumber}
+    </select>
+
     <!-- LunchMateBoardMapper.xml -->
     <insert id="save" parameterType="com.workwave.entity.LunchMateBoard">
         INSERT INTO lunch_posts (user_id, lunch_post_title, lunch_date, eat_time, lunch_location, lunch_menu_name, lunch_attendees, progress_status)
         VALUES (#{userId}, #{lunchPostTitle}, #{lunchDate}, #{eatTime}, #{lunchLocation}, #{lunchMenuName}, #{lunchAttendees}, #{progressStatus})
     </insert>
 
+    <update id="updateLunchPostNumber" parameterType="com.workwave.entity.LunchMateBoard">
+        UPDATE lunch_posts
+        SET  progress_status = progress_status+1
+        WHERE lunch_post_number = #{lunchPostNumber}
+    </update>
 
     <!--    &lt;!&ndash; 게시물 상세 조회 &ndash;&gt;-->
 <!--    <select id="findOne" parameterType="int" resultType="com.workwave.entity.LunchMateBoard">-->

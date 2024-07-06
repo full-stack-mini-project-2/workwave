@@ -84,12 +84,18 @@ public class LunchMateBoardController {
         }
     }
 
+    //
+
+    //
     @PostMapping("/joinLunch")
     public String joinLunch(@RequestBody LunchMemberDto lunchMemberDto) {
         // boardDto를 이용하여 필요한 비즈니스 로직을 수행합니다
 //
         System.out.println("lunchMemberDto = " + lunchMemberDto);
 
+        lunchMateBoardService.incrementProgressStatus(lunchMemberDto.getLunchPostNumber());
+
+//        lunchMateBoardService.findOne(l)
         // 예시: 비즈니스 로직 호출
         // lunchMateBoardService.incrementProgressStatus(boardDto.getPostId());
 
