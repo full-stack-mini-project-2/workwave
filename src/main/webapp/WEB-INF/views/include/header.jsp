@@ -1,5 +1,6 @@
 <!-- header -->
 <header>
+    
     <div class="inner-header">
         <a href="#" class="menu-open">
             <span class="menu-txt"></span>
@@ -25,20 +26,83 @@
 
     <nav class="gnb">
         <a href="#" class="close">
-            <span class="lnr lnr-cross"></span>
         </a>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="/board/list">Board</a></li>
-            <li><a href="#">Contact</a></li>
+        <ul class="nav-content">
+            <li>
+                <!-- <i class="fas fa-home"></i> -->
+                <a href="/">
+                    <i class="fas fa-poo"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-clipboard-check"></i>
+                    About
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    About
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-calendar-check"></i>
+                    About
+                </a>
+            </li>
+            <li>
+                <a href="/board/list">
+                    <i class="fas fa-comment-alt"></i>
+                    Board
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-bus-alt"></i>
+                    Traffic
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-utensils"></i>
+                    Contact
+                </a>
+            </li>
             <c:if test="${login == null}">
-                <li><a href="/members/sign-up">Sign Up</a></li>
-                <li><a href="/members/sign-in">Sign In</a></li>
+            <div class="login-section">   
+                <li class="sign-up">
+                    <a href="/members/sign-up">
+                        <i class="fas fa-user-plus"></i>
+                        Sign Up
+                    </a>
+                </li>
+                <li class="sign-in">   
+                    <a href="/members/sign-in">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In
+                    </a>
+                </li>
+            </div> 
             </c:if>
             <c:if test="${login != null}">
-                <li><a href="#">My Page</a></li>
-                <li><a href="/members/sign-out">Sign Out</a></li>
+                <div class="login-section">   
+                <li class="my-page">
+
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                        My Page
+                    </a>
+                </li>
+                <li class="sign-out">
+                    <a href="/members/sign-out">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sign Out
+                    </a>
+                </li>
+                </div>
             </c:if>
         </ul>
     </nav>

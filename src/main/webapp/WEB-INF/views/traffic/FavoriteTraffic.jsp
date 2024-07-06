@@ -7,8 +7,8 @@
             <table class="traffic-table">
                 <thead>
                     <tr>
-                        <th>출발일</th>
-                        <th>도착일</th>
+                        <th>출발역</th>
+                        <th>도착역</th>
                         <th>조회수</th>
                     </tr>
                 </thead>
