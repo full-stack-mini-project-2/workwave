@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<%--    <%@ include file="../include/static-head.jsp" %> <%@ include--%>
+<%--        file="../include/header.jsp" %>--%>
     <meta charset="UTF-8">
     <title>team Calendar</title>
     <%--  css--%>

@@ -33,6 +33,12 @@
                 background-position: 100% 50%;
             }
         }
+
+        #personalCalendar {
+              left: 1px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -168,17 +174,17 @@
 </div>
 
 <%-- 팀 달력 컨테이너 jsp include--%>
-<%--<div class="calendar-at-home">--%>
-<%--    <div class="calendar-at-modal" id="teamCalendar">--%>
-<%--        <%@page import="java.util.List"%>--%>
-<%--        <%@ include file="./schedule/teamCalendar.jsp" %>--%>
-<%--        <button class="toggle-btn" id="teamToggleBtn"><i class="fas fa-chevron-up"></i></button>--%>
-<%--    </div>--%>
-<%--    <div class="calendar-icon" id="teamCalendarIcon">--%>
-<%--        TEAM--%>
-<%--        <i class="fas fa-calendar-alt"></i>--%>
-<%--    </div>--%>
-<%--</div>--%>
+<div class="calendar-at-home">
+    <div class="calendar-at-modal" id="teamCalendar">
+        <%@page import="java.util.List"%>
+        <%@ include file="./schedule/teamCalendar.jsp" %>
+        <button class="toggle-btn" id="teamToggleBtn"><i class="fas fa-chevron-up"></i></button>
+    </div>
+    <div class="calendar-icon" id="teamCalendarIcon">
+        TEAM
+        <i class="fas fa-calendar-alt"></i>
+    </div>
+</div>
 
 <%-- 모달 영역: 로그인 필요 --%>
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -408,57 +414,31 @@
         };
     }]);
 
-    $(document).ready(function() {
-        // 개인 달력 렌더링
-        $('#personalCalendar').show();
-        $('#teamCalendar').hide();
-
-        // 개인 달력 최소화 버튼 누르기
-        $('#perToggleBtn').click(function() {
-            // 개인 달력 최소화/펼치기
-            $('#personalCalendar').toggleClass('minimized');
-            // 개인 달력이 최소화 상태이면 팀 달력 열기 버튼 보이기, 아니면 숨기기
-            if ($('#personalCalendar').hasClass('minimized')) {
-                $('#teamCalendarIcon').show();
-            } else {
-                $('#teamCalendarIcon').hide();
-            }
-        });
-
-        // 개인 달력 열기 버튼 누르기
-        $('#perCalendarIcon').click(function() {
-            // 개인 달력 열기
-            $('#personalCalendar').removeClass('minimized');
-            // 팀 달력 닫기
-            $('#teamCalendar').addClass('minimized');
-            // 개인 달력 열기 버튼 숨기기
-            $('#perCalendarIcon').hide();
-        });
-
-        // 팀 달력 최소화 버튼 누르기
-        $('#teamToggleBtn').click(function() {
-            // 팀 달력 최소화/펼치기
-            $('#teamCalendar').toggleClass('minimized');
-            // 팀 달력이 최소화 상태이면 개인 달력 열기 버튼 보이기, 아니면 숨기기
-            if ($('#teamCalendar').hasClass('minimized')) {
-                $('#perCalendarIcon').show();
-            } else {
-                $('#perCalendarIcon').hide();
-                // 팀 달력 렌더링
-                $('#teamCalendar').show();
-            }
-        });
-
-        // 팀 달력 열기 버튼 누르기
-        $('#teamCalendarIcon').click(function() {
-            // 팀 달력 열기
-            $('#teamCalendar').removeClass('minimized');
-            // 개인 달력 닫기
-            $('#personalCalendar').addClass('minimized');
-            // 팀 달력 열기 버튼 숨기기
-            $('#teamCalendarIcon').hide();
-        });
-    });
+    // $(document).ready(function() {
+    //         // 개인 달력 토글 버튼 클릭 시
+    //         $('#perToggleBtn').click(function() {
+    //             $('#personalCalendar').toggleClass('minimized');
+    //             if ($('#personalCalendar').hasClass('minimized')) {
+    //                 $('#teamCalendarIcon').show();
+    //                 $('#teamCalendar').hide(); // 팀 달력 감추기
+    //             } else {
+    //                 $('#teamCalendarIcon').hide();
+    //                 $('#teamCalendar').show(); // 팀 달력 표시
+    //             }
+    //         });
+    //
+    //         // 팀 달력 토글 버튼 클릭 시
+    //         $('#teamToggleBtn').click(function() {
+    //             $('#teamCalendar').toggleClass('minimized');
+    //             if ($('#teamCalendar').hasClass('minimized')) {
+    //                 $('#perCalendarIcon').show();
+    //                 $('#personalCalendar').hide(); // 개인 달력 감추기
+    //             } else {
+    //                 $('#perCalendarIcon').hide();
+    //                 $('#personalCalendar').show(); // 개인 달력 표시
+    //             }
+    //         });
+    //     });
 
 
     function updateClock() {
