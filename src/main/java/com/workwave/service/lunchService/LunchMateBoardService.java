@@ -66,7 +66,7 @@ public class LunchMateBoardService {
             board.setProgressStatus(num);
             System.out.println("board = " + board);
 
-            lunchMateBoardMapper.incrementProgressStatus(lunchPostNumber);
+            lunchMateBoardMapper.incrementProgressStatus(String.valueOf(lunchPostNumber));
         } else {
             throw new IllegalArgumentException("Invalid board Id:" + lunchPostNumber);
         }

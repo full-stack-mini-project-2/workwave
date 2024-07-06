@@ -41,7 +41,7 @@
 
     <update id="incrementProgressStatus" parameterType="com.workwave.dto.lunchBoardDto.LunchMemberDto">
         UPDATE lunch_posts
-        SET progress_status = #{progress_status}
+        SET progress_status = progress_status+1
         WHERE lunch_post_number = #{lunchPostNumber}
     </update>
 
