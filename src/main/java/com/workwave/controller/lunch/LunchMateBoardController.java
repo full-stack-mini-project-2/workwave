@@ -90,6 +90,7 @@ public class LunchMateBoardController {
 //
         System.out.println("lunchMemberDto = " + lunchMemberDto);
 
+        lunchMateBoardService.incrementProgressStatus(Integer.parseInt(lunchMemberDto.getLunchPostNumber()));
         // 예시: 비즈니스 로직 호출
         // lunchMateBoardService.incrementProgressStatus(boardDto.getPostId());
 
