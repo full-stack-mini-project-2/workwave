@@ -28,6 +28,10 @@ public class LunchMateBoardService {
         return lunchMateBoardMapper.findAll();
     }
 
+    public LunchMateBoard findOne(int LunchPostNumber){
+        return lunchMateBoardMapper.findOne(LunchPostNumber);
+    }
+
 
     // 게시물 등록
     public boolean save(LunchMateBoard lunchMateBoard, String userId) {
