@@ -204,6 +204,10 @@ public class UserController {
         System.out.println("🧤dto = " + dto);
         //검색 !
         User resultUser = userService.findOneUser(dto);
+        ra.addFlashAttribute("resultUserId", resultUser.getUserId());
+        ra.addFlashAttribute("resultEmpId",resultUser.getEmployeeId());
+        ra.addFlashAttribute("resultEmail",resultUser.getUserEmail());
+        ra.addFlashAttribute("resultName",resultUser.getUserName());
         System.out.println("🧤resultUser = " + resultUser);
 
         //리다이렉트 할때 쓰는 전송 객체⭐️
@@ -245,7 +249,7 @@ public class UserController {
 //            model.addAttribute("showModal", true);
 //            model.addAttribute("modalMessage", "Form submitted successfully!");
 //
-        return "/";
+        return "/login";
         }
 
 
