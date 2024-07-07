@@ -38,11 +38,6 @@
                 background-position: 100% 50%;
             }
         }
-
-        #personalCalendar {
-              left: 1px;
-        }
-
     </style>
 </head>
 <body>
