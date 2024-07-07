@@ -141,7 +141,7 @@ async function fetchSubReplies(rno) {
               }
               <span class="author">${
                 userId === boardUserId
-                  ? '<i class="fas fa-user-secret"></i>'
+                  ? '<i class="fas fa-star"></i>'
                   : ""
               }</span>
             </div>
@@ -479,7 +479,7 @@ function displayReplies(replies, pageInfo) {
                 : ""
             }
             <span class="author">${
-              userId === boardUserId ? '<i class="fas fa-user-secret"></i>' : ""
+              userId === boardUserId ? '<i class="fas fa-star"></i>' : ""
             }</span>
           </div>
           <div class="content">

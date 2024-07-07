@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c" %>
+pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
   <head>
     <%@ include file="../include/static-head.jsp" %>
@@ -22,21 +22,26 @@ prefix="c" %>
       <div class="container">
         <form class="search-bar" method="get" action="/board/list">
           <select class="search-type" name="type">
-            <option value="tc">제목+내용</option>
-            <option value="id">내가 쓴 글</option>
+            <option value="tc" <c:if test="${param.type == 'tc'}">selected</c:if>>제목+내용</option>
+            <option value="view" <c:if test="${param.type == 'view'}">selected</c:if>>조회수</option>
+            <option value="likes" <c:if test="${param.type == 'likes'}">selected</c:if>>좋아요 수</option>
+            <option value="id" <c:if test="${param.type == 'id'}">selected</c:if>>내가 쓴 글</option>
           </select>
           <input
             class="search-input"
             type="text"
             name="keyword"
             placeholder="검색어 입력"
+            value="${param.keyword}"
           />
           <button class="search-btn" type="submit">
             <i class="fas fa-search"></i>
           </button>
         </form>
 
-        <button class="new-board" onclick="location.href='/board/write'">글 쓰기</button>
+        <button class="new-board" onclick="location.href='/board/write'">
+          글 쓰기
+        </button>
 
         <table class="board-table">
           <c:forEach var="board" items="${boards}">
@@ -64,9 +69,7 @@ prefix="c" %>
               </td>
               <td class="board-image" style="line-height: 0">
                 <c:choose>
-                  <c:when test="${empty board.boardContent}">
-                    <!-- <img src="" alt="대체 이미지"> -->
-                  </c:when>
+                  <c:when test="${empty board.boardContent}"> </c:when>
                   <c:otherwise> ${board.boardContent} </c:otherwise>
                 </c:choose>
               </td>
