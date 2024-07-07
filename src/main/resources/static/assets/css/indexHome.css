@@ -24,6 +24,7 @@ a {
 
 .fa-calendar-alt:hover {
     transform: translateY(-5px);
+    transition: transform 0.3s ease;
 }
 
 .clock-container {
@@ -99,7 +100,6 @@ a {
     gap: 10px;
 }
 
-
 .login {
     position: absolute;
     bottom: 20px;
@@ -140,19 +140,23 @@ button:active {
     0 0.0625em 0 0 #ececec, 0 0.125em 0 0 #e0e0e0, 0 0.125em 0 0 #dedede,
     0 0.2em 0 0 #dcdcdc, 0 0.225em 0 0 #cacaca, 0 0.225em 0.375em 0 #cecece;
 }
-
-.minimized {
-    display: none; /* 최소화 상태일 때는 숨김 */
-}
-
+/*달력 토글 버튼 */
 .toggle-btn {
     position: absolute;
     top: -50px;
     right: 1px;
     cursor: pointer;
 }
-.todo-list-contents {
 
+/*투두리스트 토글 버튼 */
+.toggle-button {
+    cursor: pointer;
+}
+
+.toggle-button:hover {
+    transform: translateY(-3px);
+    transition: transform 0.3s ease;
+    font-weight: 700;
 }
 
 #perCalendarIcon {
@@ -166,9 +170,10 @@ button:active {
 }
 
 #teamCalendarIcon {
+    font-size: 20px;
     position: fixed;
     top: 20px;
-    left: 92%;
+    left: 98%;
     transform: translateX(-50%);
     cursor: pointer;
     z-index: 1000; /* 다른 요소 위에 표시될 수 있도록 높은 z-index 설정 */
@@ -197,8 +202,8 @@ button:active {
 
 .toggle-team {
     display: block;
-    left: -240px;
     position: absolute;
+    left: -240px;
     bottom: -40px;
 }
 
@@ -348,4 +353,7 @@ input[type="checkbox"] {
     width:15px;
     height:15px
 }
-
+/*투두리스트 토글 기능 */
+.minimized .table-responsive {
+    display: none;
+}

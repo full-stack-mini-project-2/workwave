@@ -14,7 +14,7 @@
         .team-name {
             position: absolute;
             color: gray;
-            bottom: 22px;
+            bottom: 10px;
             margin: 4px 10px;
         }
 
