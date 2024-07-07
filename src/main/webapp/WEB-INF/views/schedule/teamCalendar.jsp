@@ -338,12 +338,13 @@
                             //입력한 일정으로 달력화면 보여주기
                             renderTeamCalendar(myTeamCalEvents, new Date(updatedDate).getFullYear(), new Date(updatedDate).getMonth());
                         } else {
-                            alert('로그인이 필요합니다. ' + data.message);
+                            alert('로그인이 필요한 서비스 입니다.');
                         }
                     })
+
                     .catch(error => {
-                        console.error('Error:', error);
-                        alert('로그인이 필요합니다.');
+                        console.error('Error:');
+                        alert('로그인이 필요한 서비스 입니다.');
                     });
             }
             else {
@@ -467,12 +468,12 @@
                     renderTeamCalendar(myTeamCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
                     document.getElementById('addEventModal').style.display = 'none';
                 } else {
-                    alert('로그인이 필요합니다. ' + data.message);
+                    alert('로그인이 필요한 서비스 입니다. ');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('로그인이 필요합니다.');
+                alert('로그인이 필요한 서비스 입니다.');
             });
     });
 
