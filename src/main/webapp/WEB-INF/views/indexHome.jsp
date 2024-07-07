@@ -58,8 +58,8 @@
     <div class="clock" id="clock">00:00</div>
 </div>
 
-<div class="right-top">
-    <a href="/myCalendar/viewMyEvent" class="right-box team">MY CALENDAR</a></div>
+<%--<div class="right-top">--%>
+<%--    <a href="/myCalendar/viewMyEvent" class="right-box team">MY CALENDAR</a></div>--%>
 
 <div class="left-top">
     <a href="/traffic-map" class="right-box">TRAFFIC INFO</a>

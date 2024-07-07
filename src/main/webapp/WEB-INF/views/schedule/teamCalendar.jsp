@@ -3,19 +3,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%--    <%@ include file="../include/static-head.jsp" %> <%@ include--%>
-<%--        file="../include/header.jsp" %>--%>
     <meta charset="UTF-8">
     <title>team Calendar</title>
     <%--  css--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/maincalendar.css">
         <style>
+            body {
+                font-family: "Spoqa Han Sans Neo", sans-serif;
+                margin: 0 auto;
+                padding: 0;
+                box-sizing: border-box;
+                background-color: #f2efeb;
+            }
         .team-name {
             position: absolute;
             color: gray;
             bottom: 10px;
             margin: 4px 10px;
+        }
+
+        .color-picker div.selected {
+            border: 2px solid #000; /* 선택된 색상 주위에 선 추가 */
         }
 
     </style>
@@ -45,12 +54,12 @@
             <label for="calEventTitle">Title</label>
             <input type="text" id="calEventTitle" name="calEventTitle" placeholder="Event"><br>
 
-            <label for="calEventDate">Event Date</label>
+            <label for="calEventDate">Date</label>
 
 
             <input type="date" id="calEventDate" name="calEventDate" value="\${fn:substring(new java.text.SimpleDateFormat('yyyy-MM-dd').format(new java.util.Date()), 0, 10)}}"><br>
 
-            <label for="calEventDescription"></label>
+            <label for="calEventDescription">Event</label>
             <input type="text" id="calEventDescription" name="calEventDescription" placeholder="None"><br>
 
             <label for="calColorIndex"></label>
@@ -200,8 +209,11 @@
     // Event Modal 닫기
     document.addEventListener('click', function (event) {
         const teamModal = document.getElementById('eventModal');
-        if (event.target === teamModal) {
+        const addEventModal = document.getElementById('addEventModal');
+
+        if (event.target === teamModal || event.target === addEventModal) {
             teamModal.style.display = 'none';
+            addEventModal.style.display = 'none';
         }
     });
 
@@ -220,7 +232,6 @@
         document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
             colorDiv.addEventListener('click', function () {
                 document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
-                updateTeamColorPreview(this.getAttribute('data-color-index'));
             });
         });
 
@@ -255,11 +266,15 @@
         // 수정자 표시
         let updateByMessage = selectedEvent.updateBy ? selectedEvent.updateBy : "아직 아무도 수정하지 않았어요!";
 
+        // 날짜에서 시간 부분 제거
+        const eventDateWithoutTime = selectedEvent.calEventDate.split('T')[0];
+
+
         //수정하고 난 뒤에만 수정자 표시
         eventDetails.innerHTML = `
         <li><strong>Title :</strong> \${selectedEvent.calEventTitle}</li>
         <li><strong>Event description :</strong> \${selectedEvent.calEventDescription}</li>
-        <li><strong>Event Date :</strong> \${selectedEvent.calEventDate}</li>
+        <li><strong>Event Date :</strong> \${eventDateWithoutTime}</li>
         <li><strong>Write By :</strong> \${selectedEvent.userName}</li>
         <li><strong>Edited By :</strong> \${updateByMessage}</li>
       `;
@@ -341,7 +356,12 @@
         // 저장 후 Save Changes 버튼 다시 숨기기
         saveChangesButton.style.display = 'none';
 
-        // 모달 외부를 클릭하면 닫기
+        const closeBtn = teamModal.querySelector('.close');
+        closeBtn.onclick = function () {
+            teamModal.style.display = 'none';
+        };
+
+    // 모달 외부를 클릭하면 닫기
         window.onclick = function (event) {
             if (event.target === teamModal) {
                 teamModal.style.display = 'none';
@@ -397,7 +417,7 @@
         document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
             colorDiv.addEventListener('click', function () {
                 document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
-                updateTeamColorPreview(this.getAttribute('data-color-index')); // Update color preview
+                updateTeamColorPreview(document.getElementById('calColorIndex').value); // Update color preview
             });
         });
 

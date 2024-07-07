@@ -36,21 +36,21 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/myCalendar/viewMyEvent">
                     <i class="fas fa-clipboard-check"></i>
-                    About
+                    My Calendar
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/">
                     <i class="fas fa-chalkboard-teacher"></i>
-                    About
+                    Team Calendar
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/">
                     <i class="fas fa-calendar-check"></i>
-                    About
+                    todoList
                 </a>
             </li>
             <li>

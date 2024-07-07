@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<%--      <%@ include file="../include/static-head.jsp" %>--%>
   <meta charset="UTF-8">
   <title>Calendar</title>
 
@@ -12,9 +13,23 @@
     .user-name {
       position: absolute;
       color: gray;
-      bottom: 22px;
-      margin: 4px 10px;
+      bottom: 300px;
+      margin: 10px 570px;
     }
+
+
+    .color-picker div.selected {
+      border: 2px solid #000; /* 선택된 색상 주위에 선 추가 */
+    }
+
+    .calendar-container {
+      margin: 200px auto;
+      border-radius: 10px;
+      height: 560px;
+      border: 1px solid black;
+      padding: 10px;
+      max-width: 800px;
+      background: rgba(242, 239, 245, 0.92);
   </style>
 </head>
 <body>
@@ -141,18 +156,18 @@
     xhr.send();
   }
 
-  function fetchTeamEvents(year, month) {
+  function fetchEvents(year, month) {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `/api/calendar/myTeamEvents?year=\${year}&month=\${month + 1}`, true);
+    xhr.open('GET', `/api/calendar/myEvents?year=\${year}&month=\${month + 1}`, true);
 
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          const teamData = JSON.parse(xhr.responseText); // JSON 데이터를 파싱하여 객체로 변환
+          const Data = JSON.parse(xhr.responseText); // JSON 데이터를 파싱하여 객체로 변환
 
-          myTeamCalEvents = teamData; // 받은 데이터를 전역 변수에 저장
+          myCalEvents = Data; // 받은 데이터를 전역 변수에 저장
 
-          renderTeamCalendar(myTeamCalEvents, year, month);
+          renderMyCalendar(myCalEvents, year, month);
         } else {
           console.error('Failed to fetch calendar events:', xhr.status, xhr.statusText);
         }
@@ -241,6 +256,21 @@
         return 'lightgray';
     }
   }
+
+  // 원하는 형광 색상 선택
+  document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
+    colorDiv.addEventListener('click', function () {
+      document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+
+      // 모든 colorDiv에서 선택된 스타일 제거
+      document.querySelectorAll('.color-picker div').forEach(function (div) {
+        div.classList.remove('selected');
+      });
+
+      // 선택된 colorDiv에 선택된 스타일 추가
+      this.classList.add('selected');
+    });
+  });
 
   // Event Modal 닫기
   document.addEventListener('click', function (event) {
@@ -346,10 +376,6 @@
           calColorIndex: selectedEvent.calColorIndex
         };
 
-        //색상 바로 렌더링
-        updateColorPreview();
-
-
         //일정 수정
         fetch('/api/calendar/updateEvent', {
           method: 'POST',
@@ -444,7 +470,6 @@
     document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
       colorDiv.addEventListener('click', function () {
         document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
-        updateColorPreview(this.getAttribute('data-color-index')); // Update color preview
       });
     });
 
@@ -486,6 +511,7 @@
                 myCalEvents.push(newEvent);
                 renderMyCalendar(myCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
                 document.getElementById('addEventModal').style.display = 'none';
+                updateColorPreview(colorIndex);
               } else {
                 alert('Error saving event: ' + data.message);
               }
