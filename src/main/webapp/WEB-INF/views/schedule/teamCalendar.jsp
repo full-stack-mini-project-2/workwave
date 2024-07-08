@@ -300,7 +300,7 @@
             const updatedDate = document.getElementById('edit-date').value;
             const updatedDescription = document.getElementById('edit-description').value;
 
-            // 입력값 받기, 수정 없어도 저장 됨
+            //수정 안됨 버그 픽스
             if (updatedTitle && updatedDate) {
                 const updateEvent = {
                     calEventId: selectedEvent.calEventId,
