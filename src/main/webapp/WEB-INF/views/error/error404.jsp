@@ -16,7 +16,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(20, 22, 64, 0.5); /* 배경색 설정 */
+      background-color: rgba(20, 22, 64, 0.8); /* 배경색 설정 */
       background-image: linear-gradient(45deg, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.04) 50%, rgba(0,0,0,0.04) 75%, rgba(0,0,0,0.08) 75%, rgba(0,0,0,0.08) 100%), linear-gradient(-45deg, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.04) 50%, rgba(0,0,0,0.04) 75%, rgba(0,0,0,0.08) 75%, rgba(0,0,0,0.08) 100%);
       background-size: 200% 200%; /* 배경 크기 설정 */
       animation: wave-animation 30s infinite linear; /* 애니메이션 적용 */
@@ -40,7 +40,10 @@
       align-items: center;
       height: 100vh;
       background-color: #f0f8ff;
-      background-image: url('/assets/img/5.png');
+      background-image: url('/assets/img/404errorpage.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       font-family: 'Arial', sans-serif;
       color: #333;
       text-align: center;
