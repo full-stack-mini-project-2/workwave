@@ -26,6 +26,14 @@ document.querySelector('.fa-calendar-plus').addEventListener('click', function (
 document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
     colorDiv.addEventListener('click', function () {
         document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+
+        // 모든 colorDiv에서 선택된 스타일 제거
+        document.querySelectorAll('.color-picker div').forEach(function (div) {
+            div.classList.remove('selected');
+        });
+
+        // 선택된 colorDiv에 선택된 스타일 추가
+        this.classList.add('selected');
     });
 });
 

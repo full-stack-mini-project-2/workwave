@@ -1,7 +1,5 @@
 package com.workwave.controller.lunch;
 
-import com.workwave.common.lunchpage.LunchPage;
-import com.workwave.common.lunchpage.LunchPageMaker;
 import com.workwave.dto.lunchBoardDto.LunchBoardFindAllDto;
 import com.workwave.dto.lunchBoardDto.LunchMemberDto;
 import com.workwave.entity.LunchMateBoard;
@@ -13,12 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import javax.servlet.http.HttpSession;
-import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -68,6 +66,7 @@ public class LunchMateBoardController {
             return "redirect:/login"; // 로그인되어 있지 않은 경우 로그인 페이지로 리다이렉트
         }
     }
+
     // 글 작성 처리
     @PostMapping("/new")
     public String create(@ModelAttribute("board") LunchMateBoard board, HttpSession session) {
@@ -84,19 +83,55 @@ public class LunchMateBoardController {
         }
     }
 
+
+
     @PostMapping("/joinLunch")
-    public String joinLunch(@RequestBody LunchMemberDto lunchMemberDto) {
+    @ResponseBody
+    public ResponseEntity<Object> joinLunch(@RequestBody LunchMemberDto lunchMemberDto) {
         // boardDto를 이용하여 필요한 비즈니스 로직을 수행합니다
 //
-        System.out.println("lunchMemberDto = " + lunchMemberDto);
+//        System.out.println("lunchMemberDto = " + lunchMemberDto);
+//        if (lunchMemberDto.getLunchPostNumber() == null) {
+//            return ResponseEntity.badRequest().body("boardId parameter is required.");
+        System.out.println("👀👀👀1");
 
-        // 예시: 비즈니스 로직 호출
+        System.out.println("👀👀👀2");
+        lunchMateBoardService.incrementProgressStatus(Integer.parseInt(lunchMemberDto.getLunchPostNumber()));
+        System.out.println("👀👀👀3");
+        LunchMateBoard board = lunchMateBoardService.findOne(Integer.parseInt(lunchMemberDto.getLunchPostNumber()));
+        System.out.println("👀4board = " + board);
+//        }
+        try {
+        // 업데이트된 정보를 JSON으로 포장하여 클라이언트에게 반환
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("board", board); // 업데이트된 lunchMateBoard 정보를 포함
+
+        return ResponseEntity.ok(response);
+    } catch (IllegalArgumentException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    //
         // lunchMateBoardService.incrementProgressStatus(boardDto.getPostId());
 
+//            return ResponseEntity
+//                    .ok()
+//                    .body(lunchMateBoardService.findOne(Integer.parseInt(lunchMemberDto.getLunchPostNumber())));
+//
+//        } catch (Exception e) {
+//            // 예외 처리
+//            return ResponseEntity
+//                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+//                    .body("An error occurred while updating dislike count.");
+//
+//        }
+        //
+
         // 리디렉션할 URL을 리턴합니다 (예: 루트 경로로 리디렉션)
-        return "redirect:/";
     }
-    }
+}
+
 
 //    // 글 작성 처리
 //    @PostMapping("/new")
@@ -115,7 +150,6 @@ public class LunchMateBoardController {
 //        lunchMateBoardService.save(board);
 //        return "redirect:/lunchMateBoard/list"; // 다시 목록 페이지로 리다이렉트
 //    }
-
 
 
 //    // 게시글 상세보기

@@ -11,6 +11,11 @@
         SELECT * FROM lunch_posts
     </select>
 
+    <select id="findOne" resultType="com.workwave.entity.LunchMateBoard">
+        SELECT * FROM lunch_posts
+        WHERE lunch_post_number = #{lunchPostNumber}
+    </select>
+
     <!-- LunchMateBoardMapper.xml -->
     <insert id="save" parameterType="com.workwave.entity.LunchMateBoard">
         INSERT INTO lunch_posts (user_id, lunch_post_title, lunch_date, eat_time, lunch_location, lunch_menu_name, lunch_attendees, progress_status)
@@ -33,6 +38,12 @@
     <delete id="delete" parameterType="int">
         DELETE FROM lunch_posts WHERE lunch_post_number = #{lunchPostNumber}
     </delete>
+
+    <update id="incrementProgressStatus" parameterType="com.workwave.dto.lunchBoardDto.LunchMemberDto">
+        UPDATE lunch_posts
+        SET progress_status = progress_status+1
+        WHERE lunch_post_number = #{lunchPostNumber}
+    </update>
 
     <!-- 조회수 상승 (필요 시 추가) -->
     <!--

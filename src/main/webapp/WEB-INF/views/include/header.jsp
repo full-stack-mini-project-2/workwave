@@ -35,10 +35,11 @@
                     Home
                 </a>
             </li>
-            <!-- <li>
-                <a href="#">
+
+            <li>
+                <a href="/myCalendar/viewMyEvent">
                     <i class="fas fa-clipboard-check"></i>
-                    About
+                    My Calendar
                 </a>
             </li> -->
             <li>
@@ -51,6 +52,15 @@
                 <a href="/lunchMateBoard/list">
                     <i class="fas fa-utensils"></i>
                     Lunch Mate
+                <a href="/">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    Team Calendar
+                </a>
+            </li>
+            <li>
+                <a href="/">
+                    <i class="fas fa-calendar-check"></i>
+                    todoList
                 </a>
             </li>
             <li>
