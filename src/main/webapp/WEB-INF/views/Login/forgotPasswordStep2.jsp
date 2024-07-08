@@ -120,16 +120,66 @@
             return true; // For demonstration purposes, always returns true
         }
 
+        // function checkPassword() {
+        //     var newPassword = document.getElementById('newPassword').value;
+        //     var confirmPassword = document.getElementById('confirmPassword').value;
+
+        //     if (newPassword === confirmPassword) {
+        //         return true;
+        //     } else {
+        //         // alert 대신 모달을 표시합니다.
+        //         var mismatchModal = document.getElementById('passwordMismatchModal');
+        //         mismatchModal.style.display = "block";
+
+        //         // 모달 닫기 버튼 이벤트 리스너
+        //         var closeBtn = mismatchModal.getElementsByClassName("close")[0];
+        //         closeBtn.onclick = function () {
+        //             mismatchModal.style.display = "none";
+        //         }
+
+        //         // 모달 외부 클릭 시 닫기
+        //         window.onclick = function (event) {
+        //             if (event.target == mismatchModal) {
+        //                 mismatchModal.style.display = "none";
+        //             }
+        //         }
+
+        //         return false;
+        //     }
+        // } //end checkPassword
+
         function checkPassword() {
             var newPassword = document.getElementById('newPassword').value;
             var confirmPassword = document.getElementById('confirmPassword').value;
+            var mismatchModal = document.getElementById('passwordMismatchModal');
+            var modalContent = mismatchModal.querySelector('.modal-content p');
+            var $modalBox = document.querySelector('.modal-content');
 
-            if (newPassword === confirmPassword) {
-                return true;
-            } else {
-                // alert 대신 모달을 표시합니다.
-                var mismatchModal = document.getElementById('passwordMismatchModal');
+            // 비밀번호 길이 검사 (4~12자)
+            if (newPassword.length < 4 || newPassword.length > 12) {
+                showPasswordError("비밀번호는 4~12자리여야 합니다.");
+                return false;
+            }
+
+            // 특수문자 포함 검사
+            var specialCharsRegex = /[!@#$%^&*(),.?":{}|<>]/;
+            if (!specialCharsRegex.test(newPassword)) {
+                showPasswordError("비밀번호에는 특수문자가 포함되어야 합니다.");
+                return false;
+            }
+
+            // 새 비밀번호와 비밀번호 확인 일치 검사
+            if (newPassword !== confirmPassword) {
+                showPasswordError("새 비밀번호와 비밀번호 확인이<br/> 일치하지 않습니다.<br/>다시 확인해주세요.");
+                return false;
+            }
+
+            return true;
+
+            function showPasswordError(message) {
+                modalContent.innerHTML = message;
                 mismatchModal.style.display = "block";
+                $modalBox.style.backgroundColor = "#973554";
 
                 // 모달 닫기 버튼 이벤트 리스너
                 var closeBtn = mismatchModal.getElementsByClassName("close")[0];
@@ -143,10 +193,69 @@
                         mismatchModal.style.display = "none";
                     }
                 }
-
-                return false;
             }
         }
+        ///////////////////
+        //new
+        // function checkPassword() {
+        //     if (checkPasswordValidity()) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // }
+
+        //테스트 버전의 코드 하단
+        // function checkPasswordValidity() {
+        //     var newPassword = document.getElementById('newPassword').value;
+        //     var confirmPassword = document.getElementById('confirmPassword').value;
+
+        //     // 비밀번호 길이 검사 (4~12자)
+        //     if (newPassword.length < 4 || newPassword.length > 12) {
+        //         // document.getElementById('passwordForm').style.display = "none";
+        //         var mismatchModal = document.getElementById('passwordMismatchModal');
+        //         mismatchModal.innerText = '비밀번호는 4~12자리여야 합니다.';
+        //         mismatchModal.style.display = "block";
+
+        //         $modalBox = document.querySelector('.modal-content');
+        //         $modalBox.style.backgroundColor = "#973554";
+        //         // alert("비밀번호는 4~12자리여야 합니다.");
+        //         return false;
+        //     }
+
+        //     // 특수문자 포함 검사
+        //     var specialCharsRegex = /[!@#$%^&*(),.?":{}|<>]/;
+        //     if (!specialCharsRegex.test(newPassword)) {
+        //         // alert("비밀번호에는 특수문자가 포함되어야 합니다.");
+        //         // document.getElementById('passwordForm').style.display = "none";
+        //         var mismatchModal = document.getElementById('passwordMismatchModal');
+        //         mismatchModal.innerText = '비밀번호에는 특수문자가 포함되어야 합니다.';
+        //         mismatchModal.display = "block";
+
+        //         $modalBox = document.querySelector('.modal-content');
+        //         $modalBox.style.backgroundColor = "#973554";
+        //         return false;
+        //     }
+
+        //     // 새 비밀번호와 비밀번호 확인 일치 검사
+        //     if (newPassword !== confirmPassword) {
+        //         var mismatchModal = document.getElementById('passwordMismatchModal');
+        //         mismatchModal.style.display = "block";
+
+        //         var closeBtn = mismatchModal.getElementsByClassName("close")[0];
+        //         closeBtn.onclick = function () {
+        //             mismatchModal.style.display = "none";
+        //         }
+        //         window.onclick = function (event) {
+        //             if (event.target == mismatchModal) {
+        //                 mismatchModal.style.display = "none";
+        //             }
+        //         }
+        //         return false;
+        //     }
+
+        //     return true;
+        // }
     </script>
 
     </html>
