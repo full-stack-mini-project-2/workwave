@@ -70,25 +70,31 @@
         table {
             width: 100%;
             /* border-collapse: collapse; */
+            border-collapse: collapse; /* 테이블 테두리 병합 */
             margin-bottom: 20px;
             border-spacing: 0;
             /* 기존 테이블과 모달 사이 여백 */
         }
+                    th, td {
+                padding: 10px;
+                text-align: left;
+            }
 
-        th,
-        td {
-            border: 1px solid black;
-            padding: 10px;
-            text-align: left;
-        }
+            th {
+                background-color: #5973dd;
+                font-size: 15px;
+                color: rgb(255, 255, 255);
+                border: none; /* 테이블 헤더의 테두리 제거 */
+            }
 
-        th {
-            background-color: #5973dd;
-            font-size: 15px;
-            color: rgb(255, 255, 255);
+            td {
+                border: none; /* 테이블 셀의 테두리 제거 */
+            }
 
-
-        }
+            /* 셀 사이에만 테두리 추가 */
+            table, th, td {
+                border: 1px solid black;
+            }
         .join-cell {
             padding: 0; /* 내부 패딩을 제거하여 버튼이 전체 셀을 차지하도록 설정합니다. */
         }
@@ -132,7 +138,7 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-
+ 
 
         }
 
@@ -285,7 +291,7 @@
                             <th style="width: 14%;">제목</th>
                             <th style="width: 12.5%;">식사일정</th>
                             <th style="width: 12.5%;">식당</th>
-                            <th style="width: 9%;">메뉴</th>
+                            <th style="width: 12.5%;">메뉴</th>
                             <th style="width: 8%;">참가 인원</th>
                             <th style="width: 8%;">참가상태</th>
                             <th style="width: 7%;">참가하기</th>
@@ -355,8 +361,8 @@
                     <input type="text" id="lunchPostTitle" name="lunchPostTitle" required><br>
 
                     <label for="eatTime">식사 일정:</label>
-                    <!-- <input type="date" id="eatTime" name="eatTime" min="<?php echo date('Y-m-d'); ?>" required><br> -->
-                    <input type="datetime-local" id="eatTime" name="eatTime" min="<?php echo date('Y-m-d'); ?>" required><br>
+                    <input type="date" id="eatTime" name="eatTime" placeholder="시간은 12시 고정입니다" required style="margin-bottom: 1px;"><br>
+                    <span style="font-size: 10px; color: #666;">점심 시간은 12시 고정입니다</span><br>
 
                     <label for="lunchLocation">식당 위치:</label>
                     <input type="text" id="lunchLocation" name="lunchLocation" required><br>
@@ -480,30 +486,6 @@
                         });
                 });
             });
-
-
-                            // 주어진 ISO 형식의 날짜 문자열을 원하는 포맷으로 변환하는 함수
-                function formatDateTime(isoDateTime) {
-                    // ISO 형식의 날짜 문자열을 Date 객체로 변환
-                    const date = new Date(isoDateTime);
-
-                    // 원하는 포맷으로 날짜와 시간을 가져오기
-                    const year = date.getFullYear();
-                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                    const day = String(date.getDate()).padStart(2, '0');
-                    const hour = String(date.getHours()).padStart(2, '0');
-                    const minute = String(date.getMinutes()).padStart(2, '0');
-
-                    // 포맷된 문자열 반환
-                    return `${day}-${month}-${year} ${hour}:${minute}시`;
-                }
-
-                // 예시: ISO 형식의 날짜와 시간 문자열
-                const isoDateTime = '2024-07-24T14:00';
-
-                // 함수를 사용하여 포맷된 문자열 출력
-                const formattedDateTime = formatDateTime(isoDateTime);
-                console.log(formattedDateTime); // 출력 예: 24-07-2024 14:00시
         </script>
     </div>
 
