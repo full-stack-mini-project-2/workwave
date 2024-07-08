@@ -32,7 +32,7 @@ pageEncoding="UTF-8"%>
           <button
             type="button"
             class="cancel-button"
-            onclick="window.location.href='http://localhost:8383/board/detail?bno=<%= bno %>'"
+            onclick="window.location.href='http://172.30.1.73:8383/board/detail?bno=<%= bno %>'"
           >
             취소
           </button>

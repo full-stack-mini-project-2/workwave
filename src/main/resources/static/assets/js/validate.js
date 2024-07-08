@@ -2,7 +2,7 @@
 export const checkAvailability = async (type, keyword) => {
   
   const response = await fetch(
-    `http://localhost:8383/check?type=${type}&keyword=${keyword}`
+    `http://172.30.1.73:8383/check?type=${type}&keyword=${keyword}`
   );
   const flag = await response.json();
   return !flag;

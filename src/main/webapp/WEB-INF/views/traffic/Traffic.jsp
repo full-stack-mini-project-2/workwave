@@ -52,7 +52,7 @@ uri="http://java.sun.com/jsp/jstl/core" %>
             <form action="/traffic-Info" method="POST">
               <h1 class="section-header">
                 경로설정<span id="before-find">
-                  <a href="http://localhost:8383/traffic-myInfo"
+                  <a href="http://172.30.1.73:8383/traffic-myInfo"
                     ><i class="far fa-clipboard"></i
                   ></a>
                 </span>

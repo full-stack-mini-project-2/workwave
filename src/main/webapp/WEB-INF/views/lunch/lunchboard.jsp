@@ -274,7 +274,7 @@
                 <a href="#" onclick="openModal();" class="button">NEW!</a>
 
                 <!-- 홈으로 돌아가는 버튼 -->
-                <a href="http://localhost:8383/" class="home-button">home</a>
+                <a href="http://172.30.1.73:8383/" class="home-button">home</a>
             </div>
 
     </div>
