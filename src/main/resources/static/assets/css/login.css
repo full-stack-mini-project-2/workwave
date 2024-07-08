@@ -104,7 +104,7 @@ input::placeholder {
 
 .forgot-password a:hover {
     /* color: white; */
-    color: #5434ab;
+    color: #a699c8;
     text-decoration: underline;
     font-weight: bold;
 }
@@ -189,7 +189,7 @@ body::before {
     font-weight: normal;
 }
 .join-button-container a:hover {
-    color: #5434ab;
+    color: #a699c8;
     text-decoration: underline;
     font-weight: bold;
 }
