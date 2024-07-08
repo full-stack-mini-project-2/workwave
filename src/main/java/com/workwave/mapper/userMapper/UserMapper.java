@@ -35,4 +35,7 @@ public interface UserMapper {
     //⎏ 윤종 추가
     //부서 이름 하나 조회하기
     String findOneDepartmentName(String departmentId);
+
+    // 비밀번호 변경
+    boolean UserSetPassword(@Param("password")String password,@Param("userId")String userId);
 }

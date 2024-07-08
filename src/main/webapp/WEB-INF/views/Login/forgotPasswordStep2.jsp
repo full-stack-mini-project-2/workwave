@@ -120,35 +120,10 @@
             return true; // For demonstration purposes, always returns true
         }
 
-        // function checkPassword() {
-        //     var newPassword = document.getElementById('newPassword').value;
-        //     var confirmPassword = document.getElementById('confirmPassword').value;
-
-        //     if (newPassword === confirmPassword) {
-        //         return true;
-        //     } else {
-        //         // alert 대신 모달을 표시합니다.
-        //         var mismatchModal = document.getElementById('passwordMismatchModal');
-        //         mismatchModal.style.display = "block";
-
-        //         // 모달 닫기 버튼 이벤트 리스너
-        //         var closeBtn = mismatchModal.getElementsByClassName("close")[0];
-        //         closeBtn.onclick = function () {
-        //             mismatchModal.style.display = "none";
-        //         }
-
-        //         // 모달 외부 클릭 시 닫기
-        //         window.onclick = function (event) {
-        //             if (event.target == mismatchModal) {
-        //                 mismatchModal.style.display = "none";
-        //             }
-        //         }
-
-        //         return false;
-        //     }
-        // } //end checkPassword
-
         function checkPassword() {
+
+            const db_uid = `${resultUserId}`;
+
             var newPassword = document.getElementById('newPassword').value;
             var confirmPassword = document.getElementById('confirmPassword').value;
             var mismatchModal = document.getElementById('passwordMismatchModal');
@@ -157,29 +132,63 @@
 
             // 비밀번호 길이 검사 (4~12자)
             if (newPassword.length < 4 || newPassword.length > 12) {
-                showPasswordError("비밀번호는 4~12자리여야 합니다.");
+                showPasswordError("비밀번호는 4~12자리여야 합니다.", "#973554");
                 return false;
             }
 
             // 특수문자 포함 검사
             var specialCharsRegex = /[!@#$%^&*(),.?":{}|<>]/;
             if (!specialCharsRegex.test(newPassword)) {
-                showPasswordError("비밀번호에는 특수문자가 포함되어야 합니다.");
+                showPasswordError("비밀번호에는 특수문자가 포함되어야 합니다.", "#973554");
                 return false;
             }
 
             // 새 비밀번호와 비밀번호 확인 일치 검사
             if (newPassword !== confirmPassword) {
-                showPasswordError("새 비밀번호와 비밀번호 확인이<br/> 일치하지 않습니다.<br/>다시 확인해주세요.");
+                showPasswordError("새 비밀번호와 비밀번호 확인이<br/> 일치하지 않습니다.<br/>다시 확인해주세요.", "#973554");
                 return false;
             }
 
-            return true;
+            //-->
+            console.log("👽전송 폼->" + db_uid + " " + newPassword);
+            // 비밀번호 변경 요청
+            fetch('/changePassword', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userId: db_uid, // 수정된 부분
+                    password: newPassword
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showPasswordError("비밀번호가 성공적으로 변경되었습니다.", "#006400");
+                        setTimeout(() => {
+                            window.location.href = "/login"; // 2초 후 로그인 페이지로 리다이렉트
+                        }, 2000);
+                    } else {
+                        showPasswordError("비밀번호 변경에 실패했습니다. 다시 시도해주세요.", "#973554");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showPasswordError("서버 오류가 발생했습니다. 나중에 다시 시도해주세요.", "#973554");
+                });
 
-            function showPasswordError(message) {
+            return false; // 폼 기본 제출 방지
+
+            //<--
+
+            function showPasswordError(message, backgroundColor) {
                 modalContent.innerHTML = message;
                 mismatchModal.style.display = "block";
-                $modalBox.style.backgroundColor = "#973554";
+                const $passowrdMismatchModal = document.getElementById('passwordMismatchModal');
+                //   #passwordMismatchModal   외부 배경
+                const $content = document.querySelector('#passwordMismatchModal .modal-content');
+                $content.style.backgroundColor = backgroundColor;
 
                 // 모달 닫기 버튼 이벤트 리스너
                 var closeBtn = mismatchModal.getElementsByClassName("close")[0];
@@ -194,7 +203,9 @@
                     }
                 }
             }
-        }
+        } //changePassword (end) 
+
+
         ///////////////////
         //new
         // function checkPassword() {

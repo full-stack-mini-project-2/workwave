@@ -165,4 +165,17 @@ public class UserService {
     public String findOneDepartmentName(String departmentId) {
        return usermapper.findOneDepartmentName(departmentId);
     }
+
+    //비밀번호 변경!
+    public boolean updatePassword(UserChangeDto dto) {
+        UserChangeDto user = dto.toEntity();
+
+        String password = encoder.encode(dto.getPassword());
+        user.setPassword(password);
+        System.out.println("🫡encodedPassword = " + password);
+        // 변경 ㄱㄱ
+        return usermapper.UserSetPassword(password,dto.getUserId());
+//        return true;
+    }  //end join
+
 }/* endUserService */
