@@ -241,20 +241,15 @@
 
   // Color index to class name mapping
   function getColorByIndex(index) {
-    switch (index) {
-      case 1:
-        return 'lightsteelblue';
-      case 2:
-        return 'darkslateblue';
-      case 3:
-        return 'steelblue';
-      case 4:
-        return 'lightyellow';
-      case 5:
-        return 'lightpink';
-      default:
-        return 'lightgray';
-    }
+
+    const colors = {
+      1: 'lightsteelblue',
+      2: 'darkslateblue',
+      3: 'steelblue',
+      4: 'lightyellow',
+      5: 'lightpink',
+    };
+    return colors[parseInt(index)] || 'default-color'; // index를 정수로 변환 후 처리
   }
 
   // 원하는 형광 색상 선택
