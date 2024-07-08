@@ -9,7 +9,6 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
     <script defer type="text/javascript" src="assets/js/traffic/myTrafficInfo.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/traffic/myTrafficInfo.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
