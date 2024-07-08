@@ -114,6 +114,7 @@
         }
 
         .form-container {
+            border-radius: 20px; 
             width: 30%;
             /* 입력 폼의 너비 조정 */
             margin-left: 20px;
@@ -124,6 +125,8 @@
         }
 
         .modal {
+            font-family: 'Noto Sans KR', sans-serif;
+ 
             display: none;
             /* 초기에는 숨김 */
             position: fixed;
@@ -141,19 +144,44 @@
         }
 
         .modal-content {
-            background-color: #fefefe;
+            background-color: rgba(255, 255, 255, 0.9); /* 살짝 불투명한 흰색 배경 */
             margin: 15% auto;
-            /* 중앙에 위치, 상단 여백 조정 */
             padding: 20px;
             border: 1px solid #888;
-            width: 70%;
-            /* 모달 너비 조정 */
+            width: 30%; /* 모달 너비 30%로 조정 */
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
+           .modal-content form label {
+                margin-bottom: 5px; /* 라벨 아래 여백 조정 */
+                display: block; /* 라벨이 한 줄에 표시되도록 설정 */
+            }
 
+            .modal-content form input,
+            .modal-content form button {
+                margin-bottom: 10px; /* 입력 필드와 버튼 사이 여백 조정 */
+            }
+
+            .modal-content form button {
+                margin-top: 10px; /* 버튼 위 여백 조정 */
+                padding: 12px 20px; /* 버튼 내부 패딩 */
+                font-weight: bold;
+                text-decoration: none;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 20px; /* 타원형 버튼으로 설정 */
+                background-color: rgb(255, 255, 255); /* 배경색 흰색으로 설정 */
+                border: 1px solid #ccc; /* 테두리 추가 */
+            }
+
+            .modal-content form button:hover {
+                background-color: #f0f0f0; /* 마우스 오버 시 배경색 조정 */
+            }
+            
         .close {
             color: #aaa;
-            float: right;
+            position: absolute; /* 절대 위치 지정 */
+            top: 10px; /* 모달 상단과의 간격 */
+            right: 10px; /* 모달 우측과의 간격 */
             font-size: 28px;
             font-weight: bold;
         }
@@ -174,7 +202,7 @@
 
          <div class="button-container">
                 <!-- 새 글쓰기 버튼에 모달 띄우기 -->
-                <a href="#" onclick="openModal();" class="button">새 글쓰기</a>
+                <a href="#" onclick="openModal();" class="button">NEW!</a>
 
                 <!-- 홈으로 돌아가는 버튼 -->
                 <a href="http://localhost:8383/" class="home-button">home</a>
@@ -194,8 +222,8 @@
                         <th>식사일정</th>
                         <th>식당</th>
                         <th>메뉴</th>
-                        <th>인원</th>
-                        <th>상태</th>
+                        <th>참가 인원</th>
+                        <th>참가상태</th>
                         <th>참가하기</th>
                     </tr>
                 </thead>
@@ -224,7 +252,7 @@
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal();">&times;</span>
-                <h1>새 글 쓰기</h1>
+                <h1>NEW</h1>
                 <form action="/lunchMateBoard/new" method="post">
                     <!-- 작성자 정보는 자동으로 설정되도록 변경 -->
                     <!-- <label for="userId">작성자:</label> -->
@@ -234,7 +262,7 @@
                     <input type="text" id="lunchPostTitle" name="lunchPostTitle" required><br>
 
                     <label for="eatTime">식사 일정:</label>
-                    <input type="date" id="eatTime" name="eatTime" required><br>
+                    <input type="date" id="eatTime" name="eatTime" min="<?php echo date('Y-m-d'); ?>" required><br>
 
                     <label for="lunchLocation">식당 위치:</label>
                     <input type="text" id="lunchLocation" name="lunchLocation" required><br>
@@ -242,12 +270,13 @@
                     <label for="lunchMenuName">메뉴 이름:</label>
                     <input type="text" id="lunchMenuName" name="lunchMenuName" required><br>
 
-                    <label for="lunchAttendees">인원:</label>
-                    <input type="number" id="lunchAttendees" name="lunchAttendees" required><br>
+                    <label for="lunchAttendees">참가 인원:</label>
+                    <input type="number" id="lunchAttendees" name="lunchAttendees" min="2" placeholder="최소 인원은 2명입니다" required><br>
+                    
 
                     <input type="hidden" id="progressStatus" name="progressStatus" value="1">
 
-                    <button type="submit">등록</button>
+                    <button type="submit">add</button>
                 </form>
             </div>
         </div>
@@ -273,6 +302,15 @@
                     modal.style.display = 'none';
                 }
             }
+
+            // 모달 오늘 날짜 이전 선택 안됨
+            var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+                var yyyy = today.getFullYear();
+
+                today = yyyy + '-' + mm + '-' + dd;
+                document.getElementById("eatTime").setAttribute("min", today);
 
             // 클릭 이벤트 리스너 등록
             document.querySelectorAll('.btnJoin').forEach(button => {
