@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
+@CrossOrigin
 public class TrafficViewController {
 
     private final TrafficViewService trafficViewService;

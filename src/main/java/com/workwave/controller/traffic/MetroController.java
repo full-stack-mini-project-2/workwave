@@ -8,6 +8,7 @@ import com.workwave.util.LoginUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -23,6 +24,7 @@ import java.util.Comparator;
 
 @Controller
 @RequiredArgsConstructor
+@CrossOrigin
 public class MetroController {
 
     // 지하철 정보 컨트롤러
