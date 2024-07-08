@@ -201,7 +201,7 @@ function trafficInfomation(totalStation, totalTime) {
     .catch((error) => {
       console.error('Error:', error);
     })
-  }, 5000);  // 500ms 지연 시간
+  }, 2500);  // 500ms 지연 시간
 
 }
 
