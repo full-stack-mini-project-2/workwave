@@ -132,7 +132,8 @@ async function clickUpDislikes(boardId) {
 
   console.log(data);
 
-  document.getElementById("dislikeCount").dataset.id = dislikeLoggedId + "-clicked";
+  document.getElementById("dislikeCount").dataset.id =
+    dislikeLoggedId + "-clicked";
   document.getElementById("dislikeCount").textContent = data.dislikes;
 
   // 상태를 localStorage에 저장
