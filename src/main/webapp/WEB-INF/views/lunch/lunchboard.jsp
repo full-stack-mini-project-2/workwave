@@ -69,25 +69,32 @@
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            /* border-collapse: collapse; */
+            border-collapse: collapse; /* 테이블 테두리 병합 */
             margin-bottom: 20px;
+            border-spacing: 0;
             /* 기존 테이블과 모달 사이 여백 */
         }
+                    th, td {
+                padding: 10px;
+                text-align: left;
+            }
 
-        th,
-        td {
-            border: 1px solid black;
-            padding: 10px;
-            text-align: left;
-        }
+            th {
+                background-color: #5973dd;
+                font-size: 15px;
+                color: rgb(255, 255, 255);
+                border: none; /* 테이블 헤더의 테두리 제거 */
+            }
 
-        th {
-            background-color: #5973dd;
-            font-size: 15px;
-            color: rgb(255, 255, 255);
+            td {
+                border: none; /* 테이블 셀의 테두리 제거 */
+            }
 
-
-        }
+            /* 셀 사이에만 테두리 추가 */
+            table, th, td {
+                border: 1px solid black;
+            }
         .join-cell {
             padding: 0; /* 내부 패딩을 제거하여 버튼이 전체 셀을 차지하도록 설정합니다. */
         }
@@ -103,17 +110,40 @@
             text-decoration: none;
             font-size: 16px;
             cursor: pointer;
-            border-radius: 4px;
+            /* border-radius: 4px; */
         }
+
+                    #tables {
+                display: flex;
+                flex-wrap: wrap;
+
+
+
+            }
 
         .table-container {
             width: 65%;
             margin: 0 auto; /* 가운데 정렬을 위해 좌우 마진을 자동으로 설정 */
             text-align: center; /* 테이블 내의 콘텐츠를 가운데 정렬 */
             vertical-align: top; /* 위 정렬 유지 */
+    
+
+
+
+            margin-bottom: 20px; /* 세트 간의 간격 */
+        }
+
+        .table-container table {
+
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+ 
+
         }
 
         .form-container {
+            border-radius: 20px; 
             width: 30%;
             /* 입력 폼의 너비 조정 */
             margin-left: 20px;
@@ -124,6 +154,8 @@
         }
 
         .modal {
+            font-family: 'Noto Sans KR', sans-serif;
+ 
             display: none;
             /* 초기에는 숨김 */
             position: fixed;
@@ -141,19 +173,44 @@
         }
 
         .modal-content {
-            background-color: #fefefe;
+            background-color: rgba(255, 255, 255, 0.9); /* 살짝 불투명한 흰색 배경 */
             margin: 15% auto;
-            /* 중앙에 위치, 상단 여백 조정 */
             padding: 20px;
             border: 1px solid #888;
-            width: 70%;
-            /* 모달 너비 조정 */
+            width: 30%; /* 모달 너비 30%로 조정 */
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
+           .modal-content form label {
+                margin-bottom: 5px; /* 라벨 아래 여백 조정 */
+                display: block; /* 라벨이 한 줄에 표시되도록 설정 */
+            }
 
+            .modal-content form input,
+            .modal-content form button {
+                margin-bottom: 10px; /* 입력 필드와 버튼 사이 여백 조정 */
+            }
+
+            .modal-content form button {
+                margin-top: 10px; /* 버튼 위 여백 조정 */
+                padding: 12px 20px; /* 버튼 내부 패딩 */
+                font-weight: bold;
+                text-decoration: none;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 20px; /* 타원형 버튼으로 설정 */
+                background-color: rgb(255, 255, 255); /* 배경색 흰색으로 설정 */
+                border: 1px solid #ccc; /* 테두리 추가 */
+            }
+
+            .modal-content form button:hover {
+                background-color: #f0f0f0; /* 마우스 오버 시 배경색 조정 */
+            }
+            
         .close {
             color: #aaa;
-            float: right;
+            position: absolute; /* 절대 위치 지정 */
+            top: 10px; /* 모달 상단과의 간격 */
+            right: 10px; /* 모달 우측과의 간격 */
             font-size: 28px;
             font-weight: bold;
         }
@@ -163,6 +220,46 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
+        }
+
+
+                /* 페이지네이션 스타일 */
+        .pagination {
+        
+            margin-top: 20px;
+            text-align: center;
+            justify-content: center; /* 수평 중앙 정렬 */
+            display: flex;
+        }
+
+        .pagination ul {
+            list-style-type: none;
+            padding: 0;
+            display: inline-block;
+        }
+
+        .pagination ul li {
+            display: inline;
+            margin-right: 5px;
+        }
+
+        .pagination ul li a,
+        .pagination ul li.active {
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #333;
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .pagination ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .pagination ul li.active {
+            background-color:  #181a33;
+            color: white;
         }
     </style>
 </head>
@@ -174,7 +271,7 @@
 
          <div class="button-container">
                 <!-- 새 글쓰기 버튼에 모달 띄우기 -->
-                <a href="#" onclick="openModal();" class="button">새 글쓰기</a>
+                <a href="#" onclick="openModal();" class="button">NEW!</a>
 
                 <!-- 홈으로 돌아가는 버튼 -->
                 <a href="http://localhost:8383/" class="home-button">home</a>
@@ -184,38 +281,68 @@
 
 
 
-    <div class="table-container">
-        <table>
-            <c:forEach var="board" items="${boards}" varStatus="loop">
-                <thead>
-                    <tr>
-                        <th>작성자</th>
-                        <th>제목</th>
-                        <th>식사일정</th>
-                        <th>식당</th>
-                        <th>메뉴</th>
-                        <th>인원</th>
-                        <th>상태</th>
-                        <th>참가하기</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-post-id="${board.lunchPostNumber}">
-                        <td>${board.userId}</td>
-                        <td>${board.lunchPostTitle}</td>
-                        <td>${board.eatTime}</td>
-                        <td>${board.lunchLocation}</td>
-                        <td>${board.lunchMenuName}</td>
-                        <td>${board.lunchAttendees}명</td>
-                        <td>${board.progressStatus}명</td>
-                         <td class="join-cell">
+    <div id="tables">
+        <c:forEach var="board" items="${boards}">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 10.5%;">작성자</th>
+                            <th style="width: 14%;">제목</th>
+                            <th style="width: 12.5%;">식사일정</th>
+                            <th style="width: 12.5%;">식당</th>
+                            <th style="width: 12.5%;">메뉴</th>
+                            <th style="width: 8%;">참가 인원</th>
+                            <th style="width: 8%;">참가상태</th>
+                            <th style="width: 7%;">참가하기</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-post-id="${board.lunchPostNumber}">
+                            <td>${board.userId}</td>
+                            <td>${board.lunchPostTitle}</td>
+                            <td>${board.eatTime}</td>
+                            <td>${board.lunchLocation}</td>
+                            <td>${board.lunchMenuName}</td>
+                            <td>${board.lunchAttendees}명</td>
+                            <td>${board.progressStatus}명</td>
+                            <td class="join-cell">
                                 <!-- 전체 셀을 버튼으로 만듭니다. -->
                                 <button data-id="${board.lunchPostNumber}" class="btnJoin" type="button">Join!</button>
                             </td>
-                    </tr>
-                </tbody>
-            </c:forEach>
-        </table>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </c:forEach>
+    </div>
+
+
+            <!-- 페이지네이션 UI -->
+    <div class="pagination">
+        <c:if test="${totalPages > 1}">
+            <ul>
+                <c:if test="${pageNo > 1}">
+                    <li><a href="?page=1&size=${pageSize}">처음으로</a></li>
+                    <li><a href="?page=${pageNo - 1}&size=${pageSize}">끝으로</a></li>
+                </c:if>
+                <c:forEach begin="${startPage}" end="${endPage}" var="page">
+                    <c:choose>
+                        <c:when test="${page == pageNo}">
+                            <li class="active">${page}</li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a href="?page=${page}&size=${pageSize}">${page}</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:if test="${pageNo < totalPages}">
+                    <li><a href="?page=${totalPages}&size=${pageSize}"><</a></li>
+
+                    <li><a href="?page=${pageNo + 1}&size=${pageSize}">></a></li>
+                </c:if>
+            </ul>
+        </c:if>
     </div>
 
 
@@ -224,7 +351,7 @@
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal();">&times;</span>
-                <h1>새 글 쓰기</h1>
+                <h1>NEW</h1>
                 <form action="/lunchMateBoard/new" method="post">
                     <!-- 작성자 정보는 자동으로 설정되도록 변경 -->
                     <!-- <label for="userId">작성자:</label> -->
@@ -234,7 +361,8 @@
                     <input type="text" id="lunchPostTitle" name="lunchPostTitle" required><br>
 
                     <label for="eatTime">식사 일정:</label>
-                    <input type="date" id="eatTime" name="eatTime" required><br>
+                    <input type="date" id="eatTime" name="eatTime" placeholder="시간은 12시 고정입니다" required style="margin-bottom: 1px;"><br>
+                    <span style="font-size: 10px; color: #666;">점심 시간은 12시 고정입니다</span><br>
 
                     <label for="lunchLocation">식당 위치:</label>
                     <input type="text" id="lunchLocation" name="lunchLocation" required><br>
@@ -242,12 +370,13 @@
                     <label for="lunchMenuName">메뉴 이름:</label>
                     <input type="text" id="lunchMenuName" name="lunchMenuName" required><br>
 
-                    <label for="lunchAttendees">인원:</label>
-                    <input type="number" id="lunchAttendees" name="lunchAttendees" required><br>
+                    <label for="lunchAttendees">참가 인원:</label>
+                    <input type="number" id="lunchAttendees" name="lunchAttendees" min="2" placeholder="최소 인원은 2명입니다" required><br>
+                    
 
                     <input type="hidden" id="progressStatus" name="progressStatus" value="1">
 
-                    <button type="submit">등록</button>
+                    <button type="submit">add</button>
                 </form>
             </div>
         </div>
@@ -274,6 +403,21 @@
                 }
             }
 
+            // 모달 오늘 날짜 이전 선택 안됨
+            var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+                var yyyy = today.getFullYear();
+
+                today = yyyy + '-' + mm + '-' + dd;
+                document.getElementById("eatTime").setAttribute("min", today);
+
+
+                // 데이터 간격주기
+                
+
+                
+
             // 클릭 이벤트 리스너 등록
             document.querySelectorAll('.btnJoin').forEach(button => {
                 button.addEventListener('click', async (e) => {
@@ -291,7 +435,9 @@
                                 // 인원과 상태 값이 같을 경우 버튼을 비활성화
                                 if (currentAttendees === progressStatus) {
                                     button.disabled = true;
-                                    alert('이미 참가할 수 없는 상태입니다.');
+                                     button.textContent = "Close";
+                                     button.style.backgroundColor = '#808080';
+                                    alert('참가할 수 없는 상태입니다.');
                                     return;
                                 }
 
@@ -324,9 +470,11 @@
                                     // 인원과 상태 값이 같을 경우 버튼을 비활성화
                         if (updatedBoard.lunchAttendees === updatedBoard.progressStatus) {
                             button.disabled = true;
+                            button.textContent = "Close";
+                             button.style.backgroundColor = '#808080';
                         }
 
-                                alert('Successfully joined lunch!');
+                                alert('joined lunch!');
                                 location.reload(); // 페이지 새로고침
                             } else {
                                 alert('Failed to join lunch: ' + data.message);

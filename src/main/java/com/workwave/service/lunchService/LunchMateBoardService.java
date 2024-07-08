@@ -75,4 +75,18 @@ public class LunchMateBoardService {
             throw new IllegalArgumentException("Invalid board Id:" + lunchPostNumber);
         }
     }
+
+
+    // 페이징 처리된 게시물 목록 조회
+    public List<LunchMateBoard> findPagedBoards(int pageNo, int amount) {
+        int offset = (pageNo - 1) * amount;
+        return lunchMateBoardMapper.findPagedBoards(offset, amount);
+    }
+
+    // 전체 게시물 수 조회
+    public int getTotalCount() {
+        return lunchMateBoardMapper.getTotalCount();
+    }
+
+
 }

@@ -40,18 +40,33 @@ public class LunchMateBoardController {
 
     // 게시판 목록 페이지
     @GetMapping("/list")
-    public String list(Model model) {
-        List<LunchMateBoard> boards = lunchMateBoardService.findAll();
+    public String list(Model model,
+                       @RequestParam(name = "page", defaultValue = "1") int pageNo,
+                       @RequestParam(name = "size", defaultValue = "10") int pageSize) {
+        // 전체 게시물 수 조회
+        int totalCount = lunchMateBoardService.getTotalCount();
+
+        // 페이징 처리된 게시물 목록 조회
+        List<LunchMateBoard> boards = lunchMateBoardService.findPagedBoards(pageNo, pageSize);
 
         // LunchMateBoard를 LunchListDto로 변환
         List<LunchBoardFindAllDto> boardDTOs = boards.stream()
                 .map(LunchMateBoard::toDto)
                 .collect(Collectors.toList());
 
-        System.out.println("boardDTOs = " + boardDTOs);
-        System.out.println("찍");
-        boardDTOs.forEach(System.out::println);
+        // 페이징 관련 정보 계산
+        int totalPages = (int) Math.ceil((double) totalCount / pageSize);
+        int startPage = Math.max(1, pageNo - 5);
+        int endPage = Math.min(startPage + 9, totalPages);
+
         model.addAttribute("boards", boardDTOs);
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("pageNo", pageNo);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("pageSize", pageSize);
+
         return "lunch/lunchboard"; // src/main/webapp/WEB-INF/views/lunch/lunchboard.jsp
     }
 
