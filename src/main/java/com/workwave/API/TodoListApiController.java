@@ -18,6 +18,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@CrossOrigin //restApi에 붙여서 중복 및 충돌 방지하기
 @RequiredArgsConstructor
 @RequestMapping("api/todos")
 public class TodoListApiController {
