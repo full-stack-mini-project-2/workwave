@@ -30,7 +30,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   position: relative;
 }
 .header-container h1 {
@@ -41,8 +41,8 @@ body {
 
 .header-container h3 {
   font-family: 'NEXON Lv2 Gothic', 'Roboto', sans-serif;
-  margin-top: 20px;
-  margin-left: -400px
+  margin-top: 18px;
+  margin-left: -350px
 }
 .favorite-list {
   text-decoration: none;
