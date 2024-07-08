@@ -110,7 +110,7 @@
             text-decoration: none;
             font-size: 16px;
             cursor: pointer;
-            /* border-radius: 4px; */
+
         }
 
                     #tables {
