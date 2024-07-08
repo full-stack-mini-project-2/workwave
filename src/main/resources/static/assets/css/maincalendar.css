@@ -110,7 +110,8 @@
 .event-steelblue { background-color: steelblue; }
 .event-lightyellow { background-color: lightyellow; }
 .event-lightpink { background-color: lightpink; }
-.event-lightgray { background-color: lightgray; }
+.event-default-color { background-color: lightgray; }
+
 
 /* 모달 스타일 */
 .modal {

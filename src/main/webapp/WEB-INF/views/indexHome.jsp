@@ -23,7 +23,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(20, 22, 64, 0.5); /* 배경색 설정 */
+            background-color: rgba(36, 39, 98, 0.3); /* 배경색 설정 */
             background-image: linear-gradient(45deg, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.04) 50%, rgba(0,0,0,0.04) 75%, rgba(0,0,0,0.08) 75%, rgba(0,0,0,0.08) 100%), linear-gradient(-45deg, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.04) 50%, rgba(0,0,0,0.04) 75%, rgba(0,0,0,0.08) 75%, rgba(0,0,0,0.08) 100%);
             background-size: 200% 200%; /* 배경 크기 설정 */
             animation: wave-animation 30s infinite linear; /* 애니메이션 적용 */
@@ -417,6 +417,17 @@
     }]);
 
     $(document).ready(function() {
+        // 페이지 로드 시 기본적으로 내용을 감추기
+        $('.personal-todolist-Box').addClass('minimized');
+        $('.personal-todolist-Box .table-responsive').hide();
+
+        $('.team-todolist-Box').addClass('minimized');
+        $('.team-todolist-Box .table-responsive').hide();
+
+        $('#teamCalendar').addClass('minimized');
+        $('#teamCalendarIcon').show();
+        $('#teamCalendar').hide();
+
         // 개인 투두리스트 토글 버튼 클릭 시
         $('#personalToggleBtn').click(function() {
             $('.personal-todolist-Box').toggleClass('minimized');
@@ -456,6 +467,47 @@
             $('#teamCalendar').show();
         });
     });
+
+    // $(document).ready(function() {
+    //     // 개인 투두리스트 토글 버튼 클릭 시
+    //     $('#personalToggleBtn').click(function() {
+    //         $('.personal-todolist-Box').toggleClass('minimized');
+    //         if ($('.personal-todolist-Box').hasClass('minimized')) {
+    //             $('.personal-todolist-Box .table-responsive').hide(); // 개인 투두리스트 내용 감추기
+    //         } else {
+    //             $('.personal-todolist-Box .table-responsive').show(); // 개인 투두리스트 내용 표시
+    //         }
+    //     });
+    //
+    //     // 팀 투두리스트 토글 버튼 클릭 시
+    //     $('#teamTodoToggleBtn').click(function() {
+    //         $('.team-todolist-Box').toggleClass('minimized');
+    //         if ($('.team-todolist-Box').hasClass('minimized')) {
+    //             $('.team-todolist-Box .table-responsive').hide(); // 팀 투두리스트 내용 감추기
+    //         } else {
+    //             $('.team-todolist-Box .table-responsive').show(); // 팀 투두리스트 내용 표시
+    //         }
+    //     });
+    //
+    //     // 팀 달력 토글 버튼 클릭 시
+    //     $('#teamToggleBtn').click(function() {
+    //         $('#teamCalendar').toggleClass('minimized');
+    //         if ($('#teamCalendar').hasClass('minimized')) {
+    //             $('#teamCalendarIcon').show();
+    //             $('#teamCalendar').hide(); // 팀 달력 감추기
+    //         } else {
+    //             $('#teamCalendarIcon').hide();
+    //             $('#teamCalendar').show(); // 팀 달력 표시
+    //         }
+    //     });
+    //
+    //     // 팀 달력 아이콘 클릭 시 달력 표시
+    //     $('#teamCalendarIcon').click(function() {
+    //         $('#teamCalendar').removeClass('minimized');
+    //         $('#teamCalendarIcon').hide();
+    //         $('#teamCalendar').show();
+    //     });
+    // });
 
     function updateClock() {
         var now = new Date();
