@@ -69,8 +69,9 @@
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            /* border-collapse: collapse; */
             margin-bottom: 20px;
+            border-spacing: 0;
             /* 기존 테이블과 모달 사이 여백 */
         }
 
@@ -103,14 +104,36 @@
             text-decoration: none;
             font-size: 16px;
             cursor: pointer;
-            border-radius: 4px;
+            /* border-radius: 4px; */
         }
+
+                    #tables {
+                display: flex;
+                flex-wrap: wrap;
+
+
+
+            }
 
         .table-container {
             width: 65%;
             margin: 0 auto; /* 가운데 정렬을 위해 좌우 마진을 자동으로 설정 */
             text-align: center; /* 테이블 내의 콘텐츠를 가운데 정렬 */
             vertical-align: top; /* 위 정렬 유지 */
+    
+
+
+
+            margin-bottom: 20px; /* 세트 간의 간격 */
+        }
+
+        .table-container table {
+
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+
+
         }
 
         .form-container {
@@ -192,6 +215,46 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+
+                /* 페이지네이션 스타일 */
+        .pagination {
+        
+            margin-top: 20px;
+            text-align: center;
+            justify-content: center; /* 수평 중앙 정렬 */
+            display: flex;
+        }
+
+        .pagination ul {
+            list-style-type: none;
+            padding: 0;
+            display: inline-block;
+        }
+
+        .pagination ul li {
+            display: inline;
+            margin-right: 5px;
+        }
+
+        .pagination ul li a,
+        .pagination ul li.active {
+            padding: 8px 12px;
+            text-decoration: none;
+            color: #333;
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .pagination ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .pagination ul li.active {
+            background-color:  #181a33;
+            color: white;
+        }
     </style>
 </head>
 
@@ -212,38 +275,68 @@
 
 
 
-    <div class="table-container">
-        <table>
-            <c:forEach var="board" items="${boards}" varStatus="loop">
-                <thead>
-                    <tr>
-                        <th>작성자</th>
-                        <th>제목</th>
-                        <th>식사일정</th>
-                        <th>식당</th>
-                        <th>메뉴</th>
-                        <th>참가 인원</th>
-                        <th>참가상태</th>
-                        <th>참가하기</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-post-id="${board.lunchPostNumber}">
-                        <td>${board.userId}</td>
-                        <td>${board.lunchPostTitle}</td>
-                        <td>${board.eatTime}</td>
-                        <td>${board.lunchLocation}</td>
-                        <td>${board.lunchMenuName}</td>
-                        <td>${board.lunchAttendees}명</td>
-                        <td>${board.progressStatus}명</td>
-                         <td class="join-cell">
+    <div id="tables">
+        <c:forEach var="board" items="${boards}">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 10.5%;">작성자</th>
+                            <th style="width: 14%;">제목</th>
+                            <th style="width: 12.5%;">식사일정</th>
+                            <th style="width: 12.5%;">식당</th>
+                            <th style="width: 9%;">메뉴</th>
+                            <th style="width: 8%;">참가 인원</th>
+                            <th style="width: 8%;">참가상태</th>
+                            <th style="width: 7%;">참가하기</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-post-id="${board.lunchPostNumber}">
+                            <td>${board.userId}</td>
+                            <td>${board.lunchPostTitle}</td>
+                            <td>${board.eatTime}</td>
+                            <td>${board.lunchLocation}</td>
+                            <td>${board.lunchMenuName}</td>
+                            <td>${board.lunchAttendees}명</td>
+                            <td>${board.progressStatus}명</td>
+                            <td class="join-cell">
                                 <!-- 전체 셀을 버튼으로 만듭니다. -->
                                 <button data-id="${board.lunchPostNumber}" class="btnJoin" type="button">Join!</button>
                             </td>
-                    </tr>
-                </tbody>
-            </c:forEach>
-        </table>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </c:forEach>
+    </div>
+
+
+            <!-- 페이지네이션 UI -->
+    <div class="pagination">
+        <c:if test="${totalPages > 1}">
+            <ul>
+                <c:if test="${pageNo > 1}">
+                    <li><a href="?page=1&size=${pageSize}">처음으로</a></li>
+                    <li><a href="?page=${pageNo - 1}&size=${pageSize}">끝으로</a></li>
+                </c:if>
+                <c:forEach begin="${startPage}" end="${endPage}" var="page">
+                    <c:choose>
+                        <c:when test="${page == pageNo}">
+                            <li class="active">${page}</li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a href="?page=${page}&size=${pageSize}">${page}</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                <c:if test="${pageNo < totalPages}">
+                    <li><a href="?page=${totalPages}&size=${pageSize}"><</a></li>
+
+                    <li><a href="?page=${pageNo + 1}&size=${pageSize}">></a></li>
+                </c:if>
+            </ul>
+        </c:if>
     </div>
 
 
@@ -262,7 +355,8 @@
                     <input type="text" id="lunchPostTitle" name="lunchPostTitle" required><br>
 
                     <label for="eatTime">식사 일정:</label>
-                    <input type="date" id="eatTime" name="eatTime" min="<?php echo date('Y-m-d'); ?>" required><br>
+                    <!-- <input type="date" id="eatTime" name="eatTime" min="<?php echo date('Y-m-d'); ?>" required><br> -->
+                    <input type="datetime-local" id="eatTime" name="eatTime" min="<?php echo date('Y-m-d'); ?>" required><br>
 
                     <label for="lunchLocation">식당 위치:</label>
                     <input type="text" id="lunchLocation" name="lunchLocation" required><br>
@@ -311,6 +405,12 @@
 
                 today = yyyy + '-' + mm + '-' + dd;
                 document.getElementById("eatTime").setAttribute("min", today);
+
+
+                // 데이터 간격주기
+                
+
+                
 
             // 클릭 이벤트 리스너 등록
             document.querySelectorAll('.btnJoin').forEach(button => {
@@ -380,6 +480,30 @@
                         });
                 });
             });
+
+
+                            // 주어진 ISO 형식의 날짜 문자열을 원하는 포맷으로 변환하는 함수
+                function formatDateTime(isoDateTime) {
+                    // ISO 형식의 날짜 문자열을 Date 객체로 변환
+                    const date = new Date(isoDateTime);
+
+                    // 원하는 포맷으로 날짜와 시간을 가져오기
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const hour = String(date.getHours()).padStart(2, '0');
+                    const minute = String(date.getMinutes()).padStart(2, '0');
+
+                    // 포맷된 문자열 반환
+                    return `${day}-${month}-${year} ${hour}:${minute}시`;
+                }
+
+                // 예시: ISO 형식의 날짜와 시간 문자열
+                const isoDateTime = '2024-07-24T14:00';
+
+                // 함수를 사용하여 포맷된 문자열 출력
+                const formattedDateTime = formatDateTime(isoDateTime);
+                console.log(formattedDateTime); // 출력 예: 24-07-2024 14:00시
         </script>
     </div>
 

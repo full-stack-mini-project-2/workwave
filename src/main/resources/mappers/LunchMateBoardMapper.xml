@@ -16,12 +16,20 @@
         WHERE lunch_post_number = #{lunchPostNumber}
     </select>
 
+        <select id="getTotalCount" resultType="int">
+            SELECT COUNT(*) FROM lunch_posts;
+        </select>
+
+
     <!-- LunchMateBoardMapper.xml -->
     <insert id="save" parameterType="com.workwave.entity.LunchMateBoard">
         INSERT INTO lunch_posts (user_id, lunch_post_title, lunch_date, eat_time, lunch_location, lunch_menu_name, lunch_attendees, progress_status)
         VALUES (#{userId}, #{lunchPostTitle}, #{lunchDate}, #{eatTime}, #{lunchLocation}, #{lunchMenuName}, #{lunchAttendees}, #{progressStatus})
     </insert>
 
+    <select id="findPagedBoards" parameterType="map" resultType="com.workwave.entity.LunchMateBoard">
+        SELECT * FROM lunch_posts LIMIT #{offset}, #{amount}
+    </select>
 
     <!--    &lt;!&ndash; 게시물 상세 조회 &ndash;&gt;-->
 <!--    <select id="findOne" parameterType="int" resultType="com.workwave.entity.LunchMateBoard">-->
