@@ -93,8 +93,8 @@
             var userName = document.getElementById('userName').value;
             var employeeId = document.getElementById('employeeId').value;
             var userEmail = document.getElementById('userEmail').value;
-            console.log('🙏[입력내용] userName:' + userName + ' employeeId:' + employeeId + ' userEmail: ' + userEmail);
-            console.log('✌🏻result= ' + '${resultUser}');
+            // console.log('🙏[입력내용] userName:' + userName + ' employeeId:' + employeeId + ' userEmail: ' + userEmail);
+            // console.log('✌🏻result= ' + '${resultUser}');
             modal.style.display = "block";
 
             // 문자열 분해 [db data]
@@ -103,7 +103,7 @@
             const db_uEmail = `${resultEmail}`;
             const db_uName = `${resultName}`;
 
-            console.log("☂️찐 =  " + db_uid + " " + db_eid + " " + db_uEmail + " " + db_uName);
+            // console.log("☂️찐 =  " + db_uid + " " + db_eid + " " + db_uEmail + " " + db_uName);
 
             if (userName === db_uName && employeeId === db_eid && userEmail === db_uEmail) {
                 document.getElementById('passwordForm').style.display = "block";
@@ -150,7 +150,7 @@
             }
 
             //-->
-            console.log("👽전송 폼->" + db_uid + " " + newPassword);
+            // console.log("👽전송 폼->" + db_uid + " " + newPassword);
             // 비밀번호 변경 요청
             fetch('/changePassword', {
                 method: 'POST',

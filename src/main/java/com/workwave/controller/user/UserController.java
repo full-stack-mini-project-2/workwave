@@ -209,7 +209,7 @@ public class UserController {
         ra.addFlashAttribute("resultEmpId",resultUser.getEmployeeId());
         ra.addFlashAttribute("resultEmail",resultUser.getUserEmail());
         ra.addFlashAttribute("resultName",resultUser.getUserName());
-        System.out.println("🧤resultUser = " + resultUser);
+//        System.out.println("🧤resultUser = " + resultUser);
 
         //리다이렉트 할때 쓰는 전송 객체⭐️
         //ㄴ 리다이렉트 객체를 써야 리다이렉트 페이지 까지 전송된다.~!
@@ -218,7 +218,7 @@ public class UserController {
         //유저 조회 성공!
         if (resultUser != null)
         {
-            System.out.println("🏆 resultUser = " + resultUser);
+//            System.out.println("🏆 resultUser = " + resultUser);
             //리다이렉트가 있는지 확인해본다.
 //            String redirect = (String) session.getAttribute("redirect");
 //            if (redirect != null) {
@@ -236,14 +236,14 @@ public class UserController {
         @GetMapping("/forgotPassword2")
         public String forgotPassword2(RedirectAttributes ra){
             // ra 객체를 사용하여 데이터 전달
-            System.out.println("rarara = " + ra); //공백임
+//            System.out.println("rarara = " + ra); //공백임
 //            ra.addFlashAttribute("resultUser", ra);
             //일단은 resultUser 데이터가 전달된다.!
             return "/Login/forgotPasswordStep2";
         }
         @PostMapping("/forgotPassword2")
         public String forgotPassword2After(RedirectAttributes ra, Model model){
-            System.out.println("👽ra = " + ra);
+//            System.out.println("👽ra = " + ra);
 //            System.out.println("🛠️model = " + model);
 
             // 모달창을 띄우기 위해 모달 관련 데이터를 모델에 추가
@@ -260,12 +260,12 @@ public class UserController {
     @PostMapping("/changePassword")
     @ResponseBody
             public ResponseEntity<Map<String, Object>> changePassword(@RequestBody UserChangeDto userchangedto) {
-                System.out.println("🙏1");
-        System.out.println("userchangedto = " + userchangedto);
+//                System.out.println("🙏1");
+//        System.out.println("userchangedto = " + userchangedto);
 
                 // 비밀번호 변경 로직 구현
                 boolean isChanged = changePasswordInDatabase(userchangedto);
-
+                System.out.println("🫡isChanged = " + isChanged);
                 Map<String, Object> response = new HashMap<>();
                 response.put("success", isChanged);
 //
