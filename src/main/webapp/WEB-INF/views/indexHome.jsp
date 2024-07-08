@@ -38,11 +38,6 @@
                 background-position: 100% 50%;
             }
         }
-
-        #personalCalendar {
-              left: 1px;
-        }
-
     </style>
 </head>
 <body>
@@ -58,10 +53,8 @@
     <div class="clock" id="clock">00:00</div>
 </div>
 
-<div class="right-top">
-    <a href="/myCalendar/viewTeamEvent" class="right-box team">TEAM CALENDAR</a>
-<%--    <a href="/myCalendar/viewMyEvent" class="right-box">PERSONAL CALENDAR</a>--%>
-</div>
+<%--<div class="right-top">--%>
+<%--    <a href="/myCalendar/viewMyEvent" class="right-box team">MY CALENDAR</a></div>--%>
 
 <div class="left-top">
     <a href="/traffic-map" class="right-box">TRAFFIC INFO</a>
@@ -107,7 +100,7 @@
         </div>
     </div>
     <div class="right-bottom">
-        <a class="toggle-personal toggle-button" style="">PERSONAL TODOLIST</a>
+        <a class="toggle-personal toggle-button" id="personalToggleBtn">PERSONAL TODOLIST</a>
     </div>
 </div>
 
@@ -144,12 +137,14 @@
                 <button class="btn btn-primary" type="button" ng-click="saveTeamTask()">Save</button>
             </div>
         </div>
-    </div><div class="right-bottom">
-    <a class="toggle-team toggle-button" >TEAM TODOLIST</a>
-</div>
+    </div>
+    <div class="right-bottom">
+    <a class="toggle-team toggle-button" id="teamTodoToggleBtn">TEAM TODOLIST</a>
+    </div>
 </div>
 
 </div>
+<%--투두리스트 콘텐츠 끝--%>
 
 <%-- 로그인 섹션 --%>
 <div class="login">
@@ -189,7 +184,6 @@
         <button class="toggle-btn" id="teamToggleBtn"><i class="fas fa-chevron-up"></i></button>
     </div>
     <div class="calendar-icon" id="teamCalendarIcon">
-        TEAM
         <i class="fas fa-calendar-alt"></i>
     </div>
 </div>
@@ -422,32 +416,46 @@
         };
     }]);
 
-    // $(document).ready(function() {
-    //         // 개인 달력 토글 버튼 클릭 시
-    //         $('#perToggleBtn').click(function() {
-    //             $('#personalCalendar').toggleClass('minimized');
-    //             if ($('#personalCalendar').hasClass('minimized')) {
-    //                 $('#teamCalendarIcon').show();
-    //                 $('#teamCalendar').hide(); // 팀 달력 감추기
-    //             } else {
-    //                 $('#teamCalendarIcon').hide();
-    //                 $('#teamCalendar').show(); // 팀 달력 표시
-    //             }
-    //         });
-    //
-    //         // 팀 달력 토글 버튼 클릭 시
-    //         $('#teamToggleBtn').click(function() {
-    //             $('#teamCalendar').toggleClass('minimized');
-    //             if ($('#teamCalendar').hasClass('minimized')) {
-    //                 $('#perCalendarIcon').show();
-    //                 $('#personalCalendar').hide(); // 개인 달력 감추기
-    //             } else {
-    //                 $('#perCalendarIcon').hide();
-    //                 $('#personalCalendar').show(); // 개인 달력 표시
-    //             }
-    //         });
-    //     });
+    $(document).ready(function() {
+        // 개인 투두리스트 토글 버튼 클릭 시
+        $('#personalToggleBtn').click(function() {
+            $('.personal-todolist-Box').toggleClass('minimized');
+            if ($('.personal-todolist-Box').hasClass('minimized')) {
+                $('.personal-todolist-Box .table-responsive').hide(); // 개인 투두리스트 내용 감추기
+            } else {
+                $('.personal-todolist-Box .table-responsive').show(); // 개인 투두리스트 내용 표시
+            }
+        });
 
+        // 팀 투두리스트 토글 버튼 클릭 시
+        $('#teamTodoToggleBtn').click(function() {
+            $('.team-todolist-Box').toggleClass('minimized');
+            if ($('.team-todolist-Box').hasClass('minimized')) {
+                $('.team-todolist-Box .table-responsive').hide(); // 팀 투두리스트 내용 감추기
+            } else {
+                $('.team-todolist-Box .table-responsive').show(); // 팀 투두리스트 내용 표시
+            }
+        });
+
+        // 팀 달력 토글 버튼 클릭 시
+        $('#teamToggleBtn').click(function() {
+            $('#teamCalendar').toggleClass('minimized');
+            if ($('#teamCalendar').hasClass('minimized')) {
+                $('#teamCalendarIcon').show();
+                $('#teamCalendar').hide(); // 팀 달력 감추기
+            } else {
+                $('#teamCalendarIcon').hide();
+                $('#teamCalendar').show(); // 팀 달력 표시
+            }
+        });
+
+        // 팀 달력 아이콘 클릭 시 달력 표시
+        $('#teamCalendarIcon').click(function() {
+            $('#teamCalendar').removeClass('minimized');
+            $('#teamCalendarIcon').hide();
+            $('#teamCalendar').show();
+        });
+    });
 
     function updateClock() {
         var now = new Date();
