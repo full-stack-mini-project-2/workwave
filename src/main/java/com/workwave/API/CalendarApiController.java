@@ -22,6 +22,7 @@ import java.util.Map;
  * 주 기능 : 데이터베이스 정보를 api에 전달
  */
 @RestController
+@CrossOrigin //restApi에 붙여서 중복 및 충돌 방지하기
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/calendar")
