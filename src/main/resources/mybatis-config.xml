@@ -4,20 +4,75 @@
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-    <!--    카멜케이스와 스네이크 케이스의 자동 변환 설정~!-->
+<!--    카멜케이스 변환 -->
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
-    <!--    select 조회 결과를 담을 Entity 클래스 별칭 설정하기⭐️-->
-    <typeAliases>
-        <!--        <typeAlias type="com.study.SpringStudy.springmvc.chap05.entity.Member" alias="member"/>-->
-        <!--        <typeAlias type="com.test.mvc.entity.Memo" alias="memo"/>-->
 
+    <typeAliases>
+        <typeAlias type="com.workwave.entity.board.Board" alias="board"/>
+        <typeAlias type="com.workwave.entity.User" alias="user"/>
+
+<!--        캘린더 dto -->
+        <typeAlias alias="calendarsDto" type="com.workwave.dto.schedule_dto.request.CalendarsDto"/>
+        <typeAlias alias="allMyCalendarEventDto" type="com.workwave.dto.schedule_dto.request.AllMyCalendarEventDto"/>
+        <typeAlias alias="allMyTeamCalendarEventDto" type="com.workwave.dto.schedule_dto.request.AllMyTeamCalendarEventDto"/>
+        <typeAlias alias="AllCalendarEvents" type="com.workwave.entity.schedule.CalendarEvent"/>
+
+<!--        투두리스트 dto -->
+        <typeAlias alias="allMyTodoListDto" type="com.workwave.dto.schedule_dto.request.AllMyTodoListDto"/>
+        <typeAlias alias="allMyTeamTodoListDto" type="com.workwave.dto.schedule_dto.request.AllMyTeamTodoListDto"/>
+        <typeAlias alias="todoList" type="com.workwave.entity.schedule.TodoList"/>
+        <typeAlias alias="teamTodoList" type="com.workwave.entity.schedule.TeamTodoList"/>
+
+
+<!--        익명게시판 dto-->
+        <typeAlias type="com.workwave.entity.board.Reply" alias="reply"/>
+        <typeAlias type="com.workwave.entity.board.SubReply" alias="subReply"/>
+
+<!--        유저 dto-->
+        <typeAlias type="com.workwave.entity.User" alias="user"/>
+
+<!--교통상황 dto-->
+        <typeAlias type="com.workwave.entity.trrafic.Traffic" alias="traffic"/>
+        <typeAlias type="com.workwave.entity.trrafic.StationView" alias="stationView"/>
+
+
+
+
+<!--        calendar entity class -->
+        <typeAlias type="com.workwave.entity.schedule.ColorIndex" alias="colorIndex"/>
+        <typeAlias type="com.workwave.entity.schedule.Calendar" alias="calendar"/>
+        <typeAlias type="com.workwave.entity.schedule.TeamCalendar" alias="teamCalendar"/>
+        <typeAlias type="com.workwave.entity.schedule.CalendarEvent" alias="calendarEvent"/>
+        <typeAlias type="com.workwave.entity.schedule.TodoList" alias="todoList"/>
+        <typeAlias type="com.workwave.entity.schedule.TeamTodoList" alias="teamTodoList"/>
+        <typeAlias type="com.workwave.entity.schedule.TodoListEvent" alias="todoListEvent"/>
     </typeAliases>
-    <!--    SQL을 적어놓은 ... Mapper.xml 파일들을 사용등록하는 영역-->
-    <!--다른 xml 생기면 하단에 계속 추가⭐️-->
+
     <mappers>
+        <mapper resource="mappers/BoardMapper.xml"/>
+
+        <mapper resource="mappers/UserMapper.xml"/>
+
+<!--        schedule mapper-->
+        <mapper resource="mappers/scheduleMapper/CalendarMapper.xml"/>
+        <mapper resource="mappers/scheduleMapper/ColorIndexMapper.xml"/>
+        <mapper resource="mappers/scheduleMapper/TodoListMapper.xml"/>
+
+
+        <mapper resource="mappers/ReplyMapper.xml"/>
         <!--        <mapper resource="mappers/PersonMapper.xml"/>-->
+
+        <mapper resource="mappers/UserMapper.xml"/>
+
+        <mapper resource="mappers/trafficMapper.xml"/>
+        <mapper resource="mappers/trafficViewMapper.xml"/>
+
+
         <!--        <mapper resource="mappers/MemoMapper.xml"/>-->
+
+        <mapper resource="mappers/LunchMateBoardMapper.xml"/>
     </mappers>
 </configuration>
+
