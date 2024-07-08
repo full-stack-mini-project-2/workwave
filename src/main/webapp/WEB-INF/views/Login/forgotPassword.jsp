@@ -110,6 +110,19 @@
                 opacity: 0.7;
                 /* 투명도 조절 */
             }
+
+            /*  */
+            .back-link a {
+                color: white;
+                text-decoration: none;
+                font-weight: normal;
+            }
+
+            .back-link a:hover {
+                color: #a699c8;
+                text-decoration: underline;
+                font-weight: bold;
+            }
         </style>
         <script type="module" src="/assets/js/forgotUser.js"></script>
     </head>
