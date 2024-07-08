@@ -25,6 +25,7 @@ import java.util.List;
 @RequestMapping("/board")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin
 public class BoardController {
 
     private final BoardService boardService;

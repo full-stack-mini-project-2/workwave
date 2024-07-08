@@ -17,6 +17,7 @@ import javax.validation.Valid;
 @RequestMapping("/reply")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin
 public class ReplyController {
 
     private final ReplyService replyService;
