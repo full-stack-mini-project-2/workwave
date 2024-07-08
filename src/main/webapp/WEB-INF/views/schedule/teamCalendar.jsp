@@ -168,7 +168,11 @@
             const filteredTeamEvents = events.filter(event => event.calEventDate.startsWith(fullDateStr));
 
             if (filteredTeamEvents.length > 0) {
+
                 filteredTeamEvents.forEach(event => {
+
+                    console.log('Rendering event:', event); // Add debug logging
+
                     const colorClass = `event-\${getTeamColorByIndex(event.colorIndexId)}`;
                     teamCalendarHtml += `<div class="event \${colorClass}" onclick="openTeamModal(\${event.calEventId})">\${event.calEventTitle}</div>`;
                 });
@@ -190,20 +194,15 @@
 
     // colorindex에 따라 색 부여하기
     function getTeamColorByIndex(index) {
-        switch (index) {
-            case 1:
-                return 'lightsteelblue';
-            case 2:
-                return 'darkslateblue';
-            case 3:
-                return 'steelblue';
-            case 4:
-                return 'lightyellow';
-            case 5:
-                return 'lightpink';
-            default:
-                return 'lightgray';
-        }
+
+        const colors = {
+            1: 'lightsteelblue',
+            2: 'darkslateblue',
+            3: 'steelblue',
+            4: 'lightyellow',
+            5: 'lightpink',
+        };
+                return colors[parseInt(index)] || 'default-color'; // index를 정수로 변환 후 처리
     }
 
     // Event Modal 닫기
@@ -226,12 +225,13 @@
         document.getElementById('calEventTitle').value = '';
         document.getElementById('calEventDate').value = '';
         document.getElementById('calEventDescription').value = '';
-        document.getElementById('calColorIndex').value = ''; // 초기화
+        document.getElementById('calColorIndex').value = '';
 
         // 색상 선택 기능
         document.querySelectorAll('.color-picker div').forEach(function (colorDiv) {
             colorDiv.addEventListener('click', function () {
                 document.getElementById('calColorIndex').value = this.getAttribute('data-color-index');
+                updateTeamColorPreview(document.getElementById('calColorIndex').value); // Update color preview
             });
         });
 
@@ -442,12 +442,11 @@
             calEventTitle: title,
             calEventDescription: description,
             calEventCreateAt: new Date().toISOString(),
-            colorIndexId: colorIndex,
+            colorIndexId: colorIndex, //비동기로 렌더링되지 않는 문제
             userName: nowUserNameFromServer,
             updateBy: "아직 아무도 수정하지 않았어요!",
             departmentId: nowDepartmentIdFromServer,
-            teamCalendarId: nowTeamIdFromServer, //만
-
+            teamCalendarId: nowTeamIdFromServer,
         };
 
         // 클라이언트 로그 추가
@@ -464,7 +463,9 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    //새로운 이벤트 배열에 추가하여 렌더링 하기
                     myTeamCalEvents.push(newEvent);
+                    //달력에 추가한 화면바로 비동기로 렌더링하기
                     renderTeamCalendar(myTeamCalEvents, new Date(date).getFullYear(), new Date(date).getMonth());
                     document.getElementById('addEventModal').style.display = 'none';
                 } else {
