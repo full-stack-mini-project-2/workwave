@@ -37,7 +37,7 @@ body {
 .board-content {
   border-top: 1px solid #cccccc;
   padding: 20px 0;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6;
 }
 
@@ -287,7 +287,7 @@ body {
 }
 
 .author {
-  color: #973554;
+  color: #df1757;
   margin-left: 5px;
   font-weight: bold;
 }

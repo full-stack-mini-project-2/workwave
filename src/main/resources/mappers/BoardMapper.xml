@@ -6,7 +6,7 @@
 <mapper namespace="com.workwave.mapper.boardMapper.BoardMapper">
 
     <select id="findAll" resultType="board">
-        select
+        SELECT
         board_id,
         board_title,
         board_content,
@@ -17,17 +17,30 @@
         view_count,
         likes,
         dislikes
-        from board
-        <if test="type == 'tc'">
-            WHERE board_title LIKE CONCAT('%', #{keyword}, '%')
-            OR board_content LIKE CONCAT('%', #{keyword}, '%')
-        </if>
-        <if test="type == 'id'">
-            WHERE user_id = #{keyword}
-        </if>
-        ORDER BY board_created_at DESC
+        FROM board
+        <where>
+            <if test="type == 'tc'">
+                (board_title LIKE CONCAT('%', #{keyword}, '%')
+                OR board_content LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="type == 'id'">
+                user_id = #{keyword}
+            </if>
+        </where>
+        <choose>
+            <when test="type == 'view'">
+                ORDER BY view_count DESC
+            </when>
+            <when test="type == 'likes'">
+                ORDER BY likes DESC
+            </when>
+            <otherwise>
+                ORDER BY board_created_at DESC
+            </otherwise>
+        </choose>
         LIMIT #{pageStart}, #{amount}
     </select>
+
 
     <insert id="save">
         INSERT INTO board (

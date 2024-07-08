@@ -29,19 +29,29 @@
         </a>
         <ul class="nav-content">
             <li>
-                <!-- <i class="fas fa-home"></i> -->
+                
                 <a href="/">
-                    <i class="fas fa-poo"></i>
+                    <i class="fas fa-home"></i>
                     Home
                 </a>
             </li>
+
             <li>
                 <a href="/myCalendar/viewMyEvent">
                     <i class="fas fa-clipboard-check"></i>
                     My Calendar
                 </a>
+            </li> -->
+            <li>
+                <a href="/traffic-map">
+                    <i class="fas fa-bus-alt"></i>
+                    Traffic Info
+                </a>
             </li>
             <li>
+                <a href="/lunchMateBoard/list">
+                    <i class="fas fa-utensils"></i>
+                    Lunch Mate
                 <a href="/">
                     <i class="fas fa-chalkboard-teacher"></i>
                     Team Calendar
@@ -59,28 +69,16 @@
                     Board
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-bus-alt"></i>
-                    Traffic
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-utensils"></i>
-                    Contact
-                </a>
-            </li>
             <c:if test="${login == null}">
             <div class="login-section">   
                 <li class="sign-up">
-                    <a href="/members/sign-up">
+                    <a href="/join">
                         <i class="fas fa-user-plus"></i>
                         Sign Up
                     </a>
                 </li>
                 <li class="sign-in">   
-                    <a href="/members/sign-in">
+                    <a href="/login">
                         <i class="fas fa-sign-in-alt"></i>
                         Sign In
                     </a>
@@ -89,15 +87,8 @@
             </c:if>
             <c:if test="${login != null}">
                 <div class="login-section">   
-                <li class="my-page">
-
-                    <a href="#">
-                        <i class="fas fa-user"></i>
-                        My Page
-                    </a>
-                </li>
                 <li class="sign-out">
-                    <a href="/members/sign-out">
+                    <a href="/member/logout">
                         <i class="fas fa-sign-out-alt"></i>
                         Sign Out
                     </a>
