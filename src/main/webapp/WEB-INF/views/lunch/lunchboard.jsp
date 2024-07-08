@@ -316,34 +316,23 @@
             </div>
         </c:forEach>
     </div>
-
-
-            <!-- 페이지네이션 UI -->
-    <div class="pagination">
-        <c:if test="${totalPages > 1}">
-            <ul>
-                <c:if test="${pageNo > 1}">
-                    <li><a href="?page=1&size=${pageSize}">처음으로</a></li>
-                    <li><a href="?page=${pageNo - 1}&size=${pageSize}">끝으로</a></li>
-                </c:if>
-                <c:forEach begin="${startPage}" end="${endPage}" var="page">
-                    <c:choose>
-                        <c:when test="${page == pageNo}">
-                            <li class="active">${page}</li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="?page=${page}&size=${pageSize}">${page}</a></li>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-                <c:if test="${pageNo < totalPages}">
-                    <li><a href="?page=${totalPages}&size=${pageSize}"><</a></li>
-
-                    <li><a href="?page=${pageNo + 1}&size=${pageSize}">></a></li>
-                </c:if>
-            </ul>
-        </c:if>
-    </div>
+<!-- 페이지네이션 UI -->
+<div class="pagination">
+    <ul>
+        <li><a href="?page=${pageNo - 1}&size=${pageSize}">&lt;</a></li>
+        <c:forEach begin="1" end="${totalPages}" var="page">
+            <c:choose>
+                <c:when test="${page == pageNo}">
+                    <li class="active">${page}</li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="?page=${page}&size=${pageSize}">${page}</a></li>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+        <li><a href="?page=${pageNo + 1}&size=${pageSize}">&gt;</a></li>
+    </ul>
+</div>
 
 
     <div class="form-container">
@@ -352,7 +341,7 @@
             <div class="modal-content">
                 <span class="close" onclick="closeModal();">&times;</span>
                 <h1>NEW</h1>
-                <form action="/lunchMateBoard/new" method="post">
+                <form action="/lunchMateBoard/new" method="post" >
                     <!-- 작성자 정보는 자동으로 설정되도록 변경 -->
                     <!-- <label for="userId">작성자:</label> -->
                     <!-- <span id="userId">${loggedInUser.userId}</span><br> -->
