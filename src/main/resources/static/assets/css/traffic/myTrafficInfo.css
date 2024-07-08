@@ -41,7 +41,8 @@ body {
 
 .header-container h3 {
   font-family: 'NEXON Lv2 Gothic', 'Roboto', sans-serif;
-  margin-left: -450px
+  margin-top: 20px;
+  margin-left: -400px
 }
 .favorite-list {
   text-decoration: none;
