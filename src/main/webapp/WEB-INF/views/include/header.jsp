@@ -41,7 +41,7 @@
                     <i class="fas fa-clipboard-check"></i>
                     My Calendar
                 </a>
-            </li> -->
+            </li>
             <li>
                 <a href="/traffic-map">
                     <i class="fas fa-bus-alt"></i>
@@ -52,15 +52,6 @@
                 <a href="/lunchMateBoard/list">
                     <i class="fas fa-utensils"></i>
                     Lunch Mate
-                <a href="/">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    Team Calendar
-                </a>
-            </li>
-            <li>
-                <a href="/">
-                    <i class="fas fa-calendar-check"></i>
-                    todoList
                 </a>
             </li>
             <li>
