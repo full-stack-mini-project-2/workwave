@@ -291,7 +291,9 @@
                                 // 인원과 상태 값이 같을 경우 버튼을 비활성화
                                 if (currentAttendees === progressStatus) {
                                     button.disabled = true;
-                                    alert('이미 참가할 수 없는 상태입니다.');
+                                     button.textContent = "Close";
+                                     button.style.backgroundColor = '#808080';
+                                    alert('참가할 수 없는 상태입니다.');
                                     return;
                                 }
 
@@ -324,9 +326,11 @@
                                     // 인원과 상태 값이 같을 경우 버튼을 비활성화
                         if (updatedBoard.lunchAttendees === updatedBoard.progressStatus) {
                             button.disabled = true;
+                            button.textContent = "Close";
+                             button.style.backgroundColor = '#808080';
                         }
 
-                                alert('Successfully joined lunch!');
+                                alert('joined lunch!');
                                 location.reload(); // 페이지 새로고침
                             } else {
                                 alert('Failed to join lunch: ' + data.message);
