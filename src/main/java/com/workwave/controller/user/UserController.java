@@ -166,7 +166,7 @@ public class UserController {
                 .ok()
                 .body(flag);
     }
-// http://localhost:8383/login?logout
+
     //로그 아웃 처리
     @GetMapping("/member/logout")
     public String logOut(

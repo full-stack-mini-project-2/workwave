@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8383/board";
+const BASE_URL = "/board";
 const boardId = document.getElementById("reply-container").dataset.bno;
 const likeLoggedId = `like-${boardId}`;
 const dislikeLoggedId = `dislike-${boardId}`;
